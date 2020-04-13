@@ -1,0 +1,30 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GridBackGround.Config" GeneratedClassName="SettingsForm">
+  <Profiles />
+  <Settings>
+    <Setting Name="DisPackNum" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="DisReportNum" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="ComMode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Socket</Value>
+    </Setting>
+    <Setting Name="TabIndex" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="WindowState" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Normal</Value>
+    </Setting>
+    <Setting Name="CMD_Port" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">6011</Value>
+    </Setting>
+    <Setting Name="WEB_Port" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">6023</Value>
+    </Setting>
+    <Setting Name="PicturePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>

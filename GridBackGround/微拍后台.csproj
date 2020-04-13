@@ -1,0 +1,579 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9A4D6CE7-07A4-497F-B364-C10B6F20EDCA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GridBackGround</RootNamespace>
+    <AssemblyName>微拍后台V1.10</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AxInterop.TeeChart, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\AxInterop.TeeChart.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Interop.TeeChart, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <HintPath>bin\Debug\Interop.TeeChart.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommandDeal\Comand_ModeChange.cs" />
+    <Compile Include="CommandDeal\Data\RealDataAyan.cs" />
+    <Compile Include="CommandDeal\Data\RealData_Wea.cs" />
+    <Compile Include="CommandDeal\Image\Image_Photo_MAN.cs" />
+    <Compile Include="CommandDeal\Image\Image_TimeTable.cs" />
+    <Compile Include="CommandDeal\Image\Image_Model.cs" />
+    <Compile Include="CommandDeal\Image\Image_Photo_UP.cs" />
+    <Compile Include="CommandDeal\Image\Image_Photo_Adjust.cs" />
+    <Compile Include="CommandDeal\Private\UserPhone.cs" />
+    <Compile Include="CommandDeal\WorkState_Error.cs" />
+    <Compile Include="Config\Common\Messagebox_Textbox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\Common\Messagebox_Textbox.Designer.cs">
+      <DependentUpon>Messagebox_Textbox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialog\DialogTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialog\DialogTest.Designer.cs">
+      <DependentUpon>DialogTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_Update.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_Update.designer.cs">
+      <DependentUpon>Dialog_Update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialog\Form_UserCon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialog\Form_UserCon.designer.cs">
+      <DependentUpon>Form_UserCon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EquMan\Dialog_TowerMan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EquMan\Dialog_TowerMan.Designer.cs">
+      <DependentUpon>Dialog_TowerMan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_FormWD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_FormWD.Designer.cs">
+      <DependentUpon>Dialog_FormWD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_Update_Line.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_Update_Line.Designer.cs">
+      <DependentUpon>Dialog_Update_Line.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_Update_Tower.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_Update_Tower.Designer.cs">
+      <DependentUpon>Dialog_Update_Tower.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialog\MySqlDBTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialog\MySqlDBTest.Designer.cs">
+      <DependentUpon>MySqlDBTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EquMan\Dialog_EQU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EquMan\Dialog_EQU.Designer.cs">
+      <DependentUpon>Dialog_EQU.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EquMan\Dialog_EQU_Man.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EquMan\Dialog_EQU_Man.Designer.cs">
+      <DependentUpon>Dialog_EQU_Man.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EquMan\Dialog_UrlInterface_Man.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EquMan\Dialog_UrlInterface_Man.Designer.cs">
+      <DependentUpon>Dialog_UrlInterface_Man.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EquMan\FormManEquMan.cs" />
+    <Compile Include="Forms\EquMan\Dialog_LineMan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EquMan\Dialog_LineMan.Designer.cs">
+      <DependentUpon>Dialog_LineMan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Tab\MainMan.cs" />
+    <Compile Include="Forms\Tab\Tab_OnlineStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Tab\Tab_OnlineStatus.Designer.cs">
+      <DependentUpon>Tab_OnlineStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Tab\TabReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Tab\TabReport.Designer.cs">
+      <DependentUpon>TabReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Tab\FormSerialPort.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Tab\FormSerialPort.Designer.cs">
+      <DependentUpon>FormSerialPort.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_FormZD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_FormZD.Designer.cs">
+      <DependentUpon>Dialog_FormZD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_Image_Adjust.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_Image_Adjust.Designer.cs">
+      <DependentUpon>Dialog_Image_Adjust.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_Image_Photo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_Image_Photo.Designer.cs">
+      <DependentUpon>Dialog_Image_Photo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Tab\Tab_ID.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Tab\Tab_ID.Designer.cs">
+      <DependentUpon>Tab_ID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Tab\Tab_IDs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Tab\Tab_IDs.designer.cs">
+      <DependentUpon>Tab_IDs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TreeViewList.cs" />
+    <Compile Include="HTTP\PictureUpdate.cs" />
+    <Compile Include="HTTP\UpdateManger.cs" />
+    <Compile Include="PacketAnaLysis\PackDeal_PrivateCon.cs" />
+    <Compile Include="PacketAnaLysis\PackDeal_Image.cs" />
+    <Compile Include="PacketAnaLysis\PackDeal_Image_Control.cs" />
+    <Compile Include="CommandDeal\IPhoto_TimeTable.cs" />
+    <Compile Include="CommandDeal\Comand\Comand_History.cs" />
+    <Compile Include="CommandDeal\Comand\Comand_ID.cs" />
+    <Compile Include="CommandDeal\Comand\Comand_IP.cs" />
+    <Compile Include="CommandDeal\Comand\Comand_Model.cs" />
+    <Compile Include="CommandDeal\Comand\Comand_NA.cs" />
+    <Compile Include="CommandDeal\Comand\Comand_RemotedUpDate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CommandDeal\Comand\Comand_SamplePeriod.cs" />
+    <Compile Include="CommandDeal\Data\Data_WD.cs" />
+    <Compile Include="CommandDeal\Data\Data_WD_Form.cs" />
+    <Compile Include="CommandDeal\Data\Data_Ice.cs" />
+    <Compile Include="CommandDeal\Data\Data_Sag.cs" />
+    <Compile Include="CommandDeal\Data\Data_GTQX.cs" />
+    <Compile Include="CommandDeal\Data\Data_ZD_Feature.cs" />
+    <Compile Include="CommandDeal\Data\Data_ZD_Form.cs" />
+    <Compile Include="CommandDeal\Data\Data_FP.cs" />
+    <Compile Include="CommandDeal\FrameNO.cs" />
+    <Compile Include="CommandDeal\WorkState_Heart.cs" />
+    <Compile Include="CommandDeal\Data\Data_Line_Temperature.cs" />
+    <Compile Include="Communicat\TCPSeverWeb.cs" />
+    <Compile Include="Communicat\UDPSeverV2.cs" />
+    <Compile Include="Forms\AboutBox1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AboutBox1.Designer.cs">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommandDeal\Comand\Comand_Reset.cs" />
+    <Compile Include="Communicat\Service.cs" />
+    <Compile Include="Communicat\UDPSever.cs" />
+    <Compile Include="Forms\Dialog\Dialog_Con_HisData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_Con_HisData.Designer.cs">
+      <DependentUpon>Dialog_Con_HisData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_Con_ID.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_Con_ID.Designer.cs">
+      <DependentUpon>Dialog_Con_ID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_Image_TimeTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_Image_TimeTable.Designer.cs">
+      <DependentUpon>Dialog_Image_TimeTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_Image_Model.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_Image_Model.Designer.cs">
+      <DependentUpon>Dialog_Image_Model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_Con_MianTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_Con_MianTime.Designer.cs">
+      <DependentUpon>Dialog_Con_MianTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_Con_Model.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_Con_Model.Designer.cs">
+      <DependentUpon>Dialog_Con_Model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_Con_NA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_Con_NA.Designer.cs">
+      <DependentUpon>Dialog_Con_NA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommandDeal\IModel_Data.cs" />
+    <Compile Include="PackeDeal.cs" />
+    <Compile Include="Config\ConfigPort.cs" />
+    <Compile Include="Forms\Dialog\Dialog_Con_IP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_Con_IP.Designer.cs">
+      <DependentUpon>Dialog_Con_IP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_Config.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_Config.Designer.cs">
+      <DependentUpon>Dialog_Config.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_Con_Reset.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_Con_Reset.Designer.cs">
+      <DependentUpon>Dialog_Con_Reset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PacketAnaLysis\AnalysisInfo.cs" />
+    <Compile Include="PacketAnaLysis\BuildPacket.cs" />
+    <Compile Include="PacketAnaLysis\PackDeal_Data.cs" />
+    <Compile Include="PacketAnaLysis\PackDeal_Control.cs" />
+    <Compile Include="PacketAnaLysis\PackDeal_WorkState.cs" />
+    <Compile Include="PacketAnaLysis\DisPacket.cs" />
+    <Compile Include="PacketAnaLysis\TypeFrame.cs" />
+    <Compile Include="PacketAnaLysis\TypePacket.cs" />
+    <Compile Include="SerialPort.cs" />
+    <Compile Include="Config\SettingsForm.cs" />
+    <Compile Include="Config\SettingsForm.Designer.cs">
+      <DependentUpon>SettingsForm.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Forms\Tab\Tab_HisData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Tab\Tab_HisData.Designer.cs">
+      <DependentUpon>Tab_HisData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Tab\Tab_Packet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Tab\Tab_Packet.Designer.cs">
+      <DependentUpon>Tab_Packet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Termination\IPowerPole.cs" />
+    <Compile Include="PacketAnaLysis\PackDivid_FrameType.cs" />
+    <Compile Include="Termination\PowerPole.cs" />
+    <Compile Include="Communicat\EConnectType.cs" />
+    <Compile Include="Communicat\TCPSever.cs" />
+    <Compile Include="Forms\Tab\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Tab\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Termination\PowerPoleManagement.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CommandDeal\Photo_TimeTable.cs" />
+    <Compile Include="Termination\WEB_Control.cs" />
+    <EmbeddedResource Include="Config\Common\Messagebox_Textbox.resx">
+      <DependentUpon>Messagebox_Textbox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialog\DialogTest.resx">
+      <DependentUpon>DialogTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialog\Dialog_Update.resx">
+      <DependentUpon>Dialog_Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialog\Form_UserCon.resx">
+      <DependentUpon>Form_UserCon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EquMan\Dialog_TowerMan.resx">
+      <DependentUpon>Dialog_TowerMan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialog\Dialog_FormWD.resx">
+      <DependentUpon>Dialog_FormWD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialog\Dialog_Update_Line.resx">
+      <DependentUpon>Dialog_Update_Line.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialog\Dialog_Update_Tower.resx">
+      <DependentUpon>Dialog_Update_Tower.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialog\MySqlDBTest.resx">
+      <DependentUpon>MySqlDBTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EquMan\Dialog_EQU.resx">
+      <DependentUpon>Dialog_EQU.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EquMan\Dialog_EQU_Man.resx">
+      <DependentUpon>Dialog_EQU_Man.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EquMan\Dialog_UrlInterface_Man.resx">
+      <DependentUpon>Dialog_UrlInterface_Man.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EquMan\Dialog_LineMan.resx">
+      <DependentUpon>Dialog_LineMan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Tab\TabReport.resx">
+      <DependentUpon>TabReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Tab\FormSerialPort.resx">
+      <DependentUpon>FormSerialPort.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AboutBox1.resx">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialog\Dialog_Con_IP.resx">
+      <DependentUpon>Dialog_Con_IP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialog\Dialog_Config.resx">
+      <DependentUpon>Dialog_Config.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialog\Dialog_Con_HisData.resx">
+      <DependentUpon>Dialog_Con_HisData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialog\Dialog_Con_ID.resx">
+      <DependentUpon>Dialog_Con_ID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialog\Dialog_FormZD.resx">
+      <DependentUpon>Dialog_FormZD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialog\Dialog_Image_Adjust.resx">
+      <DependentUpon>Dialog_Image_Adjust.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialog\Dialog_Image_Model.resx">
+      <DependentUpon>Dialog_Image_Model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialog\Dialog_Con_MianTime.resx">
+      <DependentUpon>Dialog_Con_MianTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialog\Dialog_Con_Model.resx">
+      <DependentUpon>Dialog_Con_Model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialog\Dialog_Con_NA.resx">
+      <DependentUpon>Dialog_Con_NA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialog\Dialog_Con_Reset.resx">
+      <DependentUpon>Dialog_Con_Reset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialog\Dialog_Image_Photo.resx">
+      <DependentUpon>Dialog_Image_Photo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialog\Dialog_Image_TimeTable.resx">
+      <DependentUpon>Dialog_Image_TimeTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Tab\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Tab\Tab_ID.resx">
+      <DependentUpon>Tab_ID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Tab\Tab_IDs.resx">
+      <DependentUpon>Tab_IDs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Tab\Tab_OnlineStatus.resx">
+      <DependentUpon>Tab_OnlineStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Forms\Tab\Tab_HisData.resx">
+      <DependentUpon>Tab_HisData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Tab\Tab_Packet.resx">
+      <DependentUpon>Tab_Packet.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Config\SettingsForm.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>SettingsForm.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataTurn\Tools.csproj">
+      <Project>{5B332DA9-EE1D-40C2-97A2-4570397BD7ED}</Project>
+      <Name>Tools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DB_Operation\DB_Operation.csproj">
+      <Project>{8D2526AF-1982-4741-B940-9370A246AF54}</Project>
+      <Name>DB_Operation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FastSocket.Server\FastSocket.Server.csproj">
+      <Project>{C9433CAD-5795-4735-8DA8-76BEC4C82A52}</Project>
+      <Name>FastSocket.Server</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FastSocket.SocketBase\FastSocket.SocketBase.csproj">
+      <Project>{19AC13BD-92BD-4851-A38F-5642C1F97656}</Project>
+      <Name>FastSocket.SocketBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ResModel\ResModel.csproj">
+      <Project>{EA6C2A86-18B3-4038-9872-0EC55A0C0CD4}</Project>
+      <Name>ResModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SQLUtils\SQLUtils.csproj">
+      <Project>{21DD84B6-D1B9-4E3F-BCB9-FA1F79D27333}</Project>
+      <Name>SQLUtils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\db.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\修改说明.txt">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="沃英泰科图标.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\DataSources\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

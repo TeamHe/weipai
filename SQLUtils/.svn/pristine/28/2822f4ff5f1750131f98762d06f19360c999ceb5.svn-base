@@ -1,0 +1,55 @@
+﻿namespace SQLUtils
+{
+   public class SQLUtilsFactory
+    {
+        /// <summary>
+        /// 工厂类创建sql帮助类
+        /// </summary>
+        /// <returns></returns>
+        public static ISQLUtils Create()
+        {
+            string dbServerName = System.Configuration.ConfigurationSettings.AppSettings["DBString"];
+            switch (dbServerName)
+            {
+                case  "SQLServer":
+                    return new SQLServerHelper();
+                case "Oracle":
+                    return new OracleHelper();
+                case "SQLite":
+                    return new SQLiteHelper();
+                case "OleDb_Access":
+                    OleDbHelper oleDbHelper=new OleDbHelper();
+                    oleDbHelper.SetConnStr();
+                    return oleDbHelper;
+                case "OleDb":
+                    return new OleDbHelper();
+            }
+            return new SQLServerHelper();
+        }
+
+        public static ISQLUtils Create(SQLConnEnum sqlConnEnum,string conStr)
+        {
+            switch (sqlConnEnum)
+            {
+                case  SQLConnEnum.SQLServer:
+                    return new SQLServerHelper(conStr);
+                case SQLConnEnum.OleDb:
+                    return new OleDbHelper(conStr);
+                case SQLConnEnum.SQLite:
+                    return new SQLiteHelper(conStr);
+                case SQLConnEnum.Oracle:
+                    return new OracleHelper(conStr);
+            }
+            return new SQLServerHelper();
+        }
+     
+    }
+
+    public enum SQLConnEnum
+    {
+       SQLServer,
+       Oracle,
+       SQLite,
+       OleDb
+    }
+}

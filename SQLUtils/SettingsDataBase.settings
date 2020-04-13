@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SQLUtils" GeneratedClassName="SettingsDataBase">
+  <Profiles />
+  <Settings>
+    <Setting Name="DBString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MySql</Value>
+    </Setting>
+    <Setting Name="OleConnectionString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">db.mdb</Value>
+    </Setting>
+    <Setting Name="ConnectionString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Server=127.0.0.1;Port=3306;Stmt=;Database=picture; User=root;Password=root;</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
