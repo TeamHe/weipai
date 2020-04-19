@@ -65,6 +65,9 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -220,8 +223,12 @@
       <DependentUpon>Tab_IDs.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\TreeViewList.cs" />
-    <Compile Include="HTTP\PictureUpdate.cs" />
-    <Compile Include="HTTP\UpdateManger.cs" />
+    <Compile Include="HTTP\HttpListeners.cs" />
+    <Compile Include="HTTP\HttpRequestManager.cs" />
+    <Compile Include="HTTP\ReSendMessage.cs" />
+    <Compile Include="HTTP\ThreadEntrustManager.cs" />
+    <Compile Include="HTTP\zlwp\CmdGetLines.cs" />
+    <Compile Include="HTTP\zlwp\Zlwp.cs" />
     <Compile Include="PacketAnaLysis\PackDeal_PrivateCon.cs" />
     <Compile Include="PacketAnaLysis\PackDeal_Image.cs" />
     <Compile Include="PacketAnaLysis\PackDeal_Image_Control.cs" />
@@ -483,6 +490,7 @@
     </None>
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

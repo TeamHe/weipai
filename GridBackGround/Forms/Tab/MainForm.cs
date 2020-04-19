@@ -20,6 +20,9 @@ namespace GridBackGround
     {
         private string CMD_ID = null;
         bool Flag_TabChange = false;
+
+        private HTTP.HttpListeners httpListeners = null;
+
         public MainForm()
         {
             InitializeComponent();
@@ -42,6 +45,7 @@ namespace GridBackGround
             //数据库初始化
             try
             {
+
                 DB_Operation.DB.Init();
 
                 TabInit();
@@ -54,6 +58,9 @@ namespace GridBackGround
                 SocketInit();
                 //事件初始化
                 EventInit();
+
+                httpListeners = new HTTP.HttpListeners();
+                httpListeners.ListenerStart();
 
                 Forms.EquMan.FormManEquMan fmm = new Forms.EquMan.FormManEquMan();
                 fmm.FormManEquManInit(this.设置ToolStripMenuItem);
