@@ -54,13 +54,23 @@ namespace GridBackGround.Work
                 return;
             DateTime time = DateTime.Today;
             DateTime lastTime = Config.SettingsForm.Default.PictuerCleanLastTime;
-            if ((time - lastTime).Days < Config.SettingsForm.Default.PictureCleanPeriod-1)
-                return ;
-            DateTime end = DateTime.Today;
-            int reserveTime = Config.SettingsForm.Default.PictuerCleanReserveTime;
-            if (reserveTime <= 0) reserveTime = 1;
-            end = end.AddDays(-reserveTime);
-            Remove(end);
+            if ((time - lastTime).Days >= Config.SettingsForm.Default.PictureCleanPeriod - 1)
+            {
+                DateTime end = DateTime.Today;
+                int reserveTime = Config.SettingsForm.Default.PictuerCleanReserveTime;
+                if (reserveTime <= 0) reserveTime = 1;
+                end = end.AddDays(-reserveTime);
+                Remove(end);
+
+            }
+
+            int hour = Config.SettingsForm.Default.PictureCleanTime.Hour;
+            int minut = Config.SettingsForm.Default.PictureCleanTime.Minute;
+            DateTime oneClock = DateTime.Today.AddHours(hour);
+            oneClock = oneClock.AddMinutes(minut);
+            oneClock = oneClock.AddDays(1);
+            int msUnitl = (int)(oneClock - DateTime.Now).TotalMilliseconds;
+            timer.Change(msUnitl, Timeout.Infinite);
         }
 
         private static void clean_start()
