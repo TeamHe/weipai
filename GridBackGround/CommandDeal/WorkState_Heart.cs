@@ -114,8 +114,8 @@ namespace GridBackGround.CommandDeal
             }
             var packet = PacketAnaLysis.BuildPacket.PackBuild(
                             cmd_ID,
-                            6,                                      //长度
-                            PacketAnaLysis.TypeFrame.ResWorkState,  //frameType
+                            6,                                         //长度
+                            PacketAnaLysis.TypeFrame.ResWorkState,    //frameType
                             PacketAnaLysis.PacketType_WorkState.Heart,//PacketType
                             frame_No,                                  //FrameNo
                             data

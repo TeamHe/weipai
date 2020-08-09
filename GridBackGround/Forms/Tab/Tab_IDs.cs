@@ -82,19 +82,19 @@ namespace GridBackGround.Forms.Tab
                 {                                                 //查找到相应ID对应的节点
                     UpdateEquMsg(Node,powerPole);               //更新节点提示信息
                 }
-                //else
-                //{
-                //    TreeNode node = new TreeNode();
-                //    if ((powerPole.Name == null) || (powerPole.Name.Length <= 0))
-                //        node.Text = powerPole.CMD_ID;
-                //    else
-                //        node.Text = powerPole.Name;
-                //    node.Name = powerPole.CMD_ID;
-                //    AddTestNode().Nodes.Add(node);
+                else
+                {
+                    TreeNode node = new TreeNode();
+                    if ((powerPole.Name == null) || (powerPole.Name.Length <= 0))
+                        node.Text = powerPole.CMD_ID;
+                    else
+                        node.Text = powerPole.Name;
+                    node.Name = powerPole.CMD_ID;
+                    AddTestNode().Nodes.Add(node);
 
-                //    UpdateEquMsg(node, powerPole);              //更新节点提示信息
+                    UpdateEquMsg(node, powerPole);              //更新节点提示信息
 
-                //}
+                }
             }
         }
 
@@ -172,7 +172,7 @@ namespace GridBackGround.Forms.Tab
             var lineList = DB_Line.List_LineTowerEqu();
             TreeNode selectedNode = null;
             TreeViewList.LineList(this.treeView1.Nodes,lineList,out selectedNode);
-            Termination.PowerPoleManage.UpdatePoleStation();
+            Termination.PowerPoleManage.UpdatePolesStation();
         }
 
         /// <summary>
@@ -192,9 +192,6 @@ namespace GridBackGround.Forms.Tab
         public void UpdateEquMsg(TreeNode node, Termination.IPowerPole powerPole)
         {
             if (node == null) return;
-
-            
-
             if (node.Tag == null)
             {
                 Equ nodeequ = new Equ();
@@ -249,6 +246,7 @@ namespace GridBackGround.Forms.Tab
                 var equ = (Equ)nodeEqu.Tag;
                 var tower = (Tower)nodeTower.Tag;
                 var line = (Line)nodeLine.Tag;
+                this.textBox1.Text = equ.EquID;
                 handler(this, new CMDid_Change(equ.EquID, string.Format("{0}->{1}->{2}",line.Name,tower.TowerName,equ.Name)));
             }
             else
@@ -271,6 +269,40 @@ namespace GridBackGround.Forms.Tab
                 return line.Text + "->"+tower.Text+ "->" + node.Text;
             }
             return ID;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(this.textBox1.Text.Length != 17)
+            {
+                MessageBox.Show("请输入正确长度的设备ID");
+                return;
+            }
+            string id = this.textBox1.Text;
+            foreach (TreeNode nodeLine in this.treeView1.Nodes)
+            {
+                foreach(TreeNode nodeTower in nodeLine.Nodes)
+                {
+                    foreach(TreeNode nodeEqu in nodeTower.Nodes)
+                    {
+                        Equ equ = (Equ)nodeEqu.Tag;
+                        if(equ.EquID == id)
+                        {
+                            this.treeView1.SelectedNode = nodeEqu;
+                            nodeTower.Expand();
+                            nodeLine.Expand();
+                            return;
+                        }
+                    }
+                }
+            }
+            MessageBox.Show("没有找到ID为:" + id + "的节点");
+        }
+
+        private void treeView1_DrawNode(object sender, DrawTreeNodeEventArgs e)
+        {
+            e.DrawDefault = true; //我这里用默认颜色即可，只需要在TreeView失去焦点时选中节点仍然突显
+            return;
         }
     }
 }

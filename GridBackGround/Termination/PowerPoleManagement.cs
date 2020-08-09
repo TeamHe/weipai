@@ -20,7 +20,7 @@ namespace GridBackGround.Termination
             PowerPoleList = new List<Termination.PowerPole>();
         }
 
-        public static void UpdatePoleStation()
+        public static void UpdatePolesStation()
         {
             if(PowerPoleList!= null)
             foreach (PowerPole pole in PowerPoleList)
@@ -28,6 +28,16 @@ namespace GridBackGround.Termination
                 pole.UpstateEqu();
             }
         }
+
+        public static void UpdatePoleStation(string CMD_ID)
+        {
+            foreach (PowerPole pole in PowerPoleList)
+            {
+                if(pole.CMD_ID == CMD_ID)
+                    pole.UpstateEqu();
+            }
+        }
+
 
         #region  private member
         
@@ -42,6 +52,7 @@ namespace GridBackGround.Termination
             PowerPole powerPole = new PowerPole(CMD_ID);
             //接收节点变化事件
             powerPole.PowerPoleStateChange += new EventHandler<PowerPoleStateChange>(PoleStateChange);
+            powerPole.UpstateEqu();
             PowerPoleList.Add(powerPole);
             return powerPole;
         }

@@ -32,7 +32,11 @@ namespace GridBackGround.Communicat
         public override void OnReceived(IConnection connection, CommandInfoV2 cmdInfo)
         {
             base.OnReceived(connection, cmdInfo);
+            DateTime tstart = DateTime.Now;
             PackeDeal.RecData(connection, cmdInfo);
+            DateTime tend = DateTime.Now;
+            TimeSpan timeSpan = tend.Subtract(tstart);
+            System.Console.WriteLine("packet deal take time" + timeSpan.TotalMilliseconds.ToString());
         }
 
         //异常返回

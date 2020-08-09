@@ -2,6 +2,7 @@
 //using System.Collections.Generic;
 //using System.Linq;
 //using System.Text;
+
 //using System.Net;
 //using Newtonsoft.Json.Linq;
 //using ResModel.EQU;
@@ -10,7 +11,7 @@
 
 //namespace GridBackGround.HTTP.zlwp
 //{
-//    public class CmdGetLines
+//    public class CmdGetTowers
 //    {
 //        /// <summary>
 //        /// http 请求上下文
@@ -22,28 +23,29 @@
 //        /// </summary>
 //        public JObject JObject { get; set; }
 
-//        public CmdGetLines()
+
+//        public CmdGetTowers()
 //        {
 
 //        }
 
-//        public CmdGetLines(HttpListenerContext context,JObject jObject)
+//        public CmdGetTowers(HttpListenerContext context, JObject jObject)
 //        {
 //            this.Context = context;
 //            this.JObject = jObject;
 //        }
-       
+
 //        public void Deal()
 //        {
 //            try
 //            {
 //                var lineList = DB_Line.List_LineTowerEqu();
-//                JObject jObject = new GetLinesResponse(lineList).ToJson();
+//                JObject jObject = new GetTowersResponse(lineList).ToJson();
 //                ReSendMsgService.SendResponse(this.Context, jObject);
 //                this.Context.Response.Close();
-                
+
 //            }
-//            catch(Exception ex) 
+//            catch (Exception ex)
 //            {
 //                Zlwp.SendError(this.Context, "CmdGetLines error. " + ex.Message);
 //                Context.Response.Close();
@@ -51,19 +53,36 @@
 //        }
 //    }
 
-//    public class GetLinesResponse{
+//    public class GetTowersResponse
+//    {
 //        public string Root { get { return "GetLinesRespnse"; } }
 
 //        public List<Line> Lines { get; set; }
 
-//        public GetLinesResponse()
+//        public GetTowersResponse()
 //        {
 
 //        }
 
-//        public GetLinesResponse(List<Line> lines)
+//        public GetTowersResponse(List<Line> lines)
 //        {
 //            this.Lines = lines;
+//        }
+
+//        private JArray towers_to_json(List<Tower> towers)
+//        {
+//            JArray jArray = new JArray();
+//            if (towers == null) return jArray;
+
+//            foreach(Tower tower in towers)
+//            {
+//                JObject jObject = new JObject();
+//                jObject.Add("no", tower.TowerNO);
+//                jObject.Add("name", tower.TowerName);
+
+//                jArray.Add(jObject);
+//            }
+//            return jArray;
 //        }
 
 //        private JArray lines_to_json()
@@ -75,12 +94,13 @@
 //            {
 //                JObject jObject = new JObject();
 //                jObject.Add("linno", line.NO);
-//                if(line.LineID != null)
+//                if (line.LineID != null)
 //                    jObject.Add("lineID", line.LineID);
 //                jObject.Add("lineName", line.Name);
+//                JArray jtowers = towers_to_json(line.TowerList);
+//                jObject.Add("towers", jtowers);
 //                array.Add(jObject);
 //            }
-
 //            return array;
 
 //        }

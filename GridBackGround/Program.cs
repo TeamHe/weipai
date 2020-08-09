@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace GridBackGround
 {
@@ -20,4 +21,6 @@ namespace GridBackGround
             //Application.Run(new Forms.Dialog.Dialog_EquManage());
         }
     }
+
+   
 }

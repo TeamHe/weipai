@@ -11,9 +11,18 @@ using ResModel.EQU;
 using DB_Operation.EQUManage;
 namespace GridBackGround.Termination
 {
+    
+
     public class PowerPole : IPowerPole
     {
-        static System.Timers.Timer timer;
+        /// <summary>
+        /// 指令超时时间
+        /// </summary>
+        public int OverTime { get; set; } = 3;
+
+        private Timer timer;
+
+        private IConnection connection;
 
         #region Constructors
         /// <summary>
@@ -57,9 +66,25 @@ namespace GridBackGround.Termination
         /// </summary>
         public IConnection Connection
         {
-            get;
-            private set;
+            get { return this.connection; }
+            private set {
+                if(this.connection != null)     //处理连接断开事件
+                    this.connection.Disconnected -= Connection_Disconnected;
+                this.connection = value;
+                if (this.connection != null)
+                    this.connection.Disconnected += Connection_Disconnected;
+
+            }
         }
+
+        private void Connection_Disconnected(IConnection connection, Exception ex)
+        {
+            this.OnLine = false;
+            OnLineStateChange();
+            this.Connection = null;
+
+        }
+
         /// <summary>
         /// Udp终端
         /// </summary>
@@ -88,6 +113,8 @@ namespace GridBackGround.Termination
         /// 装置状态变化事件
         /// </summary>
         public event EventHandler<PowerPoleStateChange> PowerPoleStateChange;
+
+        //public event EventHandler<>
         /// <summary>
         /// 装置信息
         /// </summary>
@@ -96,7 +123,6 @@ namespace GridBackGround.Termination
         /// 用户数据
         /// </summary>
         public object UserData { get; set; }
-       
         #endregion
 
 
@@ -161,10 +187,12 @@ namespace GridBackGround.Termination
                 catch { }
                 this.Connection = iconnection;
                 this.IP = (IPEndPoint)iconnection.RemoteEndPoint;
-                Change = true;
-                
             }
-            this.Connection = iconnection;
+            if(this.OnLine == false)
+            {
+                this.OnLine = true;
+                OnLineStateChange();
+            }
             Online(Change);
             return false;
         }
@@ -238,6 +266,129 @@ namespace GridBackGround.Termination
             return this.Equ.ToString() + "\n" + str;
         }
 
+        #region 手动请求拍照处理
+        /// <summary>
+        /// 拍照请求事件
+        /// </summary>
+        public event EventHandler<PowerPoleEventArgs> PhotoingResultEventHanlder;
+
+        private bool busy_photoing { get; set; }
+
+        private Timer timer_photoing { get; set; }
+
+        public Error_Code Photiong(int channel,int preseting)
+        {
+            if (preseting > 255)
+                return Error_Code.InvalidPara;
+            if (this.OnLine == false)
+                return Error_Code.DeviceOffLine;
+            if (this.busy_photoing)
+                return Error_Code.DeviceBusy;
+            if(this.timer_photoing == null)
+            {
+                this.timer_photoing = new Timer(this.OverTime * 1000);
+                this.timer_photoing.AutoReset = false;
+                this.timer_photoing.Elapsed += Timer_Photoing_Elapsed;
+            }
+            this.timer_photoing.Start();
+
+            if (!CommandDeal.Image_Photo_MAN.Set(this.CMD_ID, channel, preseting))
+                return Error_Code.DeviceOffLine;
+
+            return Error_Code.Success;
+        }
+
+        private void Timer_Photoing_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            this.OnPhotiongFinish(Error_Code.ResponseOverTime);
+        }
+
+        public void OnPhotiongFinish(Error_Code code, string message = null)
+        {
+            this.busy_photoing = false ;
+            PowerPoleEventArgs args = new PowerPoleEventArgs()
+            {
+                Code = code,
+                Message = message
+            };
+            try
+            {
+                if (PhotoingResultEventHanlder != null)
+                    this.PhotoingResultEventHanlder(this, args);
+            }
+            catch
+            {
+
+            }
+        }
+        #endregion
+
+        #region 设置拍照时间表
+        /// <summary>
+        /// 拍照请求事件
+        /// </summary>
+        public event EventHandler<PowerPoleEventArgs> SetTimeTableResultEventHanlder;
+
+        private bool busy_settimetable { get; set; }
+
+        private Timer timer_settimetable { get; set; }
+
+        public Error_Code SetTimeTable(int channel, List<CommandDeal.IPhoto_TimeTable> table)
+        {
+            //if(table ==null || table.Count ==0 || table.Count > 72)
+            //{
+            //    return Error_Code.InvalidPara;
+            //}
+            //foreach(CommandDeal.PhotoTimeTable time in table)
+            //{
+            //    if (time.Hour < 0 || time.Hour > 23
+            //        || time.Minute < 0 || time.Minute > 59
+            //        || time.Presetting_No < 0 || time.Presetting_No > 255)
+            //        return Error_Code.InvalidPara;
+            //}
+            if (this.OnLine == false)
+                return Error_Code.DeviceOffLine;
+            if (this.busy_settimetable)
+                return Error_Code.DeviceBusy;
+            if (this.timer_settimetable == null)
+            {
+                this.timer_settimetable = new Timer(this.OverTime * 1000);
+                this.timer_settimetable.AutoReset = false;
+                this.timer_settimetable.Elapsed += Timer_TimeTable_Elapsed;
+            }
+            this.timer_settimetable.Start();
+
+            if (!CommandDeal.Image_TimeTable.Set(this.CMD_ID, channel, table))
+                return Error_Code.DeviceOffLine;
+
+            return Error_Code.Success;
+        }
+
+        private void Timer_TimeTable_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            this.OnTimeTableFinish(Error_Code.ResponseOverTime);
+        }
+
+        public void OnTimeTableFinish(Error_Code code, string message = null)
+        {
+            this.busy_settimetable = false;
+            this.timer_settimetable.Stop();
+            PowerPoleEventArgs args = new PowerPoleEventArgs()
+            {
+                Code = code,
+                Message = message
+            };
+            //try
+            //{
+                if (SetTimeTableResultEventHanlder != null)
+                    this.SetTimeTableResultEventHanlder(this, args);
+            //}
+            //catch(Exception ex)
+            //{
+
+            //}
+        }
+        #endregion
 
     }
     /// <summary>
@@ -258,6 +409,5 @@ namespace GridBackGround.Termination
         /// 发送状态变化的节点
         /// </summary>
         public PowerPole Power{get;set;}
-    
     }
 }

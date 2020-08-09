@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -34,7 +34,7 @@ namespace GridBackGround
         {          
             //新报文显示
             //PacketAnaLysis.DisPacket.OnNewPacket += new PacketAnaLysis.NewPacket(UserListChanged);
-            PacketAnaLysis.DisPacket.OnNewPacketS += new PacketAnaLysis.NewPacketS(UserListsChanged);
+            //PacketAnaLysis.DisPacket.OnNewPacketS += new PacketAnaLysis.NewPacketS(UserListsChanged);
         }
 
         private void UserListsChanged(List<string> msgs)
@@ -133,6 +133,12 @@ namespace GridBackGround
             PackeDeal.SendData(bytes);
         }
 
-      
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if(this.checkBox1.Checked)
+                PacketAnaLysis.DisPacket.OnNewPacketS += new PacketAnaLysis.NewPacketS(UserListsChanged);
+            else
+                PacketAnaLysis.DisPacket.OnNewPacketS -= new PacketAnaLysis.NewPacketS(UserListsChanged);
+        }
     }
 }

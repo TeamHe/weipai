@@ -9,7 +9,6 @@ namespace GridBackGround.HTTP
 {
     public class HttpRequestManager
     {
-        //int _sDefaultLen = 102400;
 
         public virtual void OnHttpRequest(object context)
         {
@@ -66,63 +65,24 @@ namespace GridBackGround.HTTP
                 client.Response.Close();
             }
         }
-       
-    
+
+
 
         //接收，解析方法
         void OnReceivPolisy(HttpListenerContext hltc)
         {
-            //byte[] buffer = new byte[_sDefaultLen];
-            //Stream stream = hltc.Request.InputStream;
-            //int sLen = 0;
-            //int sIndex = 0;
-
-            //while ((sIndex = stream.Read(buffer, sLen, 512)) != 0)
-            //    sLen += sIndex;
-
-            //if (sLen < 1)
-            //{
-            //    //反馈给第三方，并记录本地日志
-            //    try
-            //    {
-            //        ReSendMsgService.SendResponse(hltc, "Post的数据为空.");
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        //GLOBAL.MyLog.WriteLog("时间：" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "返回给第三方Post的数据为空失败" + ex.Message);
-            //    }
-            //    //MyLog.WriteLog("对象：OnReceivPolisy: Post的数据为空.");
-            //}
-            ////解析、入库
-            ////bool jxbl = RelePolicyBuffer(buffer, buffer.Length);
-            //if (!jxbl)//XML解析失败
-            //{
-            //    try
-            //    {
-            //        //发送指令给第三方
-            //        ReSendMsgService.SendResponse(hltc, "XML结构解析失败");
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        //MyLog.WriteLog("时间：" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "返回给第三方XML结构解析失败失败" + ex.Message);
-            //    }
-            //}
-            ////否则发送0给第三方
-            //try
-            //{
-            //    ReSendMsgService.SendResponse(hltc, new byte[] { 0x30 });
-            //}
-            //catch (Exception ex)
-            //{
-            //    //MyLog.WriteLog("时间：" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "返回给第三方 0 失败" + ex.Message);
-            //}
         }
-        //int r = 1;
-        //解析入库方法
-        //bool RelePolicyBuffer(byte[] buffer, int bLen)
-        //{
-        //    //此处为解析xml的脚本，省略，，，，，，，xmltextreader方式解析，单向只读
 
-        //}
+        private static List<object> RequestList = new List<object>();
+
+        public static void AddToRequestList(object obj)
+        {
+            RequestList.Add(obj);
+        }
+
+        public static void RemoveFromRequestList(object obj)
+        {
+            RequestList.Remove(obj);
+        }
     }
 }

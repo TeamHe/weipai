@@ -112,17 +112,17 @@ namespace GridBackGround.Forms.EquMan
             this.textBox_Phone.TextChanged                  += new EventHandler(textBox_TextChanged);
                         
             //杆塔管理按钮
-            this.comboBox_Line.DropDownStyle                = ComboBoxStyle.DropDownList;
+            //this.comboBox_Line.DropDownStyle                = ComboBoxStyle.DropDownList;
             this.linkLabel_Tower_Man.Click                  += new EventHandler(linkLabel_LinkClicked);
             this.linkLabel_Tower_Update.Click               += new EventHandler(linkLabel_LinkClicked);
             //Url管理
-            this.comboBox_Url.DropDownStyle                 = ComboBoxStyle.DropDownList;
+            //this.comboBox_Url.DropDownStyle                 = ComboBoxStyle.DropDownList;
             this.comboBox_Url.SelectedIndexChanged          += new EventHandler(comboBox_SelectedIndexChanged);
             this.linkLabel_Url_Update.Click                 += new EventHandler(linkLabel_LinkClicked);
             this.linkLabel_Url_Man.Click                    += new EventHandler(linkLabel_LinkClicked);
            
             //单位管理
-            this.comboBox_DepartMent.DropDownStyle          = ComboBoxStyle.DropDownList;
+            //this.comboBox_DepartMent.DropDownStyle          = ComboBoxStyle.DropDownList;
             this.comboBox_DepartMent.SelectedIndexChanged   += new EventHandler(comboBox_SelectedIndexChanged);
             this.linkLabel_Department_Man.Click             += new EventHandler(linkLabel_LinkClicked);
             this.linkLabel_DepartMent_Update.Click          += new EventHandler(linkLabel_LinkClicked);
@@ -311,7 +311,7 @@ namespace GridBackGround.Forms.EquMan
             this.textBox_ID.Text = equ.EquID;
             this.textBox_Phone.Text = equ.Phone;
             this.textBox_EquNumber.Text = equ.EquNumber;
-            this.checkBox_isname.Checked = equ.Is_Name;
+            this.checkBox_isname.Checked = equ.IS_Mark;
             this.checkBox_istime.Checked = equ.Is_Time;
             
             ComboxSeletUrl(equ.UrlID);
@@ -346,7 +346,7 @@ namespace GridBackGround.Forms.EquMan
             equ.Phone = this.textBox_Phone.Text;
             equ.TowerNO = ((Tower)((ComboBoxItem)this.comboBox_Line.SelectedItem).Value).TowerNO;
             equ.UrlID = ((UrlInterFace)((ComboBoxItem)this.comboBox_Url.SelectedItem).Value).ID;
-            equ.Is_Name = this.checkBox_isname.Checked;
+            equ.IS_Mark = this.checkBox_isname.Checked;
             equ.Is_Time = this.checkBox_istime.Checked;
             return equ;
         }
@@ -365,7 +365,7 @@ namespace GridBackGround.Forms.EquMan
         {
             UpdateTowerList(line.NO);
         }
-
+        List<Tower> TowerList = new List<Tower>();
         void UpdateTowerList(int lineNO)
         {
             //Combox 刷新
@@ -378,8 +378,9 @@ namespace GridBackGround.Forms.EquMan
            
             this.comboBox_Line.SelectedIndex = 0;
             //获取杆塔列表
-            var towerlist = DB_Tower.List(lineNO);;
-            foreach (Tower tower in towerlist)
+            TowerList = DB_Tower.List(lineNO);;
+            //this.TowerList.Clear();
+            foreach (Tower tower in TowerList)
             {
                 ComboBoxItem item = new ComboBoxItem(tower.TowerName, tower);
                 this.comboBox_Line.Items.Add(item);
@@ -389,6 +390,46 @@ namespace GridBackGround.Forms.EquMan
                     this.comboBox_Line.SelectedItem = item;
             }
         }
+        /// <summary>
+        /// 线路列表 模糊查询
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void comboBox_Line_TextUpdate(object sender, EventArgs e)
+        {
+            this.comboBox_Line.Items.Clear();
+
+            ComboBoxItem nullitem = new ComboBoxItem();
+            nullitem.Text = "";
+            nullitem.Value = new Tower() { TowerNO = 0 };
+            this.comboBox_Line.Items.Add(nullitem);
+
+            foreach(Tower tower in TowerList)
+            {
+                if (!tower.TowerName.Contains(this.comboBox_Line.Text))
+                    continue;
+                ComboBoxItem item = new ComboBoxItem(tower.TowerName, tower);
+                this.comboBox_Line.Items.Add(item);
+                //if (this.equ == null)
+                //    continue;
+                //if (this.equ.TowerNO == tower.TowerNO)
+                //    this.comboBox_Line.SelectedItem = item;
+            }
+
+
+            //设置光标位置，否则光标位置始终保持在第一列，造成输入关键词的倒序排列
+
+            this.comboBox_Line.SelectionStart = this.comboBox_Line.Text.Length;
+
+            //保持鼠标指针原来状态，有时候鼠标指针会被下拉框覆盖，所以要进行一次设置。
+
+            Cursor = Cursors.Default;
+
+            //自动弹出下拉框
+
+            this.comboBox_Line.DroppedDown = true;
+        }
+
 
         /// <summary>
         /// 刷新URL列表
@@ -486,7 +527,6 @@ namespace GridBackGround.Forms.EquMan
 
         }
 
-       
     }
 
  

@@ -58,7 +58,7 @@ namespace DB_Operation.EQUManage
             obj[6] = equ.UrlID;
             obj[7] = equ.MarketText;
             obj[8] = Convert.ToInt16(equ.Is_Time);
-            obj[9] = Convert.ToInt16(equ.Is_Name);
+            obj[9] = Convert.ToInt16(equ.IS_Mark);
             Connection.ExecuteNoneQuery(sql, CommandType.Text, fileds, obj);
             return GetEqu(equ.EquID);
         }
@@ -113,7 +113,7 @@ namespace DB_Operation.EQUManage
             obj[6] = desequ.UrlID;
             obj[7] = desequ.MarketText;
             obj[8] = desequ.Is_Time;
-            obj[9] = desequ.Is_Name;
+            obj[9] = desequ.IS_Mark;
             obj[10] = srcequ.ID;
             Connection.ExecuteNoneQuery(sql, CommandType.Text, fileds, obj);
         }
@@ -222,6 +222,8 @@ namespace DB_Operation.EQUManage
             try
             {
                 var equ = new Equ();
+                if (row.IsNull(Colums[0]))
+                    return null;
                 equ.ID = (int)row[Colums[0]];
                 equ.Name = row[Colums[1]].ToString();
                 equ.EquNumber = row[Colums[2]].ToString(); ;
@@ -231,14 +233,14 @@ namespace DB_Operation.EQUManage
                 equ.TowerNO = (int)row[Colums[6]];
                 equ.UrlID = (int)row[Colums[7]];
                 equ.MarketText = row[Colums[8]].ToString();
-                //equ.Is_Name = true;
-                //equ.Is_Time = true;
-                if(row.ItemArray.Length > 10)
+                equ.IS_Mark = true;
+                equ.Is_Time = true;
+                if (row.ItemArray.Length > 10)
                 {
                     if (!(row[Colums[9]] is System.DBNull))
                         equ.Is_Time = Convert.ToBoolean(row[Colums[9]]);
                     if (!(row[Colums[10]] is System.DBNull))
-                        equ.Is_Name = Convert.ToBoolean(row[Colums[10]]);
+                        equ.IS_Mark = Convert.ToBoolean(row[Colums[10]]);
                 }
                 equ.UpdateTime = DateTime.Parse(row[Colums[11]].ToString());
 

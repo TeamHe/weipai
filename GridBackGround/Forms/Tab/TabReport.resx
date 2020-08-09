@@ -168,7 +168,7 @@
   <data name="toolStripButton_Clear_Record.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAADyZSURBVHhe7d0JlBXVuS/wvJcEBFSku093M0lkFBRBRgFF
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAADyZSURBVHhe7d0JlBXVuS/wvJcEBFSku093M0lkFBRBRgFF
         ROZBBBUHnBUQVCZBEIc75BqNNzH3Jq6VwXVfsnKT3JBB85I4Tyg0NNDNILMzzvOYmOHevP2+r6ivsmuf
         r6r2rqpzTp1z9rfWf9HD6alq//67zgH6fMGOHTt27NixY8eOHTt27NixY8eOHTt27NixY8eOHTt27Nix
         Yydj87+k/G8l8vswduzojLpuwtaVnRKMemK+6OZLTPDt6omzY4cbbl1xawpj11WJRj1BX4a0gbSFHOGm
@@ -430,4 +430,19 @@
         dUkkaMU5uwkAAAAASUVORK5CYII=
 </value>
   </data>
+  <metadata name="Time.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="ID.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Command.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Data.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="State.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

@@ -11,12 +11,40 @@ namespace GridBackGround
 {
     public partial class Tab_Report : Form
     {
+        private Forms.Tab.Tab_IDs tabid;
+        private string cmdid;
+        private bool DispalyAll = false;
         /// <summary>
         /// 显示记录列表的数目
         /// </summary>
         private int ReportNum = Config.SettingsForm.Default.DisReportNum;
 
         public GetEquNameHandler m_GetEquName { get; set; }//
+
+        public Forms.Tab.Tab_IDs TabID {
+            get { return tabid; }
+            set {
+                if(this.tabid != null)
+                {
+                    this.tabid.CMD_ID_Change -= Tabid_CMD_ID_Change;
+                }
+                this.tabid = value;
+                if(this.tabid == null)
+                {
+                    this.cmdid = null;
+                }
+                else
+                {
+                    this.tabid.CMD_ID_Change += Tabid_CMD_ID_Change;
+                }
+            }
+        }
+
+        private void Tabid_CMD_ID_Change(object sender, CMDid_Change e)
+        {
+            this.cmdid = e.CMD_ID;
+            this.label1.Text = e.CMD_NAME + ":"+this.cmdid;
+        }
 
         /// <summary>
         /// 窗体初始化
@@ -39,7 +67,6 @@ namespace GridBackGround
             this.DataGridViewInit();
             //接收数据解析事件
             //PacketAnaLysis.DisPacket.OnNewRecord += new PacketAnaLysis.NewRecord(DisNewPacked);
-            PacketAnaLysis.DisPacket.OnNewRecordS += new PacketAnaLysis.NewRecordS(DisNewPackedS);
             //////新报文显示
             ////PacketAnaLysis.DisPacket.OnNewPacket += new PacketAnaLysis.NewPacket(UserListChanged);
             //////终端状态变化事件
@@ -88,7 +115,8 @@ namespace GridBackGround
                     return;
                 foreach (PacketAnaLysis.DataInfo info in packets)
                 {
-                    dataGridViewAddRow(info);
+                    if(this.DispalyAll || info.EquName == this.cmdid)
+                        dataGridViewAddRow(info);
                 }
                 while (this.dataGridViewReport.Rows.Count > Config.SettingsForm.Default.DisReportNum)
                     this.dataGridViewReport.Rows.RemoveAt(0);
@@ -254,6 +282,26 @@ namespace GridBackGround
             {
                 MessageBox.Show("图片打开失败，失败原因:" + ex.Message);
             }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.checkBox1.Checked)
+            {
+                PacketAnaLysis.DisPacket.OnNewRecordS += new PacketAnaLysis.NewRecordS(DisNewPackedS);
+                this.checkBox2.Enabled = true;
+            }
+            else
+            {
+                PacketAnaLysis.DisPacket.OnNewRecordS -= new PacketAnaLysis.NewRecordS(DisNewPackedS);
+                this.checkBox2.Enabled = false;
+            }
+
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            this.DispalyAll = this.checkBox2.Checked;
         }
     }
 }

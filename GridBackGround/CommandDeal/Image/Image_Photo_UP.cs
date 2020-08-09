@@ -114,6 +114,7 @@ namespace GridBackGround.CommandDeal
 
             int Subpacket_No = BitConverter.ToUInt16(data, 4);
             pacMsg += "子包包号：" + Subpacket_No.ToString();
+          
             //数据长度
             try 
             {
@@ -137,12 +138,12 @@ namespace GridBackGround.CommandDeal
             {
                 pacMsg += "添加数据失败："+ ex.Message;
                 //触发图片解析事件
-                //PacketAnaLysis.DisPacket.NewRecord(
-                //      new PacketAnaLysis.DataInfo(
-                //          PacketAnaLysis.DataRecSendState.rec,
-                //          pole,
-                //          "远程图像数据",
-                //          pacMsg));
+                PacketAnaLysis.DisPacket.NewRecord(
+                      new PacketAnaLysis.DataInfo(
+                          PacketAnaLysis.DataRecSendState.rec,
+                          pole,
+                          "远程图像数据",
+                          pacMsg));
             }
             //PacketAnaLysis.DisPacket.NewRecord(
             //        new PacketAnaLysis.DataInfo(
@@ -398,7 +399,7 @@ namespace GridBackGround.CommandDeal
                 {
                     //给图片添加水印文字
                     if ((pole != null)&&(pole.Equ != null) && (pole.Equ.MarketText != null) && (pole.Equ.MarketText.Length != 0))
-                        picture.AddWaterMarket(pole.Equ.MarketText,pole.Equ.Is_Name,pole.Equ.Is_Time);
+                        picture.AddWaterMarket(pole.Equ.MarketText,pole.Equ.IS_Mark,pole.Equ.Is_Time);
                     else
                         picture.AddWaterMarket("杆塔号:BF001");
                 }

@@ -97,7 +97,7 @@ namespace DB_Operation.EQUManage
             var list = new List<ResModel.EQU.Line>();
 
             StringBuilder strsql = new StringBuilder();
-            strsql.Append("SELECT * FROM picture.t_line;");
+            strsql.Append("SELECT * FROM t_line;");
             var dt = Connection.GetTable(strsql.ToString());
             foreach (DataRow row in dt.Rows)
             {
@@ -205,6 +205,8 @@ namespace DB_Operation.EQUManage
             var curLine = new ResModel.EQU.Line();
             curLine.NO = (int)row["idt_line"];
             curLine.Name = row["Name_Line"].ToString();
+            if (row["ID_Line"] != null)
+                curLine.LineID = row["ID_Line"].ToString();
             curLine.TowerList = new List<ResModel.EQU.Tower>();
             return curLine;
         }

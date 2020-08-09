@@ -16,13 +16,14 @@ namespace GridBackGround.CommandDeal
             Con(cmd_ID, false,Channel_No,null);
         }
 
-        public static void Set(string cmd_ID, int Channel_No, List<IPhoto_TimeTable> model)
+        public static bool Set(string cmd_ID, int Channel_No, List<IPhoto_TimeTable> model)
         {
-            Con(cmd_ID, true, Channel_No, model);
+            return Con(cmd_ID, true, Channel_No, model);
         }
 
         public static void Response(Termination.IPowerPole pole, byte frame_No, byte[] data)
         {
+            if (data.Length < 3) return;
             string pacMsg = "";
             if (data[0] == 0x00)
                 pacMsg += "查询";
@@ -30,20 +31,34 @@ namespace GridBackGround.CommandDeal
                 pacMsg += "设置";
           
             pacMsg += "通道" + ((int)data[1]).ToString();
-          
+            Error_Code code = Error_Code.Success;
             if (data[2] == 0xff)
                 pacMsg += "成功。";
             else
-                pacMsg += "失败。";
-
-            pacMsg += "一共：" + ((int)data[3]).ToString() + "组，为：（时，分，预置位号）";
-            for (int i = 0; i < data[3]; i++)
             {
-                pacMsg += "("+ data[i * 3 + 4].ToString() + ",";
-                pacMsg += data[i * 3 + 4 +1].ToString() + "，";
-                pacMsg += data[i * 3 + 4 + 2].ToString() + "），";
+                pacMsg += "失败。";
+                code = Error_Code.DeviceError;
             }
+            if(data.Length > 3)
+            {
+                pacMsg += "一共：" + ((int)data[3]).ToString() + "组，为：（时，分，预置位号）";
+                for (int i = 0; i < data[3]; i++)
+                {
+                    pacMsg += "(" + data[i * 3 + 4].ToString() + ",";
+                    pacMsg += data[i * 3 + 4 + 1].ToString() + "，";
+                    pacMsg += data[i * 3 + 4 + 2].ToString() + "），";
+                }
+            }
+           
+            try
+            {
+                Termination.PowerPole powerPole = pole as Termination.PowerPole;
+                powerPole.OnTimeTableFinish(code);
+            }
+            catch
+            {
 
+            }
             //显示发送的数据
             PacketAnaLysis.DisPacket.NewRecord(
                 new PacketAnaLysis.DataInfo(
@@ -65,7 +80,7 @@ namespace GridBackGround.CommandDeal
         /// <param name="Data_Type">数据类型</param>
         /// <param name="sample_Time">采样周期</param>
         /// <param name="heart_Time">心跳周期</param>
-        private static void Con(string cmd_ID, bool conMode,int Channel_No,List<IPhoto_TimeTable> timeTable)
+        private static bool Con(string cmd_ID, bool conMode,int Channel_No,List<IPhoto_TimeTable> timeTable)
         {
             string pacMsg = "";
             CMD_ID = cmd_ID;
@@ -111,6 +126,7 @@ namespace GridBackGround.CommandDeal
             string errorMsg;
             if (PackeDeal.SendData(CMD_ID, packet, out errorMsg))
             {
+                
                 //显示发送的数据
                 PacketAnaLysis.DisPacket.NewRecord(
                     new PacketAnaLysis.DataInfo(
@@ -118,6 +134,11 @@ namespace GridBackGround.CommandDeal
                          Termination.PowerPoleManage.Find(CMD_ID),
                         "拍照时间表",
                         pacMsg));
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 

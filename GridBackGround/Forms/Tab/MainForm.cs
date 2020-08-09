@@ -50,6 +50,8 @@ namespace GridBackGround
 
                 TabInit();
 
+                
+
                 //控件初始化
                 ControlsInit();
                 //终端管理初始化
@@ -58,18 +60,20 @@ namespace GridBackGround
                 SocketInit();
                 //事件初始化
                 EventInit();
-
-                httpListeners = new HTTP.HttpListeners();
-                httpListeners.ListenerStart();
-
+                //设备管理菜单按键添加
                 Forms.EquMan.FormManEquMan fmm = new Forms.EquMan.FormManEquMan();
-                fmm.FormManEquManInit(this.设置ToolStripMenuItem);
+                fmm.FormManEquManInit(this.设置ToolStripMenuItem);    //设别管理按钮添加
                 fmm.TabID = this.TabID;
+
+                Work.PictureClean.Start();      //图片清理服务启动
+
                 Console.WriteLine(DateTime.Now.ToString() + "系统初始化完成");
+
+               
             }
-            catch
+            catch(Exception ex)
             {
-                MessageBox.Show("数据库连接失败");
+                MessageBox.Show("系统启动失败。" + ex.Message);
             }
             
 
@@ -135,8 +139,8 @@ namespace GridBackGround
             if (true)
             {
                 TabPacket = new Tab_Packet();
-                
                 this.tabPageGPRS.Controls.Add(TabPacket);
+                TabPacket.Dock = DockStyle.Fill;
                 this.tabControl1.SelectedTab = tabControl1.TabPages[0];
                 TabPacket.Show();
             }
@@ -147,6 +151,7 @@ namespace GridBackGround
                 TabReport.m_GetEquName = GetTowerNameByID;
                 this.tabPageReport.Controls.Add(TabReport);
                 this.tabControl1.SelectedTab = tabControl1.TabPages[1];
+                TabReport.TabID = TabID;
                 TabReport.Show();
             }
             //历史数据栏初始化
@@ -211,6 +216,7 @@ namespace GridBackGround
         {
             try
             {
+
                 Communicat.Service.reStartCom();
                 this.toolStripStatusLabel_Port.Text =
                     "装置端口：" + Config.SettingsForm.Default.CMD_Port + "  WEB端口：" +
@@ -864,5 +870,40 @@ namespace GridBackGround
             CommandDeal.Private.UserPhone.Query(CMD_ID, (int)tsmi.Tag);
         }
         #endregion
+
+        #region 图片清理
+        private void 清理ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(this, "确定要清理全部图片信息？", "提示！！！！",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            {
+                Work.PictureClean.Remove(DateTime.Now);
+            }
+
+        }
+        #endregion
+
+        private void 参数设置ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Forms.Dialog.Dialog_PictureClean_cfg dialog = new Forms.Dialog.Dialog_PictureClean_cfg();
+            dialog.ShowDialog();
+            if (dialog.ShowDialog() == DialogResult.Yes)
+            {
+
+            }
+        }
+
+        private void 立即清理ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show(this, "确定要清理图片信息？", "提示", 
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            {
+                int days = Config.SettingsForm.Default.PictuerCleanReserveTime;
+                if (days <= 0) days = 1;
+                DateTime end = DateTime.Today.AddDays(-days);
+                Work.PictureClean.Remove(end);
+            }
+
+        }
     }
 }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Net;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace GridBackGround.HTTP
 {
@@ -16,7 +18,8 @@ namespace GridBackGround.HTTP
         #region SendResponse 给请求发发送应答
         public static bool SendResponse(HttpListenerContext ctx, string sErr)
         {
-            byte[] buf = Encoding.Default.GetBytes(sErr);
+            ctx.Response.ContentType = "application/json;charset=UTF-8";
+            byte[] buf = Encoding.GetEncoding("utf-8").GetBytes(sErr);
             return SendResponse(ctx, 200, buf);
         }
 
@@ -39,6 +42,12 @@ namespace GridBackGround.HTTP
 
             }
             return false;
+        }
+
+        public static bool SendResponse(HttpListenerContext ctx,JObject jObject)
+        {
+            string content = JsonConvert.SerializeObject(jObject, new JsonSerializerSettings());
+            return SendResponse(ctx, content);
         }
         #endregion
 

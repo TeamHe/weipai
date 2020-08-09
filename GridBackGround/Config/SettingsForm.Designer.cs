@@ -97,7 +97,7 @@ namespace GridBackGround.Config {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("6023")]
+        [global::System.Configuration.DefaultSettingValueAttribute("80")]
         public int WEB_Port {
             get {
                 return ((int)(this["WEB_Port"]));
@@ -116,6 +116,78 @@ namespace GridBackGround.Config {
             }
             set {
                 this["PicturePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int PictureCleanPeriod {
+            get {
+                return ((int)(this["PictureCleanPeriod"]));
+            }
+            set {
+                this["PictureCleanPeriod"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2020-08-08")]
+        public global::System.DateTime PictureCleanTime {
+            get {
+                return ((global::System.DateTime)(this["PictureCleanTime"]));
+            }
+            set {
+                this["PictureCleanTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool PictureCleanAuto {
+            get {
+                return ((bool)(this["PictureCleanAuto"]));
+            }
+            set {
+                this["PictureCleanAuto"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PictureCleanAtStart {
+            get {
+                return ((bool)(this["PictureCleanAtStart"]));
+            }
+            set {
+                this["PictureCleanAtStart"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("15")]
+        public int PictuerCleanReserveTime {
+            get {
+                return ((int)(this["PictuerCleanReserveTime"]));
+            }
+            set {
+                this["PictuerCleanReserveTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2020-01-01")]
+        public global::System.DateTime PictuerCleanLastTime {
+            get {
+                return ((global::System.DateTime)(this["PictuerCleanLastTime"]));
+            }
+            set {
+                this["PictuerCleanLastTime"] = value;
             }
         }
     }

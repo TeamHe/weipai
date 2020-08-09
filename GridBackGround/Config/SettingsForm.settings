@@ -21,10 +21,28 @@
       <Value Profile="(Default)">6011</Value>
     </Setting>
     <Setting Name="WEB_Port" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">6023</Value>
+      <Value Profile="(Default)">80</Value>
     </Setting>
     <Setting Name="PicturePath" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="PictureCleanPeriod" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="PictureCleanTime" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)">2020-08-08</Value>
+    </Setting>
+    <Setting Name="PictureCleanAuto" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="PictureCleanAtStart" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="PictuerCleanReserveTime" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">15</Value>
+    </Setting>
+    <Setting Name="PictuerCleanLastTime" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)">2020-01-01</Value>
     </Setting>
   </Settings>
 </SettingsFile>

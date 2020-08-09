@@ -83,6 +83,11 @@
             this.本机端口设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.工作模式ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.数据库测试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.图片清理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.立即清理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.清理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.参数设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel_Port = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel_ID = new System.Windows.Forms.ToolStripStatusLabel();
@@ -514,7 +519,9 @@
             this.设置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.本机端口设置ToolStripMenuItem,
             this.工作模式ToolStripMenuItem,
-            this.数据库测试ToolStripMenuItem});
+            this.数据库测试ToolStripMenuItem,
+            this.图片清理ToolStripMenuItem,
+            this.toolStripSeparator2});
             this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
             this.设置ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.设置ToolStripMenuItem.Text = "设置";
@@ -539,6 +546,42 @@
             this.数据库测试ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.数据库测试ToolStripMenuItem.Text = "数据库测试";
             this.数据库测试ToolStripMenuItem.Click += new System.EventHandler(this.数据库测试ToolStripMenuItem_Click);
+            // 
+            // 图片清理ToolStripMenuItem
+            // 
+            this.图片清理ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.立即清理ToolStripMenuItem,
+            this.清理ToolStripMenuItem,
+            this.参数设置ToolStripMenuItem});
+            this.图片清理ToolStripMenuItem.Name = "图片清理ToolStripMenuItem";
+            this.图片清理ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.图片清理ToolStripMenuItem.Text = "图片清理";
+            // 
+            // 立即清理ToolStripMenuItem
+            // 
+            this.立即清理ToolStripMenuItem.Name = "立即清理ToolStripMenuItem";
+            this.立即清理ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.立即清理ToolStripMenuItem.Text = "立即清理";
+            this.立即清理ToolStripMenuItem.Click += new System.EventHandler(this.立即清理ToolStripMenuItem_Click);
+            // 
+            // 清理ToolStripMenuItem
+            // 
+            this.清理ToolStripMenuItem.Name = "清理ToolStripMenuItem";
+            this.清理ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.清理ToolStripMenuItem.Text = "清理全部";
+            this.清理ToolStripMenuItem.Click += new System.EventHandler(this.清理ToolStripMenuItem_Click);
+            // 
+            // 参数设置ToolStripMenuItem
+            // 
+            this.参数设置ToolStripMenuItem.Name = "参数设置ToolStripMenuItem";
+            this.参数设置ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.参数设置ToolStripMenuItem.Text = "参数设置";
+            this.参数设置ToolStripMenuItem.Click += new System.EventHandler(this.参数设置ToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(145, 6);
             // 
             // statusStrip
             // 
@@ -731,7 +774,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
-            this.Text = "微拍后台1.09";
+            this.Text = "微拍后台1.12";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
@@ -832,6 +875,11 @@
         private System.Windows.Forms.ToolStripMenuItem 私有控制ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 用户手机号ToolStripMenuItem;
         private System.Windows.Forms.TabPage tabPageOnLineStatus;
+        private System.Windows.Forms.ToolStripMenuItem 图片清理ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 清理ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 参数设置ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem 立即清理ToolStripMenuItem;
     }
 }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 
 namespace Tools
@@ -17,16 +18,15 @@ namespace Tools
         /// <returns></returns>
         public static string ByteToHexString(byte[] bytes)
         {
-            string returnStr = "";
-            if (bytes != null)
+            StringBuilder str = new StringBuilder();
+            if (bytes != null && bytes.Length > 0)
             {
                 for (int i = 0; i < bytes.Length; i++)
                 {
-                    returnStr += bytes[i].ToString("X2");
-                    returnStr += " ";
+                    str.AppendFormat("{0:X2} ",bytes[i]);
                 }
             }
-            return returnStr;
+            return str.ToString();
 
 
         }

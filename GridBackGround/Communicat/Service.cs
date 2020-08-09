@@ -15,8 +15,9 @@ namespace GridBackGround.Communicat
         private static Sodao.FastSocket.Server.UdpServer<CommandInfoV2> CMD_UDP;
         private static Sodao.FastSocket.Server.SocketServer<CommandInfoV2> CMD_TCP;
         private static Sodao.FastSocket.Server.SocketServer<CommandInfoV2> WEB_TCP;
-       
-        
+        private static HTTP.HttpListeners httpListeners = null;
+
+
         public static bool CommunicatInit()
         {
             bool state = true;
@@ -43,22 +44,26 @@ namespace GridBackGround.Communicat
                 msg += "TCP端口：" + Config.SettingsForm.Default.CMD_Port.ToString() + "被占用\n";
                 state = false;
             }
+
+            httpListeners = new HTTP.HttpListeners(Config.SettingsForm.Default.WEB_Port);
+            httpListeners.ListenerStart();
+
             //WebTCP连接
-            int WEB_Port = Config.SettingsForm.Default.WEB_Port;
-            WEB_TCP = new Sodao.FastSocket.Server.SocketServer<CommandInfoV2>(new TCPSeverWeb(),
-               new Sodao.FastSocket.Server.Protocol.Protocol(),
-               8192,
-               8192,
-               102400,
-               20000);
-            WEB_TCP.AddListener("binary", new System.Net.IPEndPoint(System.Net.IPAddress.Any, WEB_Port));
-            if (!WEB_TCP.Start())
-            {
-                msg += "WEB端口：" + WEB_Port.ToString() + "被占用\n";
-                state = false;
-            }
-            if (msg.Length != 0)
-                throw new Exception(msg);
+            //int WEB_Port = Config.SettingsForm.Default.WEB_Port;
+            //try
+            //{
+            //    if (httpListeners == null)
+            //        httpListeners = new HTTP.HttpListeners();
+            //    httpListeners.ListenerStart();
+
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    msg += "WEB端口：" + WEB_Port.ToString() + "被占用\n";
+            //    state = false;
+            //}
+
             return state;
         }
         public static bool reStartCom()
@@ -69,8 +74,8 @@ namespace GridBackGround.Communicat
                     CMD_UDP.Stop();
                 if (CMD_TCP != null)
                     CMD_TCP.Stop();
-                if (WEB_TCP != null)
-                    WEB_TCP.Stop();
+                if (httpListeners != null)
+                    httpListeners.ListenerStop();
             }
             catch { }
             return CommunicatInit();

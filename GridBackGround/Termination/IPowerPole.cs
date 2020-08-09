@@ -34,7 +34,9 @@ namespace GridBackGround.Termination
 
         IPEndPoint IP { get; }
 
-
+        /// <summary>
+        /// 设备信息
+        /// </summary>
         Equ Equ { get; set; }
 
         object UserData { get; set; }

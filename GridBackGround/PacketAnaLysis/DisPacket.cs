@@ -64,8 +64,7 @@ namespace GridBackGround.PacketAnaLysis
         {
             TimerStart();
             infos.Add(packet);
-            //if (OnNewRecord != null)
-            //    OnNewRecord(packet);    //触发显示新报文事件           
+
         }
         /// <summary>
         /// 新报文显示

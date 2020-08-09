@@ -1,4 +1,4 @@
-﻿namespace GridBackGround
+﻿﻿namespace GridBackGround
 {
     partial class Tab_Packet
     {
@@ -40,6 +40,7 @@
             this.添加节点ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.删除当前节点toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.修改当前节点ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.panelGPRS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerGPRS)).BeginInit();
             this.splitContainerGPRS.Panel1.SuspendLayout();
@@ -66,6 +67,7 @@
             // 
             // splitContainerGPRS.Panel1
             // 
+            this.splitContainerGPRS.Panel1.Controls.Add(this.checkBox1);
             this.splitContainerGPRS.Panel1.Controls.Add(this.listBox_Packet);
             // 
             // splitContainerGPRS.Panel2
@@ -80,13 +82,15 @@
             // 
             // listBox_Packet
             // 
-            this.listBox_Packet.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBox_Packet.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listBox_Packet.FormattingEnabled = true;
             this.listBox_Packet.HorizontalScrollbar = true;
             this.listBox_Packet.ItemHeight = 12;
-            this.listBox_Packet.Location = new System.Drawing.Point(0, 0);
+            this.listBox_Packet.Location = new System.Drawing.Point(0, 36);
             this.listBox_Packet.Name = "listBox_Packet";
-            this.listBox_Packet.Size = new System.Drawing.Size(863, 405);
+            this.listBox_Packet.Size = new System.Drawing.Size(863, 364);
             this.listBox_Packet.TabIndex = 0;
             this.listBox_Packet.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
             // 
@@ -103,9 +107,9 @@
             // 
             // richTextBox2
             // 
-            this.richTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox2.Location = new System.Drawing.Point(85, 2);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.Size = new System.Drawing.Size(773, 73);
@@ -161,6 +165,17 @@
             this.修改当前节点ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.修改当前节点ToolStripMenuItem.Text = "修改当前节点";
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(13, 13);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(72, 16);
+            this.checkBox1.TabIndex = 1;
+            this.checkBox1.Text = "显示报文";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // Tab_Packet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -173,6 +188,7 @@
             this.Load += new System.EventHandler(this.Tab_Packet_Load);
             this.panelGPRS.ResumeLayout(false);
             this.splitContainerGPRS.Panel1.ResumeLayout(false);
+            this.splitContainerGPRS.Panel1.PerformLayout();
             this.splitContainerGPRS.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerGPRS)).EndInit();
             this.splitContainerGPRS.ResumeLayout(false);
@@ -194,5 +210,6 @@
         private System.Windows.Forms.ToolStripMenuItem 添加节点ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 删除当前节点toolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 修改当前节点ToolStripMenuItem;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

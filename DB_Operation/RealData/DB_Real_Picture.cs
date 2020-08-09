@@ -58,44 +58,7 @@ namespace DB_Operation.RealData
 
         }
 
-        /*
-        /// <summary>
-        /// 数据保存
-        /// </summary>
-        /// <param name="cmd_ID">装置ID</param>
-        /// <param name="time">数据采集时间</param>
-        /// <param name="data">数据内容</param>
-        /// <returns></returns>
-        public ErrorCode DataSave(string cmd_ID, DateTime time, object data)
-        {
-
-            return ErrorCode.SqlError;
-        }
-
-        /// <summary>
-        /// 数据保存
-        /// </summary>
-        /// <param name="equID">装置ID</param>
-        /// <param name="time">采集时间</param>
-        /// <param name="data">数据内容</param>
-        /// <returns></returns>
-        public ErrorCode DataSave(int equID, DateTime time, object data)
-        {
-            return ErrorCode.SqlError;
-        }
-
-        /// <summary>
-        /// 获取历史数据
-        /// </summary>
-        /// <param name="cmdID">装置ID</param>
-        /// <param name="startTime">起始时间</param>
-        /// <param name="endTime">结束时间</param>
-        /// <returns>获取到的数据</returns>
-        public object GetData(string cmdID, DateTime startTime, DateTime endTime)
-        {
-            return null;
-        }
-        */
+        
         /// <summary>
         /// 获取历史数据
         /// </summary>
@@ -105,30 +68,55 @@ namespace DB_Operation.RealData
         /// <returns>获取到的数据</returns>
         public DataTable GetData(Equ equ, DateTime startTime, DateTime endTime)
         {
-            //if (equ.Type != ICMP.Picture)
-            //    throw new Exception("装置类型异常");
+            if (Connection == null)
+                Connection = DB.Connection;
             lock (thisLock)
             {
-                string[] fileds = new string[] { "@id", "@startTime", "@endTime" };
-
-
-                string sql = string.Format("select "
-                    + "{0}.Time as 采集时间, \n\t"
-                    + "{0}.ChannalNO as 通道号,"
-                    + "{0}.Presetting_No as 预置位号,"
-                    + "{0}.Path as 路径  "
-                    + "from {0} \n"
-                    + "where {0}.Time between @startTime and @endTime \n\t"
-                    + "and {0}.PoleID =  @id ", tableName);
-                object[] obj = new object[fileds.Length];
-                obj[0] = equ.ID;
-                obj[1] = startTime;
-                obj[2] = endTime;
-
-                return Connection.GetTable(sql, CommandType.Text, fileds, obj);
+                string sql = "";
+                if(equ == null)
+                    sql = string.Format("select "
+                        + "{0}.idt_data_picture as pid,"
+                        + "{0}.Time as 采集时间,"
+                        + "{0}.ChannalNO as 通道号,"
+                        + "{0}.Presetting_No as 预置位号,"
+                        + "{0}.Path as 路径  "
+                        + "from {0} where Time between '{1}' and '{2}'",
+                        tableName, startTime.ToString("yyyy-MM-dd HH:mm:ss"),
+                        endTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                else
+                    sql = string.Format("select "
+                      + "{0}.idt_data_picture as pid,"
+                      + "{0}.Time as 采集时间,"
+                      + "{0}.ChannalNO as 通道号,"
+                      + "{0}.Presetting_No as 预置位号,"
+                      + "{0}.Path as 路径  "
+                      + "from {0} where PoleID ={3} Time between '{1}' and '{2}'",
+                      tableName, startTime.ToString("yyyy-MM-dd HH:mm:ss"),
+                      endTime.ToString("yyyy-MM-dd HH:mm:ss"),equ.ID);
+                return Connection.GetTable(sql);
             }
         }
 
+        /// <summary>
+        /// 删除图片数据
+        /// </summary>
+        /// <param name="equ">装置</param>
+        /// <param name="startTime">起始时间</param>
+        /// <param name="endTime">结束时间</param>
+        /// <returns>删除行数</returns>
+        public int RemovePictures(Equ equ,DateTime start,DateTime end)
+        {
+            if (Connection == null)
+                Connection = DB.Connection;
+            string sql = "";
+            if (equ == null)
+                sql = string.Format("delete from {2} where time between '{0}' and '{1}'", 
+                    start.ToString(), end.ToString(), tableName);
+            else
+                sql = string.Format("delete from {3} where PoleID = {0} and time between '{1}' and '{2}'",
+                    equ.ID, start.ToString(), end.ToString(),tableName);
+            return Connection.ExecuteNoneQuery(sql);
+        }
 
         #region Private Method
 

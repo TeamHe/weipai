@@ -23,9 +23,9 @@ namespace GridBackGround.CommandDeal
         /// <param name="cmd_ID"></param>
         /// <param name="Channel_No"></param>
         /// <param name="Presetting_No"></param>
-        public static void Set(string cmd_ID, int Channel_No, int Presetting_No)
+        public static bool Set(string cmd_ID, int Channel_No, int Presetting_No)
         {
-            Con(cmd_ID, Channel_No,Presetting_No);
+            return Con(cmd_ID, Channel_No,Presetting_No);
         }
 
         /// <summary>
@@ -41,11 +41,17 @@ namespace GridBackGround.CommandDeal
             string pacMsg = "拍照";
             if (data.Length != RecLength)
                 return;
- 
+            Error_Code code = Error_Code.Success;
             if (data[0] == 0xff)
                 pacMsg += "成功。";
             else
+            {
                 pacMsg += "失败。";
+                code = Error_Code.DeviceError;
+            }
+            Termination.PowerPole powerPole = pole as Termination.PowerPole;
+            powerPole.OnPhotiongFinish(code);
+
 
             PacketAnaLysis.DisPacket.NewRecord(
                 new PacketAnaLysis.DataInfo(
@@ -64,7 +70,7 @@ namespace GridBackGround.CommandDeal
         /// <param name="cmd_ID"></param>
         /// <param name="Channel_No"></param>
         /// <param name="Presetting_No"></param>
-        private static void Con(string cmd_ID, int Channel_No, int Presetting_No) 
+        private static bool Con(string cmd_ID, int Channel_No, int Presetting_No) 
         {
             string pacMsg = "";
             CMD_ID = cmd_ID;
@@ -89,6 +95,11 @@ namespace GridBackGround.CommandDeal
                          Termination.PowerPoleManage.Find(CMD_ID),
                         "手动拍照片",
                         pacMsg));
+                return true;
+            }
+            else
+            {
+                return false;
             }
 
         }

@@ -5,7 +5,8 @@ using System.Text;
 using System.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-
+using System.ComponentModel;
+using Tools;
 namespace GridBackGround.HTTP.zlwp
 {
     public class Zlwp
@@ -17,7 +18,7 @@ namespace GridBackGround.HTTP.zlwp
             //http Method 方法检查
             if(context.Request.HttpMethod != "POST")
             {
-                SendError(context, "Only Accept Post");
+                SendError(context,Error_Code.RequestMethodError);
                 context.Response.Close();
                 return true;
             }
@@ -30,63 +31,75 @@ namespace GridBackGround.HTTP.zlwp
             }
             catch (Exception ex)
             {
-                SendError(context, "Resquest format error. " + ex.Message);
+                SendError(context, Error_Code.JSONFormatError);
                 context.Response.Close();
             }
-            //检查是否存在指令字符串
-            if (!o.ContainsKey("root"))
-            {
-                SendError(context, "Cannot find command feild");
-                context.Response.Close();
-            }
-
             try
             {
-                JToken token = o.GetValue("root");
-                string command = token.ToString();
-                if(command == "morning")
+                string command = context.Request.RawUrl;
+                if (command.StartsWith("/"))
+                    command = command.Substring(1);
+                command = command.Substring(command.IndexOf('/') + 1);
+                if (command.ToLower() == "watermarkset")
                 {
-                    Response(context, "receive morning command");
-                    context.Response.Close();
+                    zlwp.CmdWaterMarkSet deal = new CmdWaterMarkSet(context, o);
+                    deal.Deal();
+                }
+                else if(command.ToLower() == "photoing")
+                {
+                    new CmdPhotoing(context, o).Deal();
+                }
+                else if(command.ToLower() == "phototableset")
+                {
+                    new CmdPhotoTableSet(context, o).Deal();
                 }
                 else
                 {
-                    SendError(context, "unsuported command");
-                    context.Response.Close();
+                    SendError(context, Error_Code.UnknownCommand);
                 }
-
-            }catch(Exception ex)
+            }
+            catch(Exception ex)
             {
-                SendError(context, "internal error");
-                context.Response.Close();
+                SendError(context, Error_Code.InternalError, ex.Message);
             }
             return true;
         }
 
-
-        public bool SendError(HttpListenerContext context, string message)
+      
+        public static bool SendError(HttpListenerContext context,Error_Code code,string message= null)
         {
-            Error err = new Error();
-            err.Message = message; ;
+            string str = EnumUtil.GetDescription(code)+" "+message;
+            return SendError(context, (int)code, str);
+        }
+
+        public static bool SendError(HttpListenerContext context,int code, string str)
+        {
+            Error err = new Error()
+            {
+                Code = code,
+                Message = str
+            };
             string json = JsonConvert.SerializeObject(err);
             return Response(context, json);
         }
 
         public static bool Response(HttpListenerContext context, string message)
         {
-            context.Response.AddHeader("Content-Type", "application/json");
-            return ReSendMsgService.SendResponse(context, message);
+            bool ret =  ReSendMsgService.SendResponse(context, message);
+            context.Response.Close();
+            return ret;
         }
     }
 
 
     public class Error{
-        //public string MN { get; set; }
 
-        //public int Code { get; set; }
+        public int Code { get; set; }
 
         public string Message { get; set; }
     }
+
+ 
 
 
     public class Packet

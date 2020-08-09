@@ -23,8 +23,6 @@ namespace ResModel.EQU
 
     public class Equ
     {
-        
-
         #region Public Variable
         /// <summary>
         /// 装置编号
@@ -86,9 +84,14 @@ namespace ResModel.EQU
         /// </summary>
         public string MarketText { get; set; }
 
+        /// <summary>
+        /// 是否叠加时间
+        /// </summary>
         public bool Is_Time { get; set; }
-
-        public bool Is_Name { get; set; }
+        /// <summary>
+        /// 是否叠加水印文字
+        /// </summary>
+        public bool IS_Mark { get; set; }
         
         #endregion
 
@@ -145,7 +148,6 @@ namespace ResModel.EQU
                 this.Status.GetDescription());
             return str;
         }
-        
         #endregion
     }
 }

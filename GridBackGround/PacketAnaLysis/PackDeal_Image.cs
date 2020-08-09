@@ -32,6 +32,7 @@ namespace GridBackGround.PacketAnaLysis
                 switch (packet_Type)
                 {
                     case PacketType_Image.Image_Data://数报据
+                       
                         imgUP = new CommandDeal.Image_Photo_UP();
                         imgUP.Image_Data(pole, frame_No, data);
                         break;
