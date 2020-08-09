@@ -140,7 +140,7 @@ namespace GridBackGround.Work
                 name = Path.Combine(dir, name);
                 File.Delete(name);
             }
-            remove_dir(dir);
+            remove_dir(dir); 
 
         }
 
