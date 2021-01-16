@@ -53,6 +53,10 @@ namespace GridBackGround.HTTP.zlwp
                 {
                     new CmdPhotoTableSet(context, o).Deal();
                 }
+                else if(command.ToLower() == "voiceplay")
+                {
+                    new CmdVoicePlay(context, o).Deal();
+                }
                 else
                 {
                     SendError(context, Error_Code.UnknownCommand);

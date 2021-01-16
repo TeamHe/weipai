@@ -18,6 +18,63 @@ namespace GridBackGround.CommandDeal
     public class Image_Photo_UP
     {
         private string CMD_ID;
+        /// <summary>
+        /// 获取图片handle
+        /// </summary>
+        /// <param name="pole"></param>
+        /// <param name="chno"></param>
+        /// <param name="preno"></param>
+        /// <returns></returns>
+        private Picture GetPicture(Termination.IPowerPole pole,int chno,int preno)
+        {
+            if (pole == null) return null;
+            if (pole.UserData == null)
+                pole.UserData = new List<Picture>();
+            Picture picture = null;
+            lock (pole.Lock)
+            {
+                List<Picture> pics = pole.UserData as List<Picture>;
+                foreach (Picture pic in pics)
+                {
+                    if (pic.ChannalNO == chno && pic.Presetting_No == preno)
+                    {
+                        picture = pic;
+                        break;
+                    }
+                }
+            }
+            return picture;
+        }
+
+        private Picture NewPicture(Termination.IPowerPole pole,int chno,int preno,int pacnum)
+        {
+            Picture picture = new Picture(chno, preno);
+            picture.Equ = pole.Equ;
+            picture.CMD_ID = pole.CMD_ID;
+            picture.Img = new ImgMsg(pole.CMD_ID, pacnum);
+            lock (pole.Lock)
+            {
+                List<Picture> list = pole.UserData as List<Picture>;
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (list[i].ChannalNO == chno && list[i].Presetting_No == preno)
+                    {
+                        list[i] = picture;
+                        return picture;
+                    }
+                }
+                list.Add(picture);
+            }
+            return picture;
+        }
+        private void RemovePicture(Termination.IPowerPole pole,Picture pic)
+        {
+            lock (pole.Lock)
+            {
+                List<Picture> pics = pole.UserData as List<Picture>;
+                pics.Remove(pic);
+            }
+        }
 
         #region 报文管理
         /// <summary>
@@ -46,7 +103,8 @@ namespace GridBackGround.CommandDeal
                 int PacLength = data[2] * 256 + data[3];
                 pacMsg += "总包数：" + PacLength.ToString();
 
-                if(pole.UserData != null && (pole.UserData as Picture).UploadingState == true)
+                Picture pic = GetPicture(pole, Channel_No, Presetting_No);
+                if(pic != null && pic.UploadingState)
                 { //判断上传依据:   1,有缓存图片;2,上传标识为真
                     pacMsg += "正在上传数据，暂不响应！";
                 }
@@ -54,12 +112,7 @@ namespace GridBackGround.CommandDeal
                 {   //新的图片_1,创建图片缓存;2, 发送响应包
                     try
                     {
-                        //创建图片缓存
-                        Picture pic = new Picture(Channel_No, Presetting_No);
-                        pic.Equ = pole.Equ;
-                        pic.CMD_ID = pole.CMD_ID;
-                        pic.Img = new ImgMsg(pole.CMD_ID, PacLength);
-                        pole.UserData = pic;
+                        NewPicture(pole,Channel_No,Presetting_No,PacLength);
                     }
                     catch (Exception ex)
                     {
@@ -118,7 +171,7 @@ namespace GridBackGround.CommandDeal
             //数据长度
             try 
             {
-                Picture pic = pole.UserData as Picture;
+                Picture pic = GetPicture(pole,Channel_No,Presetting_No);
                 if(pic == null)
                 {   //当前设备没有图片缓存
                     pacMsg += " 添加缓存失败,没有图片缓存";
@@ -172,12 +225,12 @@ namespace GridBackGround.CommandDeal
             pacMsg += "通道号：" + channal.ToString() + " ";
 
             int preset = data[1];
-            pacMsg += "预置位号：" + channal.ToString() + " ";
+            pacMsg += "预置位号：" + preset.ToString() + " ";
             //采集时间
             DateTime time = Tools.TimeUtil.BytesToDate(data, 2);
             pacMsg += "采集时间：" + time.ToString("yyyy-MM-dd HH:mm:ss");
 
-            Picture pic = pole.UserData as Picture;
+            Picture pic = GetPicture(pole,channal,preset);
             if(pic == null || pic.UploadingState == true)
             {   //没有图片缓存,或正在上传图片不处理
                 pacMsg += " 没有图片缓存，或正在上传图片，不响应";
@@ -249,7 +302,7 @@ namespace GridBackGround.CommandDeal
                     "图片合成上传异常：",
                     ex.Message));
             }
-            pole.UserData = null;
+            RemovePicture(pole, pic);
         }
         #endregion
         
@@ -452,7 +505,7 @@ namespace GridBackGround.CommandDeal
                 {
                     picture.SaveToDB();
                     //saveMsg += "图片保存成功";
-                    pole.UserData = null;
+                    RemovePicture(pole, picture);
                 }
             }
             catch (Exception ex)

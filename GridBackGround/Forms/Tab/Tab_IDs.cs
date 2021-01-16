@@ -19,6 +19,8 @@ namespace GridBackGround.Forms.Tab
         #region Private Varialbe
         private const string TestLineName = "TestLine";
         private const string TestTowerName = "TestTower";
+        private int lineID = -1;
+
         //private string CMD_ID = null;
 
         private int TestEquNum = 0;
@@ -90,33 +92,54 @@ namespace GridBackGround.Forms.Tab
                     else
                         node.Text = powerPole.Name;
                     node.Name = powerPole.CMD_ID;
-                    AddTestNode().Nodes.Add(node);
-
                     UpdateEquMsg(node, powerPole);              //更新节点提示信息
+                    AddTestNode().Nodes.Add(node);
 
                 }
             }
         }
-
+        
+        private TreeNode AddTestLine()
+        {
+            TreeNode lineNode = null;
+            foreach (TreeNode node in treeView1.Nodes)
+            {
+                if (node.Name == TestLineName)
+                {
+                    lineNode = node;
+                    break;
+                }
+            }
+            if(lineNode == null)
+            {
+                lineNode = new TreeNode();
+                lineNode.Name = TestLineName;
+                lineNode.Text = "测试单位";
+                lineNode.ToolTipText = "测试单位";
+                lineNode.Tag = new Line() { Name = "测试单位", LineID = "00000000000000000",NO =-1 };
+                this.treeView1.Nodes.Add(lineNode);
+            }
+            return lineNode;
+        }
 
         private TreeNode AddTestNode()
         {
             TreeNode towerNode = null;
-            foreach (TreeNode node in treeView1.Nodes)
-            {
-                if (node.Name == TestTowerName)
-                {
-                    towerNode = node;
-                    break;
-                }
-            }
-            if (towerNode ==null)
+            TreeNode linenode = AddTestLine();
+            if (linenode.Nodes.Count == 0)
             {
                 towerNode = new TreeNode();
                 towerNode.Name = TestTowerName;
-                towerNode.Text = "测试被测设备";
-                towerNode.ToolTipText = "被测设备ID：";
-                this.treeView1.Nodes.Add(towerNode);
+                towerNode.Text = "测试线路";
+                towerNode.ToolTipText = "测试线路：";
+                towerNode.Tag = new Tower()
+                {
+                    LineID = -1,
+                    TowerName = "测试线路",
+                    TowerID = "00000000000000000",
+                    TowerNO = -1
+                };
+                linenode.Nodes.Add(towerNode);
             }
             return towerNode;    
         }

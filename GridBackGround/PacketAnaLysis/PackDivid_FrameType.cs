@@ -74,6 +74,13 @@ namespace GridBackGround.PacketAnaLysis
                         data,
                         ref errorCode);
                     break;
+                case TypeFrame.VoiceRes:    //扩展语音协议
+                    workState = PackDeal_VoiceRes.PacketDeivid(pole,
+                        packet_Type,
+                        frame_No,
+                        data,
+                        ref errorCode);
+                    break;
                 case TypeFrame.PrivateRes:
                     workState = PackDeal_PrivateCon.PacketDeivid(
                         pole,

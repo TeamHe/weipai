@@ -15,28 +15,51 @@ namespace GridBackGround.Communicat
         //连接事件
         public override void OnConnected(IConnection connection)
         {
-            base.OnConnected(connection);
-            PackeDeal.Connected(connection, EConnectType.TCP);
+            try
+            {
+                base.OnConnected(connection);
+                PackeDeal.Connected(connection, EConnectType.TCP);
+
+            }
+            catch
+            {
+
+            }
 
         }
 
         //TCP连接断开
         public override void OnDisconnected(IConnection connection, Exception ex)
         {
-            base.OnDisconnected(connection, ex);
-            PackeDeal.Disconnected(connection,ex);
+            try
+            {
+                base.OnDisconnected(connection, ex);
+                PackeDeal.Disconnected(connection, ex);
+
+            }
+            catch
+            {
+
+            }
 
         }
 
         //接收数据事件
         public override void OnReceived(IConnection connection, CommandInfoV2 cmdInfo)
         {
-            base.OnReceived(connection, cmdInfo);
-            DateTime tstart = DateTime.Now;
-            PackeDeal.RecData(connection, cmdInfo);
-            DateTime tend = DateTime.Now;
-            TimeSpan timeSpan = tend.Subtract(tstart);
-            System.Console.WriteLine("packet deal take time" + timeSpan.TotalMilliseconds.ToString());
+            try
+            {
+                base.OnReceived(connection, cmdInfo);
+                DateTime tstart = DateTime.Now;
+                PackeDeal.RecData(connection, cmdInfo);
+                DateTime tend = DateTime.Now;
+                TimeSpan timeSpan = tend.Subtract(tstart);
+                System.Console.WriteLine("packet deal take time" + timeSpan.TotalMilliseconds.ToString());
+            }
+            catch
+            {
+
+            }
         }
 
         //异常返回
@@ -52,8 +75,16 @@ namespace GridBackGround.Communicat
         /// <param name="e"></param>
         public override void OnSendCallback(IConnection connection, SendCallbackEventArgs e)
         {
-            base.OnSendCallback(connection, e);
-            PackeDeal.SendComplete(connection);
+            try
+            {
+                base.OnSendCallback(connection, e);
+                PackeDeal.SendComplete(connection);
+
+            }
+            catch
+            {
+
+            }
         }
 
         #region 私有命令处理

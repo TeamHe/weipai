@@ -41,6 +41,8 @@ namespace GridBackGround.Termination
 
         object UserData { get; set; }
 
+       object Lock { get; }
+
         event EventHandler<PowerPoleStateChange> PowerPoleStateChange;
     }
 }

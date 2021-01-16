@@ -48,6 +48,19 @@ namespace Tools
 
             return abyte;
         }
+        public static byte[] intToByte2(int Num)
+        {
+            byte[] abyte = new byte[2]; //int为32位除4位，数组为8
+            for (int i = 0; i < 2; i++)
+            {
+
+                Num = Num >> (8 * i);
+                abyte[i] = (byte)(Num);
+            }
+
+            return abyte;
+        }
+
         /// <summary>
         ///将字符数组转化为int
         /// </summary>
@@ -58,6 +71,11 @@ namespace Tools
         {
             
             return BitConverter.ToInt32(data,start);
+        }
+
+        public static int ByteToUint16(byte[] data,int start)
+        {
+            return BitConverter.ToUInt16(data, start);
         }
     }
 

@@ -571,12 +571,12 @@ namespace GridBackGround
         {
             if (!GetCMD_SelecState())
                 return;
-            //Forms.Dialog_Image_Photo dip = new Forms.Dialog_Image_Photo();
-            //if (dip.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-            //{
-            //    CommandDeal.Image_Photo_MAN.Set(CMD_ID, dip.Channel_NO, dip.Presetting_No);
-            //}
-            CommandDeal.Image_Photo_MAN.Set(CMD_ID, 1, 1);
+            Forms.Dialog_Image_Photo dip = new Forms.Dialog_Image_Photo();
+            if (dip.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                CommandDeal.Image_Photo_MAN.Set(CMD_ID, dip.Channel_NO, dip.Presetting_No);
+            }
+            //CommandDeal.Image_Photo_MAN.Set(CMD_ID, 1, 1);
         }
         #endregion
 
@@ -782,6 +782,18 @@ namespace GridBackGround
         }
         #endregion
 
+        private void 播放录音ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!GetCMD_SelecState())
+                return;
+            Forms.Dialog.Dialog_sound_light_alarm dialog = new Forms.Dialog.Dialog_sound_light_alarm();
+            if(dialog.ShowDialog() == DialogResult.OK)
+            {
+                CommandDeal.Command_sound_light_alarm.Option1(CMD_ID, dialog.Play, dialog.FileNO, dialog.Interval);
+            }
+        }
+
+
         /// <summary>
         /// 保存当前显示Tab标签页码
         /// </summary>
@@ -905,5 +917,40 @@ namespace GridBackGround
             }
 
         }
+
+        private void 录音文件升级ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!GetCMD_SelecState())
+                return;
+            Forms.Dialog.Dialog_Update_voice du = new Forms.Dialog.Dialog_Update_voice();
+            if (du.ShowDialog() != DialogResult.OK) return;
+            string fileName = du.FileName;
+            try
+            {
+                CommandDeal.Comand_voice_update.StartUpdate(du.FileName, CMD_ID);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void 录音删除ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!GetCMD_SelecState())
+                return;
+            Forms.Dialog_voice_delete du = new Forms.Dialog_voice_delete();
+            if (du.ShowDialog() != DialogResult.OK) return;
+            try
+            {
+                CommandDeal.Comand_voice_update.Remove(CMD_ID, du.VoiceType);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
     }
 }

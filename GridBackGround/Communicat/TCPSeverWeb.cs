@@ -15,8 +15,16 @@ namespace GridBackGround.Communicat
         //连接事件
         public override void OnConnected(IConnection connection)
         {
-            base.OnConnected(connection);
-            PackeDeal.Connected(connection, EConnectType.TCP);
+            try
+            {
+                base.OnConnected(connection);
+                PackeDeal.Connected(connection, EConnectType.TCP);
+
+            }
+            catch (Exception)
+            {
+
+            }
 
         }
 
@@ -29,8 +37,15 @@ namespace GridBackGround.Communicat
         //接收数据事件
         public override void OnReceived(IConnection connection, CommandInfoV2 cmdInfo)
         {
-            base.OnReceived(connection, cmdInfo);
-            Termination.WebDataDeal.Deal(cmdInfo, connection);
+            try
+            {
+                base.OnReceived(connection, cmdInfo);
+                Termination.WebDataDeal.Deal(cmdInfo, connection);
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         //异常返回

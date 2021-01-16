@@ -74,6 +74,10 @@
             this.远程升级装置程序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.正式运行升级程序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.切换装置运行程序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.录音文件管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.播放录音ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.录音文件升级ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.录音删除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.私有控制ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.用户手机号ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.数据曲线ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -211,7 +215,8 @@
             this.toolStripSeparator4,
             this.远程升级装置程序ToolStripMenuItem,
             this.正式运行升级程序ToolStripMenuItem,
-            this.切换装置运行程序ToolStripMenuItem});
+            this.切换装置运行程序ToolStripMenuItem,
+            this.录音文件管理ToolStripMenuItem});
             this.主站ToolStripMenuItem.Name = "主站ToolStripMenuItem";
             this.主站ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.主站ToolStripMenuItem.Text = "主站";
@@ -474,6 +479,37 @@
             this.切换装置运行程序ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.切换装置运行程序ToolStripMenuItem.Text = "切换装置运行程序";
             this.切换装置运行程序ToolStripMenuItem.Click += new System.EventHandler(this.工作模式切换ToolStripMenuItem_Click);
+            // 
+            // 录音文件管理ToolStripMenuItem
+            // 
+            this.录音文件管理ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.播放录音ToolStripMenuItem1,
+            this.录音文件升级ToolStripMenuItem,
+            this.录音删除ToolStripMenuItem});
+            this.录音文件管理ToolStripMenuItem.Name = "录音文件管理ToolStripMenuItem";
+            this.录音文件管理ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.录音文件管理ToolStripMenuItem.Text = "录音文件管理";
+            // 
+            // 播放录音ToolStripMenuItem1
+            // 
+            this.播放录音ToolStripMenuItem1.Name = "播放录音ToolStripMenuItem1";
+            this.播放录音ToolStripMenuItem1.Size = new System.Drawing.Size(148, 22);
+            this.播放录音ToolStripMenuItem1.Text = "播放录音";
+            this.播放录音ToolStripMenuItem1.Click += new System.EventHandler(this.播放录音ToolStripMenuItem_Click);
+            // 
+            // 录音文件升级ToolStripMenuItem
+            // 
+            this.录音文件升级ToolStripMenuItem.Name = "录音文件升级ToolStripMenuItem";
+            this.录音文件升级ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.录音文件升级ToolStripMenuItem.Text = "录音文件升级";
+            this.录音文件升级ToolStripMenuItem.Click += new System.EventHandler(this.录音文件升级ToolStripMenuItem_Click);
+            // 
+            // 录音删除ToolStripMenuItem
+            // 
+            this.录音删除ToolStripMenuItem.Name = "录音删除ToolStripMenuItem";
+            this.录音删除ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.录音删除ToolStripMenuItem.Text = "录音删除";
+            this.录音删除ToolStripMenuItem.Click += new System.EventHandler(this.录音删除ToolStripMenuItem_Click);
             // 
             // 私有控制ToolStripMenuItem
             // 
@@ -774,7 +810,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
-            this.Text = "微拍后台1.12";
+            this.Text = "微拍后台1.14";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
@@ -880,6 +916,10 @@
         private System.Windows.Forms.ToolStripMenuItem 参数设置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem 立即清理ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 录音文件管理ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 录音文件升级ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 录音删除ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 播放录音ToolStripMenuItem1;
     }
 }
 

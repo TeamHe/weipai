@@ -51,6 +51,14 @@ namespace GridBackGround.PacketAnaLysis
         /// </summary>
         public const int ResWorkState = 0x0a;
         /// <summary>
+        /// 扩展语音播放协议(上位机->监测装置)
+        /// </summary>
+        public const int Voice = 0x0b;
+        /// <summary>
+        /// 扩展语音播放协议响应
+        /// </summary>
+        public const int VoiceRes = 0x0c;
+        /// <summary>
         /// 私有控制(上位机—>检测装置)
         /// </summary>
         public const int PrivateCon = 0xf1;

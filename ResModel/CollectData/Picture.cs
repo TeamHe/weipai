@@ -223,6 +223,8 @@ namespace ResModel.CollectData
                 UploadingState = true;
                 NameValueCollection collectons = new NameValueCollection();
                 collectons.Add("user", user);
+                collectons.Add("chno", this.ChannalNO.ToString());
+                collectons.Add("preset", this.Presetting_No.ToString());
                 collectons.Add("ts", time.ToString("yyyyMMddHHmmss"));
 
                 string res = HttpHelper.HttpUploadFile(url, path, collectons);
@@ -238,10 +240,6 @@ namespace ResModel.CollectData
             {
                 throw ex;
             }
-            //    finally
-            //    {
-            //       this.UploadState = ret;
-            //    }
             return ret;
         }
 
@@ -299,7 +297,7 @@ namespace ResModel.CollectData
                 if (Equ != null && Equ.EquNumber != null)
                     number = Equ.EquNumber;
 
-                fileName = this.Maintime.ToString("yyMMddHHmm") + "_" + number + ".jpg";
+                fileName = string.Format("{1}_{0:yyMMddHHmmss}_{2}_{3}.jpg", this.Maintime,number,this.ChannalNO,this.Presetting_No);
                 fullPath = Path.Combine(DirPath,fileName);
                 System.IO.Directory.CreateDirectory(DirPath);
                 return fullPath;

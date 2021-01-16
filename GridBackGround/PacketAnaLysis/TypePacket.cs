@@ -121,6 +121,10 @@ namespace GridBackGround.PacketAnaLysis
         /// </summary>
         public const int UpdateBuBao = 0xac;
         #endregion
+        /// <summary>
+        /// 播放设备端录音文件（扩展协议）
+        /// </summary>
+        public const int SoundLightAlarm= 0xa9;
     }
     /// <summary>
     /// 远程图像数据类型
@@ -195,4 +199,37 @@ namespace GridBackGround.PacketAnaLysis
         /// </summary>
         public const int UserPhone = 0x01;
     }
+    /// <summary>
+    /// 扩展语音播放协议
+    /// </summary>
+    static public class PacketType_Voice
+    {
+        /// <summary>
+        /// 开始下发语音数据包
+        /// </summary>
+        public const int StartUpdate = 0xc1;
+        /// <summary>
+        /// 语音数据包
+        /// </summary>
+        public const int UpdateData = 0xC2;
+        /// <summary>
+        /// 语音下发结束包
+        /// </summary>
+        public const int UpdateEnd = 0xc3;
+        /// <summary>
+        /// 语音数据包补报
+        /// </summary>
+        public const int UpdateComplement = 0xc4;
+        /// <summary>
+        /// 语音下发回复包
+        /// </summary>
+        public const int UpdateSucess = 0xc6;
+        /// <summary>
+        /// 删除语音文件
+        /// </summary>
+        public const int Delete = 0xc7;
+    }
+
+
+
 }

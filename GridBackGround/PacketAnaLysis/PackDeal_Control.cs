@@ -46,13 +46,15 @@ namespace GridBackGround.PacketAnaLysis
                 case PacketType_Control.Model://模型参数0xa7
                     CommandDeal.Comand_Model.Response(pole, frame_No, data);
                     break;
-
-                case PacketType_Control.Start_Update:             //补包
-                    CommandDeal.Comand_RemotedUpDate.RemoteUpdateStartResponse(pole, frame_No, data);
+                case PacketType_Control.SoundLightAlarm:
+                    CommandDeal.Command_sound_light_alarm.Response(pole, frame_No, data);
                     break;
-                case PacketType_Control.UpdateBuBao:
-                    CommandDeal.Comand_RemotedUpDate.RemoteUpdateBuBao(pole, frame_No, data);
-                    break;
+                //case PacketType_Control.Start_Update:             //补包
+                //    CommandDeal.Comand_RemotedUpDate.RemoteUpdateStartResponse(pole, frame_No, data);
+                //    break;
+                //case PacketType_Control.UpdateBuBao:
+                //    CommandDeal.Comand_RemotedUpDate.RemoteUpdateBuBao(pole, frame_No, data);
+                //    break;
               
               
                 default:

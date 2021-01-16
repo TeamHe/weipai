@@ -24,6 +24,8 @@ namespace GridBackGround.Termination
 
         private IConnection connection;
 
+        public object Lock { get; private set; }
+
         #region Constructors
         /// <summary>
         /// 装置初始化
@@ -35,6 +37,7 @@ namespace GridBackGround.Termination
             if (CMD_ID == null) throw new ArgumentNullException("装置ID");
             this.CMD_ID = CMD_ID;
             this.OnLine = false;
+            this.Lock = new object();
             UpstateEqu();
             timer = new System.Timers.Timer(30 * 60 * 1000);
             timer.Elapsed += new ElapsedEventHandler(OutLine);
@@ -335,17 +338,6 @@ namespace GridBackGround.Termination
 
         public Error_Code SetTimeTable(int channel, List<CommandDeal.IPhoto_TimeTable> table)
         {
-            //if(table ==null || table.Count ==0 || table.Count > 72)
-            //{
-            //    return Error_Code.InvalidPara;
-            //}
-            //foreach(CommandDeal.PhotoTimeTable time in table)
-            //{
-            //    if (time.Hour < 0 || time.Hour > 23
-            //        || time.Minute < 0 || time.Minute > 59
-            //        || time.Presetting_No < 0 || time.Presetting_No > 255)
-            //        return Error_Code.InvalidPara;
-            //}
             if (this.OnLine == false)
                 return Error_Code.DeviceOffLine;
             if (this.busy_settimetable)
@@ -372,7 +364,10 @@ namespace GridBackGround.Termination
         public void OnTimeTableFinish(Error_Code code, string message = null)
         {
             this.busy_settimetable = false;
-            this.timer_settimetable.Stop();
+            if (timer_settimetable != null) {
+                this.timer_settimetable.Stop();
+                this.timer_settimetable = null;
+            }
             PowerPoleEventArgs args = new PowerPoleEventArgs()
             {
                 Code = code,
@@ -390,6 +385,76 @@ namespace GridBackGround.Termination
         }
         #endregion
 
+        #region 打开声光报警
+        public event EventHandler<PowerPoleEventArgs> VoiceLightAlarmEventHanlder;
+        /// <summary>
+        /// 声光报警busy标记
+        /// </summary>
+        private bool busy_VoiceLightAlarm { get; set; }
+        /// <summary>
+        /// 声光报警指令定时器
+        /// </summary>
+        private Timer timer_VoiceLightAlarm { get; set; }
+
+        /// <summary>
+        /// 发送声光报警指令
+        /// </summary>
+        /// <param name="index">录音文件索引，从0x01开始计数</param>
+        /// <param name="status">控制播放状态：①0x01：开始播放②0x02：停止播放</param>
+        /// <param name="interval">持续播放时间(单位秒)</param>
+        /// <returns>错误码</returns>
+        public Error_Code VoicePlay(int index, int status,int interval)
+        {
+            if (status != 0x02)
+                status = 0x01;
+            if (this.OnLine == false)
+                return Error_Code.DeviceOffLine;
+            if (this.busy_VoiceLightAlarm)
+                return Error_Code.DeviceBusy;
+            if (this.timer_VoiceLightAlarm == null)
+            {
+                this.timer_VoiceLightAlarm = new Timer(this.OverTime * 1000);
+                this.timer_VoiceLightAlarm.AutoReset = false;
+                this.timer_VoiceLightAlarm.Elapsed += Timer_VoiceLightAlarm_Elapsed;
+            }
+            this.timer_VoiceLightAlarm.Start();
+
+            if (!CommandDeal.Command_sound_light_alarm.Option1(this.CMD_ID,(CommandDeal.Command_sound_light_alarm.Play)status,index,interval))
+                return Error_Code.DeviceOffLine;
+
+            return Error_Code.Success;
+        }
+
+        private void Timer_VoiceLightAlarm_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            this.OnVoiceLightAlarmFinish(Error_Code.ResponseOverTime);
+        }
+
+        public void OnVoiceLightAlarmFinish(Error_Code code, string message = null)
+        {
+            this.busy_VoiceLightAlarm = false;
+            if (timer_VoiceLightAlarm != null)
+            {
+                this.timer_VoiceLightAlarm.Stop();
+                this.timer_VoiceLightAlarm = null;
+            }
+            PowerPoleEventArgs args = new PowerPoleEventArgs()
+            {
+                Code = code,
+                Message = message
+            };
+            try
+            {
+                if (VoiceLightAlarmEventHanlder != null)
+                    this.VoiceLightAlarmEventHanlder(this, args);
+            }
+            catch
+            {
+
+            }
+        }
+
+        #endregion
     }
     /// <summary>
     /// 装置状态变化事件

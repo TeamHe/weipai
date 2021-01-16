@@ -39,7 +39,6 @@ namespace GridBackGround.Forms
                 }
             }
            
-            this.comboBox1.SelectedIndex = 0;
             button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             Qurey_State = true;
             radioButton1.Checked = true;
@@ -112,7 +111,7 @@ namespace GridBackGround.Forms
         private void buttonOK_Click(object sender, EventArgs e)
         {
             this.TimeTable.Clear();
-            Channel_No = this.comboBox1.SelectedIndex + 1;
+            Channel_No = (int)this.numericUpDown1.Value;
             if (!Qurey_State)
             {    
                 if (this.listView1.Items.Count > 0)

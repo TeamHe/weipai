@@ -16,7 +16,6 @@ namespace GridBackGround.Forms
             InitializeComponent();
             this.CenterToParent();
             this.button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.comboBox1.SelectedIndex = 0;
         }
         /// <summary>
         /// 通道号
@@ -34,7 +33,7 @@ namespace GridBackGround.Forms
         /// <param name="e"></param>
         private void button_OK_Click(object sender, EventArgs e)
         {
-            Channel_NO = this.comboBox1.SelectedIndex + 1;
+            Channel_NO = (int)this.numericUpDown1.Value; ;
             try
             {
                 Presetting_No = int.Parse(this.textBox1.Text);
