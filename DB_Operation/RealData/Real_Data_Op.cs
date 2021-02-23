@@ -118,42 +118,42 @@ namespace DB_Operation.RealData
                 /// <param name="id"></param>
                 /// <param name="time"></param>
                 /// <returns></returns>
-                public static int DB_Real_Del(string TablenName, int id, DateTime time)
-                {
-                    string sql = string.Format(
-                     "Delete from {2} where TowerID = \"{0}\" and Time=\"{1}\" ;", id, time, TablenName);
-                    int num = -1;
-                    try
-                    {
-                        num = Connection.ExecuteNoneQuery(sql);
-                        return num;
-                    }
-                    catch (Exception ex)
-                    {
-                        throw ex;
-                    }
-                }
+                //public static int DB_Real_Del(string TablenName, int id, DateTime time)
+                //{
+                //    string sql = string.Format(
+                //     "Delete from {2} where TowerID = \"{0}\" and Time=\"{1}\" ;", id, time, TablenName);
+                //    int num = -1;
+                //    try
+                //    {
+                //        num = Connection.ExecuteNoneQuery(sql);
+                //        return num;
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //        throw ex;
+                //    }
+                //}
                 /// <summary>
                 /// 删除数据
                 /// </summary>
                 /// <param name="id"></param>
                 /// <param name="time"></param>
                 /// <returns></returns>
-                public static int DB_Real_Del(string TablenName, int id, DateTime[] time)
-                {
-                    string sql = string.Format("Delete from {3} where TowerID = \"{0}\" " +
-                         "and Time between \"{1}\" and \"{2}\";", id, time[0], time[1], TablenName);
-                    int num = -1;
-                    try
-                    {
-                        num = Connection.ExecuteNoneQuery(sql);
-                        return num;
-                    }
-                    catch (Exception ex)
-                    {
-                        throw ex;
-                    }
-                }
+                //public static int DB_Real_Del(string TablenName, int id, DateTime[] time)
+                //{
+                //    string sql = string.Format("Delete from {3} where TowerID = \"{0}\" " +
+                //         "and Time between \"{1}\" and \"{2}\";", id, time[0], time[1], TablenName);
+                //    int num = -1;
+                //    try
+                //    {
+                //        num = Connection.ExecuteNoneQuery(sql);
+                //        return num;
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //        throw ex;
+                //    }
+                //}
                 #endregion
 
                 public static string Get_Sel_Real_Head()
@@ -279,18 +279,18 @@ namespace DB_Operation.RealData
             DataRow row = Connection.GetFirstRow(sql, CommandType.Text, files, obj);
             if (row == null)
                 throw new Exception("该装置ID不存在");
-            try
-            {
+            //try
+            //{
                 //ICMP type = (ICMP)int.Parse(row[1].ToString());
                 //if (type != EquType)
                 //    throw new Exception("数据类型错误");
                 int id = (int)row["id"];
                 return id;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
         }
     }
     

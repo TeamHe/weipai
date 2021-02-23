@@ -219,8 +219,8 @@ namespace DB_Operation.EQUManage
         #region Private Functions
         public static Equ GetEqu(DataRow row)
         {
-            try
-            {
+            //try
+            //{
                 var equ = new Equ();
                 if (row.IsNull(Colums[0]))
                     return null;
@@ -246,11 +246,11 @@ namespace DB_Operation.EQUManage
 
                 equ.Type = ICMP.Picture;
                 return equ;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
         }
         #endregion
         

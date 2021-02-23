@@ -116,8 +116,8 @@ namespace Tools
                                  string sWaterMarkContent,
                                  WaterMarkPosition positon)
         {
-            try
-            {
+            //try
+            //{
                 d.Image image = d.Image.FromFile(oldpath);
                 Bitmap b = new Bitmap(image.Width, image.Height,
                  PixelFormat.Format24bppRgb);
@@ -144,22 +144,22 @@ namespace Tools
                 b.Save(newpath);
                 b.Dispose();
                 image.Dispose();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-                //if (File.Exists(oldpath))
-                //{
-                //    File.Delete(oldpath);
-                //}
-            }
-            finally
-            {
-                //if (File.Exists(oldpath))
-                //{
-                //    File.Delete(oldpath);
-                //}
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //    //if (File.Exists(oldpath))
+            //    //{
+            //    //    File.Delete(oldpath);
+            //    //}
+            //}
+            //finally
+            //{
+            //    //if (File.Exists(oldpath))
+            //    //{
+            //    //    File.Delete(oldpath);
+            //    //}
+            //}
         }
 
         /// <summary>

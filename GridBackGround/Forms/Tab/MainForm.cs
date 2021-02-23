@@ -25,6 +25,8 @@ namespace GridBackGround
 
         public MainForm()
         {
+            LogHelper.WriteLog("System Start");
+
             InitializeComponent();
             this.CenterToParent();
             //Forms.EquMan.FormManEquMan fmm= new Forms.EquMan.FormManEquMan();
@@ -65,7 +67,7 @@ namespace GridBackGround
                 fmm.FormManEquManInit(this.设置ToolStripMenuItem);    //设别管理按钮添加
                 fmm.TabID = this.TabID;
 
-                Work.PictureClean.Start();      //图片清理服务启动
+                //Work.PictureClean.Start();      //图片清理服务启动
 
                 Console.WriteLine(DateTime.Now.ToString() + "系统初始化完成");
 
@@ -74,6 +76,8 @@ namespace GridBackGround
             catch(Exception ex)
             {
                 MessageBox.Show("系统启动失败。" + ex.Message);
+                //LogHelper.WriteLog("系统启动失败", ex);
+                //throw ex;
             }
             
 
@@ -907,15 +911,15 @@ namespace GridBackGround
 
         private void 立即清理ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show(this, "确定要清理图片信息？", "提示", 
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-            {
-                int days = Config.SettingsForm.Default.PictuerCleanReserveTime;
-                if (days <= 0) days = 1;
-                DateTime end = DateTime.Today.AddDays(-days);
-                Work.PictureClean.Remove(end);
-            }
-
+            //if (MessageBox.Show(this, "确定要清理图片信息？", "提示",
+            //    MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            //{
+            //    int days = Config.SettingsForm.Default.PictuerCleanReserveTime;
+            //    if (days <= 0) days = 1;
+            //    DateTime end = DateTime.Today.AddDays(-days);
+            //    Work.PictureClean.Remove(end);
+            //}
+            throw new Exception("test ui exception");
         }
 
         private void 录音文件升级ToolStripMenuItem_Click(object sender, EventArgs e)

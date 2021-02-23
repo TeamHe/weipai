@@ -590,8 +590,9 @@
             this.清理ToolStripMenuItem,
             this.参数设置ToolStripMenuItem});
             this.图片清理ToolStripMenuItem.Name = "图片清理ToolStripMenuItem";
-            this.图片清理ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.图片清理ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.图片清理ToolStripMenuItem.Text = "图片清理";
+            this.图片清理ToolStripMenuItem.Visible = false;
             // 
             // 立即清理ToolStripMenuItem
             // 
@@ -810,7 +811,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
-            this.Text = "微拍后台1.14";
+            this.Text = "微拍后台1.16";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);

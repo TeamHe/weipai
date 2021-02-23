@@ -155,8 +155,8 @@ namespace Tools
                 //1.3 form end
                 stream.Write(endbytes, 0, endbytes.Length);
             }
-            try
-            {
+            //try
+            //{
                 //2.WebResponse
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 using (StreamReader stream = new StreamReader(response.GetResponseStream()))
@@ -165,11 +165,11 @@ namespace Tools
                     stream.Close();
                     return str;
                 }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
         }
     }
 }

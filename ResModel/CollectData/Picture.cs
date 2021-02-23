@@ -146,8 +146,8 @@ namespace ResModel.CollectData
         /// <returns></returns>
         public TimeSpan AddWaterMarket(string text, DateTime time,bool isname=true,bool istime=true)
         {
-            try
-            {
+            //try
+            //{
 
                 List<WaterMarkText> WmtList = new List<WaterMarkText>();
                 //右下角添加的文字
@@ -178,11 +178,11 @@ namespace ResModel.CollectData
 
                 this.PicPath = newPath;
                 return ts;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
         }
 
         /// <summary>
@@ -218,8 +218,8 @@ namespace ResModel.CollectData
         public bool Upload(string url, string user, DateTime time, string path)
         {
             bool ret = false;
-            try
-            {
+            //try
+            //{
                 UploadingState = true;
                 NameValueCollection collectons = new NameValueCollection();
                 collectons.Add("user", user);
@@ -235,11 +235,11 @@ namespace ResModel.CollectData
 
                     ret = true;
                 }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
             return ret;
         }
 
@@ -269,14 +269,14 @@ namespace ResModel.CollectData
             IRealData_OP iRdo = Real_Data_Op.Creat(EQU.ICMP.Picture);   //获取图片操作接口
             if (iRdo == null) throw new Exception("不支持的数据类型");
             if (this.PicPath == null) throw new ArgumentNullException("图片路径为空");
-            try                  //保存到数据库中
-            {
+            //try                  //保存到数据库中
+            //{
                 iRdo.DataSave(this);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
             this.UploadState = true;
         }
         #endregion
