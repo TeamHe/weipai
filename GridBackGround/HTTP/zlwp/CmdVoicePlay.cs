@@ -78,6 +78,7 @@ namespace GridBackGround.HTTP.zlwp
             catch (Exception ex)
             {
                 Zlwp.SendError(this.Context, Error_Code.InternalError, ex.Message);
+                LogHelper.WriteLog("httpRequest-Photoing", ex);
                 return;
             }
         }

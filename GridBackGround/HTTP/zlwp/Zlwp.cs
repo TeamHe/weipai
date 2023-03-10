@@ -65,6 +65,7 @@ namespace GridBackGround.HTTP.zlwp
             catch(Exception ex)
             {
                 SendError(context, Error_Code.InternalError, ex.Message);
+                LogHelper.WriteLog("httpRequest-zlwp cmd Deal", ex);
             }
             return true;
         }

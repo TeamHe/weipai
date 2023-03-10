@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GridBackGround</RootNamespace>
-    <AssemblyName>微拍后台V1.16</AssemblyName>
+    <AssemblyName>微拍后台V1.17</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -39,6 +39,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>CppCoreCheckGslRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -262,7 +263,6 @@
     <Compile Include="HTTP\HttpListeners.cs" />
     <Compile Include="HTTP\HttpRequestManager.cs" />
     <Compile Include="HTTP\ReSendMessage.cs" />
-    <Compile Include="HTTP\ThreadEntrustManager.cs" />
     <Compile Include="HTTP\zlwp\CmdGetLines.cs" />
     <Compile Include="HTTP\zlwp\CmdGetPoles.cs" />
     <Compile Include="HTTP\zlwp\CmdGetTowers.cs" />

@@ -21,6 +21,10 @@ namespace GridBackGround.Forms.Tab
         private const string TestTowerName = "TestTower";
         private int lineID = -1;
 
+        public delegate void NodeStateChange(Termination.IPowerPole powerPole);
+
+        private NodeStateChange changeDelegate;
+
         //private string CMD_ID = null;
 
         private int TestEquNum = 0;
@@ -31,6 +35,7 @@ namespace GridBackGround.Forms.Tab
         #region Construction
         public Tab_IDs()
         {
+            changeDelegate = new NodeStateChange(NodeChange);
             InitializeComponent();
             this.TopLevel = false;
             this.Dock = DockStyle.Fill;
@@ -59,12 +64,20 @@ namespace GridBackGround.Forms.Tab
         /// <param name="powerPole"></param>
         protected void OnLineStateChange(Termination.PowerPole powerPole)
         {
-            NodeChange(powerPole);
-            powerPole = null;
+            if (powerPole != null)
+            {
+                try
+                {
+                    NodeChange(powerPole);
+                }
+                catch (Exception ex)
+                {
+                    LogHelper.WriteLog("OnLineStateChange ID:" + powerPole.CMD_ID,ex);
+                }
+            }
         }
         #region 节点状态变化处理
 
-        public delegate void NodeStateChange(Termination.IPowerPole powerPole);
         /// <summary>
         /// 向添加ID
         /// </summary>
@@ -75,27 +88,54 @@ namespace GridBackGround.Forms.Tab
             if (this.InvokeRequired)
             {
                 //产生一个委托调用，然后修改控件的值
-                this.Invoke(new NodeStateChange(this.NodeChange), new object[] { powerPole });
+                this.Invoke(changeDelegate, new object[] { powerPole });
             }
             else
             {
-                TreeNode Node;
-                if (FindItem(powerPole.CMD_ID,out Node))
-                {                                                 //查找到相应ID对应的节点
-                    UpdateEquMsg(Node,powerPole);               //更新节点提示信息
-                }
-                else
+                try
                 {
-                    TreeNode node = new TreeNode();
-                    if ((powerPole.Name == null) || (powerPole.Name.Length <= 0))
-                        node.Text = powerPole.CMD_ID;
-                    else
-                        node.Text = powerPole.Name;
-                    node.Name = powerPole.CMD_ID;
-                    UpdateEquMsg(node, powerPole);              //更新节点提示信息
-                    AddTestNode().Nodes.Add(node);
 
+                    if (powerPole == null || powerPole.CMD_ID==null) return;
+                    TreeNode Node;
+                    if (FindItem(powerPole.CMD_ID,out Node))
+                    {
+                        try
+                        {
+                            //查找到相应ID对应的节点
+                            UpdateEquMsg(Node,powerPole);                 //更新节点提示信息
+                        }
+                        catch (Exception ex)
+                        {
+                            LogHelper.WriteLog("OnLineStateChange ID-2:" + powerPole.CMD_ID, ex);
+                        }
+
+                    }
+                    else
+                    {
+                        try
+                        {
+
+                            TreeNode node = new TreeNode();
+                            if ((powerPole.Name == null) || (powerPole.Name.Length <= 0))
+                                node.Text = powerPole.CMD_ID;
+                            else
+                                node.Text = powerPole.Name;
+                            node.Name = powerPole.CMD_ID;
+                            UpdateEquMsg(node, powerPole);              //更新节点提示信息
+                            AddTestNode().Nodes.Add(node);
+                        }
+                        catch (Exception ex)
+                        {
+                            LogHelper.WriteLog("OnLineStateChange ID-3:" + powerPole.CMD_ID, ex);
+                        }
+
+                    }
                 }
+                catch (Exception ex)
+                {
+                    LogHelper.WriteLog("OnLineStateChange ID-1:" + powerPole.CMD_ID, ex);
+                }
+
             }
         }
         

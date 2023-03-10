@@ -72,10 +72,14 @@ namespace GridBackGround.PacketAnaLysis
         /// <param name="data"></param>
         public static void NewPacket(string data)
         {
-            TimerStart();
-            msgs.Add(data);
+            //TimerStart();
+            //msgs.Add(data);
             //if (DisPacket.OnNewPacket != null)
             //    OnNewPacket(data);
+            List<string> msg1 = new List<string>();
+            msg1.Add(data);
+            if (DisPacket.OnNewPacketS != null)
+                OnNewPacketS(msg1);
         }
     }
 
