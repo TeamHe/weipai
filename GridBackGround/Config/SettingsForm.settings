@@ -44,5 +44,8 @@
     <Setting Name="PictuerCleanLastTime" Type="System.DateTime" Scope="User">
       <Value Profile="(Default)">2020-01-01</Value>
     </Setting>
+    <Setting Name="ServiceMode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">nw</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

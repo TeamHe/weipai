@@ -190,5 +190,17 @@ namespace GridBackGround.Config {
                 this["PictuerCleanLastTime"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("nw")]
+        public string ServiceMode {
+            get {
+                return ((string)(this["ServiceMode"]));
+            }
+            set {
+                this["ServiceMode"] = value;
+            }
+        }
     }
 }
