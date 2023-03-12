@@ -322,8 +322,61 @@ namespace GridBackGround
             cmdInfo = null;
             return false;
         }
+
+        /// <summary>
+        /// 南网数据接收处理
+        /// </summary>
+        /// <param name="session"></param>
+        /// <param name="cmdInfo"></param>
+        /// <returns></returns>
+        public static bool RecData(UdpSession session, CommandInfo_nw cmdInfo)
+        {
+            Termination.IPowerPole pole = null;
+            if (cmdInfo.CMD_ID != null)
+            {
+                pole = PowerPoleManage.PowerPole(cmdInfo.CMD_ID, session);
+
+            }
+            RecDataDeal(cmdInfo, EConnectType.UDP, pole);
+            return false;
+        }
+
+        /// <summary>
+        /// 对接收到的数据进行处理
+        /// </summary>
+        /// <param name="cmdInfo"></param>
+        /// <param name="conType"></param>
+        /// <returns></returns>
+        public static bool RecDataDeal(CommandInfo_nw cmdInfo, EConnectType conType, IPowerPole pole)
+        {
+
+            int errorcode = cmdInfo.ErrorCode;
+            string data = "接收:　" + "错误代码：" + cmdInfo.ErrorCode.ToString() + "  数据：";
+            data += Tools.StringTurn.ByteToHexString(cmdInfo.Pakcet);
+            PacketAnaLysis.DisPacket.NewPacket(data);
+            //显示报文
+            //if ((cmdInfo.ErrorCode == 0))// || (cmdInfo.ErrorCode == 3))
+            //{
+            //    //if (pole != null)
+            //        //PacketAnaLysis.PackDivid_FrameType.PackDivid(
+            //        //    pole,
+            //        //    cmdInfo.Frame_Type,
+            //        //    cmdInfo.Packet_Type,
+            //        //    cmdInfo.Frame_No,
+            //        //    cmdInfo.Data,
+            //        //    ref errorcode);
+            //}
+
+            //if (cmdInfo.ErrorCode == 3)
+            //    PacketAnaLysis.DividPack_FrameType.PackDivid(cmdInfo, ref errorcode);
+            cmdInfo = null;
+            return false;
+        }
+
+
+
         #endregion
     }
 
-    
+
 }
