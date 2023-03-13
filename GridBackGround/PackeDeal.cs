@@ -106,11 +106,59 @@ namespace GridBackGround
              return false;
              #endregion
          }
-         private static bool SendSocket(string CMD_ID, byte[] data, out string errorMsg, out int errCode)
+
+         public static bool SendSocket(IPowerPole powerPole, byte[] data, out string errorMsg, out int errCode)
          {
-             errorMsg = "";
-             string disData = "发送:";
-             errCode = 0;
+            errorMsg = "";
+            string disData = "发送:";
+            errCode = 0;
+            if (powerPole == null)
+            {
+                errorMsg = "无效的设备handle";
+                errCode = 11;
+                return false;
+            }
+
+            if (powerPole.udpSession != null)
+            {
+                try
+                {
+                    powerPole.udpSession.SendAsync(data);
+                    OnSend = true;
+                    System.Threading.Thread.Sleep(5);
+                    disData += Tools.StringTurn.ByteToHexString(data); ;
+                    PacketAnaLysis.DisPacket.NewPacket(disData);                      //显示报文
+                    return true;
+                }
+                catch
+                {
+                    errCode = 12;
+                    return false;
+                }
+            }
+            if (powerPole.Connection != null)
+            {
+                try
+                {
+                    powerPole.Connection.BeginSend(new Packet(data));
+                    disData += Tools.StringTurn.ByteToHexString(data); ;
+                    PacketAnaLysis.DisPacket.NewPacket(disData);                      //显示报文
+                    return true;
+                }
+                catch
+                {
+                    errorMsg = "TCP数据发送失败";
+                    errCode = 12;
+                    return false;
+                }
+            }
+            errorMsg = "设备离线";
+            errCode = 14;
+            return false;
+         }
+
+        public static bool SendSocket(string CMD_ID, byte[] data, out string errorMsg, out int errCode)
+        {
              IPowerPole powerPole = PowerPoleManage.Find(CMD_ID);
              if (powerPole == null)
              {
@@ -118,89 +166,13 @@ namespace GridBackGround
                  errCode = 11;
                  return false;
              }
-
-             if (powerPole.udpSession != null)
-             {
-                 try
-                 {
-                     powerPole.udpSession.SendAsync(data);
-                     OnSend = true;
-                     System.Threading.Thread.Sleep(5);
-                     disData += Tools.StringTurn.ByteToHexString(data); ;
-                     PacketAnaLysis.DisPacket.NewPacket(disData);                      //显示报文
-                     return true;
-                 }
-                 catch
-                 {
-                     errCode = 12;
-                     return false;
-                 }
-             }
-             if (powerPole.Connection != null)
-             {
-                 try
-                 {
-                     powerPole.Connection.BeginSend(new Packet(data));
-                     disData += Tools.StringTurn.ByteToHexString(data); ;
-                     PacketAnaLysis.DisPacket.NewPacket(disData);                      //显示报文
-                     return true;
-                 }
-                 catch
-                 {
-                     errorMsg = "TCP数据发送失败";
-                     errCode = 12;
-                     return false;
-                 }
-             }
-             errorMsg = "该设备ID没有进行通讯";
-             errCode = 14;
-             return false;
-         }
+            return SendSocket(powerPole, data, out errorMsg, out errCode);
+        }
 
          private static bool SendSocket(string CMD_ID, byte[] data, out string errorMsg)
          {
-             errorMsg = "";
-             string disData = "发送:";
-             IPowerPole powerPole = PowerPoleManage.Find(CMD_ID);
-             if (powerPole == null)
-             {
-                 errorMsg = "未找到该设备";
-                 return false;
-             }
-
-             if (powerPole.udpSession != null)
-             {
-                 try
-                 {
-                     powerPole.udpSession.SendAsync(data);
-                     OnSend = true;
-                     System.Threading.Thread.Sleep(5);
-                     disData += Tools.StringTurn.ByteToHexString(data); ;
-                     PacketAnaLysis.DisPacket.NewPacket(disData);                      //显示报文
-                     return true;
-                 }
-                 catch
-                 {
-                     return true;
-                 }
-             }
-             if (powerPole.Connection != null)
-             {
-                 try
-                 {
-                     powerPole.Connection.BeginSend(new Packet(data));
-                     disData += Tools.StringTurn.ByteToHexString(data); ;
-                     PacketAnaLysis.DisPacket.NewPacket(disData);                      //显示报文
-                     return true;
-                 }
-                 catch
-                 {
-                     errorMsg = "TCP数据发送失败";
-                     return false;
-                 }
-             }
-             errorMsg = "该设备ID没有进行通讯";
-             return false;
+            int errCode = 0;
+            return SendSocket(CMD_ID, data,out errorMsg,out errCode);
          }
          public static void SendComplete(IConnection connection)
          {
