@@ -106,6 +106,8 @@
     <Compile Include="CommandDeal\Image\Image_Model.cs" />
     <Compile Include="CommandDeal\Image\Image_Photo_UP.cs" />
     <Compile Include="CommandDeal\Image\Image_Photo_Adjust.cs" />
+    <Compile Include="CommandDeal\nw\nw_cmd_00_poweron.cs" />
+    <Compile Include="CommandDeal\nw\nw_cmd_base.cs" />
     <Compile Include="CommandDeal\Private\UserPhone.cs" />
     <Compile Include="CommandDeal\WorkState_Error.cs" />
     <Compile Include="Config\Common\Messagebox_Textbox.cs">
@@ -274,6 +276,7 @@
     <Compile Include="HTTP\zlwp\CmdWaterMarkSet.cs" />
     <Compile Include="HTTP\zlwp\Zlwp.cs" />
     <Compile Include="LogHelper.cs" />
+    <Compile Include="CommandDeal\nw\nw_cmd_handle.cs" />
     <Compile Include="PacketAnaLysis\PackDeal_PrivateCon.cs" />
     <Compile Include="PacketAnaLysis\PackDeal_Image.cs" />
     <Compile Include="PacketAnaLysis\PackDeal_Image_Control.cs" />
