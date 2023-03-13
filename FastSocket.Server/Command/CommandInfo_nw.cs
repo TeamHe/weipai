@@ -164,17 +164,18 @@ namespace Sodao.FastSocket.Server.Command
                 return null;
             }
 
-            //校验码验证
             int check_start = startno + 1;
             int check_len = p_len - 3;
             byte check_code = buffer.Array[startno + p_len - 2];
             byte check_code_cal = commandinfo_nw_check(buffer.Array, check_start, check_len);
+#if !DEBUG  //调试模式不计算校验码
+            //校验码验证
             if (check_code != check_code_cal)
             { //校验出错
                 readlength = startno + 1 - buffer.Offset;
                 return null;
             }
-
+#endif
             //copy 数据包内容
             CommandInfo_nw command = new CommandInfo_nw();
             command.Pakcet = new byte[p_len];
