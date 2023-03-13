@@ -29,7 +29,7 @@ namespace Sodao.FastSocket.Server.Command
         /// b)	厂家代码由南方电网公司统一分配。厂家赋予每套在线监测装置的装置号码应在南方电网范围
         ///     内具备唯一性
         /// </summary>
-        public string CMD_ID { get; private set; }
+        public string CMD_ID { get;  set; }
 
         /// <summary>
         /// 控制字 单字节
@@ -81,7 +81,7 @@ namespace Sodao.FastSocket.Server.Command
                 byte[] b_cmd = Encoding.ASCII.GetBytes(this.CMD_ID);
                 int cp_len = 6;
                 if (b_cmd.Length < 6) cp_len = b_cmd.Length;
-                Buffer.BlockCopy(b_cmd, 0, this.Pakcet, cp_len, 1);
+                Buffer.BlockCopy(b_cmd, 0, this.Pakcet, 1,cp_len);
             }
 
             this.Pakcet[7] = (byte)this.PackageType;
@@ -91,7 +91,8 @@ namespace Sodao.FastSocket.Server.Command
                 this.Pakcet[9] = (byte)(this.Data.Length / 256);
                 Buffer.BlockCopy(this.Data, 0, this.Pakcet, 10, this.Data.Length);
             }
-            this.Pakcet[len - 2] = commandinfo_nw_check(Pakcet, 1, len - 12);
+            byte check_code = commandinfo_nw_check(Pakcet, 1, len - 3);
+            this.Pakcet[len - 2] = check_code;
             this.Pakcet[len - 1] = 0x16;
         }
 
