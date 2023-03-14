@@ -143,7 +143,7 @@ namespace Sodao.FastSocket.Server.Command
                     break;
                 }
             }
-            if (i == buffer.Count - 12) 
+            if (i == (buffer.Count - 12) && buffer.Array[i]!=0x68) 
             { //没有找到包头，返回错误信息
                 readlength = i - buffer.Offset;
                 return null;
@@ -179,11 +179,15 @@ namespace Sodao.FastSocket.Server.Command
 #endif
             //copy 数据包内容
             CommandInfo_nw command = new CommandInfo_nw();
+            command.PackageType = buffer.Array[startno + 7];
             command.Pakcet = new byte[p_len];
-            command.Data = new byte[p_len-12];
             Buffer.BlockCopy(buffer.Array, startno, command.Pakcet, 0, p_len);
-            Buffer.BlockCopy(buffer.Array, startno+10, command.Data, 0, p_len-12);
             command.CMD_ID = Encoding.ASCII.GetString(command.Pakcet, 1, 6);
+            if(p_len > 12)
+            {
+                command.Data = new byte[p_len - 12];
+                Buffer.BlockCopy(buffer.Array, startno + 10, command.Data, 0, p_len - 12);
+            }
             command.CheckCode = check_code;
             readlength = startno + p_len - buffer.Offset;
             return command;
