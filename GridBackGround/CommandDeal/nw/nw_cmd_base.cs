@@ -54,6 +54,12 @@ namespace GridBackGround.CommandDeal.nw
 
         }
 
+        public nw_cmd_base(IPowerPole pole)
+        {
+            this.Pole = pole;
+        }
+
+
         public nw_cmd_base(IPowerPole pole, byte[]  data)
         {
             this.Pole = pole;
