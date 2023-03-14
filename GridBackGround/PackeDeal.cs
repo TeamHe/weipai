@@ -157,6 +157,11 @@ namespace GridBackGround
             return false;
          }
 
+        public static bool SendSocket(IPowerPole powerPole, byte[] data, out string errorMsg)
+        {
+            return SendSocket(powerPole, data, out errorMsg, out _);
+        }
+
         public static bool SendSocket(string CMD_ID, byte[] data, out string errorMsg, out int errCode)
         {
              IPowerPole powerPole = PowerPoleManage.Find(CMD_ID);
