@@ -95,9 +95,9 @@ namespace GridBackGround.CommandDeal.nw
                 try
                 {
                     nw_cmd_base ctl = (nw_cmd_base)Activator.CreateInstance(handle.type);
-                    ctl.Handle(pole, command,out string msg);
-                    DisPacket.NewRecord(new DataInfo(DataRecSendState.rec, pole,
-                        handle.name, msg));
+                    ctl.Pole = pole;
+                    ctl.Data = command.Data;
+                    ctl.Handle();
                 }
                 catch (Exception ex)
                 {

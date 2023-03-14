@@ -17,15 +17,34 @@ namespace GridBackGround.CommandDeal.nw
 
         public override string Name { get { return "开机联络信息"; } }
 
-        public override void Handle(IPowerPole pole, CommandInfo_nw cmd,out string msg)
+        /// <summary>
+        /// 接收到的数据帧解析
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public override int Decode(out string msg)
         {
-            if (cmd.Data.Length < 2)
-                throw new Exception(string.Format("数据域长度错误,应为{0} 实际为:{1}",2, cmd.Data.Length));
-            int version = cmd.Data[0] + cmd.Data[1]*255;
+            string rsp_msg = string.Empty;
+            if (this.Data.Length < 2)
+                throw new Exception(string.Format("数据域长度错误,应为{0} 实际为:{1}",2, this.Data.Length));
+            int version = this.Data[0] + this.Data[1]*255;
             msg = string.Format("协议版本" + version);
 
-            nw_cmd_handle.Response(pole, cmd, null, out string rsp_msg);
+            this.SendCommand(out rsp_msg);
             msg += rsp_msg;
+            return 0;
+        }
+
+        /// <summary>
+        /// 构建响应帧
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        public override byte[] Encode(out string msg)
+        {
+            msg = string.Empty;
+            return null;
         }
     }
 }
