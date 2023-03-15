@@ -11,6 +11,7 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace GridBackGround.CommandDeal.nw
 {
@@ -105,6 +106,43 @@ namespace GridBackGround.CommandDeal.nw
             cmd.Data = this.Encode(out msg);
             cmd.encode();
             return cmd;             
+        }
+
+
+        /// <summary>
+        /// 从报文缓冲区中获取时间
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="offset"></param>
+        /// <param name="time"></param>
+        /// <returns>时间数据占用字节数</returns>
+        internal int GetDateTime(byte[] data,int offset,out DateTime time)
+        {
+            time = new DateTime(Data[offset + 0] + 2000, 
+                                Data[offset + 1], 
+                                Data[offset + 2], 
+                                Data[offset + 3], 
+                                Data[offset + 4], 
+                                Data[offset + 5]);
+            return 6;
+        }
+
+        /// <summary>
+        /// 将时间添加到报文缓冲区
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="offset"></param>
+        /// <param name="time"></param>
+        /// <returns>时间数据占用字节数</returns>
+        internal int SetDateTime(byte[] data,int offset,DateTime time)
+        {
+            data[offset + 0] = (byte)(time.Year - 2000);
+            data[offset + 1] = (byte) time.Month;
+            data[offset + 2] = (byte) time.Day;
+            data[offset + 3] = (byte) time.Hour;
+            data[offset + 4] = (byte) time.Minute;
+            data[offset + 5] = (byte) time.Second;
+            return 6;
         }
 
         /// <summary>
