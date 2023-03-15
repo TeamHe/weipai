@@ -11,7 +11,8 @@ using Sodao.FastSocket.Server.Command;
 using Sodao.FastSocket.SocketBase;
 using Sodao.FastSocket.Server.Protocol;
 using System.IO;
-
+using GridBackGround.Termination;
+using GridBackGround.CommandDeal.nw;
 
 namespace GridBackGround
 {
@@ -93,7 +94,7 @@ namespace GridBackGround
         void tp_CMD_ID_Change(object sender, CMDid_Change e)
         {
             this.CMD_ID = e.CMD_ID;
-            if (e.CMD_ID != null && e.CMD_ID.Length ==17 )
+            if (e.CMD_ID != null && e.CMD_ID.Length >=6 )
             {
                 this.toolStripStatusLabel_ID.Text = "当先选中设备：" + e.CMD_NAME;
             }
@@ -344,8 +345,45 @@ namespace GridBackGround
             this.tabControl1.SelectedTab = tabControl1.TabPages[1];
         }
         #endregion
-        
+
         #endregion
+
+        private IPowerPole GetSeletedPole()
+        {
+            if(this.CMD_ID == null || CMD_ID.Length <6)
+            {
+                MessageBox.Show("当前没有选中任何设备");
+                return null; 
+            }
+
+            IPowerPole powerPole = PowerPoleManage.Find(this.CMD_ID);
+            if(powerPole == null)
+            {
+                MessageBox.Show("设备离线");
+                return null;
+            }
+            return powerPole;
+
+        }
+
+        #region 南网设备控制按钮点击事件
+        /// <summary>
+        /// 南网校时指令
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void 校时ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IPowerPole pole = GetSeletedPole();
+            if (pole != null)
+            {
+                nw_cmd_01_timing timing = new nw_cmd_01_timing(pole);
+                timing.Timing();
+            }
+        }
+
+        #endregion
+
 
         #region 装置配置
 

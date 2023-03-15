@@ -12,8 +12,18 @@ namespace GridBackGround.CommandDeal.nw
     /// <summary>
     /// 
     /// </summary>
-    internal class nw_cmd_01_timing : nw_cmd_base
+    public class nw_cmd_01_timing : nw_cmd_base
     {
+        public nw_cmd_01_timing() 
+        {
+            
+        }
+
+        public nw_cmd_01_timing(IPowerPole pole) : base(pole)
+        {
+
+        }
+
         public override int Control { get { return 0x01; } }
 
         public override string Name { get { return "校时"; } }
@@ -76,7 +86,6 @@ namespace GridBackGround.CommandDeal.nw
             bool res = false;
             try
             {
-                this.Decode(out msg);
                 if ((res = this.SendCommand(out msg)))
                     msg = string.Format("成功发送校时指令,当前时间: {0:yyyy-MM-yy HH:mm:ss}", this.Time);
                 else

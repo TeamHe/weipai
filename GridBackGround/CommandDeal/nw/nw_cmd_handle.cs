@@ -88,7 +88,7 @@ namespace GridBackGround.CommandDeal.nw
             if (handle == null)
             {
                 DisPacket.NewRecord(new DataInfo(DataRecSendState.rec, pole,
-                    "未知协议", string.Format("不支持的控制字{0:02X}H", command.PackageType)));
+                    "未知协议", string.Format("不支持的控制字{0:X2}H", command.PackageType)));
             }
             else
             {
