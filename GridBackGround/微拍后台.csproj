@@ -106,6 +106,7 @@
     <Compile Include="CommandDeal\Image\Image_Model.cs" />
     <Compile Include="CommandDeal\Image\Image_Photo_UP.cs" />
     <Compile Include="CommandDeal\Image\Image_Photo_Adjust.cs" />
+    <Compile Include="CommandDeal\nw\nw_cmd_07_center_get.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_00_poweron.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_01_timing.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_05_heart.cs" />
@@ -124,6 +125,12 @@
     </Compile>
     <Compile Include="Forms\Dialog\DialogTest.Designer.cs">
       <DependentUpon>DialogTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_nw_ip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_nw_ip.Designer.cs">
+      <DependentUpon>Dialog_nw_ip.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Dialog\Dialog_voice_delete.cs">
       <SubType>Form</SubType>
@@ -426,6 +433,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialog\DialogTest.resx">
       <DependentUpon>DialogTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialog\Dialog_nw_ip.resx">
+      <DependentUpon>Dialog_nw_ip.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialog\Dialog_voice_delete.resx">
       <DependentUpon>Dialog_voice_delete.cs</DependentUpon>

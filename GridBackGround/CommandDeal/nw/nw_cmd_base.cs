@@ -145,6 +145,29 @@ namespace GridBackGround.CommandDeal.nw
             return 6;
         }
 
+        internal int GetU16(byte[] data,int offset,out int value)
+        {
+            value = data[offset + 0] + data[offset + 1] * 256;
+            return 2;
+        }
+
+        internal int GetPhoneNumber(byte[] data,int offset,out string phone)
+        {
+            phone = string.Format("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}",
+                (char)((data[offset + 0] & 0x0f) + 0x30),
+                (char)((data[offset + 1] / 0x10) + 0x30),
+                (char)((data[offset + 1] & 0x0f) + 0x30),
+                (char)((data[offset + 2] / 0x10) + 0x30),
+                (char)((data[offset + 2] & 0x0f) + 0x30),
+                (char)((data[offset + 3] / 0x10) + 0x30),
+                (char)((data[offset + 3] & 0x0f) + 0x30),
+                (char)((data[offset + 4] / 0x10) + 0x30),
+                (char)((data[offset + 4] & 0x0f) + 0x30),
+                (char)((data[offset + 5] / 0x10) + 0x30),
+                (char)((data[offset + 5] & 0x0f) + 0x30));
+            return 6;
+        }
+
         /// <summary>
         /// 发送数据帧
         /// </summary>

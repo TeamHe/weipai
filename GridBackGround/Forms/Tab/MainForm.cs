@@ -382,6 +382,21 @@ namespace GridBackGround
             }
         }
 
+        /// <summary>
+        /// 查询主站信息
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void nw_查询主站信息ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IPowerPole pole = GetSeletedPole();
+            if (pole != null)
+            {
+                nw_cmd_07_center_get center = new nw_cmd_07_center_get(pole);
+                center.GetCenter();
+            }
+        }
+
         #endregion
 
 

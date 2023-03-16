@@ -92,6 +92,8 @@
             this.清理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.参数设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.设备控制ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.校时ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel_Port = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel_ID = new System.Windows.Forms.ToolStripStatusLabel();
@@ -111,8 +113,9 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.显示主界面ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出程序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.设备控制ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.校时ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.主站信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nw_查询主站信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nw_设置主站信息ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -309,14 +312,14 @@
             // 查询上位机信息ToolStripMenuItem1
             // 
             this.查询上位机信息ToolStripMenuItem1.Name = "查询上位机信息ToolStripMenuItem1";
-            this.查询上位机信息ToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
+            this.查询上位机信息ToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.查询上位机信息ToolStripMenuItem1.Text = "查询";
             this.查询上位机信息ToolStripMenuItem1.Click += new System.EventHandler(this.查询上位机信息ToolStripMenuItem_Click);
             // 
             // 设定上位机信息ToolStripMenuItem1
             // 
             this.设定上位机信息ToolStripMenuItem1.Name = "设定上位机信息ToolStripMenuItem1";
-            this.设定上位机信息ToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
+            this.设定上位机信息ToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.设定上位机信息ToolStripMenuItem1.Text = "设定";
             this.设定上位机信息ToolStripMenuItem1.Click += new System.EventHandler(this.设定上位机信息ToolStripMenuItem_Click);
             // 
@@ -623,6 +626,22 @@
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(145, 6);
             // 
+            // 设备控制ToolStripMenuItem
+            // 
+            this.设备控制ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.校时ToolStripMenuItem,
+            this.主站信息ToolStripMenuItem});
+            this.设备控制ToolStripMenuItem.Name = "设备控制ToolStripMenuItem";
+            this.设备控制ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
+            this.设备控制ToolStripMenuItem.Text = "设备控制";
+            // 
+            // 校时ToolStripMenuItem
+            // 
+            this.校时ToolStripMenuItem.Name = "校时ToolStripMenuItem";
+            this.校时ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.校时ToolStripMenuItem.Text = "校时";
+            this.校时ToolStripMenuItem.Click += new System.EventHandler(this.校时ToolStripMenuItem_Click);
+            // 
             // statusStrip
             // 
             this.statusStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
@@ -803,20 +822,28 @@
             this.退出程序ToolStripMenuItem.Text = "退出程序";
             this.退出程序ToolStripMenuItem.Click += new System.EventHandler(this.退出程序ToolStripMenuItem_Click);
             // 
-            // 设备控制ToolStripMenuItem
+            // 主站信息ToolStripMenuItem
             // 
-            this.设备控制ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.校时ToolStripMenuItem});
-            this.设备控制ToolStripMenuItem.Name = "设备控制ToolStripMenuItem";
-            this.设备控制ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
-            this.设备控制ToolStripMenuItem.Text = "设备控制";
+            this.主站信息ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nw_查询主站信息ToolStripMenuItem,
+            this.nw_设置主站信息ToolStripMenuItem1});
+            this.主站信息ToolStripMenuItem.Name = "主站信息ToolStripMenuItem";
+            this.主站信息ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.主站信息ToolStripMenuItem.Text = "主站信息";
             // 
-            // 校时ToolStripMenuItem
+            // nw_查询主站信息ToolStripMenuItem
             // 
-            this.校时ToolStripMenuItem.Name = "校时ToolStripMenuItem";
-            this.校时ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.校时ToolStripMenuItem.Text = "校时";
-            this.校时ToolStripMenuItem.Click += new System.EventHandler(this.校时ToolStripMenuItem_Click);
+            this.nw_查询主站信息ToolStripMenuItem.Name = "nw_查询主站信息ToolStripMenuItem";
+            this.nw_查询主站信息ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.nw_查询主站信息ToolStripMenuItem.Text = "查询";
+            this.nw_查询主站信息ToolStripMenuItem.Click += new System.EventHandler(this.nw_查询主站信息ToolStripMenuItem_Click);
+            // 
+            // nw_设置主站信息ToolStripMenuItem1
+            // 
+            this.nw_设置主站信息ToolStripMenuItem1.Name = "nw_设置主站信息ToolStripMenuItem1";
+            this.nw_设置主站信息ToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.nw_设置主站信息ToolStripMenuItem1.Text = "设置";
+            this.nw_设置主站信息ToolStripMenuItem1.Visible = false;
             // 
             // MainForm
             // 
@@ -941,6 +968,9 @@
         private System.Windows.Forms.ToolStripMenuItem 播放录音ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 设备控制ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 校时ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 主站信息ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nw_查询主站信息ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nw_设置主站信息ToolStripMenuItem1;
     }
 }
 
