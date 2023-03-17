@@ -397,6 +397,22 @@ namespace GridBackGround
             }
         }
 
+        /// <summary>
+        /// 请求上传气象数据按钮点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void 请求气象数据ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IPowerPole pole = GetSeletedPole();
+            if (pole != null)
+            {
+                nw_cmd_25_weather cmd = new nw_cmd_25_weather(pole);
+                cmd.GetData();
+            }
+        }
+
+
         #endregion
 
 

@@ -110,6 +110,7 @@
     <Compile Include="CommandDeal\nw\nw_cmd_00_poweron.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_01_timing.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_05_heart.cs" />
+    <Compile Include="CommandDeal\nw\nw_cmd_25_weather.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_base.cs" />
     <Compile Include="CommandDeal\Private\UserPhone.cs" />
     <Compile Include="CommandDeal\WorkState_Error.cs" />

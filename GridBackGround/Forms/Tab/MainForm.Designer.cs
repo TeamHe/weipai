@@ -94,6 +94,11 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.设备控制ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.校时ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.主站信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nw_查询主站信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nw_设置主站信息ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.请求上传数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.请求气象数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel_Port = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel_ID = new System.Windows.Forms.ToolStripStatusLabel();
@@ -113,9 +118,6 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.显示主界面ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出程序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.主站信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nw_查询主站信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nw_设置主站信息ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -630,7 +632,8 @@
             // 
             this.设备控制ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.校时ToolStripMenuItem,
-            this.主站信息ToolStripMenuItem});
+            this.主站信息ToolStripMenuItem,
+            this.请求上传数据ToolStripMenuItem});
             this.设备控制ToolStripMenuItem.Name = "设备控制ToolStripMenuItem";
             this.设备控制ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.设备控制ToolStripMenuItem.Text = "设备控制";
@@ -641,6 +644,44 @@
             this.校时ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.校时ToolStripMenuItem.Text = "校时";
             this.校时ToolStripMenuItem.Click += new System.EventHandler(this.校时ToolStripMenuItem_Click);
+            // 
+            // 主站信息ToolStripMenuItem
+            // 
+            this.主站信息ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nw_查询主站信息ToolStripMenuItem,
+            this.nw_设置主站信息ToolStripMenuItem1});
+            this.主站信息ToolStripMenuItem.Name = "主站信息ToolStripMenuItem";
+            this.主站信息ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.主站信息ToolStripMenuItem.Text = "主站信息";
+            // 
+            // nw_查询主站信息ToolStripMenuItem
+            // 
+            this.nw_查询主站信息ToolStripMenuItem.Name = "nw_查询主站信息ToolStripMenuItem";
+            this.nw_查询主站信息ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.nw_查询主站信息ToolStripMenuItem.Text = "查询";
+            this.nw_查询主站信息ToolStripMenuItem.Click += new System.EventHandler(this.nw_查询主站信息ToolStripMenuItem_Click);
+            // 
+            // nw_设置主站信息ToolStripMenuItem1
+            // 
+            this.nw_设置主站信息ToolStripMenuItem1.Name = "nw_设置主站信息ToolStripMenuItem1";
+            this.nw_设置主站信息ToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
+            this.nw_设置主站信息ToolStripMenuItem1.Text = "设置";
+            this.nw_设置主站信息ToolStripMenuItem1.Visible = false;
+            // 
+            // 请求上传数据ToolStripMenuItem
+            // 
+            this.请求上传数据ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.请求气象数据ToolStripMenuItem});
+            this.请求上传数据ToolStripMenuItem.Name = "请求上传数据ToolStripMenuItem";
+            this.请求上传数据ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.请求上传数据ToolStripMenuItem.Text = "请求上传数据";
+            // 
+            // 请求气象数据ToolStripMenuItem
+            // 
+            this.请求气象数据ToolStripMenuItem.Name = "请求气象数据ToolStripMenuItem";
+            this.请求气象数据ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.请求气象数据ToolStripMenuItem.Text = "气象数据";
+            this.请求气象数据ToolStripMenuItem.Click += new System.EventHandler(this.请求气象数据ToolStripMenuItem_Click);
             // 
             // statusStrip
             // 
@@ -822,29 +863,6 @@
             this.退出程序ToolStripMenuItem.Text = "退出程序";
             this.退出程序ToolStripMenuItem.Click += new System.EventHandler(this.退出程序ToolStripMenuItem_Click);
             // 
-            // 主站信息ToolStripMenuItem
-            // 
-            this.主站信息ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nw_查询主站信息ToolStripMenuItem,
-            this.nw_设置主站信息ToolStripMenuItem1});
-            this.主站信息ToolStripMenuItem.Name = "主站信息ToolStripMenuItem";
-            this.主站信息ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.主站信息ToolStripMenuItem.Text = "主站信息";
-            // 
-            // nw_查询主站信息ToolStripMenuItem
-            // 
-            this.nw_查询主站信息ToolStripMenuItem.Name = "nw_查询主站信息ToolStripMenuItem";
-            this.nw_查询主站信息ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.nw_查询主站信息ToolStripMenuItem.Text = "查询";
-            this.nw_查询主站信息ToolStripMenuItem.Click += new System.EventHandler(this.nw_查询主站信息ToolStripMenuItem_Click);
-            // 
-            // nw_设置主站信息ToolStripMenuItem1
-            // 
-            this.nw_设置主站信息ToolStripMenuItem1.Name = "nw_设置主站信息ToolStripMenuItem1";
-            this.nw_设置主站信息ToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.nw_设置主站信息ToolStripMenuItem1.Text = "设置";
-            this.nw_设置主站信息ToolStripMenuItem1.Visible = false;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -971,6 +989,8 @@
         private System.Windows.Forms.ToolStripMenuItem 主站信息ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nw_查询主站信息ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nw_设置主站信息ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 请求上传数据ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 请求气象数据ToolStripMenuItem;
     }
 }
 

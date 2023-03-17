@@ -203,10 +203,10 @@ namespace GridBackGround.CommandDeal.nw
         {
             try
             {
-                string msg =null;
-                this.Decode(out msg);
-                DisPacket.NewRecord(new DataInfo(DataRecSendState.rec, this.Pole,
-                    this.Name, msg));
+                this.Decode(out string msg);
+                if(msg != null && msg.Length > 0)
+                    DisPacket.NewRecord(new DataInfo(DataRecSendState.rec, this.Pole,
+                        this.Name, msg));
             }
             catch (Exception ex)
             {
