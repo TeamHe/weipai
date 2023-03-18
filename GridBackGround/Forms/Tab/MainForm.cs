@@ -378,7 +378,7 @@ namespace GridBackGround
             if (pole != null)
             {
                 nw_cmd_01_timing timing = new nw_cmd_01_timing(pole);
-                timing.Timing();
+                timing.Execute();
             }
         }
 
@@ -393,7 +393,7 @@ namespace GridBackGround
             if (pole != null)
             {
                 nw_cmd_07_center_get center = new nw_cmd_07_center_get(pole);
-                center.GetCenter();
+                center.Execute();
             }
         }
 
@@ -408,7 +408,7 @@ namespace GridBackGround
             if (pole != null)
             {
                 nw_cmd_25_weather cmd = new nw_cmd_25_weather(pole);
-                cmd.GetData();
+                cmd.Execute();
             }
         }
 

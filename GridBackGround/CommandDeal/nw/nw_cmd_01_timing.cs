@@ -70,33 +70,8 @@ namespace GridBackGround.CommandDeal.nw
             data[3] = (byte)Time.Hour;
             data[4] = (byte)Time.Minute;
             data[5] = (byte)Time.Second;
-
+            msg = string.Format("{0:G}", this.Time);
             return data;
-        }
-
-        /// <summary>
-        /// 发送校时指令
-        /// </summary>
-        /// <param name="pole"></param>
-        /// <param name="time"></param>
-        /// <returns></returns>
-        public bool Timing()
-        {
-            string msg = null;
-            bool res = false;
-            try
-            {
-                if ((res = this.SendCommand(out msg)))
-                    msg = string.Format("成功发送校时指令,当前时间: {0:yyyy-MM-yy HH:mm:ss}", this.Time);
-                else
-                    msg = "校时指令发送失败:" + msg;
-            }
-            catch (Exception ex)
-            {
-                msg = "校时指令发送失败:" + ex.Message;
-            }
-            DisPacket.NewRecord(new DataInfo(DataRecSendState.send, this.Pole, this.Name, msg));
-            return res;
         }
     }
 }

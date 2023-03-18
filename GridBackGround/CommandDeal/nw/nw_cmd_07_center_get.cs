@@ -82,24 +82,5 @@ namespace GridBackGround.CommandDeal.nw
             return null;
         }
 
-        public bool GetCenter()
-        {
-            string msg = null;
-            bool res = false;
-            try
-            {
-                if ((res = this.SendCommand(out msg)))
-                    msg = "查询主站信息指令发送成功";
-                else
-                    msg = "查询主站信息指令发送失败:" + msg;
-            }
-            catch (Exception ex)
-            {
-                msg = "查询主站信息指令发送失败:" + ex.Message;
-            }
-            DisPacket.NewRecord(new DataInfo(DataRecSendState.send, this.Pole, this.Name, msg));
-            return res;
-
-        }
     }
 }

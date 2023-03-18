@@ -270,32 +270,8 @@ namespace GridBackGround.CommandDeal.nw
                 data[2] = 0x55;
                 return data;
             }
+            msg = "主站请求上传气象数据";
             return null;
         }
-
-        /// <summary>
-        /// 请求上传气象数据
-        /// </summary>
-        /// <returns></returns>
-        public bool GetData()
-        {
-            string msg = null;
-            bool res = false;
-            try
-            {
-                if ((res = this.SendCommand(out msg)))
-                    msg = "请求上传气象数据指令发送成功";
-                else
-                    msg = "请求上传气象数据指令发送失败:" + msg;
-            }
-            catch (Exception ex)
-            {
-                msg = "请求上传气象数据指令发送失败:" + ex.Message;
-            }
-            DisPacket.NewRecord(new DataInfo(DataRecSendState.send, this.Pole, this.Name, msg));
-            return res;
-
-        }
-
     }
 }

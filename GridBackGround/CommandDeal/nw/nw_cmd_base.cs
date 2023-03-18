@@ -1,17 +1,7 @@
-﻿using DevComponents.AdvTree;
-using DevComponents.DotNetBar;
-using GridBackGround.PacketAnaLysis;
+﻿using GridBackGround.PacketAnaLysis;
 using GridBackGround.Termination;
 using Sodao.FastSocket.Server.Command;
-using Sodao.FastSocket.SocketBase.Utils;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace GridBackGround.CommandDeal.nw
 {
@@ -171,7 +161,7 @@ namespace GridBackGround.CommandDeal.nw
         /// <summary>
         /// 发送数据帧
         /// </summary>
-        public bool SendCommand(out string msg)
+        protected bool SendCommand(out string msg)
         {
             CommandInfo_nw cmd;
             try
@@ -194,6 +184,23 @@ namespace GridBackGround.CommandDeal.nw
                 msg = "发送响应包失败:" + ex.Message;
                 return false;
             }
+        }
+
+        public bool Execute ()
+        {
+            bool res = false;
+            string msg;
+            try
+            {
+                res = this.SendCommand(out msg);
+                msg = string.Format("指令发送{0}.{1}", res ? "成功" : "失败", msg);
+            }
+            catch (Exception ex)
+            {
+                msg = string.Format("指令发送{0}.{1}", "失败", ex.Message);
+            }
+            DisPacket.NewRecord(new DataInfo(DataRecSendState.send, this.Pole, this.Name, msg));
+            return res;
         }
 
         /// <summary>
