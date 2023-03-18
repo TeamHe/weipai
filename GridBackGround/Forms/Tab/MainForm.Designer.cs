@@ -667,6 +667,7 @@
             this.nw_设置主站信息ToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
             this.nw_设置主站信息ToolStripMenuItem1.Text = "设置";
             this.nw_设置主站信息ToolStripMenuItem1.Visible = false;
+            this.nw_设置主站信息ToolStripMenuItem1.Click += new System.EventHandler(this.nw_设置主站信息ToolStripMenuItem1_Click);
             // 
             // 请求上传数据ToolStripMenuItem
             // 

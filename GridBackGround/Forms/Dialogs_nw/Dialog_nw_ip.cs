@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GridBackGround.CommandDeal.nw;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,29 +10,32 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GridBackGround.Forms.Dialog
+namespace GridBackGround.Forms.Dialogs_nw
 {
     public partial class Dialog_nw_ip : Form
     {
         /// <summary>
-        /// 端口号
+        /// 监控中心信息
         /// </summary>
-        public int Port { get; set; }
-
-        /// <summary>
-        /// 主站IP
-        /// </summary>
-        public IPAddress IP { get; set; }   
-
-        /// <summary>
-        /// 主站卡号
-        /// </summary>
-        public string SIM_Number { get; set; }
+        public nw_center center {  get; set; }
 
         public Dialog_nw_ip()
         {
             InitializeComponent();
         }
+
+
+        private void Dialog_nw_ip_Load(object sender, EventArgs e)
+        {
+            if(this.center != null)
+            {
+                this.textBox_IP.Text = center.IPAddress.ToString();
+                this.textBox_Port.Text = center.Port.ToString();
+                this.textBox_phoneno.Text = center.PhoneNumber;
+                this.textBox_password.Text = center.Password;
+            }
+        }
+
 
         private void button_OK_Click(object sender, EventArgs e)
         {
@@ -50,16 +54,25 @@ namespace GridBackGround.Forms.Dialog
                 return;
             }
 
-            string phoneNum = this.textBox1.Text;
+            string phoneNum = this.textBox_phoneno.Text;
             if (System.Text.RegularExpressions.Regex.IsMatch(phoneNum, @"^1[3-9]\d{9}$") == false)
             {
                 MessageBox.Show("请输入正确的11位电话号码");
                 return;
             }
 
-            this.IP = ip;
-            this.Port = port;
-            this.SIM_Number = phoneNum;
+            if(this.textBox_password.Text.Length != 4)
+            {
+                MessageBox.Show("请输入4位密码");
+            }
+
+            if(this.center == null)
+                this.center = new nw_center();
+            this.center.IPAddress = ip;
+            this.center.Password = this.textBox_password.Text;
+            this.center.Port = port;
+            this.center.PhoneNumber = phoneNum;
+
             this.DialogResult = DialogResult.OK;
         }
     }

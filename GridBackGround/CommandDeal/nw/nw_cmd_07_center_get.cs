@@ -20,6 +20,11 @@ namespace GridBackGround.CommandDeal.nw
 
         public string PhoneNumber { get; set; }
 
+        /// <summary>
+        /// 密码
+        /// </summary>
+        public string Password { get; set; }
+
         public override string ToString()
         {
             return string.Format("主站IP:{0}  端口号:{1}  主站卡号:{2}",

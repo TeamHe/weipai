@@ -397,6 +397,21 @@ namespace GridBackGround
             }
         }
 
+        private void nw_设置主站信息ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            IPowerPole pole;
+            if ((pole = GetSeletedPole()) == null)
+                return;
+            Forms.Dialogs_nw.Dialog_nw_ip dialog = new Forms.Dialogs_nw.Dialog_nw_ip();
+            if(dialog.ShowDialog() == DialogResult.OK)
+            {
+                nw_cmd_06_center_set cmd = new nw_cmd_06_center_set(pole);
+                cmd.center = dialog.center;
+                cmd.Execute();  
+            }
+        }
+
+
         /// <summary>
         /// 请求上传气象数据按钮点击事件
         /// </summary>
