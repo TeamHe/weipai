@@ -2,6 +2,8 @@
 using GridBackGround.Termination;
 using Sodao.FastSocket.Server.Command;
 using System;
+using System.Net;
+using System.Text;
 
 namespace GridBackGround.CommandDeal.nw
 {
@@ -141,6 +143,14 @@ namespace GridBackGround.CommandDeal.nw
             return 2;
         }
 
+        internal int SetU16(byte[] data, int offset, int value)
+        {
+            data[offset + 0] = (byte)(value % 256);
+            data[offset + 1] = (byte)(value / 256);
+            return 2;
+        }
+
+
         internal int GetPhoneNumber(byte[] data,int offset,out string phone)
         {
             phone = string.Format("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}",
@@ -157,6 +167,53 @@ namespace GridBackGround.CommandDeal.nw
                 (char)((data[offset + 5] & 0x0f) + 0x30));
             return 6;
         }
+
+        internal int SetPhoneNumber(byte[] data, int offset, string phone)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(phone, @"^1[3-9]\d{9}$") == false)
+                throw new Exception("请输入正确的11位电话号码");
+            byte[] b_phone = Encoding.ASCII.GetBytes(phone);
+            data[offset + 0] = (byte)(0xf0 + (b_phone[0] - '0'));
+            data[offset + 1] = (byte)(((b_phone[1] - '0') << 4) + (b_phone[2] - '0'));
+            data[offset + 2] = (byte)(((b_phone[3] - '0') << 4) + (b_phone[4] - '0'));
+            data[offset + 3] = (byte)(((b_phone[5] - '0') << 4) + (b_phone[6] - '0'));
+            data[offset + 4] = (byte)(((b_phone[7] - '0') << 4) + (b_phone[8] - '0'));
+            data[offset + 5] = (byte)(((b_phone[9] - '0') << 4) + (b_phone[10] - '0'));
+            return 6;
+        }
+
+        internal int SetPassword(byte[] data,int offset,string password)
+        {
+            if(password ==null)
+                throw new ArgumentNullException("password");
+            byte[] b_password = Encoding.ASCII.GetBytes(password);
+            Buffer.BlockCopy(b_password,0,data,offset,b_password.Length>=4?4:b_password.Length);
+            return 4;
+        }
+
+        internal int GetPassword(byte[] data,int offset,out string password)
+        {
+            password = Encoding.ASCII.GetString(data, offset, 4);
+            return 4;
+        }
+
+        internal int SetIPAddress(byte[] data,int offset,IPAddress address)
+        {
+            if (address == null) throw new ArgumentNullException("IP地址");
+
+            byte[] b_ip = address.GetAddressBytes();
+            Buffer.BlockCopy(b_ip,0,data,offset,b_ip.Length>=4?4:b_ip.Length);
+            return 4;
+        }
+
+        internal int GetIPAddress(byte[] data, int offset, out IPAddress address)
+        {
+            byte[] b_ip = new byte[4];
+            Buffer.BlockCopy(data, offset, b_ip, 0, 4);
+            address = new IPAddress(b_ip);
+            return 4;
+        }
+
 
         /// <summary>
         /// 发送数据帧
@@ -181,7 +238,7 @@ namespace GridBackGround.CommandDeal.nw
                 {
                     msg = out_msg;
                     return true;
-            }
+                }
             }
             catch (Exception ex)
             {
