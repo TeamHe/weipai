@@ -166,18 +166,22 @@ namespace GridBackGround.CommandDeal.nw
             CommandInfo_nw cmd;
             try
             {
-                if((cmd = GetSendCmd(out msg)) == null)
+                string out_msg;
+                if((cmd = GetSendCmd(out out_msg)) == null)
                 {
-                    msg = "数据包构建失败:" + msg;
+                    msg = "数据包构建失败:" + out_msg;
                     return false;
                 }
                 if(!PackeDeal.SendSocket(this.Pole, cmd.Pakcet, out msg))
                 {
-                    msg = "数据包发送失败:" + msg;
+                    msg = "数据包发送失败:" + out_msg;
                     return false;
                 }
                 else
+                {
+                    msg = out_msg;
                     return true;
+            }
             }
             catch (Exception ex)
             {
