@@ -107,6 +107,7 @@
     <Compile Include="CommandDeal\Image\Image_Photo_UP.cs" />
     <Compile Include="CommandDeal\Image\Image_Photo_Adjust.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_06_center_set.cs" />
+    <Compile Include="CommandDeal\nw\nw_cmd_02_password.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_07_center_get.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_00_poweron.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_01_timing.cs" />
@@ -122,6 +123,12 @@
       <DependentUpon>Messagebox_Textbox.cs</DependentUpon>
     </Compile>
     <Compile Include="ErrorCode.cs" />
+    <Compile Include="Forms\Dialogs_nw\Dialog_nw_password.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs_nw\Dialog_nw_password.Designer.cs">
+      <DependentUpon>Dialog_nw_password.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Dialog\DialogTest.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -432,6 +439,9 @@
     <Compile Include="Work\PictureClean.cs" />
     <EmbeddedResource Include="Config\Common\Messagebox_Textbox.resx">
       <DependentUpon>Messagebox_Textbox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs_nw\Dialog_nw_password.resx">
+      <DependentUpon>Dialog_nw_password.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialog\DialogTest.resx">
       <DependentUpon>DialogTest.cs</DependentUpon>

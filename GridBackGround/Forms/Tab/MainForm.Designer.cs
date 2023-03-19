@@ -118,6 +118,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.显示主界面ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出程序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.设置装置密码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -633,7 +634,8 @@
             this.设备控制ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.校时ToolStripMenuItem,
             this.主站信息ToolStripMenuItem,
-            this.请求上传数据ToolStripMenuItem});
+            this.请求上传数据ToolStripMenuItem,
+            this.设置装置密码ToolStripMenuItem});
             this.设备控制ToolStripMenuItem.Name = "设备控制ToolStripMenuItem";
             this.设备控制ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.设备控制ToolStripMenuItem.Text = "设备控制";
@@ -864,6 +866,13 @@
             this.退出程序ToolStripMenuItem.Text = "退出程序";
             this.退出程序ToolStripMenuItem.Click += new System.EventHandler(this.退出程序ToolStripMenuItem_Click);
             // 
+            // 设置装置密码ToolStripMenuItem
+            // 
+            this.设置装置密码ToolStripMenuItem.Name = "设置装置密码ToolStripMenuItem";
+            this.设置装置密码ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.设置装置密码ToolStripMenuItem.Text = "设置装置密码";
+            this.设置装置密码ToolStripMenuItem.Click += new System.EventHandler(this.设置装置密码ToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -992,6 +1001,7 @@
         private System.Windows.Forms.ToolStripMenuItem nw_设置主站信息ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 请求上传数据ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 请求气象数据ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 设置装置密码ToolStripMenuItem;
     }
 }
 
