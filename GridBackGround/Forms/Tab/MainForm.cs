@@ -443,6 +443,19 @@ namespace GridBackGround
 
         }
 
+        private void 装置重启ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IPowerPole pole;
+            if ((pole = GetSeletedPole()) == null)
+                return;
+            Forms.Dialogs_nw.Dialog_nw_password_input dialog = new Forms.Dialogs_nw.Dialog_nw_password_input();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                nw_cmd_08_rest cmd = new nw_cmd_08_rest(pole);
+                cmd.Password = dialog.Password;
+                cmd.Execute();
+            }
+        }
 
         #endregion
 

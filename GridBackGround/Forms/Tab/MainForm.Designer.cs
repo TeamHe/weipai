@@ -119,7 +119,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.显示主界面ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出程序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.设置装置密码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.装置重启ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -636,7 +636,8 @@
             this.校时ToolStripMenuItem,
             this.主站信息ToolStripMenuItem,
             this.请求上传数据ToolStripMenuItem,
-            this.设置装置密码ToolStripMenuItem});
+            this.设置装置密码ToolStripMenuItem,
+            this.装置重启ToolStripMenuItem});
             this.设备控制ToolStripMenuItem.Name = "设备控制ToolStripMenuItem";
             this.设备控制ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.设备控制ToolStripMenuItem.Text = "设备控制";
@@ -686,6 +687,13 @@
             this.请求气象数据ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.请求气象数据ToolStripMenuItem.Text = "气象数据";
             this.请求气象数据ToolStripMenuItem.Click += new System.EventHandler(this.请求气象数据ToolStripMenuItem_Click);
+            // 
+            // 设置装置密码ToolStripMenuItem
+            // 
+            this.设置装置密码ToolStripMenuItem.Name = "设置装置密码ToolStripMenuItem";
+            this.设置装置密码ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.设置装置密码ToolStripMenuItem.Text = "设置装置密码";
+            this.设置装置密码ToolStripMenuItem.Click += new System.EventHandler(this.设置装置密码ToolStripMenuItem_Click);
             // 
             // statusStrip
             // 
@@ -867,12 +875,12 @@
             this.退出程序ToolStripMenuItem.Text = "退出程序";
             this.退出程序ToolStripMenuItem.Click += new System.EventHandler(this.退出程序ToolStripMenuItem_Click);
             // 
-            // 设置装置密码ToolStripMenuItem
+            // 装置重启ToolStripMenuItem
             // 
-            this.设置装置密码ToolStripMenuItem.Name = "设置装置密码ToolStripMenuItem";
-            this.设置装置密码ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.设置装置密码ToolStripMenuItem.Text = "设置装置密码";
-            this.设置装置密码ToolStripMenuItem.Click += new System.EventHandler(this.设置装置密码ToolStripMenuItem_Click);
+            this.装置重启ToolStripMenuItem.Name = "装置重启ToolStripMenuItem";
+            this.装置重启ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.装置重启ToolStripMenuItem.Text = "装置重启";
+            this.装置重启ToolStripMenuItem.Click += new System.EventHandler(this.装置重启ToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1003,6 +1011,7 @@
         private System.Windows.Forms.ToolStripMenuItem 请求上传数据ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 请求气象数据ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 设置装置密码ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 装置重启ToolStripMenuItem;
     }
 }
 
