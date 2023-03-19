@@ -70,7 +70,7 @@ namespace GridBackGround.CommandDeal.nw
             data[3] = (byte)Time.Hour;
             data[4] = (byte)Time.Minute;
             data[5] = (byte)Time.Second;
-            msg = string.Format("{0:G}", this.Time);
+            msg = string.Format("当前系统时间: {0:G}", this.Time);
             return data;
         }
     }

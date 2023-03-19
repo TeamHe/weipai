@@ -113,6 +113,7 @@
     <Compile Include="CommandDeal\nw\nw_cmd_01_timing.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_05_heart.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_08_rest.cs" />
+    <Compile Include="CommandDeal\nw\nw_cmd_0d_time_get.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_25_weather.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_base.cs" />
     <Compile Include="CommandDeal\Private\UserPhone.cs" />

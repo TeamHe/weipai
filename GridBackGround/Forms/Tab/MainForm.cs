@@ -367,12 +367,18 @@ namespace GridBackGround
         }
 
         #region 南网设备控制按钮点击事件
-        /// <summary>
-        /// 南网校时指令
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void 校时ToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void 查询装置时间ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IPowerPole pole = GetSeletedPole();
+            if (pole != null)
+            {
+                nw_cmd_0d_time_get timing = new nw_cmd_0d_time_get(pole);
+                timing.Execute();
+            }
+        }
+
+        private void 设置装置时间ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             IPowerPole pole = GetSeletedPole();
             if (pole != null)
