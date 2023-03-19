@@ -427,6 +427,22 @@ namespace GridBackGround
             }
         }
 
+        private void 设置装置密码ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IPowerPole pole;
+            if ((pole = GetSeletedPole()) == null)
+                return;
+            Forms.Dialogs_nw.Dialog_nw_password dialog = new Forms.Dialogs_nw.Dialog_nw_password();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                nw_cmd_02_password cmd = new nw_cmd_02_password(pole);
+                cmd.Password_old = dialog.Password_old;
+                cmd.Password_new = dialog.Password_new;
+                cmd.Execute();
+            }
+
+        }
+
 
         #endregion
 
