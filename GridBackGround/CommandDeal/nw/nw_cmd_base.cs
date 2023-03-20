@@ -137,16 +137,67 @@ namespace GridBackGround.CommandDeal.nw
             return 6;
         }
 
+        /// <summary>
+        /// 获取大端模式无符号16位整形
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="offset"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         internal int GetU16(byte[] data,int offset,out int value)
         {
             value = data[offset + 0] + data[offset + 1] * 256;
             return 2;
         }
 
+        /// <summary>
+        /// 设置大端模式无符号整形数组
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="offset"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         internal int SetU16(byte[] data, int offset, int value)
         {
             data[offset + 0] = (byte)(value % 256);
             data[offset + 1] = (byte)(value / 256);
+            return 2;
+        }
+
+        /// <summary>
+        /// 获取最高位位符号位的16位整形
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="offset"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        internal int GetS16(byte[] data, int offset, out int value)
+        {
+            value = data[offset + 0] + (data[offset + 1]&0x7f) * 256;
+            if((data[offset + 1] & 0x8f)>0)
+                value = -value; 
+            return 2;
+        }
+
+        /// <summary>
+        /// 设置最高位为符号位的16位整形
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="offset"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        internal int SetS16(byte[] data, int offset, int value)
+        {
+            bool sign = false;
+            if(value < 0)
+            {
+                sign = true;
+                value = -value;
+            }
+            data[offset + 0] = (byte)(value % 256);
+            data[offset + 1] = (byte)((value / 256)&0x7f);
+            if(sign)
+                data[offset + 1] |= 0x80;
             return 2;
         }
 
