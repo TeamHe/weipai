@@ -122,6 +122,9 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.显示主界面ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出程序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.导地线拉力及偏角数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.未上传数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.立即采集所有数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -693,6 +696,9 @@
             // 请求上传数据ToolStripMenuItem
             // 
             this.请求上传数据ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.未上传数据ToolStripMenuItem,
+            this.立即采集所有数据ToolStripMenuItem,
+            this.导地线拉力及偏角数据ToolStripMenuItem,
             this.请求气象数据ToolStripMenuItem});
             this.请求上传数据ToolStripMenuItem.Name = "请求上传数据ToolStripMenuItem";
             this.请求上传数据ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
@@ -899,6 +905,27 @@
             this.退出程序ToolStripMenuItem.Text = "退出程序";
             this.退出程序ToolStripMenuItem.Click += new System.EventHandler(this.退出程序ToolStripMenuItem_Click);
             // 
+            // 导地线拉力及偏角数据ToolStripMenuItem
+            // 
+            this.导地线拉力及偏角数据ToolStripMenuItem.Name = "导地线拉力及偏角数据ToolStripMenuItem";
+            this.导地线拉力及偏角数据ToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.导地线拉力及偏角数据ToolStripMenuItem.Text = "导地线拉力及倾角数据";
+            this.导地线拉力及偏角数据ToolStripMenuItem.Click += new System.EventHandler(this.导地线拉力及偏角数据ToolStripMenuItem_Click);
+            // 
+            // 未上传数据ToolStripMenuItem
+            // 
+            this.未上传数据ToolStripMenuItem.Name = "未上传数据ToolStripMenuItem";
+            this.未上传数据ToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.未上传数据ToolStripMenuItem.Text = "未上传装置数据";
+            this.未上传数据ToolStripMenuItem.Click += new System.EventHandler(this.未上传装置数据ToolStripMenuItem_Click);
+            // 
+            // 立即采集所有数据ToolStripMenuItem
+            // 
+            this.立即采集所有数据ToolStripMenuItem.Name = "立即采集所有数据ToolStripMenuItem";
+            this.立即采集所有数据ToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.立即采集所有数据ToolStripMenuItem.Text = "立即采集所有数据";
+            this.立即采集所有数据ToolStripMenuItem.Click += new System.EventHandler(this.立即采集所有数据ToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1031,6 +1058,9 @@
         private System.Windows.Forms.ToolStripMenuItem 装置重启ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 查询装置时间ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 设置装置时间ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 未上传数据ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 导地线拉力及偏角数据ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 立即采集所有数据ToolStripMenuItem;
     }
 }
 

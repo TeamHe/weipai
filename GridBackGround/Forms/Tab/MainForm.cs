@@ -417,6 +417,45 @@ namespace GridBackGround
             }
         }
 
+        /// <summary>
+        /// 请求装置数据
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void 未上传装置数据ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IPowerPole pole = GetSeletedPole();
+            if (pole != null)
+            {
+                nw_cmd_21_data cmd = new nw_cmd_21_data(pole);
+                cmd.Execute();
+            }
+
+        }
+
+
+        private void 立即采集所有数据ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IPowerPole pole = GetSeletedPole();
+            if (pole != null)
+            {
+                nw_cmd_21_data cmd = new nw_cmd_21_data(pole);
+                cmd.ImeData = true;
+                cmd.Execute();
+            }
+        }
+
+
+        private void 导地线拉力及偏角数据ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IPowerPole pole = GetSeletedPole();
+            if (pole != null)
+            {
+                nw_cmd_22_pull_angle cmd = new nw_cmd_22_pull_angle(pole);
+                cmd.Execute();
+            }
+        }
+
 
         /// <summary>
         /// 请求上传气象数据按钮点击事件
@@ -1074,6 +1113,5 @@ namespace GridBackGround
                 MessageBox.Show(ex.Message);
             }
         }
-
     }
 }
