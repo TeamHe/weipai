@@ -100,6 +100,9 @@
             this.nw_查询主站信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nw_设置主站信息ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.请求上传数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.未上传数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.立即采集所有数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.导地线拉力及偏角数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.请求气象数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.设置装置密码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.装置重启ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -122,9 +125,8 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.显示主界面ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出程序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.导地线拉力及偏角数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.未上传数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.立即采集所有数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.图像采集参数配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -642,7 +644,9 @@
             this.主站信息ToolStripMenuItem,
             this.请求上传数据ToolStripMenuItem,
             this.设置装置密码ToolStripMenuItem,
-            this.装置重启ToolStripMenuItem});
+            this.装置重启ToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.图像采集参数配置ToolStripMenuItem});
             this.设备控制ToolStripMenuItem.Name = "设备控制ToolStripMenuItem";
             this.设备控制ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.设备控制ToolStripMenuItem.Text = "设备控制";
@@ -703,6 +707,27 @@
             this.请求上传数据ToolStripMenuItem.Name = "请求上传数据ToolStripMenuItem";
             this.请求上传数据ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.请求上传数据ToolStripMenuItem.Text = "请求上传数据";
+            // 
+            // 未上传数据ToolStripMenuItem
+            // 
+            this.未上传数据ToolStripMenuItem.Name = "未上传数据ToolStripMenuItem";
+            this.未上传数据ToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.未上传数据ToolStripMenuItem.Text = "未上传装置数据";
+            this.未上传数据ToolStripMenuItem.Click += new System.EventHandler(this.未上传装置数据ToolStripMenuItem_Click);
+            // 
+            // 立即采集所有数据ToolStripMenuItem
+            // 
+            this.立即采集所有数据ToolStripMenuItem.Name = "立即采集所有数据ToolStripMenuItem";
+            this.立即采集所有数据ToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.立即采集所有数据ToolStripMenuItem.Text = "立即采集所有数据";
+            this.立即采集所有数据ToolStripMenuItem.Click += new System.EventHandler(this.立即采集所有数据ToolStripMenuItem_Click);
+            // 
+            // 导地线拉力及偏角数据ToolStripMenuItem
+            // 
+            this.导地线拉力及偏角数据ToolStripMenuItem.Name = "导地线拉力及偏角数据ToolStripMenuItem";
+            this.导地线拉力及偏角数据ToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.导地线拉力及偏角数据ToolStripMenuItem.Text = "导地线拉力及倾角数据";
+            this.导地线拉力及偏角数据ToolStripMenuItem.Click += new System.EventHandler(this.导地线拉力及偏角数据ToolStripMenuItem_Click);
             // 
             // 请求气象数据ToolStripMenuItem
             // 
@@ -905,26 +930,17 @@
             this.退出程序ToolStripMenuItem.Text = "退出程序";
             this.退出程序ToolStripMenuItem.Click += new System.EventHandler(this.退出程序ToolStripMenuItem_Click);
             // 
-            // 导地线拉力及偏角数据ToolStripMenuItem
+            // 图像采集参数配置ToolStripMenuItem
             // 
-            this.导地线拉力及偏角数据ToolStripMenuItem.Name = "导地线拉力及偏角数据ToolStripMenuItem";
-            this.导地线拉力及偏角数据ToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.导地线拉力及偏角数据ToolStripMenuItem.Text = "导地线拉力及倾角数据";
-            this.导地线拉力及偏角数据ToolStripMenuItem.Click += new System.EventHandler(this.导地线拉力及偏角数据ToolStripMenuItem_Click);
+            this.图像采集参数配置ToolStripMenuItem.Name = "图像采集参数配置ToolStripMenuItem";
+            this.图像采集参数配置ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.图像采集参数配置ToolStripMenuItem.Text = "图像采集参数配置";
+            this.图像采集参数配置ToolStripMenuItem.Click += new System.EventHandler(this.图像采集参数配置ToolStripMenuItem_Click);
             // 
-            // 未上传数据ToolStripMenuItem
+            // toolStripSeparator3
             // 
-            this.未上传数据ToolStripMenuItem.Name = "未上传数据ToolStripMenuItem";
-            this.未上传数据ToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.未上传数据ToolStripMenuItem.Text = "未上传装置数据";
-            this.未上传数据ToolStripMenuItem.Click += new System.EventHandler(this.未上传装置数据ToolStripMenuItem_Click);
-            // 
-            // 立即采集所有数据ToolStripMenuItem
-            // 
-            this.立即采集所有数据ToolStripMenuItem.Name = "立即采集所有数据ToolStripMenuItem";
-            this.立即采集所有数据ToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.立即采集所有数据ToolStripMenuItem.Text = "立即采集所有数据";
-            this.立即采集所有数据ToolStripMenuItem.Click += new System.EventHandler(this.立即采集所有数据ToolStripMenuItem_Click);
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
             // 
             // MainForm
             // 
@@ -1061,6 +1077,8 @@
         private System.Windows.Forms.ToolStripMenuItem 未上传数据ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 导地线拉力及偏角数据ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 立即采集所有数据ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem 图像采集参数配置ToolStripMenuItem;
     }
 }
 

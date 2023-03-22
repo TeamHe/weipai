@@ -106,6 +106,7 @@
     <Compile Include="CommandDeal\Image\Image_Model.cs" />
     <Compile Include="CommandDeal\Image\Image_Photo_UP.cs" />
     <Compile Include="CommandDeal\Image\Image_Photo_Adjust.cs" />
+    <Compile Include="CommandDeal\nw\nw_cmd_81_img_para.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_06_center_set.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_02_password.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_07_center_get.cs" />

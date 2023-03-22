@@ -502,6 +502,20 @@ namespace GridBackGround
             }
         }
 
+
+        private void 图像采集参数配置ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IPowerPole pole;
+            if ((pole = GetSeletedPole()) == null)
+                return;
+            nw_img_para ch1 = new nw_img_para() { Color = nw_img_para.EColor.Color, Resolution = nw_img_para.EResolution.R_800_600, Brightness = 20, Contrast = 30, Saturation = 10 };
+            nw_img_para ch2 = new nw_img_para() { Color = nw_img_para.EColor.Color, Resolution = nw_img_para.EResolution.R_800_600, Brightness = 20, Contrast = 30, Saturation = 10 };
+            nw_cmd_81_img_para cmd = new nw_cmd_81_img_para(pole) { Channel1 = ch1, Channel2 = ch2, Passowrd = "1234" };
+            cmd.Execute();
+
+        }
+
+
         #endregion
 
 
