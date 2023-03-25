@@ -122,7 +122,9 @@ namespace GridBackGround.Forms.Tab
                                 node.Text = powerPole.Name;
                             node.Name = powerPole.CMD_ID;
                             UpdateEquMsg(node, powerPole);              //更新节点提示信息
-                            AddTestNode().Nodes.Add(node);
+                            TreeNode parent = AddTestNode();
+                            if(parent != null)
+                                parent.Nodes.Add(node);
                         }
                         catch (Exception ex)
                         {
@@ -180,6 +182,10 @@ namespace GridBackGround.Forms.Tab
                     TowerNO = -1
                 };
                 linenode.Nodes.Add(towerNode);
+            }
+            else
+            {
+                towerNode = linenode.Nodes[0];
             }
             return towerNode;    
         }
