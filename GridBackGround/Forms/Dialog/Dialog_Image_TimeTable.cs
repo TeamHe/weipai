@@ -25,11 +25,11 @@ namespace GridBackGround.Forms
         {
             if (TimeTable == null)
             {
-                TimeTable = new List<CommandDeal.IPhoto_TimeTable>();
+                TimeTable = new List<CommandDeal.IPhoto_Time>();
             }
             else
             {
-                foreach (CommandDeal.IPhoto_TimeTable ptt in TimeTable)
+                foreach (CommandDeal.IPhoto_Time ptt in TimeTable)
                 {
                     ListViewItem lvi = new ListViewItem();
                     lvi.Text = ptt.Hour.ToString();
@@ -53,7 +53,7 @@ namespace GridBackGround.Forms
         /// <summary>
         /// 时间表链表
         /// </summary>
-        public List<CommandDeal.IPhoto_TimeTable> TimeTable { get; set; }
+        public List<CommandDeal.IPhoto_Time> TimeTable { get; set; }
         #endregion
 
 
@@ -121,7 +121,7 @@ namespace GridBackGround.Forms
                         int hour = int.Parse(lvi.SubItems[0].Text);
                         int minute = int.Parse(lvi.SubItems[1].Text);
                         int preset_No = int.Parse(lvi.SubItems[2].Text);
-                        var tt = (CommandDeal.IPhoto_TimeTable)new CommandDeal.PhotoTimeTable(hour, minute, preset_No);
+                        var tt = (CommandDeal.IPhoto_Time)new CommandDeal.PhotoTime(hour, minute, preset_No);
                         TimeTable.Add(tt);
                     }
                 }

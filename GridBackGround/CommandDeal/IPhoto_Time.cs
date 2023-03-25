@@ -8,7 +8,7 @@ namespace GridBackGround.CommandDeal
     /// <summary>
     /// 拍照时间表
     /// </summary>
-    public interface IPhoto_TimeTable
+    public interface IPhoto_Time
     {
         /// <summary>
         /// 时
@@ -28,7 +28,7 @@ namespace GridBackGround.CommandDeal
     /// <summary>
     /// 拍照时间表
     /// </summary>
-    public class PhotoTimeTable : IPhoto_TimeTable
+    public class PhotoTime : IPhoto_Time
     {
         /// <summary>
         /// 时
@@ -43,11 +43,17 @@ namespace GridBackGround.CommandDeal
         /// </summary>
         public int Presetting_No { get; set; }
 
-        public PhotoTimeTable(int hour, int minute, int preset_No)
+        public PhotoTime(int hour, int minute, int preset_No)
         {
             this.Hour = hour;
             this.Minute = minute;
             this.Presetting_No = preset_No;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("时:{0} 分:{1} 预置位:{2}",
+                this.Hour, this.Minute, this.Presetting_No);
         }
     }
 }

@@ -336,7 +336,7 @@ namespace GridBackGround.Termination
 
         private Timer timer_settimetable { get; set; }
 
-        public Error_Code SetTimeTable(int channel, List<CommandDeal.IPhoto_TimeTable> table)
+        public Error_Code SetTimeTable(int channel, List<CommandDeal.IPhoto_Time> table)
         {
             if (this.OnLine == false)
                 return Error_Code.DeviceOffLine;
