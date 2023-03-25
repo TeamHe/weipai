@@ -255,7 +255,7 @@ namespace GridBackGround.CommandDeal
             int[] stil = null;
             lock (pic.Lock)
             {
-                stil = pic.GetStilPac();
+                stil = pic.GetStilPac().ToArray();
                 if (stil == null || stil.Length == 0)
                     pic.UploadState = true;
             }

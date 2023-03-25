@@ -247,7 +247,7 @@ namespace ResModel.CollectData
         /// 获取缺少的数据包包号
         /// </summary>
         /// <returns></returns>
-        public int[] GetStilPac()
+        public List<int> GetStilPac()
         {
             return this.Img.GetStilNo();
         }
@@ -426,7 +426,7 @@ namespace ResModel.CollectData
         /// 检查缺报数目
         /// </summary>
         /// <returns></returns>
-        public int[] GetStilNo()
+        public List<int> GetStilNo()
         {
             List<int> list_stil = new List<int>();
             this.list_pac.Sort((a, b) => { if (a.PNO > b.PNO) return 1; if (a.PNO < b.PNO) return -1; return 0; });
@@ -454,7 +454,7 @@ namespace ResModel.CollectData
                 list_stil.Add(pno);
                 pno++;
             }
-            return list_stil.ToArray();
+            return list_stil;
             //int StilRecCount = 0;
             //int[] NO_To_Rec = new int[Paket.Length];
             //for (int i = 0; i < Paket.Length; i++)
