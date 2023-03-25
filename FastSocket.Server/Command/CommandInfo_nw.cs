@@ -150,7 +150,7 @@ namespace Sodao.FastSocket.Server.Command
             }
 
             //数据帧总长度
-            int p_len = (int)(buffer.Array[startno + 8]) + (int)(buffer.Array[startno + 9]) * 256 + 12;
+            int p_len = (int)(buffer.Array[startno + 8]) *256 + (int)(buffer.Array[startno + 9]) + 12;
             if(p_len > 4000) //超长数据包检查
             {
                 readlength = startno + 1 - buffer.Offset;

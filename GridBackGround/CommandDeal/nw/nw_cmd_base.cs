@@ -146,7 +146,7 @@ namespace GridBackGround.CommandDeal.nw
         /// <returns></returns>
         internal int GetU16(byte[] data,int offset,out int value)
         {
-            value = data[offset + 0] + data[offset + 1] * 256;
+            value = data[offset + 0] * 256 + data[offset + 1] ;
             return 2;
         }
 
@@ -159,8 +159,8 @@ namespace GridBackGround.CommandDeal.nw
         /// <returns></returns>
         internal int SetU16(byte[] data, int offset, int value)
         {
-            data[offset + 0] = (byte)(value % 256);
-            data[offset + 1] = (byte)(value / 256);
+            data[offset + 0] = (byte)(value / 256);
+            data[offset + 1] = (byte)(value % 256);
             return 2;
         }
 
@@ -173,7 +173,7 @@ namespace GridBackGround.CommandDeal.nw
         /// <returns></returns>
         internal int GetS16(byte[] data, int offset, out int value)
         {
-            value = data[offset + 0] + (data[offset + 1]&0x7f) * 256;
+            value = data[offset + 1] + (data[offset + 0]&0x7f) * 256;
             if((data[offset + 1] & 0x8f)>0)
                 value = -value; 
             return 2;
@@ -194,8 +194,8 @@ namespace GridBackGround.CommandDeal.nw
                 sign = true;
                 value = -value;
             }
-            data[offset + 0] = (byte)(value % 256);
-            data[offset + 1] = (byte)((value / 256)&0x7f);
+            data[offset + 0] = (byte)((value / 256)&0x7f);
+            data[offset + 1] = (byte)(value % 256);
             if(sign)
                 data[offset + 1] |= 0x80;
             return 2;
