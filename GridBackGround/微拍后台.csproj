@@ -106,6 +106,9 @@
     <Compile Include="CommandDeal\Image\Image_Model.cs" />
     <Compile Include="CommandDeal\Image\Image_Photo_UP.cs" />
     <Compile Include="CommandDeal\Image\Image_Photo_Adjust.cs" />
+    <Compile Include="CommandDeal\Image\Photo_man.cs" />
+    <Compile Include="CommandDeal\nw\nw_cmd_86_photo_up_end.cs" />
+    <Compile Include="CommandDeal\nw\nw_cmd_84_photo_up_begin.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_81_img_para.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_06_center_set.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_02_password.cs" />
@@ -118,6 +121,8 @@
     <Compile Include="CommandDeal\nw\nw_cmd_21_data.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_22_pull_angle.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_25_weather.cs" />
+    <Compile Include="CommandDeal\nw\nw_cmd_85_photo_up.cs" />
+    <Compile Include="CommandDeal\nw\nw_cmd_87_photo_up_bubao.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_base.cs" />
     <Compile Include="CommandDeal\Private\UserPhone.cs" />
     <Compile Include="CommandDeal\WorkState_Error.cs" />
