@@ -122,6 +122,7 @@
     <Compile Include="CommandDeal\nw\nw_cmd_22_pull_angle.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_25_weather.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_82_time_table_set.cs" />
+    <Compile Include="CommandDeal\nw\nw_cmd_83_photoing.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_85_photo_up.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_87_photo_up_bubao.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_8B_time_table_get.cs" />
