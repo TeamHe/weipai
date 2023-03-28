@@ -87,8 +87,8 @@ namespace Sodao.FastSocket.Server.Command
             this.Pakcet[7] = (byte)this.PackageType;
             if(this.Data != null)
             {
-                this.Pakcet[8] = (byte)(this.Data.Length % 256);
-                this.Pakcet[9] = (byte)(this.Data.Length / 256);
+                this.Pakcet[8] = (byte)(this.Data.Length / 256);
+                this.Pakcet[9] = (byte)(this.Data.Length % 256);
                 Buffer.BlockCopy(this.Data, 0, this.Pakcet, 10, this.Data.Length);
             }
             byte check_code = commandinfo_nw_check(Pakcet, 1, len - 3);
