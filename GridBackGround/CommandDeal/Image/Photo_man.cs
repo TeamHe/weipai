@@ -149,12 +149,9 @@ namespace GridBackGround.CommandDeal.Image
                 }
                 else
                 {//保存图片缓存
-                    int PhotoLength = data.Length - 6;
-                    byte[] packet = new byte[PhotoLength];
-                    Buffer.BlockCopy(data, 6, packet, 0, PhotoLength);
                     lock (pic.Lock)
                     {
-                        pic.AddPicData(pno, packet);
+                        pic.AddPicData(pno, data);
                     }
                     return true;
                 }
@@ -207,6 +204,8 @@ namespace GridBackGround.CommandDeal.Image
                 if (rootPath == null || rootPath.Length == 0)
                     rootPath = System.Environment.CurrentDirectory;
                 picture.SaveToFile(rootPath);
+                msg += "图片合成成功";
+                msg += "file:///" + picture.PicPath;
                 return true;
             }
             catch (Exception ex)
@@ -248,7 +247,7 @@ namespace GridBackGround.CommandDeal.Image
             try
             {
                 Equ equ = pole.Equ;
-                if (equ.UrlID != 0)
+                if (equ != null && equ.UrlID != 0)
                 {
                     DB_Url db_url = new DB_Url();
                     var url = db_url.GetUrl(equ.UrlID);
@@ -278,7 +277,10 @@ namespace GridBackGround.CommandDeal.Image
             state = this.SaveToFile(picture, out string saveMsg);  //图像缓存保存到文件
 
             //输出保存信息
-            DisPacket.NewRecord(new DataInfo(DataRecSendState.send, this.pole, "图片合成", saveMsg));
+            if(saveMsg!=null && saveMsg != string.Empty)
+            {
+                DisPacket.NewRecord(new DataInfo(DataRecSendState.send, this.pole, "照片合成", saveMsg));
+            }
 
             saveMsg = string.Empty;
             //添加水银信息
@@ -304,7 +306,9 @@ namespace GridBackGround.CommandDeal.Image
                 state = false;
             }
             //图片上传到服务器
-            DisPacket.NewRecord(new DataInfo(DataRecSendState.send, this.pole, "图片上传", saveMsg));
+            if(saveMsg!=null && saveMsg.Length > 0) { }
+                DisPacket.NewRecord(new DataInfo(DataRecSendState.send, this.pole, "图片存储", saveMsg));
+            
         }
     }
 }

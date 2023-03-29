@@ -11,7 +11,7 @@ namespace GridBackGround.CommandDeal.nw
     {
         public override int Control { get { return 0x87; } }
 
-        public override string Name { get { return "图像数据上送结束标记"; } }
+        public override string Name { get { return "补包数据下发"; } }
 
         /// <summary>
         /// 通道号
