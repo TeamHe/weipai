@@ -199,7 +199,7 @@ namespace GridBackGround.CommandDeal.nw
 
             int offset = 0;
             offset += this.GetPassword(this.Data, offset, out string password);
-
+            this.Passowrd = password;
             offset += Decode_img_para(this.Data, offset, out nw_img_para channel);
             this.Channel1 = channel;
             offset += Decode_img_para(this.Data, offset, out channel);
@@ -223,7 +223,7 @@ namespace GridBackGround.CommandDeal.nw
             offset += this.Encode_img_para(data, offset, this.Channel1);
             offset += this.Encode_img_para(data, offset, this.Channel2);
 
-            msg = string.Format("设置图像采集参数. 通道1:{0} 通道2:{1}",
+            msg = string.Format("通道1:{0} 通道2:{1}",
                 this.Channel1.ToString() ,this.Channel2.ToString());    
             return data;
         }

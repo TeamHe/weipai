@@ -13,6 +13,7 @@ using Sodao.FastSocket.Server.Protocol;
 using System.IO;
 using GridBackGround.Termination;
 using GridBackGround.CommandDeal.nw;
+using GridBackGround.Forms.Dialogs_nw;
 
 namespace GridBackGround
 {
@@ -508,11 +509,15 @@ namespace GridBackGround
             IPowerPole pole;
             if ((pole = GetSeletedPole()) == null)
                 return;
-            nw_img_para ch1 = new nw_img_para() { Color = nw_img_para.EColor.Color, Resolution = nw_img_para.EResolution.R_800_600, Brightness = 20, Contrast = 30, Saturation = 10 };
-            nw_img_para ch2 = new nw_img_para() { Color = nw_img_para.EColor.Color, Resolution = nw_img_para.EResolution.R_800_600, Brightness = 20, Contrast = 30, Saturation = 10 };
-            nw_cmd_81_img_para cmd = new nw_cmd_81_img_para(pole) { Channel1 = ch1, Channel2 = ch2, Passowrd = "1234" };
-            cmd.Execute();
+            Dialog_nw_image_para dialog = new Dialog_nw_image_para();
+            dialog.para_ch1 = new nw_img_para() { Color = nw_img_para.EColor.Color, Resolution = nw_img_para.EResolution.R_800_600, Brightness = 20, Contrast = 30, Saturation = 10 };
+            dialog.para_ch2 = new nw_img_para() { Color = nw_img_para.EColor.Color, Resolution = nw_img_para.EResolution.R_800_600, Brightness = 20, Contrast = 30, Saturation = 10 };
 
+            if(dialog.ShowDialog() == DialogResult.OK)
+            {
+                nw_cmd_81_img_para cmd = new nw_cmd_81_img_para(pole) { Channel1 = dialog.para_ch1, Channel2 = dialog.para_ch2, Passowrd = "1234" };
+                cmd.Execute();
+            }
         }
 
 
