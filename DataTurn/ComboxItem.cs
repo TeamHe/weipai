@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Tools
 {
@@ -48,6 +49,35 @@ namespace Tools
             this._value = value;
         }
         #endregion
-        
+
+        public static void Init_items_enum(ComboBox comboBox,Type enumtype)
+        {
+            if (comboBox == null || enumtype ==null)
+                throw new ArgumentNullException("item");
+            comboBox.Items.Clear();
+
+            Dictionary<Int32, String> dic = EnumUtil.EnumToDictionary(enumtype, e => e.GetDescription());
+            foreach (KeyValuePair<Int32, String> item in dic)
+            {
+                ComboBoxItem cbxitem = new ComboBoxItem(item.Value, item.Key);//将装置类型绑定到combox中
+                comboBox.Items.Add(cbxitem);
+            }
+            comboBox.SelectedIndex = 0;
+        }
+
+        public static void Set_Value(ComboBox comboBox, int value)
+        {
+            if (comboBox == null )
+                throw new ArgumentNullException("item");
+         
+            foreach(ComboBoxItem cbxitem in comboBox.Items)
+            {
+                if((int)(cbxitem.Value) == value)
+                    comboBox.SelectedItem = cbxitem;
+            }
+        }
+
+
+
     }
 }
