@@ -539,6 +539,40 @@ namespace GridBackGround
 
         }
 
+        private void nw_拍照时间表查询ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IPowerPole pole;
+            if ((pole = GetSeletedPole()) == null)
+                return;
+            Dialog_Image_Photo dialog = new Dialog_Image_Photo();
+            dialog.nw_get_table = true;
+            
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                nw_cmd_8B_time_table_get cmd = new nw_cmd_8B_time_table_get(pole)
+                {
+                    Channel_No = dialog.Channel_NO,
+                };
+                cmd.Execute();
+            }
+        }
+
+        private void nw_牌照时间表设置ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            IPowerPole pole;
+            if ((pole = GetSeletedPole()) == null)
+                return;
+            Dialog_Image_TimeTable dialog = new Dialog_Image_TimeTable();
+            dialog.nw_flag = true;
+            if(dialog.ShowDialog() == DialogResult.OK)
+            {
+                nw_cmd_82_time_table_set cmd = new nw_cmd_82_time_table_set(pole);
+                cmd.Passowrd = dialog.Password;
+                cmd.TimeTable = dialog.TimeTable;
+                cmd.Channel_No = dialog.Channel_No;
+                cmd.Execute();
+            }
+        }
         #endregion
 
 

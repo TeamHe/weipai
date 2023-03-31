@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.button_Cancel = new System.Windows.Forms.Button();
@@ -44,13 +45,16 @@
             this.Hour = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Minute = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Presetting_No = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label_passwd = new System.Windows.Forms.Label();
+            this.textBox_passwd = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.textBox_passwd);
+            this.panel1.Controls.Add(this.label_passwd);
             this.panel1.Controls.Add(this.numericUpDown1);
             this.panel1.Controls.Add(this.radioButton2);
             this.panel1.Controls.Add(this.radioButton1);
@@ -70,10 +74,27 @@
             this.panel1.Size = new System.Drawing.Size(278, 280);
             this.panel1.TabIndex = 0;
             // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(60, 5);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(60, 21);
+            this.numericUpDown1.TabIndex = 14;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(80, 15);
+            this.radioButton2.Location = new System.Drawing.Point(211, 7);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(47, 16);
             this.radioButton2.TabIndex = 13;
@@ -85,7 +106,7 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(27, 15);
+            this.radioButton1.Location = new System.Drawing.Point(158, 7);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(47, 16);
             this.radioButton1.TabIndex = 12;
@@ -96,18 +117,18 @@
             // 
             // button_Cancel
             // 
-            this.button_Cancel.Location = new System.Drawing.Point(197, 233);
+            this.button_Cancel.Location = new System.Drawing.Point(138, 245);
             this.button_Cancel.Name = "button_Cancel";
-            this.button_Cancel.Size = new System.Drawing.Size(56, 23);
+            this.button_Cancel.Size = new System.Drawing.Size(100, 23);
             this.button_Cancel.TabIndex = 11;
             this.button_Cancel.Text = "取消";
             this.button_Cancel.UseVisualStyleBackColor = true;
             // 
             // button_OK
             // 
-            this.button_OK.Location = new System.Drawing.Point(136, 234);
+            this.button_OK.Location = new System.Drawing.Point(22, 245);
             this.button_OK.Name = "button_OK";
-            this.button_OK.Size = new System.Drawing.Size(52, 23);
+            this.button_OK.Size = new System.Drawing.Size(98, 23);
             this.button_OK.TabIndex = 10;
             this.button_OK.Text = "确定";
             this.button_OK.UseVisualStyleBackColor = true;
@@ -115,7 +136,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(65, 234);
+            this.button2.Location = new System.Drawing.Point(138, 201);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(45, 23);
             this.button2.TabIndex = 9;
@@ -125,7 +146,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 234);
+            this.button1.Location = new System.Drawing.Point(73, 201);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(47, 23);
             this.button1.TabIndex = 8;
@@ -135,7 +156,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(204, 176);
+            this.textBox1.Location = new System.Drawing.Point(195, 176);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(68, 21);
             this.textBox1.TabIndex = 7;
@@ -144,7 +165,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(156, 180);
+            this.label3.Location = new System.Drawing.Point(136, 180);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 12);
             this.label3.TabIndex = 6;
@@ -153,7 +174,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 177);
+            this.label2.Location = new System.Drawing.Point(16, 177);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 12);
             this.label2.TabIndex = 5;
@@ -163,7 +184,7 @@
             // 
             this.dateTimePicker1.CustomFormat = "HH:mm";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(60, 174);
+            this.dateTimePicker1.Location = new System.Drawing.Point(51, 174);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.ShowUpDown = true;
             this.dateTimePicker1.Size = new System.Drawing.Size(80, 21);
@@ -173,7 +194,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(156, 17);
+            this.label1.Location = new System.Drawing.Point(10, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 2;
@@ -208,22 +229,22 @@
             this.Presetting_No.Text = "预置位号";
             this.Presetting_No.Width = 121;
             // 
-            // numericUpDown1
+            // label_passwd
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(206, 10);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(60, 21);
-            this.numericUpDown1.TabIndex = 14;
-            this.numericUpDown1.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            this.label_passwd.AutoSize = true;
+            this.label_passwd.Location = new System.Drawing.Point(127, 10);
+            this.label_passwd.Name = "label_passwd";
+            this.label_passwd.Size = new System.Drawing.Size(29, 12);
+            this.label_passwd.TabIndex = 15;
+            this.label_passwd.Text = "密码";
+            // 
+            // textBox_passwd
+            // 
+            this.textBox_passwd.Location = new System.Drawing.Point(158, 6);
+            this.textBox_passwd.Name = "textBox_passwd";
+            this.textBox_passwd.Size = new System.Drawing.Size(100, 21);
+            this.textBox_passwd.TabIndex = 16;
+            this.textBox_passwd.Text = "1234";
             // 
             // Dialog_Image_TimeTable
             // 
@@ -260,5 +281,7 @@
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.TextBox textBox_passwd;
+        private System.Windows.Forms.Label label_passwd;
     }
 }

@@ -52,7 +52,7 @@ namespace GridBackGround.CommandDeal
 
         public override string ToString()
         {
-            return string.Format("时:{0} 分:{1} 预置位:{2}",
+            return string.Format("T({0}:{1}) P({2})",
                 this.Hour, this.Minute, this.Presetting_No);
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GridBackGround.CommandDeal.nw;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,7 +16,8 @@ namespace GridBackGround.Forms
         {
             this.CenterToParent();
             InitializeComponent();
-        } 
+            this.radioButton2.Checked = true;
+        }
         /// <summary>
         /// 窗体加载事件
         /// </summary>
@@ -40,20 +42,48 @@ namespace GridBackGround.Forms
             }
            
             button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            Qurey_State = true;
-            radioButton1.Checked = true;
         }
 
         #region 公共变量
         /// <summary>
         /// 通道号
         /// </summary>
+        /// 
         public int Channel_No { get; set; }
         public bool Qurey_State { get; set; }
         /// <summary>
         /// 时间表链表
         /// </summary>
         public List<CommandDeal.IPhoto_Time> TimeTable { get; set; }
+
+        private bool nw = false;
+        public bool nw_flag
+        {
+            get { return nw; } 
+            set { 
+                this.nw = value;
+                if(nw)
+                {
+                    this.textBox_passwd.Visible = true;
+                    this.label_passwd.Visible = true;
+                    this.radioButton1.Visible = false;
+                    this.radioButton2.Visible = false;
+                }
+                else
+                {
+                    this.textBox_passwd.Visible = false; 
+                    this.label_passwd.Visible = false; 
+                    this.radioButton1.Visible = true;
+                    this.radioButton2.Visible = true;
+                }
+            }
+        }
+
+        public string Password
+        {
+            get { return this.textBox_passwd.Text; }
+            set { this.textBox_passwd.Text = value; }
+        }
         #endregion
 
 
@@ -112,28 +142,25 @@ namespace GridBackGround.Forms
         {
             this.TimeTable.Clear();
             Channel_No = (int)this.numericUpDown1.Value;
-            if (!Qurey_State)
-            {    
-                if (this.listView1.Items.Count > 0)
+            if (this.listView1.Items.Count > 0)
+            {
+                foreach (ListViewItem lvi in listView1.Items)
                 {
-                    foreach (ListViewItem lvi in listView1.Items)
-                    {
-                        int hour = int.Parse(lvi.SubItems[0].Text);
-                        int minute = int.Parse(lvi.SubItems[1].Text);
-                        int preset_No = int.Parse(lvi.SubItems[2].Text);
-                        var tt = (CommandDeal.IPhoto_Time)new CommandDeal.PhotoTime(hour, minute, preset_No);
-                        TimeTable.Add(tt);
-                    }
+                    int hour = int.Parse(lvi.SubItems[0].Text);
+                    int minute = int.Parse(lvi.SubItems[1].Text);
+                    int preset_No = int.Parse(lvi.SubItems[2].Text);
+                    var tt = (CommandDeal.IPhoto_Time)new CommandDeal.PhotoTime(hour, minute, preset_No);
+                    TimeTable.Add(tt);
                 }
-                else
-                {
-                    MessageBox.Show("您没有添加任何时间，请先添加时间");
-                    return;
-                }
-
             }
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.Dispose();
+            else
+            {
+                if(this.Qurey_State == false)
+                    MessageBox.Show("您没有添加任何时间，请先添加时间");
+                return;
+            }
+
+            this.DialogResult = DialogResult.OK;
         }
 
         private void radioButton_CheckedChanged(object sender, EventArgs e)

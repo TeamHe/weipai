@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GridBackGround.CommandDeal.nw;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,6 +17,30 @@ namespace GridBackGround.Forms
             InitializeComponent();
             this.CenterToParent();
             this.button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+        }
+
+        private bool nw_table = false;
+
+        public bool nw_get_table
+        {
+            get { return nw_table; }
+            set
+            {
+                nw_table = value; 
+                if (nw_table)
+                {
+                    this.label2.Visible = false;
+                    this.textBox1.Visible = false;
+                    this.Text = "查询拍照时间表";
+                }
+                else
+                {
+                    this.label2.Visible = true;
+                    this.textBox1.Visible = true;
+                    this.Text = "手动请求照片";
+
+                }
+            }
         }
         /// <summary>
         /// 通道号

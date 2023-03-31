@@ -39,7 +39,7 @@ namespace GridBackGround.CommandDeal.nw
         public int Decode_PhotoTime(byte[] data, int offset, out IPhoto_Time photoing_time)
         {
             photoing_time = null;
-            if (data.Length - offset < 5)
+            if (data.Length - offset < 3)
                 return -1;
             int no = offset;
             int hour = data[no++];
@@ -104,11 +104,11 @@ namespace GridBackGround.CommandDeal.nw
             offset += this.SetPassword(data, offset, this.Passowrd);
             data[offset++] = (byte)this.Channel_No;
             data[offset++] = (byte)group;
-            msg = string.Format("通道:{0} 共{1}组", this.Channel_No, group);
+            msg = string.Format("通道:{0} 共{1}组 ", this.Channel_No, group);
             for(int i=0;i < group; i++)
             {
                 offset += this.Encode_PhotoTime(data, offset, this.TimeTable[i]);
-                msg += string.Format("第{0}组:{1}", i + 1, this.TimeTable[i]);
+                msg += string.Format("第{0}组:{1} ", i + 1, this.TimeTable[i]);
             }
             return data;
         }
