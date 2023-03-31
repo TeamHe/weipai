@@ -14,6 +14,7 @@ using System.IO;
 using GridBackGround.Termination;
 using GridBackGround.CommandDeal.nw;
 using GridBackGround.Forms.Dialogs_nw;
+using GridBackGround.Forms;
 
 namespace GridBackGround
 {
@@ -520,6 +521,23 @@ namespace GridBackGround
             }
         }
 
+        private void nw_主站请求拍摄照片ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IPowerPole pole;
+            if ((pole = GetSeletedPole()) == null)
+                return;
+            Dialog_Image_Photo dialog = new Dialog_Image_Photo();
+            if(dialog.ShowDialog() == DialogResult.OK)
+            {
+                nw_cmd_83_photoing cmd = new nw_cmd_83_photoing(pole)
+                {
+                    Preset_No = dialog.Presetting_No,
+                    Channel_No = dialog.Channel_NO,
+                };
+                cmd.Execute();
+            }
+
+        }
 
         #endregion
 

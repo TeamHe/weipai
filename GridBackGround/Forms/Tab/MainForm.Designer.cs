@@ -106,6 +106,8 @@
             this.请求气象数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.设置装置密码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.装置重启ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.图像采集参数配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel_Port = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel_ID = new System.Windows.Forms.ToolStripStatusLabel();
@@ -125,8 +127,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.显示主界面ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出程序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.图像采集参数配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.主站请求拍摄照片ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -143,9 +144,9 @@
             this.记录列表ToolStripMenuItem,
             this.主站ToolStripMenuItem,
             this.私有控制ToolStripMenuItem,
+            this.设备控制ToolStripMenuItem,
             this.数据曲线ToolStripMenuItem,
-            this.设置ToolStripMenuItem,
-            this.设备控制ToolStripMenuItem});
+            this.设置ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1059, 25);
@@ -646,7 +647,8 @@
             this.设置装置密码ToolStripMenuItem,
             this.装置重启ToolStripMenuItem,
             this.toolStripSeparator3,
-            this.图像采集参数配置ToolStripMenuItem});
+            this.图像采集参数配置ToolStripMenuItem,
+            this.主站请求拍摄照片ToolStripMenuItem1});
             this.设备控制ToolStripMenuItem.Name = "设备控制ToolStripMenuItem";
             this.设备控制ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.设备控制ToolStripMenuItem.Text = "设备控制";
@@ -749,6 +751,18 @@
             this.装置重启ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.装置重启ToolStripMenuItem.Text = "装置重启";
             this.装置重启ToolStripMenuItem.Click += new System.EventHandler(this.装置重启ToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            // 
+            // 图像采集参数配置ToolStripMenuItem
+            // 
+            this.图像采集参数配置ToolStripMenuItem.Name = "图像采集参数配置ToolStripMenuItem";
+            this.图像采集参数配置ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.图像采集参数配置ToolStripMenuItem.Text = "图像采集参数配置";
+            this.图像采集参数配置ToolStripMenuItem.Click += new System.EventHandler(this.图像采集参数配置ToolStripMenuItem_Click);
             // 
             // statusStrip
             // 
@@ -930,17 +944,12 @@
             this.退出程序ToolStripMenuItem.Text = "退出程序";
             this.退出程序ToolStripMenuItem.Click += new System.EventHandler(this.退出程序ToolStripMenuItem_Click);
             // 
-            // 图像采集参数配置ToolStripMenuItem
+            // 主站请求拍摄照片ToolStripMenuItem1
             // 
-            this.图像采集参数配置ToolStripMenuItem.Name = "图像采集参数配置ToolStripMenuItem";
-            this.图像采集参数配置ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.图像采集参数配置ToolStripMenuItem.Text = "图像采集参数配置";
-            this.图像采集参数配置ToolStripMenuItem.Click += new System.EventHandler(this.图像采集参数配置ToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            this.主站请求拍摄照片ToolStripMenuItem1.Name = "主站请求拍摄照片ToolStripMenuItem1";
+            this.主站请求拍摄照片ToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.主站请求拍摄照片ToolStripMenuItem1.Text = "主站请求拍摄照片";
+            this.主站请求拍摄照片ToolStripMenuItem1.Click += new System.EventHandler(this.nw_主站请求拍摄照片ToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1079,6 +1088,7 @@
         private System.Windows.Forms.ToolStripMenuItem 立即采集所有数据ToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem 图像采集参数配置ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 主站请求拍摄照片ToolStripMenuItem1;
     }
 }
 
