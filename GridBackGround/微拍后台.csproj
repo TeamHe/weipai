@@ -129,6 +129,7 @@
     <Compile Include="CommandDeal\nw\nw_cmd_83_photoing.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_85_photo_up.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_87_photo_up_bubao.cs" />
+    <Compile Include="CommandDeal\nw\nw_cmd_88_remote_camera_control.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_8B_time_table_get.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_base.cs" />
     <Compile Include="CommandDeal\Private\UserPhone.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="Forms\Dialogs_nw\Dialog_nw_password_input.Designer.cs">
       <DependentUpon>Dialog_nw_password_input.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Dialogs_nw\MenuItem_nw.cs" />
     <Compile Include="Forms\Dialogs_nw\UserControl_nw_img_para.cs">
       <SubType>UserControl</SubType>
     </Compile>

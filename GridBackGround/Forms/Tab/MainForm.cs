@@ -24,6 +24,8 @@ namespace GridBackGround
         private string CMD_ID = null;
         bool Flag_TabChange = false;
 
+        public MenuItem_nw menu_nw = null;
+
         private HTTP.HttpListeners httpListeners = null;
 
         public MainForm()
@@ -47,6 +49,9 @@ namespace GridBackGround
             this.notifyIcon1.Icon = new System.Drawing.Icon("Res\\logo.ico");
             var name = System.Reflection.Assembly.GetExecutingAssembly().GetName();
             this.Text = name.Name;
+            this.menu_nw = new MenuItem_nw(this, this.设备控制ToolStripMenuItem);
+            this.menu_nw.Menuitem_Flush();
+
             //数据库初始化
             try
             {
@@ -350,7 +355,7 @@ namespace GridBackGround
 
         #endregion
 
-        private IPowerPole GetSeletedPole()
+        public IPowerPole GetSeletedPole()
         {
             if(this.CMD_ID == null || CMD_ID.Length <6)
             {
