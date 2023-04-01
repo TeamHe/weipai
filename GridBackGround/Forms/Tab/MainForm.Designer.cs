@@ -95,8 +95,6 @@
             this.设置装置密码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.装置重启ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.图像采集参数配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.主站请求拍摄照片ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.数据曲线ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.微风振动ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.舞动曲线ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -128,9 +126,6 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.显示主界面ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出程序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.拍照时间表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nw_拍照时间表查询ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nw_牌照时间表设置ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -555,10 +550,7 @@
             this.请求上传数据ToolStripMenuItem,
             this.设置装置密码ToolStripMenuItem,
             this.装置重启ToolStripMenuItem,
-            this.toolStripSeparator3,
-            this.图像采集参数配置ToolStripMenuItem,
-            this.主站请求拍摄照片ToolStripMenuItem1,
-            this.拍照时间表ToolStripMenuItem});
+            this.toolStripSeparator3});
             this.设备控制ToolStripMenuItem.Name = "设备控制ToolStripMenuItem";
             this.设备控制ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.设备控制ToolStripMenuItem.Text = "设备控制";
@@ -666,20 +658,6 @@
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
-            // 
-            // 图像采集参数配置ToolStripMenuItem
-            // 
-            this.图像采集参数配置ToolStripMenuItem.Name = "图像采集参数配置ToolStripMenuItem";
-            this.图像采集参数配置ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.图像采集参数配置ToolStripMenuItem.Text = "图像采集参数配置";
-            this.图像采集参数配置ToolStripMenuItem.Click += new System.EventHandler(this.图像采集参数配置ToolStripMenuItem_Click);
-            // 
-            // 主站请求拍摄照片ToolStripMenuItem1
-            // 
-            this.主站请求拍摄照片ToolStripMenuItem1.Name = "主站请求拍摄照片ToolStripMenuItem1";
-            this.主站请求拍摄照片ToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.主站请求拍摄照片ToolStripMenuItem1.Text = "主站请求拍摄照片";
-            this.主站请求拍摄照片ToolStripMenuItem1.Click += new System.EventHandler(this.nw_主站请求拍摄照片ToolStripMenuItem_Click);
             // 
             // 数据曲线ToolStripMenuItem
             // 
@@ -955,29 +933,6 @@
             this.退出程序ToolStripMenuItem.Text = "退出程序";
             this.退出程序ToolStripMenuItem.Click += new System.EventHandler(this.退出程序ToolStripMenuItem_Click);
             // 
-            // 拍照时间表ToolStripMenuItem
-            // 
-            this.拍照时间表ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nw_拍照时间表查询ToolStripMenuItem,
-            this.nw_牌照时间表设置ToolStripMenuItem1});
-            this.拍照时间表ToolStripMenuItem.Name = "拍照时间表ToolStripMenuItem";
-            this.拍照时间表ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.拍照时间表ToolStripMenuItem.Text = "拍照时间表";
-            // 
-            // nw_拍照时间表查询ToolStripMenuItem
-            // 
-            this.nw_拍照时间表查询ToolStripMenuItem.Name = "nw_拍照时间表查询ToolStripMenuItem";
-            this.nw_拍照时间表查询ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.nw_拍照时间表查询ToolStripMenuItem.Text = "查询";
-            this.nw_拍照时间表查询ToolStripMenuItem.Click += new System.EventHandler(this.nw_拍照时间表查询ToolStripMenuItem_Click);
-            // 
-            // nw_牌照时间表设置ToolStripMenuItem1
-            // 
-            this.nw_牌照时间表设置ToolStripMenuItem1.Name = "nw_牌照时间表设置ToolStripMenuItem1";
-            this.nw_牌照时间表设置ToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.nw_牌照时间表设置ToolStripMenuItem1.Text = "设置";
-            this.nw_牌照时间表设置ToolStripMenuItem1.Click += new System.EventHandler(this.nw_牌照时间表设置ToolStripMenuItem1_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1114,11 +1069,6 @@
         private System.Windows.Forms.ToolStripMenuItem 导地线拉力及偏角数据ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 立即采集所有数据ToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripMenuItem 图像采集参数配置ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 主站请求拍摄照片ToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem 拍照时间表ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem nw_拍照时间表查询ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem nw_牌照时间表设置ToolStripMenuItem1;
     }
 }
 
