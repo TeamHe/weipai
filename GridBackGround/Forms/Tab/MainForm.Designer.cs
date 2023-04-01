@@ -81,20 +81,6 @@
             this.私有控制ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.用户手机号ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.设备控制ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.校时ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.查询装置时间ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.设置装置时间ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.主站信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nw_查询主站信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nw_设置主站信息ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.请求上传数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.未上传数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.立即采集所有数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.导地线拉力及偏角数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.请求气象数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.设置装置密码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.装置重启ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.数据曲线ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.微风振动ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.舞动曲线ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -544,120 +530,9 @@
             // 
             // 设备控制ToolStripMenuItem
             // 
-            this.设备控制ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.校时ToolStripMenuItem,
-            this.主站信息ToolStripMenuItem,
-            this.请求上传数据ToolStripMenuItem,
-            this.设置装置密码ToolStripMenuItem,
-            this.装置重启ToolStripMenuItem,
-            this.toolStripSeparator3});
             this.设备控制ToolStripMenuItem.Name = "设备控制ToolStripMenuItem";
             this.设备控制ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.设备控制ToolStripMenuItem.Text = "设备控制";
-            // 
-            // 校时ToolStripMenuItem
-            // 
-            this.校时ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.查询装置时间ToolStripMenuItem,
-            this.设置装置时间ToolStripMenuItem1});
-            this.校时ToolStripMenuItem.Name = "校时ToolStripMenuItem";
-            this.校时ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.校时ToolStripMenuItem.Text = "装置时间";
-            // 
-            // 查询装置时间ToolStripMenuItem
-            // 
-            this.查询装置时间ToolStripMenuItem.Name = "查询装置时间ToolStripMenuItem";
-            this.查询装置时间ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.查询装置时间ToolStripMenuItem.Text = "查询";
-            this.查询装置时间ToolStripMenuItem.Click += new System.EventHandler(this.查询装置时间ToolStripMenuItem_Click);
-            // 
-            // 设置装置时间ToolStripMenuItem1
-            // 
-            this.设置装置时间ToolStripMenuItem1.Name = "设置装置时间ToolStripMenuItem1";
-            this.设置装置时间ToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
-            this.设置装置时间ToolStripMenuItem1.Text = "设置";
-            this.设置装置时间ToolStripMenuItem1.Click += new System.EventHandler(this.设置装置时间ToolStripMenuItem1_Click);
-            // 
-            // 主站信息ToolStripMenuItem
-            // 
-            this.主站信息ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nw_查询主站信息ToolStripMenuItem,
-            this.nw_设置主站信息ToolStripMenuItem1});
-            this.主站信息ToolStripMenuItem.Name = "主站信息ToolStripMenuItem";
-            this.主站信息ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.主站信息ToolStripMenuItem.Text = "主站信息";
-            // 
-            // nw_查询主站信息ToolStripMenuItem
-            // 
-            this.nw_查询主站信息ToolStripMenuItem.Name = "nw_查询主站信息ToolStripMenuItem";
-            this.nw_查询主站信息ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.nw_查询主站信息ToolStripMenuItem.Text = "查询";
-            this.nw_查询主站信息ToolStripMenuItem.Click += new System.EventHandler(this.nw_查询主站信息ToolStripMenuItem_Click);
-            // 
-            // nw_设置主站信息ToolStripMenuItem1
-            // 
-            this.nw_设置主站信息ToolStripMenuItem1.Name = "nw_设置主站信息ToolStripMenuItem1";
-            this.nw_设置主站信息ToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
-            this.nw_设置主站信息ToolStripMenuItem1.Text = "设置";
-            this.nw_设置主站信息ToolStripMenuItem1.Click += new System.EventHandler(this.nw_设置主站信息ToolStripMenuItem1_Click);
-            // 
-            // 请求上传数据ToolStripMenuItem
-            // 
-            this.请求上传数据ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.未上传数据ToolStripMenuItem,
-            this.立即采集所有数据ToolStripMenuItem,
-            this.导地线拉力及偏角数据ToolStripMenuItem,
-            this.请求气象数据ToolStripMenuItem});
-            this.请求上传数据ToolStripMenuItem.Name = "请求上传数据ToolStripMenuItem";
-            this.请求上传数据ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.请求上传数据ToolStripMenuItem.Text = "请求上传数据";
-            // 
-            // 未上传数据ToolStripMenuItem
-            // 
-            this.未上传数据ToolStripMenuItem.Name = "未上传数据ToolStripMenuItem";
-            this.未上传数据ToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.未上传数据ToolStripMenuItem.Text = "未上传装置数据";
-            this.未上传数据ToolStripMenuItem.Click += new System.EventHandler(this.未上传装置数据ToolStripMenuItem_Click);
-            // 
-            // 立即采集所有数据ToolStripMenuItem
-            // 
-            this.立即采集所有数据ToolStripMenuItem.Name = "立即采集所有数据ToolStripMenuItem";
-            this.立即采集所有数据ToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.立即采集所有数据ToolStripMenuItem.Text = "立即采集所有数据";
-            this.立即采集所有数据ToolStripMenuItem.Click += new System.EventHandler(this.立即采集所有数据ToolStripMenuItem_Click);
-            // 
-            // 导地线拉力及偏角数据ToolStripMenuItem
-            // 
-            this.导地线拉力及偏角数据ToolStripMenuItem.Name = "导地线拉力及偏角数据ToolStripMenuItem";
-            this.导地线拉力及偏角数据ToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.导地线拉力及偏角数据ToolStripMenuItem.Text = "导地线拉力及倾角数据";
-            this.导地线拉力及偏角数据ToolStripMenuItem.Click += new System.EventHandler(this.导地线拉力及偏角数据ToolStripMenuItem_Click);
-            // 
-            // 请求气象数据ToolStripMenuItem
-            // 
-            this.请求气象数据ToolStripMenuItem.Name = "请求气象数据ToolStripMenuItem";
-            this.请求气象数据ToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.请求气象数据ToolStripMenuItem.Text = "气象数据";
-            this.请求气象数据ToolStripMenuItem.Click += new System.EventHandler(this.请求气象数据ToolStripMenuItem_Click);
-            // 
-            // 设置装置密码ToolStripMenuItem
-            // 
-            this.设置装置密码ToolStripMenuItem.Name = "设置装置密码ToolStripMenuItem";
-            this.设置装置密码ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.设置装置密码ToolStripMenuItem.Text = "设置装置密码";
-            this.设置装置密码ToolStripMenuItem.Click += new System.EventHandler(this.设置装置密码ToolStripMenuItem_Click);
-            // 
-            // 装置重启ToolStripMenuItem
-            // 
-            this.装置重启ToolStripMenuItem.Name = "装置重启ToolStripMenuItem";
-            this.装置重启ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.装置重启ToolStripMenuItem.Text = "装置重启";
-            this.装置重启ToolStripMenuItem.Click += new System.EventHandler(this.装置重启ToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
             // 
             // 数据曲线ToolStripMenuItem
             // 
@@ -1055,20 +930,6 @@
         private System.Windows.Forms.ToolStripMenuItem 录音删除ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 播放录音ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 设备控制ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 校时ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 主站信息ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem nw_查询主站信息ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem nw_设置主站信息ToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem 请求上传数据ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 请求气象数据ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 设置装置密码ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 装置重启ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 查询装置时间ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 设置装置时间ToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem 未上传数据ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 导地线拉力及偏角数据ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 立即采集所有数据ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     }
 }
 
