@@ -111,6 +111,8 @@
     <Compile Include="CommandDeal\Image\Image_Photo_UP.cs" />
     <Compile Include="CommandDeal\Image\Image_Photo_Adjust.cs" />
     <Compile Include="CommandDeal\Image\Photo_man.cs" />
+    <Compile Include="CommandDeal\nw\nw_cmd_03_device_config_set.cs" />
+    <Compile Include="CommandDeal\nw\nw_cmd_0a_device_config_get.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_86_photo_up_end.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_84_photo_up_begin.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_81_img_para.cs" />
@@ -141,6 +143,12 @@
       <DependentUpon>Messagebox_Textbox.cs</DependentUpon>
     </Compile>
     <Compile Include="ErrorCode.cs" />
+    <Compile Include="Forms\Dialogs_nw\Dialog_nw_para_config.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs_nw\Dialog_nw_para_config.Designer.cs">
+      <DependentUpon>Dialog_nw_para_config.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Dialogs_nw\Dialog_nw_camera_control.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -482,6 +490,9 @@
     <Compile Include="Work\PictureClean.cs" />
     <EmbeddedResource Include="Config\Common\Messagebox_Textbox.resx">
       <DependentUpon>Messagebox_Textbox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs_nw\Dialog_nw_para_config.resx">
+      <DependentUpon>Dialog_nw_para_config.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs_nw\Dialog_nw_camera_control.resx">
       <DependentUpon>Dialog_nw_camera_control.cs</DependentUpon>

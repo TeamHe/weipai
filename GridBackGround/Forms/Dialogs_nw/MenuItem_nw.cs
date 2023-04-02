@@ -361,6 +361,39 @@ namespace GridBackGround.Forms.Dialogs_nw
             }
         }
 
+        /// <summary>
+        /// 7.10 	查询装置配置参数（控制字：0AH）
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void menu_click_para_get(object sender, EventArgs e)
+        {
+            IPowerPole pole;
+            if ((pole = Parent.GetSeletedPole()) == null)
+                return;
+            nw_cmd_0a_device_config_get cmd = new nw_cmd_0a_device_config_get(pole);
+            cmd.Execute();
+        }
+
+        /// <summary>
+        /// 7.4 	主站下发参数配置（控制字：03H）
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void menu_click_para_set(object sender, EventArgs e)
+        {
+            IPowerPole pole;
+            if ((pole = Parent.GetSeletedPole()) == null)
+                return;
+            Dialog_nw_para_config dialog = new Dialog_nw_para_config();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                nw_cmd_03_device_config_set cmd = new nw_cmd_03_device_config_set(pole);
+                cmd.Password = dialog.Password;
+                cmd.Para = dialog.Config;
+                cmd.Execute();
+            }
+        }
 
         private void Menuitem_control_flush()
         {
@@ -384,6 +417,14 @@ namespace GridBackGround.Forms.Dialogs_nw
             this.AddDropDownMenuItem(menu_data, "立即采集所有数据", this.menu_click_data_get_imediately);
             this.AddDropDownMenuItem(menu_data, "导地线拉力及偏角数据", this.menu_click_22_data_pull_get);
             this.AddDropDownMenuItem(menu_data, "气象数据", this.menu_click_data_weather_get);
+
+            //装置配置参数
+            ToolStripMenuItem menu_para = this.AddDropDownMenuItem("装置配置参数");
+            //7.10 	查询装置配置参数（控制字：0AH）
+            this.AddDropDownMenuItem(menu_para, "查询", this.menu_click_para_get);
+            //7.4 	主站下发参数配置（控制字：03H）
+            this.AddDropDownMenuItem(menu_para, "设置", this.menu_click_para_set);
+
 
             //设置装置密码
             this.AddDropDownMenuItem("设置装置密码", menu_click_set_password);
