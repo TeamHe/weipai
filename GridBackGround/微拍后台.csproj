@@ -141,6 +141,12 @@
       <DependentUpon>Messagebox_Textbox.cs</DependentUpon>
     </Compile>
     <Compile Include="ErrorCode.cs" />
+    <Compile Include="Forms\Dialogs_nw\Dialog_nw_camera_control.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs_nw\Dialog_nw_camera_control.Designer.cs">
+      <DependentUpon>Dialog_nw_camera_control.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Dialogs_nw\Dialog_nw_image_Model.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -476,6 +482,9 @@
     <Compile Include="Work\PictureClean.cs" />
     <EmbeddedResource Include="Config\Common\Messagebox_Textbox.resx">
       <DependentUpon>Messagebox_Textbox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs_nw\Dialog_nw_camera_control.resx">
+      <DependentUpon>Dialog_nw_camera_control.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs_nw\Dialog_nw_image_Model.resx">
       <DependentUpon>Dialog_nw_image_Model.cs</DependentUpon>

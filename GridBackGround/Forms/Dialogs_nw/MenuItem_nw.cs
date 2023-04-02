@@ -143,14 +143,11 @@ namespace GridBackGround.Forms.Dialogs_nw
             if ((pole = Parent.GetSeletedPole()) == null)
                 return;
             nw_cmd_88_remote_camera_control cmd = new nw_cmd_88_remote_camera_control(pole);
-            cmd.Password = "1234";
-            cmd.Action = new Camera_Action()
+            Dialog_nw_camera_control dialog = new Dialog_nw_camera_control()
             {
-                Channel_no = 1,
-                actrion = Camera_Action.Actrion.Power_OFF,
-                Para = 0x34,
+                cmd = cmd,
             };
-            cmd.Execute();
+            dialog.Show();
         }
 
         /// <summary>
