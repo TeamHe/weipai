@@ -15,6 +15,7 @@ namespace GridBackGround.Forms.Dialogs_nw
         public Dialog_nw_password_input()
         {
             InitializeComponent();
+            this.CenterToParent();
         }
 
         public string Password 

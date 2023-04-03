@@ -17,6 +17,7 @@ namespace GridBackGround.Forms.Dialogs_nw
         public Dialog_nw_password()
         {
             InitializeComponent();
+            this.CenterToParent();
         }
 
         private void button_OK_Click(object sender, EventArgs e)

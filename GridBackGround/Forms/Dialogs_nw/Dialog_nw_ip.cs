@@ -22,6 +22,7 @@ namespace GridBackGround.Forms.Dialogs_nw
         public Dialog_nw_ip()
         {
             InitializeComponent();
+            this.CenterToParent();
         }
 
 

@@ -28,6 +28,7 @@ namespace GridBackGround.Forms.Dialogs_nw
         public Dialog_nw_camera_control()
         {
             InitializeComponent();
+            this.CenterToParent();
         }
         /// <summary>
         /// 初始化
