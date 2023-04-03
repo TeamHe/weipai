@@ -60,6 +60,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="HttpHelper.cs" />
+    <Compile Include="MetarnetRegex.cs" />
     <Compile Include="TimeUtil.cs" />
     <Compile Include="ComboxItem.cs" />
     <Compile Include="EnumUtil.cs" />
