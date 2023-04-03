@@ -112,6 +112,7 @@
     <Compile Include="CommandDeal\Image\Image_Photo_Adjust.cs" />
     <Compile Include="CommandDeal\Image\Photo_man.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_03_device_config_set.cs" />
+    <Compile Include="CommandDeal\nw\nw_cmd_09_weekup.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_0a_device_config_get.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_86_photo_up_end.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_84_photo_up_begin.cs" />

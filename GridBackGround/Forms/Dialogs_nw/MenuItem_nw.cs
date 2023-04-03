@@ -362,6 +362,26 @@ namespace GridBackGround.Forms.Dialogs_nw
         }
 
         /// <summary>
+        /// 7.9 	短信唤醒（控制字：09H）
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menu_click_weekup(object sender, EventArgs e)
+        {
+            IPowerPole pole;
+            if ((pole = Parent.GetSeletedPole()) == null)
+                return;
+            Dialog_nw_password_input dialog = new Dialog_nw_password_input();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                nw_cmd_09_weekup cmd = new nw_cmd_09_weekup(pole);
+                cmd.Password = dialog.Password;
+                cmd.Execute();
+            }
+        }
+
+
+        /// <summary>
         /// 7.10 	查询装置配置参数（控制字：0AH）
         /// </summary>
         /// <param name="sender"></param>
@@ -429,6 +449,7 @@ namespace GridBackGround.Forms.Dialogs_nw
             //设置装置密码
             this.AddDropDownMenuItem("设置装置密码", menu_click_set_password);
             this.AddDropDownMenuItem("装置重启", menu_click_reboot);
+            this.AddDropDownMenuItem("唤醒终端", menu_click_weekup);
         }
         #endregion
 
