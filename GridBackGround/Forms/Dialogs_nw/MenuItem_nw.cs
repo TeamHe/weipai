@@ -415,6 +415,28 @@ namespace GridBackGround.Forms.Dialogs_nw
             }
         }
 
+        /// <summary>
+        /// 7.14 	发送确认短信（控制字：0EH）
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void menu_click_send_sms(object sender, EventArgs e)
+        {
+            IPowerPole pole;
+            if ((pole = Parent.GetSeletedPole()) == null)
+                return;
+            Dialog_nw_send_sms dialog = new Dialog_nw_send_sms();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                nw_cmd_0e_send_sms cmd = new nw_cmd_0e_send_sms(pole);
+                cmd.Password = dialog.Password;
+                cmd.PhoneNum = dialog.PhoneNumber;
+                cmd.Execute();
+            }
+        }
+
+
+
         private void Menuitem_control_flush()
         {
             //装置时间查询设置
@@ -450,6 +472,8 @@ namespace GridBackGround.Forms.Dialogs_nw
             this.AddDropDownMenuItem("设置装置密码", menu_click_set_password);
             this.AddDropDownMenuItem("装置重启", menu_click_reboot);
             this.AddDropDownMenuItem("唤醒终端", menu_click_weekup);
+            this.AddDropDownMenuItem("发送确认短信", menu_click_send_sms);
+
         }
         #endregion
 
