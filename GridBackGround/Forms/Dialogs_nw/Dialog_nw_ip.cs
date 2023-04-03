@@ -65,6 +65,7 @@ namespace GridBackGround.Forms.Dialogs_nw
             if(this.textBox_password.Text.Length != 4)
             {
                 MessageBox.Show("请输入4位密码");
+                return;
             }
 
             if(this.center == null)
