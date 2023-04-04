@@ -114,6 +114,7 @@
     <Compile Include="CommandDeal\nw\nw_cmd_03_device_config_set.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_09_weekup.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_0a_device_config_get.cs" />
+    <Compile Include="CommandDeal\nw\nw_cmd_0b_function_config.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_0c_sleep_notice.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_0e_send_sms.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_86_photo_up_end.cs" />
@@ -146,6 +147,12 @@
       <DependentUpon>Messagebox_Textbox.cs</DependentUpon>
     </Compile>
     <Compile Include="ErrorCode.cs" />
+    <Compile Include="Forms\Dialogs_nw\Dialog_nw_functions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs_nw\Dialog_nw_functions.Designer.cs">
+      <DependentUpon>Dialog_nw_functions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Dialogs_nw\Dialog_nw_send_sms.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -499,6 +506,9 @@
     <Compile Include="Work\PictureClean.cs" />
     <EmbeddedResource Include="Config\Common\Messagebox_Textbox.resx">
       <DependentUpon>Messagebox_Textbox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs_nw\Dialog_nw_functions.resx">
+      <DependentUpon>Dialog_nw_functions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs_nw\Dialog_nw_send_sms.resx">
       <DependentUpon>Dialog_nw_send_sms.cs</DependentUpon>

@@ -435,6 +435,25 @@ namespace GridBackGround.Forms.Dialogs_nw
             }
         }
 
+        /// <summary>
+        /// 7.11 	装置功能配置（控制字：0BH）
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void menu_click_dev_function(object sender, EventArgs e)
+        {
+            IPowerPole pole;
+            if ((pole = Parent.GetSeletedPole()) == null)
+                return;
+            Dialog_nw_function dialog = new Dialog_nw_function();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                nw_cmd_0b_function_config cmd = new nw_cmd_0b_function_config(pole);
+                cmd.Password = dialog.Password;
+                cmd.Functions = dialog.Functions;
+                cmd.Execute();
+            }
+        }
 
 
         private void Menuitem_control_flush()
@@ -473,6 +492,7 @@ namespace GridBackGround.Forms.Dialogs_nw
             this.AddDropDownMenuItem("装置重启", menu_click_reboot);
             this.AddDropDownMenuItem("唤醒终端", menu_click_weekup);
             this.AddDropDownMenuItem("发送确认短信", menu_click_send_sms);
+            this.AddDropDownMenuItem("装置功能配置", menu_click_dev_function);
 
         }
         #endregion
