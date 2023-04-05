@@ -228,7 +228,7 @@ namespace GridBackGround
             {
                 //PacketAnaLysis.PackDivid_FrameType.PackDivid(cmdInfo, ref errorcode);
             }
-            //if (cmdInfo.ErrorCode == 3)
+            //if (cmdInfo.Code == 3)
                 //PacketAnaLysis.PackDivid_FrameType.PackDivid(cmdInfo, ref errorcode);
             return false;
         }
@@ -282,7 +282,7 @@ namespace GridBackGround
             data += Tools.StringTurn.ByteToHexString(cmdInfo.Packet);
             PacketAnaLysis.DisPacket.NewPacket(data);
             //显示报文
-            if ((cmdInfo.ErrorCode == 0))// || (cmdInfo.ErrorCode == 3))
+            if ((cmdInfo.ErrorCode == 0))// || (cmdInfo.Code == 3))
             {
                 if(pole != null)
                     PacketAnaLysis.PackDivid_FrameType.PackDivid(
@@ -294,7 +294,7 @@ namespace GridBackGround
                         ref errorcode);
             }
 
-            //if (cmdInfo.ErrorCode == 3)
+            //if (cmdInfo.Code == 3)
             //    PacketAnaLysis.DividPack_FrameType.PackDivid(cmdInfo, ref errorcode);
             cmdInfo = null;
             return false;

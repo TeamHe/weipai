@@ -322,6 +322,21 @@ namespace GridBackGround.Forms.Dialogs_nw
         }
 
         /// <summary>
+        /// 7.26 	上传设备故障信息（控制字：30H）
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menu_click_data_error_get(object sender, EventArgs e)
+        {
+            IPowerPole pole = Parent.GetSeletedPole();
+            if (pole != null)
+            {
+                nw_cmd_30_error_data cmd = new nw_cmd_30_error_data(pole);
+                cmd.Execute();
+            }
+        }
+
+        /// <summary>
         /// 7.3 	设置装置密码（控制字：02H）
         /// </summary>
         /// <param name="sender"></param>
@@ -478,6 +493,7 @@ namespace GridBackGround.Forms.Dialogs_nw
             this.AddDropDownMenuItem(menu_data, "立即采集所有数据", this.menu_click_data_get_imediately);
             this.AddDropDownMenuItem(menu_data, "导地线拉力及偏角数据", this.menu_click_22_data_pull_get);
             this.AddDropDownMenuItem(menu_data, "气象数据", this.menu_click_data_weather_get);
+            this.AddDropDownMenuItem(menu_data, "设备故障信息", this.menu_click_data_error_get);
 
             //装置配置参数
             ToolStripMenuItem menu_para = this.AddDropDownMenuItem("装置配置参数");
