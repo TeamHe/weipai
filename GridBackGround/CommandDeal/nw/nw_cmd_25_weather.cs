@@ -14,7 +14,7 @@ namespace GridBackGround.CommandDeal.nw
     /// <summary>
     /// 气象数据handle
     /// </summary>
-    public class nw_weathre
+    public class nw_weather
     {
         /// <summary>
         /// 数据时间
@@ -112,6 +112,8 @@ namespace GridBackGround.CommandDeal.nw
 
         public override string Name { get { return "气象数据"; } }
 
+        public string Password { get; set; }
+
         /// <summary>
         /// 是否为主站请求数据
         /// </summary>
@@ -125,7 +127,7 @@ namespace GridBackGround.CommandDeal.nw
         /// <summary>
         /// 本次接收到的数据列表
         /// </summary>
-        public List<nw_weathre> Weathres { get; set; }
+        public List<nw_weather> Weathres { get; set; }
 
         public nw_cmd_25_weather()
         {
@@ -144,7 +146,7 @@ namespace GridBackGround.CommandDeal.nw
         /// <param name="offset"></param>
         /// <param name="weather"></param>
         /// <returns></returns>
-        public int Decode_Weather(byte[] data, int offset, out nw_weathre weather)
+        public int Decode_Weather(byte[] data, int offset, out nw_weather weather)
         {
             weather = null;
             //温度:上送值减去 500 除以 10 即为实际环境温度，如 450 =（450 - 500）/ 10 = -5.0 度；
@@ -162,7 +164,7 @@ namespace GridBackGround.CommandDeal.nw
             int no = offset;
 
             int u16 = 0;
-            weather = new nw_weathre();
+            weather = new nw_weather();
             //温度
             no += this.GetU16(data, no, out u16);
             weather.Temp = (u16 - 500) / 10.0;
@@ -230,7 +232,7 @@ namespace GridBackGround.CommandDeal.nw
 
             for(int i = 0; i < pnum; i++)
             {
-                if((ret = this.Decode_Weather(this.Data,offset,out nw_weathre weather)) < 0)
+                if((ret = this.Decode_Weather(this.Data,offset,out nw_weather weather)) < 0)
                 {
                     msg = string.Format("第{0}包数据解析失败", i);
                     break;
@@ -270,7 +272,7 @@ namespace GridBackGround.CommandDeal.nw
                 data[2] = 0x55;
                 return data;
             }
-            msg = "主站请求上传气象数据";
+                        msg = "主站请求上传气象数据";
             return null;
         }
     }
