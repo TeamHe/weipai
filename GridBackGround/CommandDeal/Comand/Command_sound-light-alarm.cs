@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 using Tools;
+using ResModel;
 
 namespace GridBackGround.CommandDeal
 {
@@ -61,7 +62,7 @@ namespace GridBackGround.CommandDeal
         }
 
 
-        public static void Response(Termination.IPowerPole pole,
+        public static void Response(IPowerPole pole,
             byte frame_No,
             byte[] data)
         {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Sodao.FastSocket.SocketBase;
 using Sodao.FastSocket.Server;
+using ResModel;
 
 namespace GridBackGround.Termination
 {
@@ -63,10 +64,10 @@ namespace GridBackGround.Termination
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private static void PoleStateChange(object sender, Termination.PowerPoleStateChange e)
+        private static void PoleStateChange(object sender, PowerPoleStateChange e)
         {
             if (OnStateChange != null)
-                OnStateChange(e.Power);     //触发终端变化事件，通知界面更新状态
+                OnStateChange((PowerPole)e.Power);     //触发终端变化事件，通知界面更新状态
         }
         
         /// <summary>

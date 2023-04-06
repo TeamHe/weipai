@@ -8,6 +8,7 @@ using Sodao.FastSocket.Server;
 using System.Windows.Forms;
 using GridBackGround.Communicat;
 using GridBackGround.Termination;
+using ResModel;
 
 namespace GridBackGround
 { 
@@ -243,13 +244,13 @@ namespace GridBackGround
         /// <returns></returns>
         public static bool RecData(UdpSession session, CommandInfoV2 cmdInfo)
         {
-            Termination.IPowerPole pole = null;
+            IPowerPole pole = null;
             if (cmdInfo.CMD_ID.Length == 17)
             {
-                pole = Termination.PowerPoleManage.PowerPole(cmdInfo.CMD_ID, session);
+                pole = PowerPoleManage.PowerPole(cmdInfo.CMD_ID, session);
                 
             }
-            RecDataDeal(cmdInfo, Communicat.EConnectType.UDP, pole);
+            RecDataDeal(cmdInfo, EConnectType.UDP, pole);
             return false;
         }
         /// <summary>
@@ -260,7 +261,7 @@ namespace GridBackGround
         /// <returns></returns>
         public static bool RecData(IConnection connection, CommandInfoV2 cmdInfo)
         {
-            Termination.IPowerPole pole = null;
+            IPowerPole pole = null;
             if (cmdInfo.CMD_ID.Length == 17)
             {
                 pole = PowerPoleManage.PowerPole(cmdInfo.CMD_ID, connection);
@@ -274,7 +275,7 @@ namespace GridBackGround
         /// <param name="cmdInfo"></param>
         /// <param name="conType"></param>
         /// <returns></returns>
-        public static bool RecDataDeal(CommandInfoV2 cmdInfo, EConnectType conType,Termination.IPowerPole pole)
+        public static bool RecDataDeal(CommandInfoV2 cmdInfo, EConnectType conType,IPowerPole pole)
         {
 
             int errorcode = cmdInfo.ErrorCode;
@@ -308,7 +309,7 @@ namespace GridBackGround
         /// <returns></returns>
         public static bool RecData(UdpSession session, CommandInfo_nw cmdInfo)
         {
-            Termination.IPowerPole pole = null;
+            IPowerPole pole = null;
             if (cmdInfo.CMD_ID != null)
             {
                 pole = PowerPoleManage.PowerPole(cmdInfo.CMD_ID, session);

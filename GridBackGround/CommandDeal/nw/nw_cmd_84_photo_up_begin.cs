@@ -1,5 +1,6 @@
 ﻿using GridBackGround.CommandDeal.Image;
 using GridBackGround.Termination;
+using ResModel;
 using ResModel.CollectData;
 using System;
 using System.Collections.Generic;

@@ -71,12 +71,21 @@
     <Compile Include="EQU\Line.cs" />
     <Compile Include="EQU\Pic_Op.cs" />
     <Compile Include="EQU\Tower.cs" />
+    <Compile Include="IPowerPole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataTurn\Tools.csproj">
       <Project>{5B332DA9-EE1D-40C2-97A2-4570397BD7ED}</Project>
       <Name>Tools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FastSocket.Server\FastSocket.Server.csproj">
+      <Project>{c9433cad-5795-4735-8da8-76bec4c82a52}</Project>
+      <Name>FastSocket.Server</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FastSocket.SocketBase\FastSocket.SocketBase.csproj">
+      <Project>{19AC13BD-92BD-4851-A38F-5642C1F97656}</Project>
+      <Name>FastSocket.SocketBase</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

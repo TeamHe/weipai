@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ResModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ namespace GridBackGround.CommandDeal
         /// <param name="cmd_ID"></param>
         /// <param name="frame_No"></param>
         /// <param name="data"></param>
-        public static void Heart(Termination.IPowerPole pole,
+        public static void Heart(IPowerPole pole,
             byte frame_No,
             byte[] data)
         {

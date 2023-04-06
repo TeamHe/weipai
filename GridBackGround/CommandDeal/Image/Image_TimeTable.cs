@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ResModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,7 @@ namespace GridBackGround.CommandDeal
             return Con(cmd_ID, true, Channel_No, model);
         }
 
-        public static void Response(Termination.IPowerPole pole, byte frame_No, byte[] data)
+        public static void Response(IPowerPole pole, byte frame_No, byte[] data)
         {
             if (data.Length < 3) return;
             string pacMsg = "";

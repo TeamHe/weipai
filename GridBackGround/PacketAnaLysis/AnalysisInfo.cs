@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ResModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,7 +38,7 @@ namespace GridBackGround.PacketAnaLysis
        /// <param name="data"></param>
         public DataInfo(
                  DataRecSendState state,
-                 Termination.IPowerPole pole,
+                 IPowerPole pole,
                  string Command,
                  string data)
         {

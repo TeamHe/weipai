@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ResModel;
 using Sodao.FastSocket.Server.Command;
 
 namespace GridBackGround.PacketAnaLysis
@@ -17,7 +18,7 @@ namespace GridBackGround.PacketAnaLysis
         /// </summary>
         /// <param name="cmdInfo"></param>
         /// <returns></returns>
-        public static bool PackDivid(Termination.IPowerPole pole, 
+        public static bool PackDivid(IPowerPole pole, 
             int frame_Type,
             int packet_Type,
             byte frame_No,

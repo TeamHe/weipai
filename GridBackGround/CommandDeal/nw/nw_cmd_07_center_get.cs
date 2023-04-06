@@ -1,5 +1,6 @@
 ﻿using GridBackGround.PacketAnaLysis;
 using GridBackGround.Termination;
+using ResModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;

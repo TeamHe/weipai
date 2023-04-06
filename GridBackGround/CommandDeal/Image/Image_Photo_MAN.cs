@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ResModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,7 +35,7 @@ namespace GridBackGround.CommandDeal
         /// <param name="cmd_ID">设备ID </param>
         /// <param name="frame_No"></param>
         /// <param name="data">数据</param>
-        public static void Response(Termination.IPowerPole pole,
+        public static void Response(IPowerPole pole,
             byte frame_No,
             byte[] data)
         {

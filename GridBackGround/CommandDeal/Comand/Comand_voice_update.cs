@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using ResModel;
 
 namespace GridBackGround.CommandDeal
 {
@@ -144,7 +145,7 @@ namespace GridBackGround.CommandDeal
             //throw new NotImplementedException();
         }
 
-        public static void rsp_update_start(Termination.IPowerPole pole,
+        public static void rsp_update_start(IPowerPole pole,
             byte frame_No,
             byte[] data)
         {
@@ -166,7 +167,7 @@ namespace GridBackGround.CommandDeal
         /// <param name="pole">设备handle</param>
         /// <param name="frame_No">帧序号</param>
         /// <param name="data">数据内容</param>
-        public static void rsp_update_bubao(Termination.IPowerPole pole,
+        public static void rsp_update_bubao(IPowerPole pole,
             byte frame_No, byte[] data)
         {
             string pacMsg = "语音文件补包";
@@ -199,7 +200,7 @@ namespace GridBackGround.CommandDeal
         /// <param name="pole"></param>
         /// <param name="frame_No"></param>
         /// <param name="data">升级包</param>
-        public static void rsp_update_finish(Termination.IPowerPole pole,
+        public static void rsp_update_finish(IPowerPole pole,
             byte frame_No,
             byte[] data)
         {
@@ -223,7 +224,7 @@ namespace GridBackGround.CommandDeal
         /// <param name="pole"></param>
         /// <param name="fram_no"></param>
         /// <param name="data"></param>
-        public static void rsp_delete(Termination.IPowerPole pole,byte fram_no,byte[] data)
+        public static void rsp_delete(IPowerPole pole,byte fram_no,byte[] data)
         {
             int BubaoNum = Tools.intTurn.ByteToUint16(data, 0);
             string msg = string.Format("语音文件:{0}， 删除完成", BubaoNum);

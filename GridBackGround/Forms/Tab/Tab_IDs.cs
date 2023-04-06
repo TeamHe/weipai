@@ -11,6 +11,7 @@ using ResModel.EQU;
 using ResModel.CollectData;
 using DB_Operation.EQUManage;
 using Tools;
+using ResModel;
 
 namespace GridBackGround.Forms.Tab
 {
@@ -21,7 +22,7 @@ namespace GridBackGround.Forms.Tab
         private const string TestTowerName = "TestTower";
         private int lineID = -1;
 
-        public delegate void NodeStateChange(Termination.IPowerPole powerPole);
+        public delegate void NodeStateChange(IPowerPole powerPole);
 
         private NodeStateChange changeDelegate;
 
@@ -82,7 +83,7 @@ namespace GridBackGround.Forms.Tab
         /// 向添加ID
         /// </summary>
         /// <param name="str"></param>
-        private void NodeChange(Termination.IPowerPole powerPole)
+        private void NodeChange(IPowerPole powerPole)
         {
             //需要进行委托处理
             if (this.InvokeRequired)
@@ -258,7 +259,7 @@ namespace GridBackGround.Forms.Tab
         /// </summary>
         /// <param name="powerPole"></param>
         /// <param name="node"></param>
-        public void UpdateEquMsg(TreeNode node, Termination.IPowerPole powerPole)
+        public void UpdateEquMsg(TreeNode node, IPowerPole powerPole)
         {
             if (node == null) return;
             if (node.Tag == null)

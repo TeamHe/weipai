@@ -1,10 +1,5 @@
-﻿using GridBackGround.PacketAnaLysis;
-using GridBackGround.Termination;
+﻿using ResModel;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GridBackGround.CommandDeal.nw
 {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using ResModel;
 using ResModel.EQU;
 using Tools;
 
@@ -46,7 +46,7 @@ namespace GridBackGround.CommandDeal
         /// <param name="cmd_ID">设备ID</param>
         /// <param name="frame_No"></param>
         /// <param name="data"></param>
-        public static void Response(Termination.IPowerPole pole, byte frame_No, byte[] data)
+        public static void Response(IPowerPole pole, byte frame_No, byte[] data)
         {
             string pacMsg = "";
             if (data[0] == 0xff)

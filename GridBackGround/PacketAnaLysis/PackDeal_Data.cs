@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ResModel;
 using ResModel.EQU;
 
 
@@ -19,7 +20,7 @@ namespace GridBackGround.PacketAnaLysis
         /// <param name="data"></param>
         /// <param name="errorCode"></param>
         /// <returns></returns>
-        public static bool PacketDeivid(Termination.IPowerPole pole,
+        public static bool PacketDeivid(IPowerPole pole,
             int packet_Type,
             byte frame_No,
             byte[] data,

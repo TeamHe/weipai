@@ -1,6 +1,6 @@
 ﻿using DB_Operation.EQUManage;
 using GridBackGround.PacketAnaLysis;
-using GridBackGround.Termination;
+using ResModel;
 using ResModel.CollectData;
 using ResModel.EQU;
 using System;

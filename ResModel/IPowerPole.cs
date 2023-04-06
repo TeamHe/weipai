@@ -5,14 +5,33 @@ using System.Text;
 using System.Net;
 using Sodao.FastSocket.SocketBase;
 using Sodao.FastSocket.Server;
-
 using ResModel.EQU;
 
-namespace GridBackGround.Termination
+namespace ResModel
 {
     //public delegate void PowerPoleOutLineHandler(string str);
-   
-     public interface IPowerPole
+    /// <summary>
+    /// 装置状态变化事件
+    /// </summary>
+    public class PowerPoleStateChange : EventArgs
+    {
+        /// <summary>
+        /// 设备状态变化
+        /// </summary>
+        /// <param name="powerPole"></param>
+        public PowerPoleStateChange(IPowerPole powerPole)
+        {
+            Power = powerPole;
+
+        }
+        /// <summary>
+        /// 发送状态变化的节点
+        /// </summary>
+        public IPowerPole Power { get; set; }
+    }
+
+
+    public interface IPowerPole
     {
         /// <summary>
         /// 装置名称

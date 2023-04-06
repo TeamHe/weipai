@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using ResModel;
 
 namespace GridBackGround.CommandDeal
 {
@@ -150,7 +151,7 @@ namespace GridBackGround.CommandDeal
             //throw new NotImplementedException();
         }
 
-        public static void RemoteUpdateStartResponse(Termination.IPowerPole pole,
+        public static void RemoteUpdateStartResponse(IPowerPole pole,
             byte frame_No,
             byte[] data)
         {
@@ -186,7 +187,7 @@ namespace GridBackGround.CommandDeal
         /// <summary>
         /// 远程升级补包处理
         /// </summary>
-        public static void RemoteUpdateBuBao(Termination.IPowerPole pole,
+        public static void RemoteUpdateBuBao(IPowerPole pole,
             byte frame_No,
             byte[] data)
         {

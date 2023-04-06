@@ -1,5 +1,6 @@
 ﻿using GridBackGround.Termination;
 using log4net.Appender;
+using ResModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;

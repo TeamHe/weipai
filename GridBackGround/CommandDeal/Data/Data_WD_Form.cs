@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ResModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,7 @@ namespace GridBackGround.CommandDeal
         /// <param name="cmd_ID"></param>
         /// <param name="frame_NO"></param>
         /// <param name="data"></param>
-        public static void Deal(Termination.IPowerPole pole, byte frame_NO, byte[] data)
+        public static void Deal(IPowerPole pole, byte frame_NO, byte[] data)
         {
             CMD_ID = pole.CMD_ID;
             string Component_ID;       //被测设备ID

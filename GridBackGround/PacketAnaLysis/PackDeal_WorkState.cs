@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ResModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ namespace GridBackGround.PacketAnaLysis
         /// <param name="errorCode"></param>
         /// <returns></returns>
         public static bool PacketDeivid(
-            Termination.IPowerPole pole,
+            IPowerPole pole,
             int packet_Type,
             byte frame_No,
             byte[] data,

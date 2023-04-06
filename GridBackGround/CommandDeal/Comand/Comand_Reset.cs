@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ResModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -65,7 +66,7 @@ namespace GridBackGround.CommandDeal
         /// 
         /// </summary>
         /// <param name="cmdInfo"></param>
-        public static void ResetResponse(Termination.IPowerPole pole,
+        public static void ResetResponse(IPowerPole pole,
             byte frame_No,
             byte[] data)
         {

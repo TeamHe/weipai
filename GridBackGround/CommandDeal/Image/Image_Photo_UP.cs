@@ -8,6 +8,7 @@ using ResModel.EQU;
 using ResModel.CollectData;
 using DB_Operation.RealData;
 using DB_Operation.EQUManage;
+using ResModel;
 
 namespace GridBackGround.CommandDeal
 {
@@ -25,7 +26,7 @@ namespace GridBackGround.CommandDeal
         /// <param name="chno"></param>
         /// <param name="preno"></param>
         /// <returns></returns>
-        private Picture GetPicture(Termination.IPowerPole pole,int chno,int preno)
+        private Picture GetPicture(IPowerPole pole,int chno,int preno)
         {
             if (pole == null) return null;
             if (pole.UserData == null)
@@ -46,7 +47,7 @@ namespace GridBackGround.CommandDeal
             return picture;
         }
 
-        private Picture NewPicture(Termination.IPowerPole pole,int chno,int preno,int pacnum)
+        private Picture NewPicture(IPowerPole pole,int chno,int preno,int pacnum)
         {
             Picture picture = new Picture(chno, preno);
             picture.Equ = pole.Equ;
@@ -67,7 +68,7 @@ namespace GridBackGround.CommandDeal
             }
             return picture;
         }
-        private void RemovePicture(Termination.IPowerPole pole,Picture pic)
+        private void RemovePicture(IPowerPole pole,Picture pic)
         {
             lock (pole.Lock)
             {
@@ -83,7 +84,7 @@ namespace GridBackGround.CommandDeal
         /// <param name="cmd_ID"></param>
         /// <param name="frame_No"></param>
         /// <param name="data"></param>
-        public  void Ask_To_Up(Termination.IPowerPole pole,
+        public  void Ask_To_Up(IPowerPole pole,
             byte frame_No,
             byte[] data)
         {
@@ -149,7 +150,7 @@ namespace GridBackGround.CommandDeal
         /// <param name="cmd_ID"></param>
         /// <param name="frame_No"></param>
         /// <param name="data"></param>
-        public  void Image_Data(Termination.IPowerPole pole,
+        public  void Image_Data(IPowerPole pole,
             byte frame_No,
             byte[] data)
         {
@@ -213,7 +214,7 @@ namespace GridBackGround.CommandDeal
         /// <param name="cmd_ID"></param>
         /// <param name="frame_No"></param>
         /// <param name="data"></param>
-        public  void Image_Data_End(Termination.IPowerPole pole,
+        public  void Image_Data_End(IPowerPole pole,
             byte frame_No,
             byte[] data)
         {
@@ -351,7 +352,7 @@ namespace GridBackGround.CommandDeal
             
         //}
 
-        public int SendStilPac(Termination.IPowerPole pole,int channal,int preset,int [] packets)
+        public int SendStilPac(IPowerPole pole,int channal,int preset,int [] packets)
         {
             string pacMsg = "";
             int StilRecCount = 0;
@@ -420,7 +421,7 @@ namespace GridBackGround.CommandDeal
         /// <param name="pole"></param>
         /// <param name="time"></param>
         /// <param name="Presetting_No"></param>
-        public  void SavePhoto(Termination.IPowerPole pole,Picture picture)
+        public  void SavePhoto(IPowerPole pole,Picture picture)
         {
             string saveMsg = "";
             bool state = true;

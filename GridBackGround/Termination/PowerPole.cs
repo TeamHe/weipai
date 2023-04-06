@@ -9,6 +9,8 @@ using System.Net;
 
 using ResModel.EQU;
 using DB_Operation.EQUManage;
+using ResModel;
+
 namespace GridBackGround.Termination
 {
     
@@ -455,24 +457,5 @@ namespace GridBackGround.Termination
         }
 
         #endregion
-    }
-    /// <summary>
-    /// 装置状态变化事件
-    /// </summary>
-    public class PowerPoleStateChange : EventArgs
-    {
-        /// <summary>
-        /// 设备状态变化
-        /// </summary>
-        /// <param name="powerPole"></param>
-        public PowerPoleStateChange(PowerPole powerPole)
-        {
-            Power = powerPole;
-
-        }
-        /// <summary>
-        /// 发送状态变化的节点
-        /// </summary>
-        public PowerPole Power{get;set;}
     }
 }

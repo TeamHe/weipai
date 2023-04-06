@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ResModel.EQU;
+using ResModel;
 using System.ComponentModel;
 using System.Reflection;
 using Tools;
@@ -44,7 +45,7 @@ namespace GridBackGround.CommandDeal.Data
         /// <param name="pole"></param>
         /// <param name="datatype"></param>
         /// <param name="data"></param>
-        public RealDataAyan(Termination.IPowerPole pole, int datatype,byte[] data)
+        public RealDataAyan(IPowerPole pole, int datatype,byte[] data)
             :this(data,(ICMP)datatype,pole.Name ,pole.CMD_ID)
         {
             DisAyanMsg();

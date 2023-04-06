@@ -86,10 +86,6 @@
       <Project>{19AC13BD-92BD-4851-A38F-5642C1F97656}</Project>
       <Name>FastSocket.SocketBase</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ResModel\ResModel.csproj">
-      <Project>{EA6C2A86-18B3-4038-9872-0EC55A0C0CD4}</Project>
-      <Name>ResModel</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

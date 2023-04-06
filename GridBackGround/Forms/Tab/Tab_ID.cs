@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ResModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -44,12 +45,12 @@ namespace GridBackGround
 
         #region 节点状态变化处理
 
-        public delegate void NodeStateChange(Termination.IPowerPole powerPole);
+        public delegate void NodeStateChange(IPowerPole powerPole);
         /// <summary>
         /// 向添加ID
         /// </summary>
         /// <param name="str"></param>
-        private void NodeChange(Termination.IPowerPole powerPole)
+        private void NodeChange(IPowerPole powerPole)
         {
             //需要进行委托处理
             if (this.InvokeRequired)

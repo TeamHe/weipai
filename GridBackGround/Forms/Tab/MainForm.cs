@@ -15,6 +15,7 @@ using GridBackGround.Termination;
 using GridBackGround.CommandDeal.nw;
 using GridBackGround.Forms.Dialogs_nw;
 using GridBackGround.Forms;
+using ResModel;
 
 namespace GridBackGround
 {
