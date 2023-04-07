@@ -1,5 +1,4 @@
 ﻿using System;
-using ResModel.EQU;
 
 namespace Sodao.FastSocket.Server.Command
 {
