@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using ResModel.nw;
 using ResModel;
+using DB_Operation.RealData;
 
 namespace GridBackGround.CommandDeal.nw
 {
@@ -31,7 +32,7 @@ namespace GridBackGround.CommandDeal.nw
         /// <summary>
         /// 本次接收到的数据列表
         /// </summary>
-        public List<nw_weather> Weathres { get; set; }
+        public List<nw_weather> Weathers { get; set; }
 
         public nw_cmd_25_weather()
         {
@@ -132,8 +133,10 @@ namespace GridBackGround.CommandDeal.nw
             int ret = 0;
             this.FrameFlag = this.Data[offset++];
             int pnum = this.Data[offset++];
+            this.Weathers = new List<nw_weather>();
+            db_nw_weather db = new db_nw_weather(this.Pole);
+            
             offset += this.GetDateTime(this.Data, offset, out DateTime datatime);
-
             for(int i = 0; i < pnum; i++)
             {
                 if((ret = this.Decode_Weather(this.Data,offset,out nw_weather weather)) < 0)
@@ -144,10 +147,21 @@ namespace GridBackGround.CommandDeal.nw
 
                 offset += ret;
                 weather.DataTime = datatime;
+                this.Weathers.Add(weather);
+
+                string msg1 = string.Empty;
+                try
+                {
+                    db.DataSave(weather);
+                }
+                catch
+                {
+                    msg1 = "数据存储失败";
+                }
+
                 //显示数据
                 DisPacket.NewRecord(new DataInfo(DataRecSendState.rec, this.Pole,
-                    this.Name, weather.ToString()));
-
+                    this.Name, weather.ToString() + msg1));
                 if (i == pnum - 1)
                     break;
                 if((this.Data.Length - offset) < 2)

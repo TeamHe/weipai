@@ -5,6 +5,7 @@ using System.Text;
 using System.Data;
 using SQLUtils;
 using ResModel.EQU;
+using System.Runtime.CompilerServices;
 
 namespace DB_Operation.RealData
 {
@@ -292,6 +293,12 @@ namespace DB_Operation.RealData
             //    throw ex;
             //}
         }
+
+        public static int GetTowerID(string CMD_ID)
+        {
+            return GetTowerID(CMD_ID,Connection,ICMP.Picture);
+        }
+
     }
-    
+
 }
