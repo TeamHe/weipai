@@ -397,6 +397,7 @@ namespace GridBackGround.Termination
         /// 声光报警指令定时器
         /// </summary>
         private Timer timer_VoiceLightAlarm { get; set; }
+        public int Pole_id { get ; set ; }
 
         /// <summary>
         /// 发送声光报警指令

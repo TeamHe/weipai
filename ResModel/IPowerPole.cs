@@ -33,6 +33,7 @@ namespace ResModel
 
     public interface IPowerPole
     {
+        int Pole_id { get; set; }
         /// <summary>
         /// 装置名称
         /// </summary>
