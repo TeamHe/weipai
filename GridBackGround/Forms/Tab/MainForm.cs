@@ -139,9 +139,9 @@ namespace GridBackGround
                 {
                     TabID.Show();
                 }
-                catch
+                catch(Exception ex)
                 {
-                    MessageBox.Show("无法连接到数据库,点击确定修改数据库连接");
+                    MessageBox.Show("无法连接到数据库,点击确定修改数据库连接" + ex.Message);
                     this.数据库测试ToolStripMenuItem_Click(this.数据库测试ToolStripMenuItem,new EventArgs());
                 }
 
