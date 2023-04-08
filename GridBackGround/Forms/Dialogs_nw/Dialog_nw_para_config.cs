@@ -36,10 +36,10 @@ namespace GridBackGround.Forms.Dialogs_nw
         {
             this.Config = config;
             this.textBox_auth_paasword.Text = Config.Password;
-            this.textBox_heart_time.Text = (this.Config.Heart/60).ToString();
-            this.textBox_ScanInterval.Text = (this.Config.ScanInterval/60).ToString();
-            this.textBox_DormancyDuration.Text = (this.Config.DormancyDuration / 60).ToString();
-            this.textBox_OnlineTime.Text = (this.Config.OnlineTime / 60).ToString();
+            this.textBox_heart_time.Text = (this.Config.Heart).ToString();
+            this.textBox_ScanInterval.Text = (this.Config.ScanInterval).ToString();
+            this.textBox_DormancyDuration.Text = (this.Config.DormancyDuration ).ToString();
+            this.textBox_OnlineTime.Text = (this.Config.OnlineTime).ToString();
             this.numericUpDown_reboot_time_day.Value = this.Config.Reboot_day;
             this.numericUpDown_reboot_time_hour.Value = this.Config.Reboot_hour;
             this.numericUpDown_reboot_time_min.Value = this.Config.Reboot_min;
@@ -51,22 +51,22 @@ namespace GridBackGround.Forms.Dialogs_nw
             int val = 0;
 
             if (int.TryParse(this.textBox_heart_time.Text, out val) && val <= 6)
-                config.Heart = val * 60;
+                config.Heart = val;
             else
                 throw new ArgumentException("请输入正确的心跳周期,小于6分钟");
 
             if (int.TryParse(this.textBox_ScanInterval.Text, out val))
-                config.ScanInterval = val * 60;
+                config.ScanInterval = val;
             else
                 throw new ArgumentException("请输入正确的采集间隔");
 
             if (int.TryParse(this.textBox_DormancyDuration.Text, out val))
-                config.DormancyDuration = val * 60;
+                config.DormancyDuration = val;
             else
                 throw new ArgumentException("请输入正确的休眠时长");
 
             if (int.TryParse(this.textBox_OnlineTime.Text, out val))
-                config.OnlineTime = val * 60;
+                config.OnlineTime = val;
             else
                 throw new ArgumentException("请输入正确在线时长");
 

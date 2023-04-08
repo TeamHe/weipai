@@ -46,10 +46,10 @@ namespace GridBackGround.CommandDeal.nw
         {
             StringBuilder builder = new StringBuilder();
             builder.AppendFormat("心跳周期:{0}min 采集间隔:{1}min 休眠时长:{2}min 在线时长:{3}min 重启时间:{4}日 {5}时 {6}分 ",
-                this.Heart / 60,
-                this.ScanInterval / 60,
-                this.DormancyDuration / 60,
-                this.OnlineTime / 60,
+                this.Heart,
+                this.ScanInterval,
+                this.DormancyDuration,
+                this.OnlineTime,
                 this.Reboot_day,
                 this.Reboot_hour,
                 this.Reboot_min);
