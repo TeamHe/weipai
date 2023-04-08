@@ -116,31 +116,35 @@ namespace GridBackGround.CommandDeal.nw
             int pnum = this.Data[offset++];
             this.DevStatus = this.Data[offset++];
             msg += string.Format("当前故障状态:{0}", DevStatus > 0x00 ? "故障" : "正常");
-            offset += this.GetDateTime(this.Data, offset, out DateTime datatime);
-            for (int i = 0; i < pnum; i++)
+            if(pnum > 0 )
             {
-                if ((ret = this.Decode_Error(this.Data, offset, out mw_error_data error)) < 0)
+                offset += this.GetDateTime(this.Data, offset, out DateTime datatime);
+                for (int i = 0; i < pnum; i++)
                 {
-                    msg = string.Format("第{0}包数据解析失败", i);
-                    break;
+                    if ((ret = this.Decode_Error(this.Data, offset, out mw_error_data error)) < 0)
+                    {
+                        msg = string.Format("第{0}包数据解析失败", i);
+                        break;
+                    }
+
+                    offset += ret;
+                    error.DataTime = datatime;
+                    //显示数据
+                    DisPacket.NewRecord(new DataInfo(DataRecSendState.rec, this.Pole,
+                        this.Name, error.ToString()));
+
+                    if (i == pnum - 1)
+                        break;
+                    if ((this.Data.Length - offset) < 2)
+                    {
+                        msg = string.Format("第{0}包数据长度错误", i + 1);
+                        break;
+                    }
+
+                    offset += this.GetU16(this.Data, offset, out int period);
+                    datatime = datatime.AddSeconds(period);
                 }
 
-                offset += ret;
-                error.DataTime = datatime;
-                //显示数据
-                DisPacket.NewRecord(new DataInfo(DataRecSendState.rec, this.Pole,
-                    this.Name, error.ToString()));
-
-                if (i == pnum - 1)
-                    break;
-                if ((this.Data.Length - offset) < 2)
-                {
-                    msg = string.Format("第{0}包数据长度错误", i + 1);
-                    break;
-                }
-
-                offset += this.GetU16(this.Data, offset, out int period);
-                datatime = datatime.AddSeconds(period);
             }
             this.Response = true;
             this.SendCommand(out string msg_send);
