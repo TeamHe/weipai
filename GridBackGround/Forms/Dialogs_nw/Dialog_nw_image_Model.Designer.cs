@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            GridBackGround.CommandDeal.nw.nw_img_para nw_img_para3 = new GridBackGround.CommandDeal.nw.nw_img_para();
-            GridBackGround.CommandDeal.nw.nw_img_para nw_img_para4 = new GridBackGround.CommandDeal.nw.nw_img_para();
+            GridBackGround.CommandDeal.nw.nw_img_para nw_img_para1 = new GridBackGround.CommandDeal.nw.nw_img_para();
+            GridBackGround.CommandDeal.nw.nw_img_para nw_img_para2 = new GridBackGround.CommandDeal.nw.nw_img_para();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -83,12 +83,12 @@
             // userControl_nw_img_para1
             // 
             this.userControl_nw_img_para1.Dock = System.Windows.Forms.DockStyle.Fill;
-            nw_img_para3.Brightness = 50;
-            nw_img_para3.Color = GridBackGround.CommandDeal.nw.nw_img_para.EColor.Black;
-            nw_img_para3.Contrast = 50;
-            nw_img_para3.Resolution = GridBackGround.CommandDeal.nw.nw_img_para.EResolution.R_320_240;
-            nw_img_para3.Saturation = 50;
-            this.userControl_nw_img_para1.Image_para = nw_img_para3;
+            nw_img_para1.Brightness = 50;
+            nw_img_para1.Color = GridBackGround.CommandDeal.nw.nw_img_para.EColor.Black;
+            nw_img_para1.Contrast = 50;
+            nw_img_para1.Resolution = GridBackGround.CommandDeal.nw.nw_img_para.EResolution.R_320_240;
+            nw_img_para1.Saturation = 50;
+            this.userControl_nw_img_para1.Image_para = nw_img_para1;
             this.userControl_nw_img_para1.Location = new System.Drawing.Point(3, 3);
             this.userControl_nw_img_para1.Name = "userControl_nw_img_para1";
             this.userControl_nw_img_para1.Size = new System.Drawing.Size(263, 187);
@@ -108,12 +108,12 @@
             // userControl_nw_img_para2
             // 
             this.userControl_nw_img_para2.Dock = System.Windows.Forms.DockStyle.Fill;
-            nw_img_para4.Brightness = 50;
-            nw_img_para4.Color = GridBackGround.CommandDeal.nw.nw_img_para.EColor.Black;
-            nw_img_para4.Contrast = 50;
-            nw_img_para4.Resolution = GridBackGround.CommandDeal.nw.nw_img_para.EResolution.R_320_240;
-            nw_img_para4.Saturation = 50;
-            this.userControl_nw_img_para2.Image_para = nw_img_para4;
+            nw_img_para2.Brightness = 50;
+            nw_img_para2.Color = GridBackGround.CommandDeal.nw.nw_img_para.EColor.Black;
+            nw_img_para2.Contrast = 50;
+            nw_img_para2.Resolution = GridBackGround.CommandDeal.nw.nw_img_para.EResolution.R_320_240;
+            nw_img_para2.Saturation = 50;
+            this.userControl_nw_img_para2.Image_para = nw_img_para2;
             this.userControl_nw_img_para2.Location = new System.Drawing.Point(3, 3);
             this.userControl_nw_img_para2.Name = "userControl_nw_img_para2";
             this.userControl_nw_img_para2.Size = new System.Drawing.Size(263, 187);
@@ -141,6 +141,7 @@
             // 
             // button_Cancel
             // 
+            this.button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button_Cancel.Location = new System.Drawing.Point(144, 39);
             this.button_Cancel.Name = "button_Cancel";
             this.button_Cancel.Size = new System.Drawing.Size(75, 23);
