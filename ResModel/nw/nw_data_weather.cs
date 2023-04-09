@@ -9,7 +9,7 @@ namespace ResModel.nw
     /// <summary>
     /// 气象数据handle
     /// </summary>
-    public class nw_weather
+    public class nw_data_weather
     {
         /// <summary>
         /// 数据时间

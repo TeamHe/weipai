@@ -32,7 +32,7 @@ namespace GridBackGround.CommandDeal.nw
         /// <summary>
         /// 本次接收到的数据列表
         /// </summary>
-        public List<nw_weather> Weathers { get; set; }
+        public List<nw_data_weather> Weathers { get; set; }
 
         public nw_cmd_25_weather()
         {
@@ -51,7 +51,7 @@ namespace GridBackGround.CommandDeal.nw
         /// <param name="offset"></param>
         /// <param name="weather"></param>
         /// <returns></returns>
-        public int Decode_Weather(byte[] data, int offset, out nw_weather weather)
+        public int Decode_Weather(byte[] data, int offset, out nw_data_weather weather)
         {
             weather = null;
             //温度:上送值减去 500 除以 10 即为实际环境温度，如 450 =（450 - 500）/ 10 = -5.0 度；
@@ -69,7 +69,7 @@ namespace GridBackGround.CommandDeal.nw
             int no = offset;
 
             int u16 = 0;
-            weather = new nw_weather();
+            weather = new nw_data_weather();
             //温度
             no += this.GetU16(data, no, out u16);
             weather.Temp = (u16 - 500) / 10.0;
@@ -133,13 +133,13 @@ namespace GridBackGround.CommandDeal.nw
             int ret = 0;
             this.FrameFlag = this.Data[offset++];
             int pnum = this.Data[offset++];
-            this.Weathers = new List<nw_weather>();
-            db_nw_weather db = new db_nw_weather(this.Pole);
+            this.Weathers = new List<nw_data_weather>();
+            db_nw_data_weather db = new db_nw_data_weather(this.Pole);
             
             offset += this.GetDateTime(this.Data, offset, out DateTime datatime);
             for(int i = 0; i < pnum; i++)
             {
-                if((ret = this.Decode_Weather(this.Data,offset,out nw_weather weather)) < 0)
+                if((ret = this.Decode_Weather(this.Data,offset,out nw_data_weather weather)) < 0)
                 {
                     msg = string.Format("第{0}包数据解析失败", i);
                     break;
