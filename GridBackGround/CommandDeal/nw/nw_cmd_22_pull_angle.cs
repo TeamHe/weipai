@@ -1,6 +1,7 @@
 ﻿using GridBackGround.PacketAnaLysis;
 using GridBackGround.Termination;
 using ResModel;
+using ResModel.nw;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,89 +11,13 @@ using static log4net.Appender.RollingFileAppender;
 
 namespace GridBackGround.CommandDeal.nw
 {
-    public class nw_pull_ange
-    {
-        /// <summary>
-        /// 最大拉力时刻-拉力
-        /// </summary>
-        public int Pull_max_pull { get; set; }
-        /// <summary>
-        /// 最大拉力时刻-风偏角
-        /// </summary>
-        public double AngleDec_max_pull { get; set; }
-        /// <summary>
-        /// 最大拉力时刻-倾斜角
-        /// </summary>
-        public double AngleInc_max_pull { get; set; }
-
-
-        /// <summary>
-        /// 最小拉力时刻-拉力
-        /// </summary>
-        public int Pull_min_pull { get; set; }
-        /// <summary>
-        /// 最小拉力时刻-风偏角
-        /// </summary>
-        public double AngleDec_min_pull { get; set; }
-        /// <summary>
-        /// 最小拉力时刻-倾斜角
-        /// </summary>
-        public double AngleInc_min_pull { get; set; }
-
-
-
-        /// <summary>
-        /// 最大风偏角时刻-拉力
-        /// </summary>
-        public int Pull_max_angle { get; set; }
-        /// <summary>
-        /// 最大风偏角时刻-风偏角
-        /// </summary>
-        public double AngleDec_max_angle { get; set; }
-        /// <summary>
-        /// 最大风偏角时刻-倾斜角
-        /// </summary>
-        public double AngleInc_max_angle { get; set; }
-
-
-        /// <summary>
-        /// 最小风偏角时刻-拉力
-        /// </summary>
-        public int Pull_min_angle { get; set; }
-        /// <summary>
-        /// 最小风偏角时刻-风偏角
-        /// </summary>
-        public double AngleDec_min_angle { get; set;}
-        /// <summary>
-        /// 最小风偏角时刻-倾斜角
-        /// </summary>
-        public double AngleInc_min_angle { get; set; }
-
-        /// <summary>
-        /// 数据时间
-        /// </summary>
-        public DateTime DataTime { get; set; }
-
-        public override string ToString()
-        {
-            return string.Format("最大拉力时刻: 拉力:{0} 风偏角:{1} 倾斜角:{2}  " +
-                                 "最小拉力时刻: 拉力:{3} 风偏角:{4} 倾斜角:{5}  " +
-                                 "最大风偏角时刻: 拉力:{6} 风偏角:{7} 倾斜角:{8}  " +
-                                 "最小风偏角时刻: 拉力:{9} 风偏角:{10} 倾斜角:{11}  ",
-                                 Pull_max_pull, AngleDec_max_pull, AngleInc_max_pull,
-                                 Pull_min_pull, AngleDec_min_pull, AngleInc_min_pull,
-                                 Pull_max_angle, AngleDec_max_angle, AngleInc_max_angle,
-                                 Pull_min_angle, AngleDec_min_angle, AngleInc_min_angle);
-        }
-    }
-
     public class nw_cmd_22_pull_angle : nw_cmd_base
     {
         public override int Control { get { return 0x22; } }
 
         public override string Name { get { return "导地线拉力风偏角数据"; } }
 
-        public List<nw_pull_ange> values { get; set; }
+        public List<nw_data_pull_angle> values { get; set; }
         /// <summary>
         /// 帧标识
         /// </summary>
@@ -127,7 +52,7 @@ namespace GridBackGround.CommandDeal.nw
 
 
 
-        public int Decode_pull_angle(byte[] data, int offset, out nw_pull_ange pull)
+        public int Decode_pull_angle(byte[] data, int offset, out nw_data_pull_angle pull)
         {
             pull = null;
             if (data.Length - offset < 24)
@@ -135,7 +60,7 @@ namespace GridBackGround.CommandDeal.nw
             int no = offset;
             int value = 0;
             double fvale = 0;
-            pull = new nw_pull_ange();
+            pull = new nw_data_pull_angle();
 
             no += GetU16(data, no, out value);
             pull.Pull_max_pull = value;
@@ -198,7 +123,7 @@ namespace GridBackGround.CommandDeal.nw
             offset += this.GetDateTime(this.Data, offset, out DateTime datatime);
             for (int i = 0; i < pnum; i++)
             {
-                if ((ret = this.Decode_pull_angle(this.Data, offset, out nw_pull_ange weather)) < 0)
+                if ((ret = this.Decode_pull_angle(this.Data, offset, out nw_data_pull_angle weather)) < 0)
                 {
                     msg = string.Format("第{0}包数据解析失败", i);
                     break;

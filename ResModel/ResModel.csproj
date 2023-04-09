@@ -72,6 +72,7 @@
     <Compile Include="EQU\Pic_Op.cs" />
     <Compile Include="EQU\Tower.cs" />
     <Compile Include="IPowerPole.cs" />
+    <Compile Include="nw\nw_data_pull_angle.cs" />
     <Compile Include="nw\nw_data_weather.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
