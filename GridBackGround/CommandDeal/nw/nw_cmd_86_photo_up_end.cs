@@ -37,7 +37,7 @@ namespace GridBackGround.CommandDeal.nw
             msg = string.Format("图像上传结束. 通道号:{0} 预置位号:{1}",this.Channel_NO,this.PresetNo);
 
             Photo_man photo = new Photo_man(this.Pole, this.Channel_NO, this.PresetNo);
-            List<int> remains = photo.Picture_End(new DateTime(), out string msg_end);
+            List<int> remains = photo.Picture_End(DateTime.MinValue, out string msg_end);
             nw_cmd_87_photo_up_bubao cmd = new nw_cmd_87_photo_up_bubao(Pole) 
             { 
                 Channel_NO =this.Channel_NO, 

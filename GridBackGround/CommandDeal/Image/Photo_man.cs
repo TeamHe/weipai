@@ -176,7 +176,7 @@ namespace GridBackGround.CommandDeal.Image
                 pacMsg += " 没有图片缓存，或正在上传图片，不响应";
                 return null;
             }
-            if(photo_time != null)
+            if(photo_time > DateTime.MinValue)
                 pic.Maintime = photo_time;
 
             //查找待上传数据包列表
@@ -306,7 +306,7 @@ namespace GridBackGround.CommandDeal.Image
                 state = false;
             }
             //图片上传到服务器
-            if(saveMsg!=null && saveMsg.Length > 0) { }
+            if(saveMsg!=null && saveMsg.Length > 0) 
                 DisPacket.NewRecord(new DataInfo(DataRecSendState.send, this.pole, "图片存储", saveMsg));
             
         }
