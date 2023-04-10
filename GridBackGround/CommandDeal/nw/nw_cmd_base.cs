@@ -175,7 +175,7 @@ namespace GridBackGround.CommandDeal.nw
         internal int GetS16(byte[] data, int offset, out int value)
         {
             value = data[offset + 1] + (data[offset + 0]&0x7f) * 256;
-            if((data[offset + 1] & 0x8f)>0)
+            if((data[offset + 0] & 0x80)>0)
                 value = -value; 
             return 2;
         }
