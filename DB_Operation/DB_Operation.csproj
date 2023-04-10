@@ -62,6 +62,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RealData\db_base.cs" />
+    <Compile Include="RealData\db_nw_data_pull_angle.cs" />
     <Compile Include="RealData\db_nw_data_weather.cs" />
     <Compile Include="RealData\DB_Real_Picture.cs" />
     <Compile Include="RealData\IRealData_OP.cs" />

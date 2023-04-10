@@ -1,4 +1,5 @@
-﻿using GridBackGround.PacketAnaLysis;
+﻿using DB_Operation.RealData;
+using GridBackGround.PacketAnaLysis;
 using GridBackGround.Termination;
 using ResModel;
 using ResModel.nw;
@@ -64,43 +65,32 @@ namespace GridBackGround.CommandDeal.nw
 
             no += GetU16(data, no, out value);
             pull.Pull_max_pull = value;
-            
             no += GetAngle(data, no, out fvale);
             pull.AngleDec_max_pull = fvale;
-            
             no += GetAngle(data, no, out fvale);
             pull.AngleInc_max_pull = fvale;
 
 
             no += GetU16(data, no, out value);
             pull.Pull_min_pull = value;
-            
             no += GetAngle(data, no, out fvale);
             pull.AngleDec_min_pull = fvale;
-            
             no += GetAngle(data, no, out fvale);
             pull.AngleInc_min_pull = fvale;
 
-
-            no += GetAngle(data, no, out fvale);
-            pull.AngleDec_max_angle = fvale;
-            
-            no += GetAngle(data, no, out fvale);
-            pull.AngleInc_max_angle = fvale;
-            
             no += GetU16(data, no, out value);
             pull.Pull_max_angle = value;
-
-
-            no += GetAngle(data, no, out fvale); 
-            pull.AngleDec_min_angle = fvale;
-
-            no += GetAngle(data, no, out fvale); 
-            pull.AngleInc_min_angle = fvale;
+            no += GetAngle(data, no, out fvale);
+            pull.AngleDec_max_angle = fvale;
+            no += GetAngle(data, no, out fvale);
+            pull.AngleInc_max_angle = fvale;
 
             no += GetU16(data, no, out value);
             pull.Pull_min_angle = value;
-
+            no += GetAngle(data, no, out fvale); 
+            pull.AngleDec_min_angle = fvale;
+            no += GetAngle(data, no, out fvale); 
+            pull.AngleInc_min_angle = fvale;
 
             return no - offset;
         }
@@ -119,32 +109,43 @@ namespace GridBackGround.CommandDeal.nw
             this.FrameFlag = this.Data[offset++];
             int pnum = this.Data[offset++];
             this.FuncCode = this.Data[offset++];
-
-            offset += this.GetDateTime(this.Data, offset, out DateTime datatime);
-            for (int i = 0; i < pnum; i++)
+            db_nw_data_pull_angle db = new db_nw_data_pull_angle(this.Pole);
+            if(pnum > 0 )
             {
-                if ((ret = this.Decode_pull_angle(this.Data, offset, out nw_data_pull_angle weather)) < 0)
+                offset += this.GetDateTime(this.Data, offset, out DateTime datatime);
+                for (int i = 0; i < pnum; i++)
                 {
-                    msg = string.Format("第{0}包数据解析失败", i);
-                    break;
+                    if ((ret = this.Decode_pull_angle(this.Data, offset, out nw_data_pull_angle data)) < 0)
+                    {
+                        msg = string.Format("第{0}包数据解析失败", i);
+                        break;
+                    }
+
+                    offset += ret;
+                    data.DataTime = datatime;
+                    data.FuncCode = this.FuncCode;
+                    try
+                    {
+                       db.DataSave(data);
+                    }catch(Exception e)
+                    {
+                        msg += " 数据保存失败:" + e.ToString();
+                    }
+                    //显示数据
+                    DisPacket.NewRecord(new DataInfo(DataRecSendState.rec, this.Pole,
+                        this.Name, data.ToString()));
+
+                    if (i == pnum - 1)
+                        break;
+                    if ((this.Data.Length - offset) < 2)
+                    {
+                        msg = string.Format("第{0}包数据长度错误", i + 1);
+                        break;
+                    }
+
+                    offset += this.GetU16(this.Data, offset, out int period);
+                    datatime = datatime.AddSeconds(period);
                 }
-
-                offset += ret;
-                weather.DataTime = datatime;
-                //显示数据
-                DisPacket.NewRecord(new DataInfo(DataRecSendState.rec, this.Pole,
-                    this.Name, weather.ToString()));
-
-                if (i == pnum - 1)
-                    break;
-                if ((this.Data.Length - offset) < 2)
-                {
-                    msg = string.Format("第{0}包数据长度错误", i + 1);
-                    break;
-                }
-
-                offset += this.GetU16(this.Data, offset, out int period);
-                datatime = datatime.AddSeconds(period);
             }
             this.Response = true;
             this.SendCommand(out string msg_send);
