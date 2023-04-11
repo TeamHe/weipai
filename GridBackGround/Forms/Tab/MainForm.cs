@@ -75,6 +75,18 @@ namespace GridBackGround
                 Forms.EquMan.FormManEquMan fmm = new Forms.EquMan.FormManEquMan();
                 fmm.FormManEquManInit(this.设置ToolStripMenuItem);    //设别管理按钮添加
                 fmm.TabID = this.TabID;
+                if(Config.SettingsForm.Default.ServiceMode == "nw")
+                {
+                    this.工作模式ToolStripMenuItem.Visible = false;
+                    this.主站ToolStripMenuItem.Visible = false;
+                    this.设备控制ToolStripMenuItem.Visible = true;
+                }
+                else
+                {
+                    this.工作模式ToolStripMenuItem.Visible = false;
+                    this.主站ToolStripMenuItem.Visible = true;
+                    this.设备控制ToolStripMenuItem.Visible = false;
+                }
 
                 //Work.PictureClean.Start();      //图片清理服务启动
 

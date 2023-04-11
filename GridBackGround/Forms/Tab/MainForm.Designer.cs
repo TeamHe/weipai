@@ -92,7 +92,6 @@
             this.立即清理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.清理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.参数设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel_Port = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel_ID = new System.Windows.Forms.ToolStripStatusLabel();
@@ -564,8 +563,7 @@
             this.本机端口设置ToolStripMenuItem,
             this.工作模式ToolStripMenuItem,
             this.数据库测试ToolStripMenuItem,
-            this.图片清理ToolStripMenuItem,
-            this.toolStripSeparator2});
+            this.图片清理ToolStripMenuItem});
             this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
             this.设置ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.设置ToolStripMenuItem.Text = "设置";
@@ -622,11 +620,6 @@
             this.参数设置ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.参数设置ToolStripMenuItem.Text = "参数设置";
             this.参数设置ToolStripMenuItem.Click += new System.EventHandler(this.参数设置ToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // statusStrip
             // 
@@ -923,7 +916,6 @@
         private System.Windows.Forms.ToolStripMenuItem 图片清理ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 清理ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 参数设置ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem 立即清理ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 录音文件管理ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 录音文件升级ToolStripMenuItem;

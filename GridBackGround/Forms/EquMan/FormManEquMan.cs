@@ -16,13 +16,16 @@ namespace GridBackGround.Forms.EquMan
 
         public void FormManEquManInit(ToolStripMenuItem menuItem)
         {
+            ToolStripMenuItem item;
             ToolStripSeparator toolStripS = new ToolStripSeparator();
             menuItem.DropDownItems.Add(toolStripS);
 
-
-            ToolStripMenuItem item = new ToolStripMenuItem("URL接口管理");
-            item.Click += new EventHandler(UrlMan_Click);
-            menuItem.DropDownItems.Add(item);
+            if (Config.SettingsForm.Default.ServiceMode != "nw")
+            {
+                item = new ToolStripMenuItem("URL接口管理");
+                item.Click += new EventHandler(UrlMan_Click);
+                menuItem.DropDownItems.Add(item);
+            }
 
             item = new ToolStripMenuItem("单位管理");
             item.Click += new EventHandler(Department_Click);
