@@ -738,7 +738,10 @@ namespace GridBackGround
             {
                 { MessageBox.Show("串口未打开"); return false; }
             }
-            if(this.textBox_ID.Text.Length != 17)
+            int length = 17;
+            if (Config.SettingsForm.Default.ServiceMode == "nw")
+                length = 6;
+            if (this.textBox_ID.Text.Length != length)
             { MessageBox.Show("装置ID长度错误"); return false; }
             CMD_ID = this.textBox_ID.Text;
             return true;

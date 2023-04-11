@@ -241,7 +241,7 @@ namespace GridBackGround.Forms.Dialog
                 label.Text = len.ToString();
                 if (len == 0) label.Text = "";
                 label.ForeColor = Color.Red;
-                if (len == 17) label.ForeColor = Color.Green;
+                if (len == 17 || len == 6) label.ForeColor = Color.Green;
                 if (textbox == this.textBox_StationID)
                 {
                     this.textBox_OrgID.Text = this.textBox_StationID.Text;

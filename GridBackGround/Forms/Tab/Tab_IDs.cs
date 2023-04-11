@@ -343,7 +343,10 @@ namespace GridBackGround.Forms.Tab
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(this.textBox1.Text.Length != 17)
+            int length = 17;
+            if (Config.SettingsForm.Default.ServiceMode == "nw")
+                length = 6;
+            if(this.textBox1.Text.Length != length)
             {
                 MessageBox.Show("请输入正确长度的设备ID");
                 return;

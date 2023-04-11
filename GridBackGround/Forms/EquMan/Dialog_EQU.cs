@@ -24,6 +24,7 @@ namespace GridBackGround.Forms.EquMan
     public partial class Dialog_EQU : Form
     {
         #region Public Variable
+        private int id_length = 17;
         /// <summary>
         /// 管理按钮点击事件
         /// </summary>
@@ -155,7 +156,15 @@ namespace GridBackGround.Forms.EquMan
 
             //if (this.CurrentEqu == null)
             //    CurrentEqu = new Equ();
-
+            if (Config.SettingsForm.Default.ServiceMode == "nw")
+            {
+                this.id_length = 6;
+                this.label_URL.Visible = false;
+                this.comboBox_Url.Visible = false;
+                this.linkLabel_Url_Man.Visible = false;
+                this.linkLabel_Url_Update.Visible = false;
+                this.textBox_ID.Text = "ZT1234";
+            }
         }
         /// <summary>
         /// 按钮点击事件
@@ -177,9 +186,9 @@ namespace GridBackGround.Forms.EquMan
                         MessageBox.Show("所属线路不能为空，请先选择所属线路");
                         return;
                     }
-                    if (this.textBox_ID.TextLength != 17)
+                    if (this.textBox_ID.TextLength != this.id_length)
                     {
-                        MessageBox.Show("设备ID为17位，请重新输入设备ID");
+                        MessageBox.Show(string.Format("设备ID为{0}位，请重新输入设备ID",this.id_length));
                     }
                     //添加更新按钮点击
                     OnEquManangeEvent((EQU_Option_Style)button.Tag, this.equ);
@@ -263,7 +272,7 @@ namespace GridBackGround.Forms.EquMan
             //更新文本内容颜色
             if (textSender.Name == "textBox_ID")        //ID栏文字颜色变化
             {
-                if (lenth == 17)
+                if (lenth == this.id_length)
                     this.label_IDlength.ForeColor = Color.Green;
                 else
                     this.label_IDlength.ForeColor = Color.Red;
@@ -331,10 +340,8 @@ namespace GridBackGround.Forms.EquMan
                 throw new Exception("请选择设备所属线路");
             if (this.textBox_EquNumber.TextLength == 0)
                 throw new Exception("设备编号不能为空");
-            if (this.textBox_ID.TextLength != 17)
-                throw new Exception("ID长度错误，应该为17");
-            if (this.comboBox_Url.SelectedIndex == 0)
-                throw new Exception("请选择将要上传的URL接口");
+            if (this.textBox_ID.TextLength != this.id_length)
+                throw new Exception(string.Format("ID长度错误，应该为{0}",this.id_length));
            
 
             if (equ == null)
@@ -345,9 +352,12 @@ namespace GridBackGround.Forms.EquMan
             equ.EquNumber = this.textBox_EquNumber.Text;
             equ.Phone = this.textBox_Phone.Text;
             equ.TowerNO = ((Tower)((ComboBoxItem)this.comboBox_Line.SelectedItem).Value).TowerNO;
-            equ.UrlID = ((UrlInterFace)((ComboBoxItem)this.comboBox_Url.SelectedItem).Value).ID;
             equ.IS_Mark = this.checkBox_isname.Checked;
             equ.Is_Time = this.checkBox_istime.Checked;
+            if(this.comboBox_Url.SelectedValue != null) //选择上传的服务器接口
+            {
+                equ.UrlID = ((UrlInterFace)((ComboBoxItem)this.comboBox_Url.SelectedItem).Value).ID;
+            }
             return equ;
         }
 
@@ -356,6 +366,9 @@ namespace GridBackGround.Forms.EquMan
         /// </summary>
         void UpdateTowerList()
         {
+            this.comboBox_Line.Items.Clear();
+            if (this.comboBox_DepartMent.SelectedValue == null)
+                return;
             var line = (Line)((ComboBoxItem)this.comboBox_DepartMent.SelectedItem).Value;
             UpdateTowerList(line);
 
@@ -363,6 +376,8 @@ namespace GridBackGround.Forms.EquMan
 
         void UpdateTowerList(Line line)
         {
+            if(line == null)
+                throw new ArgumentNullException("line");
             UpdateTowerList(line.NO);
         }
         List<Tower> TowerList = new List<Tower>();
