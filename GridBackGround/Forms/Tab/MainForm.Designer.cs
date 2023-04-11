@@ -100,6 +100,7 @@
             this.tabPageReport = new System.Windows.Forms.TabPage();
             this.tabPageData = new System.Windows.Forms.TabPage();
             this.tabPageOnLineStatus = new System.Windows.Forms.TabPage();
+            this.tabPage_nw_history = new System.Windows.Forms.TabPage();
             this.panel = new System.Windows.Forms.Panel();
             this.panel_SerialPort = new System.Windows.Forms.Panel();
             this.panel_TabControl = new System.Windows.Forms.Panel();
@@ -660,6 +661,7 @@
             this.tabControl1.Controls.Add(this.tabPageGPRS);
             this.tabControl1.Controls.Add(this.tabPageReport);
             this.tabControl1.Controls.Add(this.tabPageData);
+            this.tabControl1.Controls.Add(this.tabPage_nw_history);
             this.tabControl1.Controls.Add(this.tabPageOnLineStatus);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -706,6 +708,16 @@
             this.tabPageOnLineStatus.TabIndex = 3;
             this.tabPageOnLineStatus.Text = "在线状态";
             this.tabPageOnLineStatus.UseVisualStyleBackColor = true;
+            // 
+            // tabPage_nw_history
+            // 
+            this.tabPage_nw_history.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_nw_history.Name = "tabPage_nw_history";
+            this.tabPage_nw_history.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_nw_history.Size = new System.Drawing.Size(870, 427);
+            this.tabPage_nw_history.TabIndex = 4;
+            this.tabPage_nw_history.Text = "南网历史数据";
+            this.tabPage_nw_history.UseVisualStyleBackColor = true;
             // 
             // panel
             // 
@@ -922,6 +934,7 @@
         private System.Windows.Forms.ToolStripMenuItem 录音删除ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 播放录音ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 设备控制ToolStripMenuItem;
+        private System.Windows.Forms.TabPage tabPage_nw_history;
     }
 }
 

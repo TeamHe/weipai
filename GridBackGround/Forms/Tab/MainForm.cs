@@ -16,6 +16,7 @@ using GridBackGround.CommandDeal.nw;
 using GridBackGround.Forms.Dialogs_nw;
 using GridBackGround.Forms;
 using ResModel;
+using GridBackGround.Forms.Tab;
 
 namespace GridBackGround
 {
@@ -180,7 +181,18 @@ namespace GridBackGround
                 TabReport.Show();
             }
             //历史数据栏初始化
-            if (true)
+            if (Config.SettingsForm.Default.ServiceMode == "nw")
+            {
+                Tab_HisData_nw tab_his_nw = new Tab_HisData_nw();
+                tab_his_nw.FormBorderStyle = FormBorderStyle.None;
+                this.tabPage_nw_history.Enter += new EventHandler(tabpate_nw_his_enter);
+                this.tabPage_nw_history.Controls.Add(tab_his_nw);
+                this.tabPage_nw_history.Tag = tabPage_nw_history;
+                this.tabControl1.SelectedTab = tabPage_nw_history;
+                this.tabPageData.Parent = null;
+                tab_his_nw.Show();
+            }
+            else
             {
                 TabHisData = new Tab_HisData();
                 //TabReport.Owner = this;
@@ -189,9 +201,9 @@ namespace GridBackGround
                 this.tabPageData.Enter += new EventHandler(tabPageData_Enter);
                 this.tabPageData.Controls.Add(TabHisData);
                 this.tabControl1.SelectedTab = tabControl1.TabPages[2];
+                this.tabPage_nw_history.Parent = null;
                 TabHisData.Show();
             }
-
             if (true)
             {
                 TabOnLineStatus = new Forms.Tab.Tab_OnlineStatus();
@@ -223,14 +235,22 @@ namespace GridBackGround
 
             #endregion
             //
+        }
 
-
-
+        public Tab_IDs GetTabID() 
+        {
+            return this.TabID;
         }
 
         void tabPageData_Enter(object sender, EventArgs e)
         {
             TabHisData.HisTimeRefresh();
+            //throw new NotImplementedException();
+        }
+
+        void tabpate_nw_his_enter(object sender, EventArgs e)
+        {
+            //TabHisData.HisTimeRefresh();
             //throw new NotImplementedException();
         }
 

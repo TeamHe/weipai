@@ -301,6 +301,12 @@
       <DependentUpon>Dialog_LineMan.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Tab\MainMan.cs" />
+    <Compile Include="Forms\Dialogs_nw\Tab_HisData_nw.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs_nw\Tab_HisData_nw.Designer.cs">
+      <DependentUpon>Tab_HisData_nw.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Tab\Tab_OnlineStatus.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -632,6 +638,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Tab\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs_nw\Tab_HisData_nw.resx">
+      <DependentUpon>Tab_HisData_nw.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Tab\Tab_ID.resx">
       <DependentUpon>Tab_ID.cs</DependentUpon>
