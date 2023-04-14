@@ -33,7 +33,7 @@
             this.tabPage_pull = new System.Windows.Forms.TabPage();
             this.dataGridView_pull = new System.Windows.Forms.DataGridView();
             this.tabPage_weather = new System.Windows.Forms.TabPage();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridView_weather = new System.Windows.Forms.DataGridView();
             this.tabPage_image = new System.Windows.Forms.TabPage();
             this.dataGridView_image = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -52,7 +52,7 @@
             this.tabPage_pull.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_pull)).BeginInit();
             this.tabPage_weather.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_weather)).BeginInit();
             this.tabPage_image.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_image)).BeginInit();
             this.panel2.SuspendLayout();
@@ -97,6 +97,7 @@
             // 
             this.dataGridView_pull.AllowUserToAddRows = false;
             this.dataGridView_pull.AllowUserToDeleteRows = false;
+            this.dataGridView_pull.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView_pull.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_pull.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView_pull.Location = new System.Drawing.Point(3, 3);
@@ -109,7 +110,7 @@
             // 
             // tabPage_weather
             // 
-            this.tabPage_weather.Controls.Add(this.dataGridView2);
+            this.tabPage_weather.Controls.Add(this.dataGridView_weather);
             this.tabPage_weather.Location = new System.Drawing.Point(4, 22);
             this.tabPage_weather.Name = "tabPage_weather";
             this.tabPage_weather.Padding = new System.Windows.Forms.Padding(3);
@@ -118,19 +119,20 @@
             this.tabPage_weather.Text = "气象数据";
             this.tabPage_weather.UseVisualStyleBackColor = true;
             // 
-            // dataGridView2
+            // dataGridView_weather
             // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.RowTemplate.Height = 23;
-            this.dataGridView2.Size = new System.Drawing.Size(769, 375);
-            this.dataGridView2.TabIndex = 0;
-            this.dataGridView2.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView_RowPostPaint);
+            this.dataGridView_weather.AllowUserToAddRows = false;
+            this.dataGridView_weather.AllowUserToDeleteRows = false;
+            this.dataGridView_weather.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView_weather.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_weather.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView_weather.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView_weather.Name = "dataGridView_weather";
+            this.dataGridView_weather.ReadOnly = true;
+            this.dataGridView_weather.RowTemplate.Height = 23;
+            this.dataGridView_weather.Size = new System.Drawing.Size(769, 375);
+            this.dataGridView_weather.TabIndex = 0;
+            this.dataGridView_weather.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView_RowPostPaint);
             // 
             // tabPage_image
             // 
@@ -146,6 +148,7 @@
             // 
             this.dataGridView_image.AllowUserToAddRows = false;
             this.dataGridView_image.AllowUserToDeleteRows = false;
+            this.dataGridView_image.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView_image.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_image.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView_image.Location = new System.Drawing.Point(0, 0);
@@ -282,7 +285,7 @@
             this.tabPage_pull.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_pull)).EndInit();
             this.tabPage_weather.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_weather)).EndInit();
             this.tabPage_image.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_image)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -311,7 +314,7 @@
         private System.Windows.Forms.TabPage tabPage_weather;
         private System.Windows.Forms.TabPage tabPage_image;
         private System.Windows.Forms.DataGridView dataGridView_pull;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataGridView_weather;
         private System.Windows.Forms.DataGridView dataGridView_image;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using ResModel;
 using ResModel.nw;
 using SQLUtils;
+using System.Data;
 
 namespace DB_Operation.RealData
 {
@@ -33,10 +34,11 @@ namespace DB_Operation.RealData
              "@speed_max",
         };
 
-
         nw_data_weather Weather { get; set; }
 
         protected override string Table_Name { get { return "t_nw_weather"; } }
+
+        public db_nw_data_weather(){ }
 
         public db_nw_data_weather(IPowerPole pole):base(pole) { }
 
@@ -123,5 +125,25 @@ namespace DB_Operation.RealData
         }
 
 
+        public DataTable DataGet(string cmdid,DateTime start, DateTime end)
+        {
+            Dictionary<string, string> dics = new Dictionary<string, string>
+            {
+                {"time",                "时间"},
+                {"temp",                "温度"},
+                {"humidity",            "湿度"},
+                {"speed",               "瞬时风速"},
+                {"direction",           "瞬时风向"},
+                {"rain",                "降雨量"},
+                {"pressure",            "大气压力"},
+                {"sun",                 "日照"},
+                {"speed_1_min",         "1分钟平均风速"},
+                {"direction_1_min",     "1分钟平均风向"},
+                {"speed_10_min",        "10分钟平均风速"},
+                {"direction_10_min",    "10分钟平均风向"},
+                {" speed_max",          "10分钟最大风速"},
+            };
+            return base.DataGet(dics, cmdid, start, end);
+        }
     }
 }

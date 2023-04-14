@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace DB_Operation.RealData
 {
@@ -40,6 +41,8 @@ namespace DB_Operation.RealData
 
 
         public db_nw_data_pull_angle(IPowerPole pole) : base(pole) { }
+
+        public db_nw_data_pull_angle(){ }
 
         public db_nw_data_pull_angle(IPowerPole pole, nw_data_pull_angle data)
             : base(pole)
@@ -123,6 +126,31 @@ namespace DB_Operation.RealData
                  data.AngleInc_min_angle,
             };
             return base.DataSave(this.GetSaveSql(), fileds, objs);
+        }
+        public DataTable DataGet(string cmdid, DateTime start, DateTime end)
+        {
+            Dictionary<string, string> dics = new Dictionary<string, string>
+            {
+                {"time",              "时间" },
+                {"unit",              "单元标识" },
+
+                {"pull_max_pull",     "最大拉力时刻-拉力"},
+                {"angleDec_max_pull", "最大拉力时刻-风偏角"},
+                {"angleInc_max_pull", "最大拉力时刻-倾斜角"},
+
+                {"pull_min_pull",     "最小拉力时刻-拉力"},
+                {"angleDec_min_pull", "最小拉力时刻-风偏角"},
+                {"angleInc_min_pull", "最小拉力时刻-倾斜角"},
+                
+                {"pull_max_angle",     "最大风偏角时刻-拉力"},
+                {"angleDec_max_angle", "最大风偏角时刻-风偏角"},
+                {"angleInc_max_angle", "最大风偏角时刻-倾斜角"},
+                
+                {"pull_min_angle",     "最小风偏角时刻-拉力"},
+                {"angleDec_min_angle", "最小风偏角时刻-风偏角"},
+                {"angleInc_min_angle", "最小风偏角时刻-倾斜角" },
+            };
+            return base.DataGet(dics, cmdid, start, end);
         }
 
     }
