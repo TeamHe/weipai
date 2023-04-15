@@ -98,6 +98,7 @@
     <Compile Include="RealData\db_base.cs" />
     <Compile Include="RealData\db_data_nw_pull_angle.cs" />
     <Compile Include="RealData\db_data_nw_weather.cs" />
+    <Compile Include="RealData\db_data_picture.cs" />
     <Compile Include="RealData\DB_Real_Picture.cs" />
     <Compile Include="RealData\IRealData_OP.cs" />
     <Compile Include="RealData\RealDataDeal.cs" />

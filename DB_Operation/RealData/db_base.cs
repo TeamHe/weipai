@@ -43,6 +43,12 @@ namespace DB_Operation.RealData
                                     DateTime start, 
                                     DateTime end)
         {
+            return DataGet(dics, GetSql_data_nw(cmdid, start, end));
+        }
+
+        protected DataTable DataGet(Dictionary<string, string> dics,
+                            string condition)
+        {
             int count = 0;
             StringBuilder sb = new StringBuilder("select ");
             foreach (KeyValuePair<string, string> dic in dics)
@@ -53,12 +59,20 @@ namespace DB_Operation.RealData
                 else
                     sb.AppendFormat("d.{0} as '{1}' \n", dic.Key, dic.Value);
             }
+            sb.Append(condition);
+            return Connection.GetTable(sb.ToString());
+        }
+
+
+
+        protected string GetSql_data_nw(string cmdid,DateTime start, DateTime end)
+        {
+            StringBuilder sb = new StringBuilder();
             sb.AppendFormat("from {0} as d ", this.Table_Name);
             sb.Append("left join t_powerpole as pole on d.poleid = pole.id ");
             sb.AppendFormat("where d.time between '{0:G}' and '{1:G}' and pole.CMD_ID = '{2}'",
                         start, end, cmdid);
-            return Connection.GetTable(sb.ToString());
-
+            return sb.ToString();
         }
 
     }

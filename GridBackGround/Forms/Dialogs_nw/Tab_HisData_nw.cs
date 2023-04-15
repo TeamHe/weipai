@@ -12,6 +12,8 @@ using DB_Operation.RealData;
 using GridBackGround.Forms.Tab;
 using System.Windows;
 using ResModel.nw;
+using System.IO;
+using System.Drawing.Imaging;
 
 namespace GridBackGround.Forms.Dialogs_nw
 {
@@ -33,6 +35,14 @@ namespace GridBackGround.Forms.Dialogs_nw
             this.dateTimePicker_StartTime.Value = start;
             this.dateTimePicker_EndTime.Value = start.Add(new TimeSpan(23,59,59));
             this.func_Code = nw_func_code.Pull;
+
+            ///datagridview 图像参数配置
+            this.dataGridView_image.Columns[0].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
+            this.dataGridView_image.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView_image.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView_image.CellFormatting += new DataGridViewCellFormattingEventHandler(DataGridView_image_CellFormatting);
+            this.dataGridView_image.CellContentClick += DataGridView_image_CellContentClick;
+            this.dataGridView_image.AllowUserToAddRows = false;
         }
 
         // <summary>
@@ -52,6 +62,77 @@ namespace GridBackGround.Forms.Dialogs_nw
                 rectangle,
                 dataGridView.RowHeadersDefaultCellStyle.ForeColor,
                 TextFormatFlags.Right);
+        }
+
+        /// <summary>
+        /// 图像格式化输出
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <exception cref="NotImplementedException"></exception>
+        private void DataGridView_image_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            //图像标签页datagridview 单元格format事件
+            if (sender == this.dataGridView_image)
+            {
+                //图像列数据展示
+                if (e != null && e.ColumnIndex == 3)
+                {
+                    DataGridViewCell cell = dataGridView_image.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    cell.Tag = e.Value;
+                    cell.ToolTipText = e.Value.ToString();
+                    string path = e.Value.ToString();
+                    if (File.Exists(path) == false)
+                    {
+                        path = "Res\\logo.ico";
+                        cell.ToolTipText += " (图片不存在)";
+                    }
+                    byte[] bytes = File.ReadAllBytes(path);
+                    using (MemoryStream oldms = new MemoryStream(bytes))
+                    {
+                        System.Drawing.Image img = System.Drawing.Image.FromStream(oldms);
+                        Bitmap bt = new Bitmap(img, new System.Drawing.Size(100, 100));
+                        using (MemoryStream newms = new MemoryStream())
+                        {
+                            bt.Save(newms, ImageFormat.Jpeg);
+                            e.Value = newms.ToArray();
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// datagridview 单元格单击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DataGridView_image_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //图像标签页datagridview 单击事件
+            if (sender == this.dataGridView_image)
+            {
+                //图片单击事件
+                if (e != null && e.ColumnIndex == 3)
+                {
+                    //显示图片
+                    DataGridViewCell cell = dataGridView_image.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    string path = cell.Tag.ToString();
+                    if (File.Exists(path) == false)
+                    {
+                        System.Windows.Forms.MessageBox.Show(string.Format("图片: {0} 不存在", path));
+                        return;
+                    }
+                    try
+                    {
+                        System.Diagnostics.Process.Start(path);
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Windows.Forms.MessageBox.Show("图片打开失败." + ex.Message);
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -98,6 +179,9 @@ namespace GridBackGround.Forms.Dialogs_nw
                         break;
                     case nw_func_code.Weather:
                         get_history_weather(start, end);
+                        break;
+                    case nw_func_code.Picture:
+                        get_history_image(start,end);
                         break;
                     default:
                         System.Windows.Forms.MessageBox.Show("当前不支持该类型数据检索");
@@ -173,8 +257,13 @@ namespace GridBackGround.Forms.Dialogs_nw
             db_data_nw_pull_angle db = new db_data_nw_pull_angle();
             DataTable dataSet = db.DataGet(this.CurDeviceID, start, end);
             this.dataGridView_pull.DataSource = dataSet;
-            this.dataGridView_pull.Columns[0].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
 
+        }
+        private void get_history_image(DateTime start, DateTime end)
+        {
+            db_data_picture db = new db_data_picture();
+            DataTable dt = db.DataGet(this.CurDeviceID, start, end);
+            this.dataGridView_image.DataSource = dt;
         }
     }
 }

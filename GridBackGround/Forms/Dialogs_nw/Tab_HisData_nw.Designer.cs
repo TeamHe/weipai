@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl_weather = new System.Windows.Forms.TabControl();
             this.tabPage_pull = new System.Windows.Forms.TabPage();
@@ -47,6 +50,10 @@
             this.dateTimePicker_StartTime = new System.Windows.Forms.DateTimePicker();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.Column_datetime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_channel_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_preset = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_image_path = new System.Windows.Forms.DataGridViewImageColumn();
             this.panel1.SuspendLayout();
             this.tabControl_weather.SuspendLayout();
             this.tabPage_pull.SuspendLayout();
@@ -150,6 +157,11 @@
             this.dataGridView_image.AllowUserToDeleteRows = false;
             this.dataGridView_image.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView_image.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_image.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column_datetime,
+            this.Column_channel_no,
+            this.Column_preset,
+            this.Column_image_path});
             this.dataGridView_image.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView_image.Location = new System.Drawing.Point(0, 0);
             this.dataGridView_image.Name = "dataGridView_image";
@@ -269,6 +281,44 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(131, 17);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
+            // Column_datetime
+            // 
+            this.Column_datetime.DataPropertyName = "时间";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_datetime.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Column_datetime.HeaderText = "时间";
+            this.Column_datetime.Name = "Column_datetime";
+            this.Column_datetime.ReadOnly = true;
+            this.Column_datetime.Width = 54;
+            // 
+            // Column_channel_no
+            // 
+            this.Column_channel_no.DataPropertyName = "通道";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_channel_no.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Column_channel_no.HeaderText = "通道号";
+            this.Column_channel_no.Name = "Column_channel_no";
+            this.Column_channel_no.ReadOnly = true;
+            this.Column_channel_no.Width = 66;
+            // 
+            // Column_preset
+            // 
+            this.Column_preset.DataPropertyName = "预置位";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_preset.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Column_preset.HeaderText = "预置位号";
+            this.Column_preset.Name = "Column_preset";
+            this.Column_preset.ReadOnly = true;
+            this.Column_preset.Width = 78;
+            // 
+            // Column_image_path
+            // 
+            this.Column_image_path.DataPropertyName = "图片路径";
+            this.Column_image_path.HeaderText = "图片";
+            this.Column_image_path.Name = "Column_image_path";
+            this.Column_image_path.ReadOnly = true;
+            this.Column_image_path.Width = 35;
+            // 
             // Tab_HisData_nw
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -318,5 +368,9 @@
         private System.Windows.Forms.DataGridView dataGridView_image;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column_datetime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column_channel_no;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column_preset;
+        private System.Windows.Forms.DataGridViewImageColumn Column_image_path;
     }
 }
