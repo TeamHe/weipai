@@ -9,7 +9,7 @@ using System.Data;
 
 namespace DB_Operation.RealData
 {
-    public class db_nw_data_pull_angle : db_base
+    public class db_data_nw_pull_angle : db_base
     {
         private static string sql_save = null;
 
@@ -40,11 +40,11 @@ namespace DB_Operation.RealData
         public nw_data_pull_angle Data { get; set; }
 
 
-        public db_nw_data_pull_angle(IPowerPole pole) : base(pole) { }
+        public db_data_nw_pull_angle(IPowerPole pole) : base(pole) { }
 
-        public db_nw_data_pull_angle(){ }
+        public db_data_nw_pull_angle(){ }
 
-        public db_nw_data_pull_angle(IPowerPole pole, nw_data_pull_angle data)
+        public db_data_nw_pull_angle(IPowerPole pole, nw_data_pull_angle data)
             : base(pole)
         {
             this.Data = data;

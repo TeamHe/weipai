@@ -134,7 +134,7 @@ namespace GridBackGround.CommandDeal.nw
             this.FrameFlag = this.Data[offset++];
             int pnum = this.Data[offset++];
             this.Weathers = new List<nw_data_weather>();
-            db_nw_data_weather db = new db_nw_data_weather(this.Pole);
+            db_data_nw_weather db = new db_data_nw_weather(this.Pole);
             
             offset += this.GetDateTime(this.Data, offset, out DateTime datatime);
             for(int i = 0; i < pnum; i++)

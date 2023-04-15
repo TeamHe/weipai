@@ -11,7 +11,7 @@ using System.Data;
 
 namespace DB_Operation.RealData
 {
-    public class db_nw_data_weather : db_base
+    public class db_data_nw_weather : db_base
     {
         private static string sql_save = null;
 
@@ -38,11 +38,11 @@ namespace DB_Operation.RealData
 
         protected override string Table_Name { get { return "t_nw_weather"; } }
 
-        public db_nw_data_weather(){ }
+        public db_data_nw_weather(){ }
 
-        public db_nw_data_weather(IPowerPole pole):base(pole) { }
+        public db_data_nw_weather(IPowerPole pole):base(pole) { }
 
-        public db_nw_data_weather(IPowerPole pole,nw_data_weather weather) 
+        public db_data_nw_weather(IPowerPole pole,nw_data_weather weather) 
             :base(pole)
         {
             this.Weather = weather;

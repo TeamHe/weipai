@@ -109,7 +109,7 @@ namespace GridBackGround.CommandDeal.nw
             this.FrameFlag = this.Data[offset++];
             int pnum = this.Data[offset++];
             this.FuncCode = this.Data[offset++];
-            db_nw_data_pull_angle db = new db_nw_data_pull_angle(this.Pole);
+            db_data_nw_pull_angle db = new db_data_nw_pull_angle(this.Pole);
             if(pnum > 0 )
             {
                 offset += this.GetDateTime(this.Data, offset, out DateTime datatime);

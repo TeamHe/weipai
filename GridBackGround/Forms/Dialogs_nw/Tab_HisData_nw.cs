@@ -162,7 +162,7 @@ namespace GridBackGround.Forms.Dialogs_nw
 
         private void get_history_weather(DateTime start,DateTime end)
         {
-            db_nw_data_weather db_weather = new db_nw_data_weather();
+            db_data_nw_weather db_weather = new db_data_nw_weather();
             DataTable dataSet = db_weather.DataGet(this.CurDeviceID,start, end);
             this.dataGridView_weather.DataSource = dataSet;
             this.dataGridView_weather.Columns[0].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
@@ -170,7 +170,7 @@ namespace GridBackGround.Forms.Dialogs_nw
 
         private void get_history_pull(DateTime start, DateTime end)
         {
-            db_nw_data_pull_angle db = new db_nw_data_pull_angle();
+            db_data_nw_pull_angle db = new db_data_nw_pull_angle();
             DataTable dataSet = db.DataGet(this.CurDeviceID, start, end);
             this.dataGridView_pull.DataSource = dataSet;
             this.dataGridView_pull.Columns[0].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
