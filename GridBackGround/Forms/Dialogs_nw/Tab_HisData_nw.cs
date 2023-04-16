@@ -37,12 +37,8 @@ namespace GridBackGround.Forms.Dialogs_nw
             this.func_Code = nw_func_code.Pull;
 
             ///datagridview 图像参数配置
-            this.dataGridView_image.Columns[0].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
-            this.dataGridView_image.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView_image.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView_image.CellFormatting += new DataGridViewCellFormattingEventHandler(DataGridView_image_CellFormatting);
             this.dataGridView_image.CellContentClick += DataGridView_image_CellContentClick;
-            this.dataGridView_image.AllowUserToAddRows = false;
         }
 
         // <summary>
@@ -249,7 +245,6 @@ namespace GridBackGround.Forms.Dialogs_nw
             db_data_nw_weather db_weather = new db_data_nw_weather();
             DataTable dataSet = db_weather.DataGet(this.CurDeviceID,start, end);
             this.dataGridView_weather.DataSource = dataSet;
-            this.dataGridView_weather.Columns[0].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss";
         }
 
         private void get_history_pull(DateTime start, DateTime end)
