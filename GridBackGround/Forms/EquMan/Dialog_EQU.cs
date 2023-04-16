@@ -367,11 +367,10 @@ namespace GridBackGround.Forms.EquMan
         void UpdateTowerList()
         {
             this.comboBox_Line.Items.Clear();
-            if (this.comboBox_DepartMent.SelectedValue == null)
+            if (this.comboBox_DepartMent.SelectedItem == null)
                 return;
             var line = (Line)((ComboBoxItem)this.comboBox_DepartMent.SelectedItem).Value;
             UpdateTowerList(line);
-
         }
 
         void UpdateTowerList(Line line)
