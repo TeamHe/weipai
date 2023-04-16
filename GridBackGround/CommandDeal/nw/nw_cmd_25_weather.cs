@@ -161,7 +161,7 @@ namespace GridBackGround.CommandDeal.nw
 
                 //显示数据
                 DisPacket.NewRecord(new DataInfo(DataRecSendState.rec, this.Pole,
-                    this.Name, weather.ToString() + msg1));
+                    this.Name, weather.ToString()+ " " + msg1));
                 if (i == pnum - 1)
                     break;
                 if((this.Data.Length - offset) < 2)

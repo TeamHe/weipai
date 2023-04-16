@@ -124,16 +124,17 @@ namespace GridBackGround.CommandDeal.nw
                     offset += ret;
                     data.DataTime = datatime;
                     data.FuncCode = this.FuncCode;
+                    string msg1 = string.Empty;
                     try
                     {
                        db.DataSave(data);
                     }catch(Exception e)
                     {
-                        msg += " 数据保存失败:" + e.ToString();
+                        msg1 = "数据存储失败";
                     }
                     //显示数据
                     DisPacket.NewRecord(new DataInfo(DataRecSendState.rec, this.Pole,
-                        this.Name, data.ToString()));
+                        this.Name, data.ToString() + " " + msg1));
 
                     if (i == pnum - 1)
                         break;
