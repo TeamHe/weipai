@@ -11,12 +11,30 @@ namespace GridBackGround
     static class Program
     {
 
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        public static extern bool SwitchToThisWindow(IntPtr hWnd, bool fAltTab);
+
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
         [STAThread]
         static void Main()
         {
+            try
+            {   //检查程序列表中有没有同名进程.
+                Process process = Process.GetCurrentProcess();
+                Process[] processes = Process.GetProcessesByName(process.ProcessName);
+                foreach(Process pr in processes)
+                {   //如果有同名进程且已经启动界面，则启动另外一个同名进程，然后本进程退出
+                    if (pr.MainWindowHandle != IntPtr.Zero) 
+                    {
+                        SwitchToThisWindow(processes[0].MainWindowHandle, true);
+                        return;
+                    }
+                }
+            }
+            catch {  }
+
             try
             {
                 //系统定时器
@@ -168,5 +186,5 @@ namespace GridBackGround
         }
     }
 
-   
+
 }
