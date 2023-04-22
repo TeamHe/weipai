@@ -17,6 +17,23 @@ namespace GridBackGround.Forms.Tab
 {
     public partial class Tab_IDs : Form
     {
+        enum image_index
+        {
+            [Description("线路名称")]
+            Line = 0,
+
+            [Description("杆塔名称")]
+            Tower = 1,
+
+            [Description("设备未注册")]
+            Device_init,
+
+            [Description("设备离线")]
+            Device_offline,
+
+            [Description("设备在线")]
+            Device_online,
+        }
         #region Private Varialbe
         private const string TestLineName = "TestLine";
         private const string TestTowerName = "TestTower";
@@ -41,6 +58,7 @@ namespace GridBackGround.Forms.Tab
             this.TopLevel = false;
             this.Dock = DockStyle.Fill;
             this.ResumeLayout(false);
+            this.treeView1.ImageList = this.imageList1;
 
         }
 
@@ -160,6 +178,8 @@ namespace GridBackGround.Forms.Tab
                 lineNode.Text = "测试单位";
                 lineNode.ToolTipText = "测试单位";
                 lineNode.Tag = new Line() { Name = "测试单位", LineID = "00000000000000000",NO =-1 };
+                lineNode.ImageIndex = (int)image_index.Line;
+                lineNode.SelectedImageIndex = (int)image_index.Line;
                 this.treeView1.Nodes.Add(lineNode);
             }
             return lineNode;
@@ -182,6 +202,8 @@ namespace GridBackGround.Forms.Tab
                     TowerID = "00000000000000000",
                     TowerNO = -1
                 };
+                towerNode.ImageIndex = (int)image_index.Tower;
+                towerNode.SelectedImageIndex = (int)image_index.Tower;
                 linenode.Nodes.Add(towerNode);
             }
             else
@@ -242,7 +264,66 @@ namespace GridBackGround.Forms.Tab
             var lineList = DB_Line.List_LineTowerEqu();
             TreeNode selectedNode = null;
             TreeViewList.LineList(this.treeView1.Nodes,lineList,out selectedNode);
+            tree_lines_image_flush(this.treeView1.Nodes);
             Termination.PowerPoleManage.UpdatePolesStation();
+        }
+
+        private void tree_lines_image_flush(TreeNodeCollection nodes)
+        {
+            if(nodes == null) 
+                return;
+            foreach(TreeNode node in nodes)
+            {
+                node.ImageIndex = (int)image_index.Line;
+                node.SelectedImageIndex = (int)image_index.Line;
+                tree_towers_image_flush(node.Nodes);
+            }
+        }
+
+        private void tree_towers_image_flush(TreeNodeCollection nodes)
+        {
+            if (nodes == null)
+                return;
+            foreach (TreeNode node in nodes)
+            {
+                node.ImageIndex = (int)image_index.Tower;
+                node.SelectedImageIndex = (int)image_index.Tower;
+                tree_equs_image_flush(node.Nodes);
+            }
+        }
+
+        private void tree_equs_image_flush(TreeNodeCollection nodes)
+        {
+            if (nodes == null)
+                return;
+            foreach (TreeNode node in nodes)
+            {
+                tree_equ_image_flush(node, node.Tag as Equ);
+            }
+        }
+
+        private void tree_equ_image_flush(TreeNode node, Equ equ)
+        {
+            if (node == null) 
+                return;
+           node.ImageIndex = (int)image_index.Device_init;
+            if (equ == null)
+                return;
+            switch (equ.Status)
+            {
+                case OnLineStatus.None:
+                    node.ImageIndex = (int)image_index.Device_init;
+                    node.SelectedImageIndex = (int)image_index.Device_init;
+                    break;
+                case OnLineStatus.Online:
+                    node.ImageIndex = (int)image_index.Device_online;
+                    node.SelectedImageIndex = (int)image_index.Device_online;
+                    break;
+                case OnLineStatus.Offline:
+                    node.ImageIndex = (int)image_index.Device_offline;
+                    node.SelectedImageIndex = (int)image_index.Device_offline;
+                    break;
+            }
         }
 
         /// <summary>
@@ -293,6 +374,7 @@ namespace GridBackGround.Forms.Tab
             }
             if(powerPole.IP != null)
                 node.ToolTipText +=  "\n设备IP：" + powerPole.IP.ToString();
+            tree_equ_image_flush(node, equ);
         }
 
         #endregion
