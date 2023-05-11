@@ -51,7 +51,12 @@ namespace GridBackGround
             this.notifyIcon1.Icon = new System.Drawing.Icon("Res\\logo.ico");
             var name = System.Reflection.Assembly.GetExecutingAssembly().GetName();
             this.Text = name.Name;
-            this.menu_nw = new MenuItem_nw(this, this.设备控制ToolStripMenuItem);
+            this.私有控制ToolStripMenuItem.DropDownItems.Clear();
+            this.menu_nw = new MenuItem_nw(this) 
+            { 
+                ParentMenu = this.设备控制ToolStripMenuItem,
+                PrivateControlMenu = this.私有控制ToolStripMenuItem,
+            };
             this.menu_nw.Menuitem_Flush();
 
             //数据库初始化

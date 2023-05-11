@@ -139,6 +139,7 @@
     <Compile Include="CommandDeal\nw\nw_cmd_88_remote_camera_control.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_8B_time_table_get.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_base.cs" />
+    <Compile Include="CommandDeal\nw\nw_cmd_e1_cmd_id.cs" />
     <Compile Include="CommandDeal\Private\UserPhone.cs" />
     <Compile Include="CommandDeal\WorkState_Error.cs" />
     <Compile Include="Config\Common\Messagebox_Textbox.cs">
@@ -189,6 +190,12 @@
     </Compile>
     <Compile Include="Forms\Dialogs_nw\Dialog_nw_password_input.Designer.cs">
       <DependentUpon>Dialog_nw_password_input.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialogs_nw\Dialog_nw_set_cmdid.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs_nw\Dialog_nw_set_cmdid.Designer.cs">
+      <DependentUpon>Dialog_nw_set_cmdid.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Dialogs_nw\MenuItem_nw.cs" />
     <Compile Include="Forms\Dialogs_nw\UserControl_nw_img_para.cs">
@@ -533,6 +540,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs_nw\Dialog_nw_password_input.resx">
       <DependentUpon>Dialog_nw_password_input.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs_nw\Dialog_nw_set_cmdid.resx">
+      <DependentUpon>Dialog_nw_set_cmdid.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs_nw\UserControl_nw_img_para.resx">
       <DependentUpon>UserControl_nw_img_para.cs</DependentUpon>

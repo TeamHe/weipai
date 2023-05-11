@@ -14,6 +14,11 @@ namespace GridBackGround.Forms.Dialogs_nw
         #region Base
         public ToolStripMenuItem ParentMenu { get; set; }
 
+        /// <summary>
+        /// 私有控制按钮
+        /// </summary>
+        public ToolStripMenuItem PrivateControlMenu { get; set; }
+
         public MainForm Parent { get; set; }
 
         public MenuItem_nw() { }
@@ -24,9 +29,9 @@ namespace GridBackGround.Forms.Dialogs_nw
             Parent = p_form;
         }
 
-        public MenuItem_nw(ToolStripMenuItem p_menu) 
-        {  
-            ParentMenu = p_menu; 
+        public MenuItem_nw(MainForm p_form)
+        {
+            Parent = p_form;
         }
 
         public ToolStripMenuItem AddDropDownMenuItem(string text)
@@ -513,6 +518,28 @@ namespace GridBackGround.Forms.Dialogs_nw
         }
         #endregion
 
+        public void menu_click_set_cmdid(object sender, EventArgs e)
+        {
+            Dialog_nw_set_cmdid dialog = new Dialog_nw_set_cmdid();
+            IPowerPole pole;
+            if ((pole = Parent.GetSeletedPole()) == null)
+                return;
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                nw_cmd_e1_cmd_id cmd = new nw_cmd_e1_cmd_id(pole);
+                cmd.Password = dialog.Password;
+                cmd.NewID = dialog.CMD_ID;
+                cmd.Execute();
+            }
+        }
+
+
+        private void private_menu_flush()
+        {
+            if (this.PrivateControlMenu == null)
+                return;
+            this.AddDropDownMenuItem(this.PrivateControlMenu, "设置装置ID", menu_click_set_cmdid);
+        }
 
         public void Menuitem_Flush()
         {
@@ -520,7 +547,7 @@ namespace GridBackGround.Forms.Dialogs_nw
             this.ParentMenu.DropDownItems.Add(new ToolStripSeparator());
             Menuitem_image_flush();
 
-
+            private_menu_flush();
         }
 
     }
