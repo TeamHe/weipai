@@ -1,7 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "微拍后台", "GridBackGround\微拍后台.csproj", "{9A4D6CE7-07A4-497F-B364-C10B6F20EDCA}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cma", "GridBackGround\cma.csproj", "{9A4D6CE7-07A4-497F-B364-C10B6F20EDCA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastSocket.SocketBase", "FastSocket.SocketBase\FastSocket.SocketBase.csproj", "{19AC13BD-92BD-4851-A38F-5642C1F97656}"
 EndProject
