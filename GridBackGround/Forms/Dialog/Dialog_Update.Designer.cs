@@ -188,7 +188,7 @@
             this.textBox_FactoryName.Name = "textBox_FactoryName";
             this.textBox_FactoryName.Size = new System.Drawing.Size(100, 21);
             this.textBox_FactoryName.TabIndex = 1;
-            this.textBox_FactoryName.Text = "Wintech";
+            this.textBox_FactoryName.Text = "Zhongdian";
             // 
             // label_Fatory_Name
             // 
