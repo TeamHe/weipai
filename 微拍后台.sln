@@ -17,8 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResModel", "ResModel\ResMod
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dos.Common", "Dos.Common-master\Dos.Common.csproj", "{B9FEF835-EC96-4314-A77D-FFFEA7C43BEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wintech.BLL", "Wintech.BLL\Wintech.BLL.csproj", "{B0BF84FF-26B8-4D6E-9556-C9B1D120722C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,16 +109,6 @@ Global
 		{B9FEF835-EC96-4314-A77D-FFFEA7C43BEE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B9FEF835-EC96-4314-A77D-FFFEA7C43BEE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B9FEF835-EC96-4314-A77D-FFFEA7C43BEE}.Release|x86.ActiveCfg = Release|Any CPU
-		{B0BF84FF-26B8-4D6E-9556-C9B1D120722C}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{B0BF84FF-26B8-4D6E-9556-C9B1D120722C}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{B0BF84FF-26B8-4D6E-9556-C9B1D120722C}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{B0BF84FF-26B8-4D6E-9556-C9B1D120722C}.Debug|x86.ActiveCfg = Debug|x86
-		{B0BF84FF-26B8-4D6E-9556-C9B1D120722C}.Debug|x86.Build.0 = Debug|x86
-		{B0BF84FF-26B8-4D6E-9556-C9B1D120722C}.Release|Any CPU.ActiveCfg = Release|x86
-		{B0BF84FF-26B8-4D6E-9556-C9B1D120722C}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{B0BF84FF-26B8-4D6E-9556-C9B1D120722C}.Release|Mixed Platforms.Build.0 = Release|x86
-		{B0BF84FF-26B8-4D6E-9556-C9B1D120722C}.Release|x86.ActiveCfg = Release|x86
-		{B0BF84FF-26B8-4D6E-9556-C9B1D120722C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
