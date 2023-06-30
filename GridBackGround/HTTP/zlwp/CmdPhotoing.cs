@@ -48,7 +48,7 @@ namespace GridBackGround.HTTP.zlwp
 
             
                 Termination.PowerPole pole = Termination.PowerPoleManage.Find(cmdid) as Termination.PowerPole;
-                if (pole == null || pole.OnLine == false)
+                if (pole == null || pole.is_online() == false)
                 {
                     Zlwp.SendError(this.Context, Error_Code.DeviceOffLine);
                     return;

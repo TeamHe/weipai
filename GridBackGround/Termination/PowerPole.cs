@@ -10,10 +10,11 @@ using System.Net;
 using ResModel.EQU;
 using DB_Operation.EQUManage;
 using ResModel;
+using System.Security.RightsManagement;
 
 namespace GridBackGround.Termination
 {
-    
+
 
     public class PowerPole : IPowerPole
     {
@@ -25,6 +26,10 @@ namespace GridBackGround.Termination
         private Timer timer;
 
         private IConnection connection;
+
+        public OnLineStatus OnLine {get;private set;}
+
+        public PowerPole_Online Status { get; set;}
 
         public object Lock { get; private set; }
 
@@ -38,14 +43,71 @@ namespace GridBackGround.Termination
             
             if (CMD_ID == null) throw new ArgumentNullException("装置ID");
             this.CMD_ID = CMD_ID;
-            this.OnLine = false;
             this.Lock = new object();
             UpstateEqu();
-            timer = new System.Timers.Timer(30 * 60 * 1000);
-            timer.Elapsed += new ElapsedEventHandler(OutLine);
-            timer.AutoReset = true;
+
+            ///在线状态模块初始化
+            this.Status = new PowerPole_Online();
+            this.Status.OnStateChagne += Status_OnStateChagne;
+
+            Console.WriteLine(DateTime.Now.ToString() + string.Format("Device {0} Created", this.CMD_ID));
         }
-        
+        #endregion
+
+        #region  在线状态处理
+        /// <summary>
+        /// 设备在线状态更新事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Status_OnStateChagne(object sender, OnLineStatus e)
+        {
+            OnLineStatus old = this.OnLine;
+            this.OnLine = e;
+            if(this.Equ != null && this.Equ.Status != e) {
+                this.Equ.Status = e;
+                if(e == OnLineStatus.Online || e == OnLineStatus.Offline)
+                    DB_EQU.ChangeOnLineState(Equ.Status, Equ.ID);
+            }
+            EventHandler<PowerPoleStateChange> handler = PowerPoleStateChange;
+            if (handler != null)
+            {
+                handler(this, new PowerPoleStateChange(this));
+            }
+            Console.WriteLine(DateTime.Now.ToString() + string.Format(" Device {0} 在线状态Change: from {1} to {2}",this.CMD_ID,old,this.OnLine));
+        }
+
+        /// <summary>
+        /// 设置在线状态
+        /// </summary>
+        /// <param name="status"></param>
+        public void SetOnlineState(OnLineStatus status)
+        {
+            if(this.Status != null)
+                this.Status.SetState(status);
+            else
+                this.Status_OnStateChagne(null,status);
+        }
+
+        /// <summary>
+        /// 获取当前是否在线
+        /// </summary>
+        /// <returns></returns>
+        public bool is_online()
+        {
+            return (this.OnLine == OnLineStatus.Online || this.OnLine == OnLineStatus.Sleep);
+        }
+
+        /// <summary>
+        /// 接收到通讯包处理
+        /// </summary>
+        private void _on_communication()
+        {
+            if (this.Status == null)
+                this.SetOnlineState(OnLineStatus.Online);
+            else
+                this.Status.OnCommunication();
+        }
         #endregion
 
         #region   IPowerPole Members
@@ -82,26 +144,21 @@ namespace GridBackGround.Termination
             }
         }
 
+        /// <summary>
+        /// TCP 链接断开事件处理
+        /// </summary>
+        /// <param name="connection"></param>
+        /// <param name="ex"></param>
         private void Connection_Disconnected(IConnection connection, Exception ex)
         {
-            this.OnLine = false;
-            OnLineStateChange();
             this.Connection = null;
-
+            this.SetOnlineState(OnLineStatus.Offline);
         }
 
         /// <summary>
         /// Udp终端
         /// </summary>
         public UdpSession udpSession
-        {
-            get;
-            private set;
-        }
-        /// <summary>
-        /// 在线状态
-        /// </summary>
-        public bool OnLine
         {
             get;
             private set;
@@ -154,7 +211,6 @@ namespace GridBackGround.Termination
         /// <returns></returns>
         public bool UpdatePowerPole(UdpSession udpSession)
         {
-            bool Change = false;
             if (this.Connection != null)
             {
                 try
@@ -167,10 +223,9 @@ namespace GridBackGround.Termination
             {
                 //IP端口变化
                 IP = (IPEndPoint)udpSession.RemoteEndPoint;
-                Change = true;  
             }
             this.udpSession = udpSession;
-            Online(Change);
+            this._on_communication();
             return false;
         }
         /// <summary>
@@ -180,7 +235,6 @@ namespace GridBackGround.Termination
         /// <returns></returns>
         public bool UpdatePowerPole(IConnection iconnection)
         {
-            bool Change = false;
             this.udpSession = null;
             if(this.Connection != iconnection)
             {
@@ -193,75 +247,19 @@ namespace GridBackGround.Termination
                 this.Connection = iconnection;
                 this.IP = (IPEndPoint)iconnection.RemoteEndPoint;
             }
-            if(this.OnLine == false)
-            {
-                this.OnLine = true;
-                OnLineStateChange();
-            }
-            Online(Change);
+            this._on_communication();
             return false;
         }
         #endregion
 
         #region 私有函数
         /// <summary>
-        /// 定时器超时，设备更新状态下线。并触发设备下线事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OutLine(object sender, ElapsedEventArgs e)
-        {
-            if (OnLine == true)
-            {
-                this.OnLine = false;
-                OnLineStateChange();
-            }
-           
-        }
-        /// <summary>
-        /// 更新设备定时
-        /// </summary>
-        /// <param name="state">设备状态变化</param>
-        private void Online(bool state)
-        {
-            if (this.OnLine == false)
-            {
-                this.OnLine = true;
-                state = true;
-            }
-            timer.Close();
-            timer.Start();
-            if (state)
-                OnLineStateChange();
-        }
-        /// <summary>
-        /// 触发设备更新事件
-        /// </summary>
-        private void OnLineStateChange()
-        {
-            if (this.Equ != null)
-            {
-                if (this.OnLine)
-                    Equ.Status = OnLineStatus.Online;
-                else
-                    Equ.Status = OnLineStatus.Offline;
-                DB_EQU.ChangeOnLineState(Equ.Status, Equ.ID);
-            }            
-            EventHandler<PowerPoleStateChange> handler = PowerPoleStateChange;
-            if (handler != null)
-            {
-                handler(this, new PowerPoleStateChange(this));
-            }
-        }
         #endregion
 
         public override string ToString()
         {
             string str = "";
-            if (OnLine)
-                str += "在线";
-            else
-                str += "离线";
+            str += this.OnLine.ToString();
             str += "\n设备IP:";
             if (udpSession != null)
                 str += udpSession.RemoteEndPoint.ToString();
@@ -270,6 +268,7 @@ namespace GridBackGround.Termination
 
             return this.Equ.ToString() + "\n" + str;
         }
+
 
         #region 手动请求拍照处理
         /// <summary>
@@ -285,7 +284,7 @@ namespace GridBackGround.Termination
         {
             if (preseting > 255)
                 return Error_Code.InvalidPara;
-            if (this.OnLine == false)
+            if (!is_online())
                 return Error_Code.DeviceOffLine;
             if (this.busy_photoing)
                 return Error_Code.DeviceBusy;
@@ -340,7 +339,7 @@ namespace GridBackGround.Termination
 
         public Error_Code SetTimeTable(int channel, List<CommandDeal.IPhoto_Time> table)
         {
-            if (this.OnLine == false)
+            if (!is_online())
                 return Error_Code.DeviceOffLine;
             if (this.busy_settimetable)
                 return Error_Code.DeviceBusy;
@@ -410,7 +409,7 @@ namespace GridBackGround.Termination
         {
             if (status != 0x02)
                 status = 0x01;
-            if (this.OnLine == false)
+            if (!is_online())
                 return Error_Code.DeviceOffLine;
             if (this.busy_VoiceLightAlarm)
                 return Error_Code.DeviceBusy;

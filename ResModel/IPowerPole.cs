@@ -50,7 +50,7 @@ namespace ResModel
         UdpSession udpSession { get; }
 
         //在线状态
-        bool OnLine { get; }
+        OnLineStatus OnLine { get; }
 
         IPEndPoint IP { get; }
 

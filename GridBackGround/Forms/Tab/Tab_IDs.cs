@@ -33,6 +33,9 @@ namespace GridBackGround.Forms.Tab
 
             [Description("设备在线")]
             Device_online,
+
+            [Description("设备休眠")]
+            Device_sleep,
         }
         #region Private Varialbe
         private const string TestLineName = "TestLine";
@@ -323,6 +326,10 @@ namespace GridBackGround.Forms.Tab
                     node.ImageIndex = (int)image_index.Device_offline;
                     node.SelectedImageIndex = (int)image_index.Device_offline;
                     break;
+                case OnLineStatus.Sleep:
+                    node.ImageIndex = (int)image_index.Device_sleep;
+                    node.SelectedImageIndex = (int)image_index.Device_sleep;
+                    break;
             }
         }
 
@@ -350,26 +357,21 @@ namespace GridBackGround.Forms.Tab
                 //nodeequ.EquID = node.Name;
                 nodeequ.EquID = powerPole.CMD_ID;
                 nodeequ.Type = ICMP.UnKonwn;
-                if (powerPole.OnLine)
-                    nodeequ.Status = OnLineStatus.Online;
-                else
-                    nodeequ.Status = OnLineStatus.Offline;
+                nodeequ.Status = powerPole.OnLine;
                 node.Tag = nodeequ;
             }
 
             Equ equ = DB_EQU.GetEqu(powerPole.CMD_ID);
             if (equ != null)
             {
+                equ.Status = powerPole.OnLine;
                 node.ToolTipText = equ.ToString();
                 node.Tag = equ;
             }
             else
             {
                 equ = (Equ)node.Tag;
-                if (powerPole.OnLine)
-                    equ.Status = OnLineStatus.Online;
-                else
-                    equ.Status = OnLineStatus.Offline;
+                equ.Status = powerPole.OnLine;
                 node.ToolTipText = equ.ToString();
             }
             if(powerPole.IP != null)

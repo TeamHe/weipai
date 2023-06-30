@@ -55,6 +55,7 @@ namespace GridBackGround.Termination
             powerPole.PowerPoleStateChange += new EventHandler<PowerPoleStateChange>(PoleStateChange);
             powerPole.UpstateEqu();
             PowerPoleList.Add(powerPole);
+            PowerPole_Online_Manager.Register(powerPole, powerPole.Status);
             return powerPole;
         }
 

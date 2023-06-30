@@ -93,6 +93,7 @@
             this.imageList1.Images.SetKeyName(2, "cycle_blue.png");
             this.imageList1.Images.SetKeyName(3, "cycle_red.png");
             this.imageList1.Images.SetKeyName(4, "cycle_green.png");
+            this.imageList1.Images.SetKeyName(5, "设备休眠.png");
             // 
             // Tab_IDs
             // 

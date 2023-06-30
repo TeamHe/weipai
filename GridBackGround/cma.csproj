@@ -515,6 +515,7 @@
     <Compile Include="Termination\PowerPoleManagement.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Termination\PowerPole_Online.cs" />
     <Compile Include="Termination\WEB_Control.cs" />
     <Compile Include="Work\PictureClean.cs" />
     <EmbeddedResource Include="Config\Common\Messagebox_Textbox.resx">
@@ -712,6 +713,10 @@
     <ProjectReference Include="..\DB_Operation\DB_Operation.csproj">
       <Project>{8D2526AF-1982-4741-B940-9370A246AF54}</Project>
       <Name>DB_Operation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dos.Common-master\Dos.Common.csproj">
+      <Project>{b9fef835-ec96-4314-a77d-fffea7c43bee}</Project>
+      <Name>Dos.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\FastSocket.Server\FastSocket.Server.csproj">
       <Project>{C9433CAD-5795-4735-8DA8-76BEC4C82A52}</Project>

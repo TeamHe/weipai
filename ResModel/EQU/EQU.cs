@@ -19,6 +19,8 @@ namespace ResModel.EQU
         Online,
         [Description("离线")]
         Offline,
+        [Description("休眠")]
+        Sleep,
     }
 
     public class Equ

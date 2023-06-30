@@ -77,10 +77,7 @@ namespace GridBackGround
                             lvi.SubItems.Add(powerPole.IP.ToString());
                         else
                             lvi.SubItems.Add("");
-                        if (powerPole.OnLine)
-                            lvi.SubItems.Add("在线");
-                        else
-                            lvi.SubItems.Add("离线");
+                        lvi.SubItems.Add(powerPole.OnLine.ToString());
                         this.listView1.Items.Add(lvi);
                     }
                     catch { };
