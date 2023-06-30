@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GridBackGround.Termination;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,8 @@ namespace GridBackGround.CommandDeal.nw
         public override int Decode(out string msg)
         {
             msg = "装置进入休眠状态"; 
+            PowerPole pole = this.Pole as PowerPole;
+            pole.SetOnlineState(ResModel.EQU.OnLineStatus.Sleep);
             return 0;
         }
 
