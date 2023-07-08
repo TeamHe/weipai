@@ -37,6 +37,8 @@ namespace GridBackGround.CommandDeal.nw
         private static List<Type> subcommands = null;
         private static List<cmd_handle> kps = null;
 
+        public static event EventHandler<nw_cmd_base> OnPackageRecv;
+
         /// <summary>
         /// 通过反射获取当前指令处理类列表
         /// </summary>
@@ -78,6 +80,12 @@ namespace GridBackGround.CommandDeal.nw
             return kps.Find(ctl => ctl.cid == ctl_id);
         }
 
+        static void _onPackageRecv(PowerPole pole, nw_cmd_base cmd)
+        {
+            if(OnPackageRecv != null)
+                OnPackageRecv(pole, cmd);
+        }
+
         /// <summary>
         /// 处理接收到的数据帧
         /// </summary>
@@ -99,6 +107,7 @@ namespace GridBackGround.CommandDeal.nw
                     ctl.Pole = pole;
                     ctl.Data = command.Data;
                     ctl.Handle();
+                    _onPackageRecv((PowerPole)pole, ctl);
                 }
                 catch (Exception ex)
                 {
