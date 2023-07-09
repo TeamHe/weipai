@@ -83,6 +83,14 @@ namespace GridBackGround.CommandDeal.nw
                 }
                 Para.Extra_paras = extra_paras;
             }
+            
+            //更新当前设备的心跳周期，以及睡眠时长
+            PowerPole pole = this.Pole as PowerPole;
+            if( pole != null && pole.State != null)
+            {
+                pole.State.SetPeriod(this.Para.Heart * 60,
+                                     this.Para.DormancyDuration * 60);
+            }
             msg = this.Para.ToString();
             return 0;
         }

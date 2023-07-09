@@ -1,4 +1,6 @@
-﻿using ResModel.EQU;
+﻿using GridBackGround.CommandDeal.nw;
+using ResModel;
+using ResModel.EQU;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,7 +9,7 @@ using System.Web.UI.HtmlControls;
 
 namespace GridBackGround.Termination
 {
-    public class PowerPole_Online
+    public class PowerPoleState
     {
         /// <summary>
         /// 通讯终端时长
@@ -38,12 +40,12 @@ namespace GridBackGround.Termination
         /// </summary>
         public int SleepPeriod { get; set; }
 
-        public event EventHandler<OnLineStatus> OnStateChagne;
+        public event EventHandler<OnLineStatus> StateChagned;
 
-        public PowerPole_Online()
+        public PowerPoleState()
         {
-            this.HeartPeriod = 10;     //默认心跳周期5分钟
-            this.SleepPeriod = 30;     //默认装置休眠10分钟
+            this.HeartPeriod = 300;     //默认心跳周期5分钟
+            this.SleepPeriod = 600;     //默认装置休眠10分钟
         }
 
         public void SetState(OnLineStatus state)
@@ -77,11 +79,11 @@ namespace GridBackGround.Termination
                     break;
             }
             //触发状态变化事件
-            if (this.OnStateChagne != null)
+            if (this.StateChagned != null)
             {
                 try
                 {
-                    EventHandler<OnLineStatus> handler = this.OnStateChagne;
+                    EventHandler<OnLineStatus> handler = this.StateChagned;
                     handler(this, this.OnLine_State);
                 }
                 catch (Exception e)
@@ -89,6 +91,17 @@ namespace GridBackGround.Termination
                     Console.WriteLine(this.ToString() + "OnStateChange() fail." + e.ToString());
                 }
             }
+        }
+
+        /// <summary>
+        /// 设置通讯周期
+        /// </summary>
+        /// <param name="heartPeriod"></param>
+        /// <param name="sleepPeriod"></param>
+        public void SetPeriod(int heartPeriod,int sleepPeriod)
+        {
+            this.HeartPeriod = heartPeriod;
+            this.SleepPeriod = sleepPeriod;
         }
 
         /// <summary>
@@ -147,75 +160,4 @@ namespace GridBackGround.Termination
         }
     }
 
-    public class PowerPole_Online_Manager
-    {
-        private static Dictionary<PowerPole, PowerPole_Online> online_list;
-
-        private static Timer _timer;
-
-        /// <summary>
-        /// 注册一个online处理
-        /// </summary>
-        /// <param name="powerPole"></param>
-        /// <param name="online"></param>
-        public static void Register(PowerPole powerPole,PowerPole_Online online)
-        {
-            if (online_list == null)
-            {
-                online_list = new Dictionary<PowerPole, PowerPole_Online>();
-                _timer = new Timer()
-                {
-                    AutoReset = true,
-                    Interval = 1000,
-                    Enabled = true,
-                };
-                _timer.Elapsed += _timer_Elapsed;
-            }
-
-            if(online_list.ContainsKey(powerPole))
-                online_list[powerPole] = online;
-            else
-                online_list.Add(powerPole, online);
-        }
-
-        /// <summary>
-        /// 取消注册Online 处理
-        /// </summary>
-        /// <param name="powerPole"></param>
-        /// <returns></returns>
-        public static bool UnRegister(PowerPole powerPole)
-        {
-            if(online_list ==null)
-                return false;
-            if(!online_list.ContainsKey(powerPole))
-                return false;
-            online_list.Remove(powerPole);
-            return true;
-        }
-
-
-        /// <summary>
-        /// 触发秒处理函数
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private static void _timer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            if (online_list == null)
-                return;
-            foreach(var item in online_list)
-            {
-                PowerPole_Online online = item.Value;
-                online.OnSec();
-            }
-        }
-
-        private static void TimerProc(object state)
-        {
-            // The state object is the Timer object.
-            Timer t = (Timer)state;
-            t.Dispose();
-            Console.WriteLine("The timer callback executes.");
-        }
-    }
 }

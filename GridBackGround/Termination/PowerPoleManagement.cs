@@ -12,6 +12,8 @@ namespace GridBackGround.Termination
     public static class PowerPoleManage
     {
         public static event OnLineStateChange OnStateChange;
+        public static event EventHandler<PowerPole> OnPoleAdded;
+        public static event EventHandler<PowerPole> OnPoleRemoved;
         public static List<Termination.PowerPole> PowerPoleList;
         /// <summary>
         /// 初始化函数
@@ -19,6 +21,9 @@ namespace GridBackGround.Termination
         public static void PowerPoleManageInit()
         { 
             PowerPoleList = new List<Termination.PowerPole>();
+            PowerPoleComMan.Init();
+            PowerPoleStateMan.Init();
+            CommandDeal.nw.nw_cmd_handle.GetHandles();
         }
 
         public static void UpdatePolesStation()
@@ -39,26 +44,25 @@ namespace GridBackGround.Termination
             }
         }
 
+        private static void _AddPowerPole(PowerPole pole)
+        {
+            if (OnPoleAdded != null)
+            {
+                OnPoleAdded(null,pole);
+            }
+        }
+
+        private static void _OnPoleRemove(PowerPole pole)
+        {
+            if(OnPoleRemoved != null)
+            {
+                OnPoleRemoved(null,pole);
+            }
+        }
 
         #region  private member
         
         #region  新建终端
-        /// <summary>
-        /// 创建新的终端节点并添加到列表中
-        /// </summary>
-        /// <param name="CMD_ID"></param>
-        /// <returns></returns>
-        private static PowerPole NewPowerPole(string name,string CMD_ID)
-        {
-            PowerPole powerPole = new PowerPole(CMD_ID);
-            //接收节点变化事件
-            powerPole.PowerPoleStateChange += new EventHandler<PowerPoleStateChange>(PoleStateChange);
-            powerPole.UpstateEqu();
-            PowerPoleList.Add(powerPole);
-            PowerPole_Online_Manager.Register(powerPole, powerPole.Status);
-            return powerPole;
-        }
-
         #endregion
         /// <summary>
         /// 终端状态变化事件接收处理程序
@@ -71,6 +75,7 @@ namespace GridBackGround.Termination
                 OnStateChange((PowerPole)e.Power);     //触发终端变化事件，通知界面更新状态
         }
         
+
         /// <summary>
         /// 更新终端在线列表
         /// </summary>
@@ -79,13 +84,19 @@ namespace GridBackGround.Termination
         /// <param name="UdpSession"></param>
         private static IPowerPole PowerPoleDeal(string name,string CMD_ID, IConnection iconnection, UdpSession UdpSession)
         {
+            bool add = false;
             PowerPole powerPole = (PowerPole)Find(CMD_ID);
             if (powerPole == null)
             {
-                powerPole = NewPowerPole(name,CMD_ID);
+                powerPole = new PowerPole(CMD_ID);
+                powerPole.UpstateEqu();
+                powerPole.PowerPoleStateChange += new EventHandler<PowerPoleStateChange>(PoleStateChange);
+                PowerPoleList.Add(powerPole);
                 if (OnStateChange != null)              //触发终端状态事件，主界面显示新加入的终端
                     OnStateChange(powerPole);
+                add = true;
             }
+             
            //更新在线状态
             if (iconnection != null)
                 powerPole.UpdatePowerPole(iconnection);
@@ -98,8 +109,9 @@ namespace GridBackGround.Termination
                 if (OnStateChange != null)              //触发终端状态事件，主界面显示新加入的终端
                     OnStateChange(powerPole);
             }
+            if (add)
+                _AddPowerPole(powerPole);
             return powerPole;
-           
         }
         #endregion
 

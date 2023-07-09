@@ -11,13 +11,25 @@ using ResModel.EQU;
 using DB_Operation.EQUManage;
 using ResModel;
 using System.Security.RightsManagement;
+using System.ComponentModel;
 
 namespace GridBackGround.Termination
 {
-
+    public enum PowerPoleFlag
+    {
+        None = 0,
+        [Description("南网")]
+        NW,
+        [Description("国网")]
+        GW,
+    }
 
     public class PowerPole : IPowerPole
     {
+        /// <summary>
+        /// 设备标识
+        /// </summary>
+        public PowerPoleFlag Flag { get; set; }
         /// <summary>
         /// 指令超时时间
         /// </summary>
@@ -29,7 +41,7 @@ namespace GridBackGround.Termination
 
         public OnLineStatus OnLine {get;private set;}
 
-        public PowerPole_Online Status { get; set;}
+        public PowerPoleState State { get; set;}
 
         public object Lock { get; private set; }
 
@@ -44,11 +56,15 @@ namespace GridBackGround.Termination
             if (CMD_ID == null) throw new ArgumentNullException("装置ID");
             this.CMD_ID = CMD_ID;
             this.Lock = new object();
+            if (CMD_ID.Length == 6)
+                this.Flag = PowerPoleFlag.NW;
+            if(CMD_ID.Length == 17)
+                this.Flag = PowerPoleFlag.GW;
             UpstateEqu();
 
             ///在线状态模块初始化
-            this.Status = new PowerPole_Online();
-            this.Status.OnStateChagne += Status_OnStateChagne;
+            this.State = new PowerPoleState();
+            this.State.StateChagned += OnStateChagne;
 
             Console.WriteLine(DateTime.Now.ToString() + string.Format("Device {0} Created", this.CMD_ID));
         }
@@ -60,7 +76,7 @@ namespace GridBackGround.Termination
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Status_OnStateChagne(object sender, OnLineStatus e)
+        private void OnStateChagne(object sender, OnLineStatus e)
         {
             OnLineStatus old = this.OnLine;
             this.OnLine = e;
@@ -83,10 +99,10 @@ namespace GridBackGround.Termination
         /// <param name="status"></param>
         public void SetOnlineState(OnLineStatus status)
         {
-            if(this.Status != null)
-                this.Status.SetState(status);
+            if(this.State != null)
+                this.State.SetState(status);
             else
-                this.Status_OnStateChagne(null,status);
+                this.OnStateChagne(null,status);
         }
 
         /// <summary>
@@ -98,16 +114,6 @@ namespace GridBackGround.Termination
             return (this.OnLine == OnLineStatus.Online || this.OnLine == OnLineStatus.Sleep);
         }
 
-        /// <summary>
-        /// 接收到通讯包处理
-        /// </summary>
-        private void _on_communication()
-        {
-            if (this.Status == null)
-                this.SetOnlineState(OnLineStatus.Online);
-            else
-                this.Status.OnCommunication();
-        }
         #endregion
 
         #region   IPowerPole Members
@@ -136,11 +142,10 @@ namespace GridBackGround.Termination
             get { return this.connection; }
             private set {
                 if(this.connection != null)     //处理连接断开事件
-                    this.connection.Disconnected -= Connection_Disconnected;
+                    this.connection.Disconnected -= OnDisconnected;
                 this.connection = value;
                 if (this.connection != null)
-                    this.connection.Disconnected += Connection_Disconnected;
-
+                    this.connection.Disconnected += OnDisconnected;
             }
         }
 
@@ -149,7 +154,7 @@ namespace GridBackGround.Termination
         /// </summary>
         /// <param name="connection"></param>
         /// <param name="ex"></param>
-        private void Connection_Disconnected(IConnection connection, Exception ex)
+        private void OnDisconnected(IConnection connection, Exception ex)
         {
             this.Connection = null;
             this.SetOnlineState(OnLineStatus.Offline);
@@ -225,7 +230,7 @@ namespace GridBackGround.Termination
                 IP = (IPEndPoint)udpSession.RemoteEndPoint;
             }
             this.udpSession = udpSession;
-            this._on_communication();
+            this.State.OnCommunication();
             return false;
         }
         /// <summary>
@@ -247,7 +252,7 @@ namespace GridBackGround.Termination
                 this.Connection = iconnection;
                 this.IP = (IPEndPoint)iconnection.RemoteEndPoint;
             }
-            this._on_communication();
+            this.State.OnCommunication();
             return false;
         }
         #endregion
@@ -455,7 +460,6 @@ namespace GridBackGround.Termination
 
             }
         }
-
         #endregion
     }
 }
