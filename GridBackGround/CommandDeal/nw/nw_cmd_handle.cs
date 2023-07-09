@@ -4,6 +4,7 @@ using ResModel;
 using Sodao.FastSocket.Server.Command;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace GridBackGround.CommandDeal.nw
@@ -18,7 +19,7 @@ namespace GridBackGround.CommandDeal.nw
         /// <summary>
         /// 南网接收数据帧处理handle 
         /// </summary>
-        internal class cmd_handle
+        public class cmd_handle
         {
             public int cid { get; set; }
 
@@ -60,12 +61,7 @@ namespace GridBackGround.CommandDeal.nw
             return subcommands;
         }
 
-        /// <summary>
-        /// 查找特定指令字对对应的帧处理类
-        /// </summary>
-        /// <param name="ctl_id"></param>
-        /// <returns></returns>
-        internal static cmd_handle GetCmdHandle(int ctl_id)
+        public static List<cmd_handle> GetHandles()
         {
             if (kps == null)
             {
@@ -77,7 +73,17 @@ namespace GridBackGround.CommandDeal.nw
                     kps.Add(new cmd_handle(obj.Control, type, obj.Name));
                 }
             }
-            return kps.Find(ctl => ctl.cid == ctl_id);
+            return kps;
+        }
+
+        /// <summary>
+        /// 查找特定指令字对对应的帧处理类
+        /// </summary>
+        /// <param name="ctl_id"></param>
+        /// <returns></returns>
+        internal static cmd_handle GetCmdHandle(int ctl_id)
+        {
+            return GetHandles().Find(ctl => ctl.cid == ctl_id);
         }
 
         static void _onPackageRecv(PowerPole pole, nw_cmd_base cmd)
