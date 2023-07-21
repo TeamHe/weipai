@@ -311,7 +311,7 @@ namespace GridBackGround.CommandDeal.nw
             {
                 msg = string.Format("指令发送{0}.{1}", "失败", ex.Message);
             }
-            DisPacket.NewRecord(new DataInfo(DataRecSendState.send, this.Pole, this.Name, msg));
+            NewDataInfo(this.Pole, new DataInfo(DataRecSendState.send, this.Pole, this.Name, msg));
             return res;
         }
 
@@ -324,15 +324,25 @@ namespace GridBackGround.CommandDeal.nw
             {
                 this.Decode(out string msg);
                 if(msg != null && msg.Length > 0)
-                    DisPacket.NewRecord(new DataInfo(DataRecSendState.rec, this.Pole,
+                    NewDataInfo(this.Pole, new DataInfo(DataRecSendState.rec, this.Pole,
                         this.Name, msg));
             }
             catch (Exception ex)
             {
-                DisPacket.NewRecord(new DataInfo(DataRecSendState.rec, this.Pole,
+                NewDataInfo(this.Pole, new DataInfo(DataRecSendState.rec, this.Pole,
                     this.Name, string.Format("数据解析处理失败:" + ex.Message)));
             }
+        }
 
+
+        public static event EventHandler<DataInfo> OnNewDataInfo;
+
+        protected static void NewDataInfo(IPowerPole pole, DataInfo dataInfo)
+        {
+            if(OnNewDataInfo != null)
+            {
+                OnNewDataInfo(pole, dataInfo);
+            }
         }
     }
 }

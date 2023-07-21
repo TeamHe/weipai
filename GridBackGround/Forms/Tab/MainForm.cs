@@ -17,6 +17,8 @@ using GridBackGround.Forms.Dialogs_nw;
 using GridBackGround.Forms;
 using ResModel;
 using GridBackGround.Forms.Tab;
+using System.Web.UI.WebControls;
+using GridBackGround.PacketAnaLysis;
 
 namespace GridBackGround
 {
@@ -62,7 +64,7 @@ namespace GridBackGround
             //数据库初始化
             try
             {
-
+                DisPacket.Init();
                 DB_Operation.DB.Init();
 
                 TabInit();

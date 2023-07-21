@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GridBackGround.CommandDeal.nw;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -80,6 +81,16 @@ namespace GridBackGround.PacketAnaLysis
             msg1.Add(data);
             if (DisPacket.OnNewPacketS != null)
                 OnNewPacketS(msg1);
+        }
+
+        public static void Init()
+        {
+            nw_cmd_base.OnNewDataInfo += Nw_cmd_base_NewDataInfo;
+        }
+
+        private static void Nw_cmd_base_NewDataInfo(object sender, DataInfo e)
+        {
+            NewRecord(e);
         }
     }
 
