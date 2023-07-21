@@ -206,6 +206,11 @@ namespace GridBackGround.Termination
             }
             catch { }
         }
+
+        public bool SendSocket(IPowerPole pole, byte[] data, out string msg)
+        {
+            return PackeDeal.SendSocket(pole, data, out msg);
+        }
         #endregion
 
         #region 更新设备参数

@@ -61,8 +61,10 @@ namespace ResModel
 
         object UserData { get; set; }
 
-       object Lock { get; }
+        object Lock { get; }
 
         event EventHandler<PowerPoleStateChange> PowerPoleStateChange;
+
+        bool SendSocket(IPowerPole pole, byte[] data, out string msg);
     }
 }

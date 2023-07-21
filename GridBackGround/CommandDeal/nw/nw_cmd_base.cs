@@ -280,7 +280,7 @@ namespace GridBackGround.CommandDeal.nw
                     msg = "数据包构建失败:" + out_msg;
                     return false;
                 }
-                if(!PackeDeal.SendSocket(this.Pole, cmd.Pakcet, out msg))
+                if(!this.Pole.SendSocket(this.Pole, cmd.Pakcet, out msg))
                 {
                     msg = "数据包发送失败:" + out_msg;
                     return false;
