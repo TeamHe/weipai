@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ResModel;
+﻿using ResModel;
 using ResModel.EQU;
 using Tools;
+using ResModel.PowerPole;
 
 namespace GridBackGround.CommandDeal
 {
@@ -63,8 +60,8 @@ namespace GridBackGround.CommandDeal
                 pacMsg += "失败。";
 
             PacketAnaLysis.DisPacket.NewRecord(
-                new PacketAnaLysis.DataInfo(
-                    PacketAnaLysis.DataRecSendState.rec,
+                new DataInfo(
+                    DataInfoState.rec,
                     pole,
                     "摄像头远程调节",
                     pacMsg)); 
@@ -100,8 +97,8 @@ namespace GridBackGround.CommandDeal
             {
                 //显示发送的数据
                 PacketAnaLysis.DisPacket.NewRecord(
-                    new PacketAnaLysis.DataInfo(
-                        PacketAnaLysis.DataRecSendState.send,
+                    new DataInfo(
+                        DataInfoState.send,
                          Termination.PowerPoleManage.Find(CMD_ID),
                         "摄像头远程调节",
                         pacMsg));

@@ -1,11 +1,10 @@
 ﻿using GridBackGround.PacketAnaLysis;
-using GridBackGround.Termination;
 using ResModel;
 using Sodao.FastSocket.Server.Command;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
+using ResModel.PowerPole;
 
 namespace GridBackGround.CommandDeal.nw
 {
@@ -102,7 +101,7 @@ namespace GridBackGround.CommandDeal.nw
             cmd_handle handle = GetCmdHandle(command.PackageType);
             if (handle == null)
             {
-                DisPacket.NewRecord(new DataInfo(DataRecSendState.rec, pole,
+                DisPacket.NewRecord(new DataInfo(DataInfoState.rec, pole,
                     "未知协议", string.Format("不支持的控制字{0:X2}H", command.PackageType)));
             }
             else
@@ -117,7 +116,7 @@ namespace GridBackGround.CommandDeal.nw
                 }
                 catch (Exception ex)
                 {
-                    DisPacket.NewRecord(new DataInfo(DataRecSendState.rec, pole,
+                    DisPacket.NewRecord(new DataInfo(DataInfoState.rec, pole,
                         handle.name, string.Format("数据解析处理失败:" + ex.Message )));
                 }
             }
@@ -131,7 +130,7 @@ namespace GridBackGround.CommandDeal.nw
         /// <param name="msg"></param>
         public static void LogInfo(IPowerPole pole, nw_cmd_base ctl,string msg)
         {
-            DisPacket.NewRecord(new DataInfo(DataRecSendState.rec, pole,
+            DisPacket.NewRecord(new DataInfo(DataInfoState.rec, pole,
                                 ctl!=null?ctl.Name: "未知协议", msg));
         }
 

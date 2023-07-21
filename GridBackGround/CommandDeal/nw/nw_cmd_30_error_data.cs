@@ -1,13 +1,7 @@
 ﻿using GridBackGround.PacketAnaLysis;
-using GridBackGround.Termination;
 using ResModel;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Security.RightsManagement;
-using System.Text;
-using System.Threading.Tasks;
+using ResModel.PowerPole;
 
 namespace GridBackGround.CommandDeal.nw
 {
@@ -130,7 +124,7 @@ namespace GridBackGround.CommandDeal.nw
                     offset += ret;
                     error.DataTime = datatime;
                     //显示数据
-                    DisPacket.NewRecord(new DataInfo(DataRecSendState.rec, this.Pole,
+                    NewDataInfo(this.Pole, new DataInfo(DataInfoState.rec, this.Pole,
                         this.Name, error.ToString()));
 
                     if (i == pnum - 1)

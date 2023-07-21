@@ -1,17 +1,14 @@
-﻿using ResModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
+using System.ComponentModel;
 
-namespace GridBackGround.PacketAnaLysis
+namespace ResModel.PowerPole
 {
     public class DataInfo
     {
         /// <summary>
         /// 收发状态
         /// </summary>
-        public DataRecSendState state { get; set; }
+        public DataInfoState state { get; set; }
         /// <summary>
         /// 设备名称
         /// </summary>
@@ -37,7 +34,7 @@ namespace GridBackGround.PacketAnaLysis
        /// <param name="Command"></param>
        /// <param name="data"></param>
         public DataInfo(
-                 DataRecSendState state,
+                 DataInfoState state,
                  IPowerPole pole,
                  string Command,
                  string data)
@@ -63,7 +60,7 @@ namespace GridBackGround.PacketAnaLysis
         /// <param name="Command"></param>
         /// <param name="data"></param>
         public DataInfo(
-                 DataRecSendState state,
+                 DataInfoState state,
                  string equName,
                  string Command,
                  string data)
@@ -83,7 +80,7 @@ namespace GridBackGround.PacketAnaLysis
         /// <param name="Command"></param>
         /// <param name="data"></param>
         public DataInfo(
-                 DataRecSendState state,
+                 DataInfoState state,
                  string equName,
                  string cmdID,
                  string Command,
@@ -103,13 +100,13 @@ namespace GridBackGround.PacketAnaLysis
     /// <summary>
     /// 监测数据报文类型
     /// </summary>
-    public enum DataRecSendState
+    public enum DataInfoState
     {
-        //
-       none = 0,
-       //数据接收
-       rec = 1,
-       //数据发送
-       send = 2,
+        [Description("未知")]
+        none = 0,
+        [Description("接收")]
+        rec = 1,
+        [Description("发送")]
+        send = 2,
     }
 }

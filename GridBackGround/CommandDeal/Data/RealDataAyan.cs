@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using ResModel.EQU;
 using ResModel;
-using System.ComponentModel;
-using System.Reflection;
 using Tools;
 using ResModel.CollectData;
 using DB_Operation.RealData;
+using ResModel.PowerPole;
+
 
 namespace GridBackGround.CommandDeal.Data
 {
@@ -138,8 +135,8 @@ namespace GridBackGround.CommandDeal.Data
         private void DisAyanMsg()
         {
             PacketAnaLysis.DisPacket.NewRecord(
-                        new PacketAnaLysis.DataInfo(
-                            PacketAnaLysis.DataRecSendState.rec,
+                        new DataInfo(
+                            DataInfoState.rec,
                             this.Name,
                             this.ID,
                             Type.GetDescription() + "数据报",

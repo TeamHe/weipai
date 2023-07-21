@@ -1,8 +1,6 @@
 ﻿using ResModel;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using ResModel.PowerPole;
 
 namespace GridBackGround.PacketAnaLysis
 {
@@ -54,8 +52,8 @@ namespace GridBackGround.PacketAnaLysis
             catch(Exception ex) 
             {
                 PacketAnaLysis.DisPacket.NewRecord(
-                   new PacketAnaLysis.DataInfo(
-                       PacketAnaLysis.DataRecSendState.rec,
+                   new DataInfo(
+                       DataInfoState.rec,
                        pole,
                        "远程图像数据",
                        "数据异常:" + ex.Message));

@@ -4,6 +4,7 @@ using Sodao.FastSocket.Server.Command;
 using System;
 using System.Net;
 using System.Text;
+using ResModel.PowerPole;
 
 namespace GridBackGround.CommandDeal.nw
 {
@@ -311,7 +312,7 @@ namespace GridBackGround.CommandDeal.nw
             {
                 msg = string.Format("指令发送{0}.{1}", "失败", ex.Message);
             }
-            NewDataInfo(this.Pole, new DataInfo(DataRecSendState.send, this.Pole, this.Name, msg));
+            NewDataInfo(this.Pole, new DataInfo(DataInfoState.send, this.Pole, this.Name, msg));
             return res;
         }
 
@@ -324,12 +325,12 @@ namespace GridBackGround.CommandDeal.nw
             {
                 this.Decode(out string msg);
                 if(msg != null && msg.Length > 0)
-                    NewDataInfo(this.Pole, new DataInfo(DataRecSendState.rec, this.Pole,
+                    NewDataInfo(this.Pole, new DataInfo(DataInfoState.rec, this.Pole,
                         this.Name, msg));
             }
             catch (Exception ex)
             {
-                NewDataInfo(this.Pole, new DataInfo(DataRecSendState.rec, this.Pole,
+                NewDataInfo(this.Pole, new DataInfo(DataInfoState.rec, this.Pole,
                     this.Name, string.Format("数据解析处理失败:" + ex.Message)));
             }
         }

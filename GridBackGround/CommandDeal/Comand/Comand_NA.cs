@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Net;
 using ResModel;
+using ResModel.PowerPole;
 
 namespace GridBackGround.CommandDeal
 {
@@ -116,8 +115,8 @@ namespace GridBackGround.CommandDeal
 
             //显示发送的数据
             PacketAnaLysis.DisPacket.NewRecord(
-                new PacketAnaLysis.DataInfo(
-                    PacketAnaLysis.DataRecSendState.rec,
+                new DataInfo(
+                    DataInfoState.rec,
                     Termination.PowerPoleManage.Find(cmd_id),
                     "网络适配器",
                     pacMsg));
@@ -160,8 +159,8 @@ namespace GridBackGround.CommandDeal
             PhoneNumber = Encoding.Default.GetString(data, 3 + 4 + 4 + 4, 20);
             pacMsg += "手机串号：" + PhoneNumber + " ";
             PacketAnaLysis.DisPacket.NewRecord(
-                new PacketAnaLysis.DataInfo(
-                    PacketAnaLysis.DataRecSendState.rec,
+                new DataInfo(
+                    DataInfoState.rec,
                     pole,
                     "网络适配器",
                     pacMsg));
@@ -259,8 +258,8 @@ namespace GridBackGround.CommandDeal
             {
                 //显示发送的数据
                 PacketAnaLysis.DisPacket.NewRecord(
-                    new PacketAnaLysis.DataInfo(
-                        PacketAnaLysis.DataRecSendState.send,
+                    new DataInfo(
+                        DataInfoState.send,
                          Termination.PowerPoleManage.Find(CMD_ID),
                         "网络适配器",
                         pacMsg));

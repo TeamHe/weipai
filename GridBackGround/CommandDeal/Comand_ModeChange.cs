@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+using ResModel.PowerPole;
 
 namespace GridBackGround.CommandDeal
 {
@@ -49,8 +46,8 @@ namespace GridBackGround.CommandDeal
             {
                 //显示发送的数据
                 PacketAnaLysis.DisPacket.NewRecord(
-                    new PacketAnaLysis.DataInfo(
-                        PacketAnaLysis.DataRecSendState.send,
+                    new DataInfo(
+                        DataInfoState.send,
                          Termination.PowerPoleManage.Find(CMD_ID),
                         "装置复位",
                         pacMsg));
@@ -69,8 +66,8 @@ namespace GridBackGround.CommandDeal
             {
                 //显示发送的数据
                 PacketAnaLysis.DisPacket.NewRecord(
-                    new PacketAnaLysis.DataInfo(
-                        PacketAnaLysis.DataRecSendState.rec,
+                    new DataInfo(
+                        DataInfoState.rec,
                          Termination.PowerPoleManage.Find(CMD_ID),
                         "装置复位",
                         "装置复位成功")); ;

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using ResModel;
 using ResModel.EQU;
 using Tools;
+using ResModel.PowerPole;
 
 namespace GridBackGround.CommandDeal
 {
@@ -55,8 +53,8 @@ namespace GridBackGround.CommandDeal
                 pacMsg += "申请历史数据失败";
             //显示发送的数据
             PacketAnaLysis.DisPacket.NewRecord(
-                new PacketAnaLysis.DataInfo(
-                    PacketAnaLysis.DataRecSendState.rec,
+                new DataInfo(
+                    DataInfoState.rec,
                      Termination.PowerPoleManage.Find(CMD_ID),
                     "请求历史数据",
                     pacMsg));
@@ -79,8 +77,8 @@ namespace GridBackGround.CommandDeal
 
             //显示发送的数据
             PacketAnaLysis.DisPacket.NewRecord(
-                new PacketAnaLysis.DataInfo(
-                    PacketAnaLysis.DataRecSendState.rec,
+                new DataInfo(
+                    DataInfoState.rec,
                     Termination.PowerPoleManage.Find(cmd_id),
                     "请求装置历史数据",
                     pacMsg));
@@ -143,8 +141,8 @@ namespace GridBackGround.CommandDeal
             {
                 //显示发送的数据
                 PacketAnaLysis.DisPacket.NewRecord(
-                    new PacketAnaLysis.DataInfo(
-                        PacketAnaLysis.DataRecSendState.send,
+                    new DataInfo(
+                        DataInfoState.send,
                          Termination.PowerPoleManage.Find(CMD_ID),
                         "请求装置历史数据",
                         pacMsg));

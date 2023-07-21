@@ -1,8 +1,7 @@
 ﻿using ResModel;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
+using ResModel.PowerPole;
 
 namespace GridBackGround.CommandDeal
 {
@@ -34,8 +33,8 @@ namespace GridBackGround.CommandDeal
             psMsg = "故障描述：" + ErrorMsg;
 
             PacketAnaLysis.DisPacket.NewRecord(
-                   new PacketAnaLysis.DataInfo(
-                       PacketAnaLysis.DataRecSendState.rec,
+                   new DataInfo(
+                       DataInfoState.rec,
                        pole,
                        "装置故障",
                        psMsg));

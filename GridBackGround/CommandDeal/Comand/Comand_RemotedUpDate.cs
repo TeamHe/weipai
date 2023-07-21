@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.IO;
 using ResModel;
+using ResModel.PowerPole;
 
 namespace GridBackGround.CommandDeal
 {
@@ -128,8 +128,8 @@ namespace GridBackGround.CommandDeal
 
             BuildStartUpdateData();
             PacketAnaLysis.DisPacket.NewRecord(
-                   new PacketAnaLysis.DataInfo(
-                       PacketAnaLysis.DataRecSendState.send,
+                   new DataInfo(
+                       DataInfoState.send,
                         Termination.PowerPoleManage.Find(CMD_ID),
                        "开始远程升级",
                        "开始远程升级"));
@@ -177,8 +177,8 @@ namespace GridBackGround.CommandDeal
 
             //显示解析结果
             PacketAnaLysis.DisPacket.NewRecord(
-                new PacketAnaLysis.DataInfo(
-                    PacketAnaLysis.DataRecSendState.rec,
+                new DataInfo(
+                    DataInfoState.rec,
                     pole,
                     "开始远程升级响应",
                     pacMsg));
@@ -211,8 +211,8 @@ namespace GridBackGround.CommandDeal
                 UpdateState = false;
                 //显示发送的数据
                 PacketAnaLysis.DisPacket.NewRecord(
-                    new PacketAnaLysis.DataInfo(
-                        PacketAnaLysis.DataRecSendState.send,
+                    new DataInfo(
+                        DataInfoState.send,
                          Termination.PowerPoleManage.Find(CMD_ID),
                         "远程升级补包数据上传",
                         pacMsg));
@@ -229,8 +229,8 @@ namespace GridBackGround.CommandDeal
                 BuBaoState = true;
                 //显示发送的数据
                 PacketAnaLysis.DisPacket.NewRecord(
-                    new PacketAnaLysis.DataInfo(
-                        PacketAnaLysis.DataRecSendState.send,
+                    new DataInfo(
+                        DataInfoState.send,
                          pole,
                         "远程升级补包数据上传",
                         pacMsg));
@@ -451,8 +451,8 @@ namespace GridBackGround.CommandDeal
             {
                 //显示发送的数据
                 PacketAnaLysis.DisPacket.NewRecord(
-                    new PacketAnaLysis.DataInfo(
-                        PacketAnaLysis.DataRecSendState.send,
+                    new DataInfo(
+                        DataInfoState.send,
                          Termination.PowerPoleManage.Find(CMD_ID),
                         "远程升级数据报",
                         pacMsg));

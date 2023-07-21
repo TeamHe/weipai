@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using ResModel.nw;
 using ResModel;
 using DB_Operation.RealData;
+using ResModel.PowerPole;
 
 namespace GridBackGround.CommandDeal.nw
 {
@@ -160,7 +161,7 @@ namespace GridBackGround.CommandDeal.nw
                 }
 
                 //显示数据
-                DisPacket.NewRecord(new DataInfo(DataRecSendState.rec, this.Pole,
+                NewDataInfo(this.Pole, new DataInfo(DataInfoState.rec, this.Pole,
                     this.Name, weather.ToString()+ " " + msg1));
                 if (i == pnum - 1)
                     break;

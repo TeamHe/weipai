@@ -5,6 +5,7 @@ using ResModel.CollectData;
 using ResModel.EQU;
 using System;
 using System.Collections.Generic;
+using ResModel.PowerPole;
 
 namespace GridBackGround.CommandDeal.Image
 {
@@ -279,7 +280,7 @@ namespace GridBackGround.CommandDeal.Image
             //输出保存信息
             if(saveMsg!=null && saveMsg != string.Empty)
             {
-                DisPacket.NewRecord(new DataInfo(DataRecSendState.send, this.pole, "照片合成", saveMsg));
+                DisPacket.NewRecord(new DataInfo(DataInfoState.send, this.pole, "照片合成", saveMsg));
             }
 
             saveMsg = string.Empty;
@@ -307,7 +308,7 @@ namespace GridBackGround.CommandDeal.Image
             }
             //图片上传到服务器
             if(saveMsg!=null && saveMsg.Length > 0) 
-                DisPacket.NewRecord(new DataInfo(DataRecSendState.send, this.pole, "图片存储", saveMsg));
+                DisPacket.NewRecord(new DataInfo(DataInfoState.send, this.pole, "图片存储", saveMsg));
             
         }
     }

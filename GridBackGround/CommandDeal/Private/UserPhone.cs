@@ -1,8 +1,7 @@
 ﻿using ResModel;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
+using ResModel.PowerPole;
 
 namespace GridBackGround.CommandDeal.Private
 {
@@ -70,8 +69,8 @@ namespace GridBackGround.CommandDeal.Private
             pacMsg += "  用户手机号码：" + phone;
             //显示数据响应解析结果
             PacketAnaLysis.DisPacket.NewRecord(
-                new PacketAnaLysis.DataInfo(
-                    PacketAnaLysis.DataRecSendState.send,
+                new DataInfo(
+                    DataInfoState.send,
                     pole,
                     "用户手机号",
                     pacMsg)); ;
@@ -126,8 +125,8 @@ namespace GridBackGround.CommandDeal.Private
             {
                 //显示发送的数据
                 PacketAnaLysis.DisPacket.NewRecord(
-                    new PacketAnaLysis.DataInfo(
-                        PacketAnaLysis.DataRecSendState.send,
+                    new DataInfo(
+                        DataInfoState.send,
                          Termination.PowerPoleManage.Find(CMD_ID),
                         "用户手机号",
                         pacMsg));

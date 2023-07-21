@@ -1,14 +1,10 @@
 ﻿using DB_Operation.RealData;
 using GridBackGround.PacketAnaLysis;
-using GridBackGround.Termination;
 using ResModel;
 using ResModel.nw;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static log4net.Appender.RollingFileAppender;
+using ResModel.PowerPole;
 
 namespace GridBackGround.CommandDeal.nw
 {
@@ -133,7 +129,7 @@ namespace GridBackGround.CommandDeal.nw
                         msg1 = "数据存储失败";
                     }
                     //显示数据
-                    DisPacket.NewRecord(new DataInfo(DataRecSendState.rec, this.Pole,
+                    NewDataInfo(this.Pole,new DataInfo(DataInfoState.rec, this.Pole,
                         this.Name, data.ToString() + " " + msg1));
 
                     if (i == pnum - 1)

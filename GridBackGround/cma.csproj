@@ -474,7 +474,6 @@
     <Compile Include="Forms\Dialog\Dialog_Con_Reset.Designer.cs">
       <DependentUpon>Dialog_Con_Reset.cs</DependentUpon>
     </Compile>
-    <Compile Include="PacketAnaLysis\AnalysisInfo.cs" />
     <Compile Include="PacketAnaLysis\BuildPacket.cs" />
     <Compile Include="PacketAnaLysis\PackDeal_Data.cs" />
     <Compile Include="PacketAnaLysis\PackDeal_Control.cs" />

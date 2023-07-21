@@ -1,8 +1,8 @@
 ﻿using ResModel;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
+using ResModel.PowerPole;
 
 namespace GridBackGround.CommandDeal
 {
@@ -123,8 +123,8 @@ namespace GridBackGround.CommandDeal
             List_WD[Forms_NO].Forms[Form_NO].Data = temp;
             //显示发送的数据
             PacketAnaLysis.DisPacket.NewRecord(
-                new PacketAnaLysis.DataInfo(
-                    PacketAnaLysis.DataRecSendState.rec,
+                new DataInfo(
+                    DataInfoState.rec,
                     pole,
                     "舞动波形数据",
                     pacMsg));

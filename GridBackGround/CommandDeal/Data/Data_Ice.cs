@@ -1,8 +1,7 @@
 ﻿using ResModel;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
+using ResModel.PowerPole;
 
 namespace GridBackGround.CommandDeal
 {
@@ -100,8 +99,8 @@ namespace GridBackGround.CommandDeal
             }
             //显示发送的数据
             PacketAnaLysis.DisPacket.NewRecord(
-                new PacketAnaLysis.DataInfo(
-                    PacketAnaLysis.DataRecSendState.rec,
+                new DataInfo(
+                    DataInfoState.rec,
                     pole,
                     "覆冰数据报",
                     pacMsg));

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ResModel.PowerPole;
 
 namespace GridBackGround
 {
@@ -103,7 +104,7 @@ namespace GridBackGround
         /// 新的解析数据显示
         /// </summary>
         /// <param name = "packet" ></ param >
-        protected void DisNewPackedS(List<PacketAnaLysis.DataInfo> packets)
+        protected void DisNewPackedS(List<DataInfo> packets)
         {
             if (this.InvokeRequired)
             {
@@ -113,7 +114,7 @@ namespace GridBackGround
             {
                 if (packets == null)
                     return;
-                foreach (PacketAnaLysis.DataInfo info in packets)
+                foreach (DataInfo info in packets)
                 {
                     if(this.DispalyAll || info.EquName == this.cmdid)
                         dataGridViewAddRow(info);
@@ -169,7 +170,7 @@ namespace GridBackGround
         /// 显示新解析数据
         /// </summary>
         /// <param name="packet"></param>
-        public void dataGridViewAddRow(PacketAnaLysis.DataInfo packet)
+        public void dataGridViewAddRow(DataInfo packet)
         {
 
             int index = this.dataGridViewReport.Rows.Add();
@@ -199,7 +200,7 @@ namespace GridBackGround
             }
             else
                 dataGridViewReport.Rows[index].Cells[3].Value = packet.AnalyResult;
-            dataGridViewReport.Rows[index].Cells[4].Value = (packet.state == PacketAnaLysis.DataRecSendState.rec) ? "接收" : "发送";
+            dataGridViewReport.Rows[index].Cells[4].Value = (packet.state == DataInfoState.rec) ? "接收" : "发送";
             //dataGridViewReport.CurrentCell = dataGridViewReport.Rows[index].Cells[0];
             //dataGridViewReport.Rows[index].Selected = true;
 

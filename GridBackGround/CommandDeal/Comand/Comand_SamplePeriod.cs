@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using ResModel;
 using ResModel.EQU;
 using Tools;
+using ResModel.PowerPole;
+
 //采样参数设置
 namespace GridBackGround.CommandDeal
 {
@@ -48,8 +47,8 @@ namespace GridBackGround.CommandDeal
                 pacMsg += "心跳周期:" + ((int)data[5]).ToString() + "分钟 ";
             //显示发送的数据
             PacketAnaLysis.DisPacket.NewRecord(
-                new PacketAnaLysis.DataInfo(
-                    PacketAnaLysis.DataRecSendState.rec,
+                new DataInfo(
+                    DataInfoState.rec,
                     Termination.PowerPoleManage.Find(cmd_id),
                     "采样周期",
                     pacMsg));
@@ -90,8 +89,8 @@ namespace GridBackGround.CommandDeal
             pacMsg += "心跳周期:" + ((int)data[6]).ToString()+ "分钟 ";
             //显示发送的数据
             PacketAnaLysis.DisPacket.NewRecord(
-                new PacketAnaLysis.DataInfo(
-                    PacketAnaLysis.DataRecSendState.rec,
+                new DataInfo(
+                    DataInfoState.rec,
                     pole,
                     "采样周期",
                     pacMsg));
@@ -148,8 +147,8 @@ namespace GridBackGround.CommandDeal
             {
                 //显示发送的数据
                 PacketAnaLysis.DisPacket.NewRecord(
-                    new PacketAnaLysis.DataInfo(
-                        PacketAnaLysis.DataRecSendState.send,
+                    new DataInfo(
+                        DataInfoState.send,
                          Termination.PowerPoleManage.Find(CMD_ID),
                         "采样周期",
                         pacMsg));

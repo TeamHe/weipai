@@ -1,8 +1,6 @@
 ﻿using ResModel;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using ResModel.PowerPole;
 
 namespace GridBackGround.CommandDeal
 {
@@ -86,8 +84,8 @@ namespace GridBackGround.CommandDeal
             psMsg += " 通信协议版本号：" + Protocol_Version;
 
             PacketAnaLysis.DisPacket.NewRecord(
-                   new PacketAnaLysis.DataInfo(
-                       PacketAnaLysis.DataRecSendState.rec,
+                   new DataInfo(
+                       DataInfoState.rec,
                        pole,
                        "心跳",
                        psMsg)); 

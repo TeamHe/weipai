@@ -1,8 +1,7 @@
 ﻿using ResModel;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
+using ResModel.PowerPole;
 
 namespace GridBackGround.CommandDeal
 {
@@ -48,8 +47,8 @@ namespace GridBackGround.CommandDeal
 
             //显示发送的数据
             PacketAnaLysis.DisPacket.NewRecord(
-                new PacketAnaLysis.DataInfo(
-                    PacketAnaLysis.DataRecSendState.rec,
+                new DataInfo(
+                    DataInfoState.rec,
                     Termination.PowerPoleManage.Find(cmd_id),
                     "状态监测装置ID",
                     pacMsg));
@@ -87,8 +86,8 @@ namespace GridBackGround.CommandDeal
             Original_ID = Encoding.Default.GetString(data, 3 + 17, 17);
             pacMsg += "原始ID：" +  Original_ID +" ";
             PacketAnaLysis.DisPacket.NewRecord(
-                new PacketAnaLysis.DataInfo(
-                    PacketAnaLysis.DataRecSendState.rec,
+                new DataInfo(
+                    DataInfoState.rec,
                     pole,
                     "状态监测装置ID",
                     pacMsg)); 
@@ -154,8 +153,8 @@ namespace GridBackGround.CommandDeal
             {
                 //显示发送的数据
                 PacketAnaLysis.DisPacket.NewRecord(
-                    new PacketAnaLysis.DataInfo(
-                        PacketAnaLysis.DataRecSendState.send,
+                    new DataInfo(
+                        DataInfoState.send,
                          Termination.PowerPoleManage.Find(CMD_ID),
                         "状态监测装置ID",
                         pacMsg));

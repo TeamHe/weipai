@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.IO;
 using ResModel;
+using ResModel.PowerPole;
 
 namespace GridBackGround.CommandDeal
 {
@@ -122,8 +122,8 @@ namespace GridBackGround.CommandDeal
 
             pack_update_start();
             PacketAnaLysis.DisPacket.NewRecord(
-                   new PacketAnaLysis.DataInfo(
-                       PacketAnaLysis.DataRecSendState.send,
+                   new DataInfo(
+                       DataInfoState.send,
                         Termination.PowerPoleManage.Find(CMD_ID),
                        "扩展语音播放协议",
                        string.Format("语音文件开始更新，文件名:\"{2}\"，总共{0}字节，{1}包", file_length,PacketNum, fileName)));
@@ -154,8 +154,8 @@ namespace GridBackGround.CommandDeal
 
             //显示解析结果
             PacketAnaLysis.DisPacket.NewRecord(
-                new PacketAnaLysis.DataInfo(
-                    PacketAnaLysis.DataRecSendState.rec,
+                new DataInfo(
+                    DataInfoState.rec,
                     pole,
                     "扩展语音播放协议",
                     pacMsg));
@@ -184,8 +184,8 @@ namespace GridBackGround.CommandDeal
                 BuBaoState = true;
                 //显示发送的数据
                 PacketAnaLysis.DisPacket.NewRecord(
-                    new PacketAnaLysis.DataInfo(
-                        PacketAnaLysis.DataRecSendState.send,
+                    new DataInfo(
+                        DataInfoState.send,
                          pole,
                         "扩展语音播放协议",
                         pacMsg));
@@ -212,8 +212,8 @@ namespace GridBackGround.CommandDeal
 
             //显示发送的数据
             PacketAnaLysis.DisPacket.NewRecord(
-                new PacketAnaLysis.DataInfo(
-                    PacketAnaLysis.DataRecSendState.send,
+                new DataInfo(
+                    DataInfoState.send,
                      pole,
                     "扩展语音播放协议",
                     pacMsg));
@@ -231,8 +231,8 @@ namespace GridBackGround.CommandDeal
 
             //显示发送的数据
             PacketAnaLysis.DisPacket.NewRecord(
-                new PacketAnaLysis.DataInfo(
-                    PacketAnaLysis.DataRecSendState.send,
+                new DataInfo(
+                    DataInfoState.send,
                      pole,
                     "扩展语音播放协议",
                     msg));
@@ -411,8 +411,8 @@ namespace GridBackGround.CommandDeal
             {
                 //显示发送的数据
                 PacketAnaLysis.DisPacket.NewRecord(
-                    new PacketAnaLysis.DataInfo(
-                        PacketAnaLysis.DataRecSendState.send,
+                    new DataInfo(
+                        DataInfoState.send,
                          Termination.PowerPoleManage.Find(CMD_ID),
                         "扩展语音播放协议",
                         pacMsg));

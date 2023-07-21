@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
 using ResModel.EQU;
 using ResModel.CollectData;
-using DB_Operation.RealData;
 using DB_Operation.EQUManage;
 using ResModel;
+using ResModel.PowerPole;
 
 namespace GridBackGround.CommandDeal
 {
-     
+
     /// <summary>
     /// 上传照片
     /// </summary>
@@ -137,8 +133,8 @@ namespace GridBackGround.CommandDeal
                   pacMsg += "数据异常："+ex.Message;
             }
             PacketAnaLysis.DisPacket.NewRecord(
-                   new PacketAnaLysis.DataInfo(
-                       PacketAnaLysis.DataRecSendState.rec,
+                   new DataInfo(
+                       DataInfoState.rec,
                        pole,
                        "装置请求上送照片",
                        pacMsg));
@@ -193,8 +189,8 @@ namespace GridBackGround.CommandDeal
                 pacMsg += "添加数据失败："+ ex.Message;
                 //触发图片解析事件
                 PacketAnaLysis.DisPacket.NewRecord(
-                      new PacketAnaLysis.DataInfo(
-                          PacketAnaLysis.DataRecSendState.rec,
+                      new DataInfo(
+                          DataInfoState.rec,
                           pole,
                           "远程图像数据",
                           pacMsg));
@@ -236,8 +232,8 @@ namespace GridBackGround.CommandDeal
             {   //没有图片缓存,或正在上传图片不处理
                 pacMsg += " 没有图片缓存，或正在上传图片，不响应";
                 PacketAnaLysis.DisPacket.NewRecord(
-                   new PacketAnaLysis.DataInfo(
-                       PacketAnaLysis.DataRecSendState.rec,
+                   new DataInfo(
+                       DataInfoState.rec,
                        pole,
                        "远程图像数据上送结束标记",
                        pacMsg));
@@ -246,8 +242,8 @@ namespace GridBackGround.CommandDeal
             pic.Maintime = time;
 
             PacketAnaLysis.DisPacket.NewRecord(
-              new PacketAnaLysis.DataInfo(
-                  PacketAnaLysis.DataRecSendState.rec,
+              new DataInfo(
+                  DataInfoState.rec,
                   pole,
                   "远程图像数据上送结束标记",
                   pacMsg));
@@ -297,8 +293,8 @@ namespace GridBackGround.CommandDeal
             catch (Exception ex)
             {
                 PacketAnaLysis.DisPacket.NewRecord(
-                new PacketAnaLysis.DataInfo(
-                    PacketAnaLysis.DataRecSendState.rec,
+                new DataInfo(
+                    DataInfoState.rec,
                     pole,
                     "图片合成上传异常：",
                     ex.Message));
@@ -406,8 +402,8 @@ namespace GridBackGround.CommandDeal
             }
             //显示请求上传报文
             PacketAnaLysis.DisPacket.NewRecord(
-                new PacketAnaLysis.DataInfo(
-                    PacketAnaLysis.DataRecSendState.rec,
+                new DataInfo(
+                    DataInfoState.rec,
                     pole,
                     "补包数据下发",
                     pacMsg));
@@ -441,8 +437,8 @@ namespace GridBackGround.CommandDeal
                 state = false;
             } 
             PacketAnaLysis.DisPacket.NewRecord(                         //输出保存信息
-                    new PacketAnaLysis.DataInfo(
-                        PacketAnaLysis.DataRecSendState.none,
+                    new DataInfo(
+                        DataInfoState.none,
                         pole,
                         "照片合成",
                         saveMsg));
@@ -518,8 +514,8 @@ namespace GridBackGround.CommandDeal
 
 
             PacketAnaLysis.DisPacket.NewRecord(                         //输出保存信息
-                    new PacketAnaLysis.DataInfo(
-                        PacketAnaLysis.DataRecSendState.none,
+                    new DataInfo(
+                        DataInfoState.none,
                         pole,
                         "图片上传",
                         saveMsg));
