@@ -86,7 +86,7 @@ namespace GridBackGround.CommandDeal.nw
             return GetHandles().Find(ctl => ctl.cid == ctl_id);
         }
 
-        static void _onPackageRecv(PowerPole pole, nw_cmd_base cmd)
+        static void _onPackageRecv(IPowerPole pole, nw_cmd_base cmd)
         {
             if(OnPackageRecv != null)
                 OnPackageRecv(pole, cmd);
@@ -113,7 +113,7 @@ namespace GridBackGround.CommandDeal.nw
                     ctl.Pole = pole;
                     ctl.Data = command.Data;
                     ctl.Handle();
-                    _onPackageRecv((PowerPole)pole, ctl);
+                    _onPackageRecv(pole, ctl);
                 }
                 catch (Exception ex)
                 {
