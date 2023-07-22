@@ -1,13 +1,6 @@
-﻿using GridBackGround.CommandDeal.nw;
-using GridBackGround.Config;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Windows.Forms;
+using ResModel.nw;
 
 namespace GridBackGround.Forms.Dialogs_nw
 {
@@ -97,8 +90,5 @@ namespace GridBackGround.Forms.Dialogs_nw
             if ((!(e.KeyChar >= 0x30 && e.KeyChar <= 0x39)) && (e.KeyChar!= 0x08))
             { e.Handled = true; }
         }
-
-        
-       
     }
 }
