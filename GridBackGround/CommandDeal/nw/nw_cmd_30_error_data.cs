@@ -6,41 +6,6 @@ using ResModel.nw;
 
 namespace GridBackGround.CommandDeal.nw
 {
-    /// <summary>
-    /// 故障数据
-    /// </summary>
-    public class mw_error_data
-    {
-        public DateTime DataTime { get; set; }
-
-        public int FunctionCode { get; set; }
-
-        public int Code { get; set; }
-
-        /// <summary>
-        /// 故障类型: TRUE 表示故障恢复  FALSE 表示故障
-        /// </summary>
-        public bool Status { get; set; }
-
-        public mw_error_data() { }
-
-        public mw_error_data(DateTime dataTime, int functionCode, int errorCode)
-        {
-            DataTime = dataTime;
-            FunctionCode = functionCode;
-            Code = errorCode;
-        }
-
-        public override string ToString()
-        {
-            return string.Format("时间:{3} 功能编码:{0} 故障编码:{1} 故障状态:{2}",
-                this.FunctionCode,
-                this.Code,
-                this.Status?"已恢复":"故障",
-                this.DataTime);
-        }
-    }
-
     public class nw_cmd_30_error_data : nw_cmd_base
     {
         public override int Control { get { return 0x30; } }
@@ -80,13 +45,13 @@ namespace GridBackGround.CommandDeal.nw
         /// <param name="offset"></param>
         /// <param name="weather"></param>
         /// <returns></returns>
-        public int Decode_Error(byte[] data, int offset, out mw_error_data error)
+        public int Decode_Error(byte[] data, int offset, out mw_data_error error)
         {
             error = null;
             if (data.Length - offset < 2)
                 return -1;
             int no = offset;
-            error = new mw_error_data();
+            error = new mw_data_error();
             error.FunctionCode = data[no++];
             byte err = data[no++];
             error.Code = err & 0x7f;
@@ -116,7 +81,7 @@ namespace GridBackGround.CommandDeal.nw
                 offset += this.GetDateTime(this.Data, offset, out DateTime datatime);
                 for (int i = 0; i < pnum; i++)
                 {
-                    if ((ret = this.Decode_Error(this.Data, offset, out mw_error_data error)) < 0)
+                    if ((ret = this.Decode_Error(this.Data, offset, out mw_data_error error)) < 0)
                     {
                         msg = string.Format("第{0}包数据解析失败", i);
                         break;
