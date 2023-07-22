@@ -1,14 +1,11 @@
-﻿using GridBackGround.Termination;
-using ResModel;
+﻿using ResModel;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ResModel.nw;
 
 namespace GridBackGround.CommandDeal.nw
 {
-    
+
     /// <summary>
     /// 查询拍照时间表
     /// </summary>

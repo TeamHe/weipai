@@ -1,12 +1,8 @@
 ﻿using GridBackGround.CommandDeal.Image;
-using GridBackGround.Termination;
 using ResModel;
 using ResModel.CollectData;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ResModel.nw;
 
 namespace GridBackGround.CommandDeal.nw
 {

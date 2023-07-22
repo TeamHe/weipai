@@ -1,5 +1,6 @@
 ﻿using ResModel;
 using System;
+using ResModel.nw;
 
 namespace GridBackGround.CommandDeal.nw
 {

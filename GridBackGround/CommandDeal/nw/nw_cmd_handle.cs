@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using ResModel.PowerPole;
+using ResModel.nw;
 
 namespace GridBackGround.CommandDeal.nw
 {

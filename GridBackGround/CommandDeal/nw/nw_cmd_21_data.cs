@@ -1,10 +1,5 @@
-﻿using GridBackGround.Termination;
-using ResModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ResModel;
+using ResModel.nw;
 
 namespace GridBackGround.CommandDeal.nw
 {

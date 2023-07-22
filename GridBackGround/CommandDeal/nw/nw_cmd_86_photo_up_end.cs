@@ -1,10 +1,7 @@
 ﻿using GridBackGround.CommandDeal.Image;
-using log4net.Appender;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ResModel.nw;
 
 namespace GridBackGround.CommandDeal.nw
 {

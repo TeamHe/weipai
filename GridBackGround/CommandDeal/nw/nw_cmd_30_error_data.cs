@@ -2,6 +2,7 @@
 using ResModel;
 using System;
 using ResModel.PowerPole;
+using ResModel.nw;
 
 namespace GridBackGround.CommandDeal.nw
 {

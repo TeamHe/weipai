@@ -1,12 +1,11 @@
-﻿using GridBackGround.PacketAnaLysis;
-using ResModel;
+﻿using ResModel;
 using Sodao.FastSocket.Server.Command;
 using System;
 using System.Net;
 using System.Text;
 using ResModel.PowerPole;
 
-namespace GridBackGround.CommandDeal.nw
+namespace ResModel.nw
 {
     /// <summary>
     /// 南网接收数据帧处理基类
@@ -109,7 +108,7 @@ namespace GridBackGround.CommandDeal.nw
         /// <param name="offset"></param>
         /// <param name="time"></param>
         /// <returns>时间数据占用字节数</returns>
-        internal int GetDateTime(byte[] data,int offset,out DateTime time)
+        protected int GetDateTime(byte[] data,int offset,out DateTime time)
         {
             time = new DateTime(Data[offset + 0] + 2000, 
                                 Data[offset + 1], 
@@ -127,7 +126,7 @@ namespace GridBackGround.CommandDeal.nw
         /// <param name="offset"></param>
         /// <param name="time"></param>
         /// <returns>时间数据占用字节数</returns>
-        internal int SetDateTime(byte[] data,int offset,DateTime time)
+        protected int SetDateTime(byte[] data,int offset,DateTime time)
         {
             data[offset + 0] = (byte)(time.Year - 2000);
             data[offset + 1] = (byte) time.Month;
@@ -145,7 +144,7 @@ namespace GridBackGround.CommandDeal.nw
         /// <param name="offset"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        internal int GetU16(byte[] data,int offset,out int value)
+        protected int GetU16(byte[] data,int offset,out int value)
         {
             value = data[offset + 0] * 256 + data[offset + 1] ;
             return 2;
@@ -158,7 +157,7 @@ namespace GridBackGround.CommandDeal.nw
         /// <param name="offset"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        internal int SetU16(byte[] data, int offset, int value)
+        protected int SetU16(byte[] data, int offset, int value)
         {
             data[offset + 0] = (byte)(value / 256);
             data[offset + 1] = (byte)(value % 256);
@@ -172,7 +171,7 @@ namespace GridBackGround.CommandDeal.nw
         /// <param name="offset"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        internal int GetS16(byte[] data, int offset, out int value)
+        protected int GetS16(byte[] data, int offset, out int value)
         {
             value = data[offset + 1] + (data[offset + 0]&0x7f) * 256;
             if((data[offset + 0] & 0x80)>0)
@@ -187,7 +186,7 @@ namespace GridBackGround.CommandDeal.nw
         /// <param name="offset"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        internal int SetS16(byte[] data, int offset, int value)
+        protected int SetS16(byte[] data, int offset, int value)
         {
             bool sign = false;
             if(value < 0)
@@ -203,7 +202,7 @@ namespace GridBackGround.CommandDeal.nw
         }
 
 
-        internal int GetPhoneNumber(byte[] data,int offset,out string phone)
+        protected int GetPhoneNumber(byte[] data,int offset,out string phone)
         {
             phone = string.Format("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}",
                 (char)((data[offset + 0] & 0x0f) + 0x30),
@@ -220,7 +219,7 @@ namespace GridBackGround.CommandDeal.nw
             return 6;
         }
 
-        internal int SetPhoneNumber(byte[] data, int offset, string phone)
+        protected int SetPhoneNumber(byte[] data, int offset, string phone)
         {
             if (System.Text.RegularExpressions.Regex.IsMatch(phone, @"^1[3-9]\d{9}$") == false)
                 throw new Exception("请输入正确的11位电话号码");
@@ -234,7 +233,7 @@ namespace GridBackGround.CommandDeal.nw
             return 6;
         }
 
-        internal int SetPassword(byte[] data,int offset,string password)
+        protected int SetPassword(byte[] data,int offset,string password)
         {
             if(password ==null)
                 throw new ArgumentNullException("password");
@@ -243,13 +242,13 @@ namespace GridBackGround.CommandDeal.nw
             return 4;
         }
 
-        internal int GetPassword(byte[] data,int offset,out string password)
+        protected int GetPassword(byte[] data,int offset,out string password)
         {
             password = Encoding.ASCII.GetString(data, offset, 4);
             return 4;
         }
 
-        internal int SetIPAddress(byte[] data,int offset,IPAddress address)
+        protected int SetIPAddress(byte[] data,int offset,IPAddress address)
         {
             if (address == null) throw new ArgumentNullException("IP地址");
 
@@ -258,7 +257,7 @@ namespace GridBackGround.CommandDeal.nw
             return 4;
         }
 
-        internal int GetIPAddress(byte[] data, int offset, out IPAddress address)
+        protected int GetIPAddress(byte[] data, int offset, out IPAddress address)
         {
             byte[] b_ip = new byte[4];
             Buffer.BlockCopy(data, offset, b_ip, 0, 4);

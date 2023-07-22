@@ -2,6 +2,7 @@
 using GridBackGround.Termination;
 using Sodao.FastSocket.Server.Command;
 using System;
+using ResModel.nw;
 
 namespace GridBackGround.CommandDeal.nw
 {

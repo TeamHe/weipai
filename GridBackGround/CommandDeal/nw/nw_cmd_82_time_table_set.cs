@@ -1,14 +1,7 @@
-﻿using DevComponents.DotNetBar;
-using GridBackGround.Termination;
-using ResModel;
+﻿using ResModel;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Management;
-using System.Web.UI.WebControls.WebParts;
-using System.Windows.Forms;
+using ResModel.nw;
 
 namespace GridBackGround.CommandDeal.nw
 {

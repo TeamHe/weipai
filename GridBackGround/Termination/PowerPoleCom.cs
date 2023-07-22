@@ -1,15 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Security.Permissions;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Windows.Media.Animation;
-using GridBackGround.CommandDeal.nw;
+using ResModel.nw;
 
 namespace GridBackGround.Termination
 {

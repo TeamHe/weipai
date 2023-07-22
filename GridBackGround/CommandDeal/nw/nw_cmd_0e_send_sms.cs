@@ -1,12 +1,7 @@
-﻿using GridBackGround.Termination;
-using log4net.Appender;
-using ResModel;
+﻿using ResModel;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Tools;
+using ResModel.nw;
 
 namespace GridBackGround.CommandDeal.nw
 {
