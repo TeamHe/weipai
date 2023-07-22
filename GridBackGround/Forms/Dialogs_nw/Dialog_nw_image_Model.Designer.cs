@@ -1,4 +1,6 @@
-﻿namespace GridBackGround.Forms.Dialogs_nw
+﻿using ResModel.nw;
+
+namespace GridBackGround.Forms.Dialogs_nw
 {
     partial class Dialog_nw_image_para
     {
@@ -28,8 +30,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            GridBackGround.CommandDeal.nw.nw_img_para nw_img_para1 = new GridBackGround.CommandDeal.nw.nw_img_para();
-            GridBackGround.CommandDeal.nw.nw_img_para nw_img_para2 = new GridBackGround.CommandDeal.nw.nw_img_para();
+            nw_img_para nw_img_para1 = new nw_img_para();
+           nw_img_para nw_img_para2 = new nw_img_para();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -84,9 +86,9 @@
             // 
             this.userControl_nw_img_para1.Dock = System.Windows.Forms.DockStyle.Fill;
             nw_img_para1.Brightness = 50;
-            nw_img_para1.Color = GridBackGround.CommandDeal.nw.nw_img_para.EColor.Black;
+            nw_img_para1.Color =nw_img_para.EColor.Black;
             nw_img_para1.Contrast = 50;
-            nw_img_para1.Resolution = GridBackGround.CommandDeal.nw.nw_img_para.EResolution.R_320_240;
+            nw_img_para1.Resolution =nw_img_para.EResolution.R_320_240;
             nw_img_para1.Saturation = 50;
             this.userControl_nw_img_para1.Image_para = nw_img_para1;
             this.userControl_nw_img_para1.Location = new System.Drawing.Point(3, 3);
@@ -109,9 +111,9 @@
             // 
             this.userControl_nw_img_para2.Dock = System.Windows.Forms.DockStyle.Fill;
             nw_img_para2.Brightness = 50;
-            nw_img_para2.Color = GridBackGround.CommandDeal.nw.nw_img_para.EColor.Black;
+            nw_img_para2.Color = nw_img_para.EColor.Black;
             nw_img_para2.Contrast = 50;
-            nw_img_para2.Resolution = GridBackGround.CommandDeal.nw.nw_img_para.EResolution.R_320_240;
+            nw_img_para2.Resolution = nw_img_para.EResolution.R_320_240;
             nw_img_para2.Saturation = 50;
             this.userControl_nw_img_para2.Image_para = nw_img_para2;
             this.userControl_nw_img_para2.Location = new System.Drawing.Point(3, 3);

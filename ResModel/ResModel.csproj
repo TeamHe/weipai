@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="nw\nw_camera_action.cs" />
+    <Compile Include="nw\nw_img_para.cs" />
     <Compile Include="PowerPole\DataInfo.cs" />
     <Compile Include="CollectData\CollectData.cs" />
     <Compile Include="DataBase\Table_Ice.cs" />

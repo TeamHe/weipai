@@ -1,6 +1,7 @@
 ﻿using GridBackGround.CommandDeal.nw;
 using System;
 using System.Windows.Forms;
+using ResModel.nw;
 
 namespace GridBackGround.Forms.Dialogs_nw
 {
