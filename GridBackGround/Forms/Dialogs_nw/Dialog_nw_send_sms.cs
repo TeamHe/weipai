@@ -1,16 +1,7 @@
-﻿using GridBackGround.CommandDeal.nw;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Net;
-using System.Security.Permissions;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
 using Tools;
+using ResModel.nw;
 
 namespace GridBackGround.Forms.Dialogs_nw
 {

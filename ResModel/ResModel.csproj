@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="nw\nw_camera_action.cs" />
+    <Compile Include="nw\nw_center.cs" />
     <Compile Include="nw\nw_device_config.cs" />
     <Compile Include="nw\nw_img_para.cs" />
     <Compile Include="PowerPole\DataInfo.cs" />
