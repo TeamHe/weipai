@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using GridBackGround.CommandDeal.nw;
 using ResModel.EQU;
-using static GridBackGround.CommandDeal.nw.Camera_Action;
+using ResModel.nw;
 
 namespace GridBackGround.Forms.Dialogs_nw
 {
@@ -37,20 +37,20 @@ namespace GridBackGround.Forms.Dialogs_nw
         /// <param name="e"></param>
         private void Dialog_Image_Adjust_Load(object sender, EventArgs e)
         {
-            this.button_Open.Tag            = Camera_Action.Actrion.Power_ON;         //打开
-            this.buttonClose.Tag            = Camera_Action.Actrion.Power_OFF; ;      //关闭
-            this.button_Up.Tag              = Camera_Action.Actrion.Move_UP;          //上
-            this.button_Down.Tag            = Camera_Action.Actrion.Move_Down; ;      //下
-            this.button_Left.Tag            = Camera_Action.Actrion.Move_Left; ;      //左 
-            this.button_Right.Tag           = Camera_Action.Actrion.Move_Right;       //右
-            this.button_SaveAsPreset.Tag    = Camera_Action.Actrion.Preset_Set;       //设为预置位
-            this.button_TurntoPreset.Tag    = Camera_Action.Actrion.Preset_GoTo;      //转到预置位
-            this.button_Near.Tag            = Camera_Action.Actrion.Focal_Near;       //近
-            this.button_Far.Tag             = Camera_Action.Actrion.Focal_Far;        //远
-            this.button_Aperture_Add.Tag    = Camera_Action.Actrion.Aperture_Add;     //光圈放大
-            this.button_Aperture_Reduce.Tag = Camera_Action.Actrion.Aperture_Reduce;  //光圈缩小
-            this.button_Focal_Add.Tag       = Camera_Action.Actrion.Focal_Add;        //聚焦增加
-            this.button_Focal_Reduce.Tag    = Camera_Action.Actrion.Focal_Reduce;     //聚焦减少
+            this.button_Open.Tag            = nw_camera_action.Actrion.Power_ON;         //打开
+            this.buttonClose.Tag            = nw_camera_action.Actrion.Power_OFF; ;      //关闭
+            this.button_Up.Tag              = nw_camera_action.Actrion.Move_UP;          //上
+            this.button_Down.Tag            = nw_camera_action.Actrion.Move_Down; ;      //下
+            this.button_Left.Tag            = nw_camera_action.Actrion.Move_Left; ;      //左 
+            this.button_Right.Tag           = nw_camera_action.Actrion.Move_Right;       //右
+            this.button_SaveAsPreset.Tag    = nw_camera_action.Actrion.Preset_Set;       //设为预置位
+            this.button_TurntoPreset.Tag    = nw_camera_action.Actrion.Preset_GoTo;      //转到预置位
+            this.button_Near.Tag            = nw_camera_action.Actrion.Focal_Near;       //近
+            this.button_Far.Tag             = nw_camera_action.Actrion.Focal_Far;        //远
+            this.button_Aperture_Add.Tag    = nw_camera_action.Actrion.Aperture_Add;     //光圈放大
+            this.button_Aperture_Reduce.Tag = nw_camera_action.Actrion.Aperture_Reduce;  //光圈缩小
+            this.button_Focal_Add.Tag       = nw_camera_action.Actrion.Focal_Add;        //聚焦增加
+            this.button_Focal_Reduce.Tag    = nw_camera_action.Actrion.Focal_Reduce;     //聚焦减少
 
         }
 
@@ -71,9 +71,9 @@ namespace GridBackGround.Forms.Dialogs_nw
 
             cmd.Password = this.textBox_password.Text;
 
-            cmd.Action = new Camera_Action()
+            cmd.Action = new nw_camera_action()
             {
-                actrion = (Camera_Action.Actrion)button.Tag,
+                actrion = (nw_camera_action.Actrion)button.Tag,
                 Para = para,
                 Channel_no = (int)this.numericUpDown1.Value
             };

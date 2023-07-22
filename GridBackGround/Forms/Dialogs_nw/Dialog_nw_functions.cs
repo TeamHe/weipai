@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Permissions;
-using System.Text;
-using System.Web.UI.WebControls;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
 using GridBackGround.CommandDeal.nw;
-using ResModel.EQU;
 using Tools;
-using static GridBackGround.CommandDeal.nw.Camera_Action;
 
 namespace GridBackGround.Forms.Dialogs_nw
 {
