@@ -1,23 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Sodao.FastSocket.Server.Command;
+﻿using Sodao.FastSocket.Server.Command;
 using Sodao.FastSocket.Server.Protocol;
-using System.Configuration;
-
+using Sodao.FastSocket.Server;
+using GridBackGround.Termination;
+using ResModel;
+using ResModel.nw;
 
 namespace GridBackGround.Communicat
 {
     public class Service
     {
 
-        private static Sodao.FastSocket.Server.UdpServer<CommandInfoV2> CMD_UDP;
-        private static Sodao.FastSocket.Server.UdpServer<CommandInfo_nw> udp_server_nw;
-        private static Sodao.FastSocket.Server.SocketServer<CommandInfoV2> CMD_TCP;
-        private static Sodao.FastSocket.Server.SocketServer<CommandInfoV2> WEB_TCP;
+        private static UdpServer<CommandInfoV2> CMD_UDP;
+        private static SocketServer<CommandInfoV2> CMD_TCP;
+        private static SocketServer<CommandInfoV2> WEB_TCP;
         private static HTTP.HttpListeners httpListeners = null;
 
+        #region 南网Service 处理
+        private static nw_service powerPoleMan_Nw = null;
+
+        private static bool PowerPoleMan_nw_init(int port)
+        {
+            if (powerPoleMan_Nw == null)
+            {
+                powerPoleMan_Nw = new nw_service(port);
+                powerPoleMan_Nw.OnPackageRecvd += PowerPoleMan_Nw_OnPackageRecvd;
+            }
+            else
+            {
+                powerPoleMan_Nw.Port = port;
+            }
+            return powerPoleMan_Nw.Start();
+        }
+
+        private static void PowerPoleMan_Nw_OnPackageRecvd(object sender, nw_pack_recv_args e)
+        {
+            UdpSession session = e.Session;
+            CommandInfo_nw cmdInfo = e.CmdInfo;
+            IPowerPole pole = PowerPoleManage.PowerPole(cmdInfo.CMD_ID, session);
+            PackeDeal.RecDataDeal(cmdInfo, EConnectType.UDP, pole);
+        }
+        #endregion
 
         public static bool CommunicatInit()
         {
@@ -26,12 +48,8 @@ namespace GridBackGround.Communicat
             //service mode 配置为南网模式
             if(Config.SettingsForm.Default.ServiceMode == "nw")
             {
-                //装置UDP连接
-                udp_server_nw = new Sodao.FastSocket.Server.UdpServer<CommandInfo_nw>(
-                    Config.SettingsForm.Default.CMD_Port,
-                    new Protocol_udp_nw(),
-                    new UdpSeverNW());
-                if (!udp_server_nw.Start())
+
+                if (!PowerPoleMan_nw_init(Config.SettingsForm.Default.CMD_Port))
                 {
                     msg += "UDP端口：" + Config.SettingsForm.Default.CMD_Port.ToString() + "被占用\n";
                     state = false;
@@ -40,7 +58,7 @@ namespace GridBackGround.Communicat
             else
             {
                 //装置UDP连接
-                CMD_UDP = new Sodao.FastSocket.Server.UdpServer<CommandInfoV2>(
+                CMD_UDP = new UdpServer<CommandInfoV2>(
                     Config.SettingsForm.Default.CMD_Port, new UdpProtocol(), new UdpSeverCMD());
                 if (!CMD_UDP.Start())
                 {
@@ -48,8 +66,8 @@ namespace GridBackGround.Communicat
                     state = false;
                 }
                 //装置TCP连接
-                CMD_TCP = new Sodao.FastSocket.Server.SocketServer<CommandInfoV2>(new TCPSeverCMD(),
-                    new Sodao.FastSocket.Server.Protocol.Protocol(),
+                CMD_TCP = new SocketServer<CommandInfoV2>(new TCPSeverCMD(),
+                    new Protocol(),
                     8192,
                     8192,
                     102400,
@@ -89,20 +107,12 @@ namespace GridBackGround.Communicat
         {
             try
             {
-                if (Config.SettingsForm.Default.ServiceMode == "nw")
-                {
-                    if (udp_server_nw != null)
-                        udp_server_nw.Stop();
-                }
-                else
-                {
-                    if (CMD_UDP != null)
-                        CMD_UDP.Stop();
-                    if (CMD_TCP != null)
-                        CMD_TCP.Stop();
-                    if (httpListeners != null)
-                        httpListeners.ListenerStop();
-                }
+                if (CMD_UDP != null)
+                    CMD_UDP.Stop();
+                if (CMD_TCP != null)
+                    CMD_TCP.Stop();
+                if (httpListeners != null)
+                    httpListeners.ListenerStop();
             }
             catch { }
             return CommunicatInit();

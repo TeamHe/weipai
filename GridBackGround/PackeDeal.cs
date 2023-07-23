@@ -302,24 +302,6 @@ namespace GridBackGround
         }
 
         /// <summary>
-        /// 南网数据接收处理
-        /// </summary>
-        /// <param name="session"></param>
-        /// <param name="cmdInfo"></param>
-        /// <returns></returns>
-        public static bool RecData(UdpSession session, CommandInfo_nw cmdInfo)
-        {
-            IPowerPole pole = null;
-            if (cmdInfo.CMD_ID != null)
-            {
-                pole = PowerPoleManage.PowerPole(cmdInfo.CMD_ID, session);
-
-            }
-            RecDataDeal(cmdInfo, EConnectType.UDP, pole);
-            return false;
-        }
-
-        /// <summary>
         /// 对接收到的数据进行处理
         /// </summary>
         /// <param name="cmdInfo"></param>
@@ -335,9 +317,6 @@ namespace GridBackGround
             cmdInfo = null;
             return false;
         }
-
-
-
         #endregion
     }
 
