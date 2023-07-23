@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
+using ResModel.PowerPole;
 
 namespace GridBackGround.Termination
 {

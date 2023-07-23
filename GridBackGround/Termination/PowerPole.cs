@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Sodao.FastSocket.SocketBase;
 using Sodao.FastSocket.Server;
 using System.Timers;
@@ -10,7 +8,7 @@ using System.Net;
 using ResModel.EQU;
 using DB_Operation.EQUManage;
 using ResModel;
-using System.Security.RightsManagement;
+using ResModel.PowerPole;
 using System.ComponentModel;
 
 namespace GridBackGround.Termination

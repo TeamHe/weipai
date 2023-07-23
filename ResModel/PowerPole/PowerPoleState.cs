@@ -1,13 +1,7 @@
-﻿using GridBackGround.CommandDeal.nw;
-using ResModel;
-using ResModel.EQU;
+﻿using ResModel.EQU;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Timers;
-using System.Web.UI.HtmlControls;
 
-namespace GridBackGround.Termination
+namespace ResModel.PowerPole
 {
     public class PowerPoleState
     {
