@@ -5,6 +5,7 @@ using System.Text;
 using Sodao.FastSocket.SocketBase;
 using Sodao.FastSocket.Server;
 using ResModel;
+using System.Collections;
 
 namespace GridBackGround.Termination
 {
@@ -14,13 +15,14 @@ namespace GridBackGround.Termination
         public static event OnLineStateChange OnStateChange;
         public static event EventHandler<PowerPole> OnPoleAdded;
         public static event EventHandler<PowerPole> OnPoleRemoved;
-        public static List<Termination.PowerPole> PowerPoleList;
+        //public static List<Termination.PowerPole> PowerPoleList;
+        public static Hashtable PowerPoleList;
         /// <summary>
         /// 初始化函数
         /// </summary>
         public static void PowerPoleManageInit()
         { 
-            PowerPoleList = new List<Termination.PowerPole>();
+            PowerPoleList = new Hashtable();
             PowerPoleComMan.Init();
             PowerPoleStateMan.Init();
             CommandDeal.nw.nw_cmd_handle.GetHandles();
@@ -91,7 +93,7 @@ namespace GridBackGround.Termination
                 powerPole = new PowerPole(CMD_ID);
                 powerPole.UpstateEqu();
                 powerPole.PowerPoleStateChange += new EventHandler<PowerPoleStateChange>(PoleStateChange);
-                PowerPoleList.Add(powerPole);
+                PowerPoleList.Add(CMD_ID,powerPole);
                 if (OnStateChange != null)              //触发终端状态事件，主界面显示新加入的终端
                     OnStateChange(powerPole);
                 add = true;
@@ -157,13 +159,9 @@ namespace GridBackGround.Termination
         //查找指定的节点
         public static IPowerPole Find(string CMD_ID)
         {
-            if (PowerPoleList != null)
-                foreach (PowerPole powerPole in PowerPoleList)
-                {
-                    if (powerPole.CMD_ID == CMD_ID)
-                        return powerPole;
-                }
-            return null;
+            if(PowerPoleList == null || !PowerPoleList.Contains(CMD_ID))
+                return null;
+            return PowerPoleList[CMD_ID] as IPowerPole;
         }
         #endregion
     }
