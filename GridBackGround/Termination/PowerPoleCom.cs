@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using ResModel.nw;
+using ResModel;
 
 namespace GridBackGround.Termination
 {
@@ -33,7 +34,7 @@ namespace GridBackGround.Termination
         /// <summary>
         /// 关联设备信息handle
         /// </summary>
-        public PowerPole Pole { get; set; } 
+        public IPowerPole Pole { get; set; } 
 
         /// <summary>
         /// 请求数据包
@@ -95,7 +96,7 @@ namespace GridBackGround.Termination
 
         public PowerPoleCom(nw_cmd_base request)
         {
-            this.Pole = (PowerPole)request.Pole;
+            this.Pole = request.Pole;
             this.Request = request;
             this.timer = new System.Timers.Timer();
             this.timer.Elapsed += Timer_Elapsed;

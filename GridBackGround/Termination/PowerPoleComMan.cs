@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ResModel.nw;
+using ResModel;
 
 namespace GridBackGround.Termination
 {
@@ -36,7 +37,7 @@ namespace GridBackGround.Termination
         /// </summary>
         /// <param name="pole"></param>
         /// <returns></returns>
-        private List<PowerPoleCom>[] GetEntryLists(PowerPole pole)
+        private List<PowerPoleCom>[] GetEntryLists(IPowerPole pole)
         {
             if (_pole_list == null
                 || pole == null
@@ -52,7 +53,7 @@ namespace GridBackGround.Termination
         /// </summary>
         /// <param name="pole"></param>
         /// <returns></returns>
-        private List<PowerPoleCom> GetReadyList(PowerPole pole)
+        private List<PowerPoleCom> GetReadyList(IPowerPole pole)
         {
             List<PowerPoleCom>[] lists = GetEntryLists(pole);
             if (lists == null) return null;
@@ -67,7 +68,7 @@ namespace GridBackGround.Termination
         ///          0   数据包发送失败
         ///          1   发送成功
         ///</returns>
-        private  void SendNext(PowerPole pole)
+        private  void SendNext(IPowerPole pole)
         {
             List<PowerPoleCom> list = this.GetReadyList(pole);
             //没有待发送数据包，立即返回
@@ -89,7 +90,7 @@ namespace GridBackGround.Termination
             }
         }
 
-        public async void SendNextAsync(PowerPole pole)
+        public async void SendNextAsync(IPowerPole pole)
         {
             await Task.Run(() => SendNext(pole));
         }
@@ -120,10 +121,10 @@ namespace GridBackGround.Termination
             var lists = new List<PowerPoleCom>[2];
             lists[0] = new List<PowerPoleCom>();
             lists[1] = new List<PowerPoleCom>();
-            this._pole_list.Add(e, lists);
+            this._pole_list.Add(e as IPowerPole, lists);
         }
 
-        public bool Add(PowerPole pole, PowerPoleCom com)
+        public bool Add(IPowerPole pole, PowerPoleCom com)
         {
             List<PowerPoleCom>[] lists = GetEntryLists(pole);
             if(lists ==null)
