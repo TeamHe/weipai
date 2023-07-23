@@ -1,12 +1,7 @@
-﻿using GridBackGround.CommandDeal.nw;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using ResModel.Image;
 
 namespace GridBackGround.Forms
 {
@@ -27,11 +22,11 @@ namespace GridBackGround.Forms
         {
             if (TimeTable == null)
             {
-                TimeTable = new List<CommandDeal.IPhoto_Time>();
+                TimeTable = new List<IPhotoTime>();
             }
             else
             {
-                foreach (CommandDeal.IPhoto_Time ptt in TimeTable)
+                foreach (IPhotoTime ptt in TimeTable)
                 {
                     ListViewItem lvi = new ListViewItem();
                     lvi.Text = ptt.Hour.ToString();
@@ -54,7 +49,7 @@ namespace GridBackGround.Forms
         /// <summary>
         /// 时间表链表
         /// </summary>
-        public List<CommandDeal.IPhoto_Time> TimeTable { get; set; }
+        public List<IPhotoTime> TimeTable { get; set; }
 
         private bool nw = false;
         public bool nw_flag
@@ -149,7 +144,7 @@ namespace GridBackGround.Forms
                     int hour = int.Parse(lvi.SubItems[0].Text);
                     int minute = int.Parse(lvi.SubItems[1].Text);
                     int preset_No = int.Parse(lvi.SubItems[2].Text);
-                    var tt = (CommandDeal.IPhoto_Time)new CommandDeal.PhotoTime(hour, minute, preset_No);
+                    var tt = (IPhotoTime)new PhotoTime(hour, minute, preset_No);
                     TimeTable.Add(tt);
                 }
             }

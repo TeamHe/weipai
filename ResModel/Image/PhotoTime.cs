@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace GridBackGround.CommandDeal
+namespace ResModel.Image
 {
     /// <summary>
     /// 拍照时间表
     /// </summary>
-    public interface IPhoto_Time
+    public interface IPhotoTime
     {
         /// <summary>
         /// 时
@@ -28,7 +25,7 @@ namespace GridBackGround.CommandDeal
     /// <summary>
     /// 拍照时间表
     /// </summary>
-    public class PhotoTime : IPhoto_Time
+    public class PhotoTime : IPhotoTime
     {
         /// <summary>
         /// 时

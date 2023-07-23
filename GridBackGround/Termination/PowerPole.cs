@@ -10,6 +10,7 @@ using DB_Operation.EQUManage;
 using ResModel;
 using ResModel.PowerPole;
 using System.ComponentModel;
+using ResModel.Image;
 
 namespace GridBackGround.Termination
 {
@@ -345,7 +346,7 @@ namespace GridBackGround.Termination
 
         private Timer timer_settimetable { get; set; }
 
-        public Error_Code SetTimeTable(int channel, List<CommandDeal.IPhoto_Time> table)
+        public Error_Code SetTimeTable(int channel, List<IPhotoTime> table)
         {
             if (!is_online())
                 return Error_Code.DeviceOffLine;

@@ -378,7 +378,6 @@
     <Compile Include="PacketAnaLysis\PackDeal_PrivateCon.cs" />
     <Compile Include="PacketAnaLysis\PackDeal_Image.cs" />
     <Compile Include="PacketAnaLysis\PackDeal_Image_Control.cs" />
-    <Compile Include="CommandDeal\IPhoto_Time.cs" />
     <Compile Include="CommandDeal\Comand\Comand_History.cs" />
     <Compile Include="CommandDeal\Comand\Comand_ID.cs" />
     <Compile Include="CommandDeal\Comand\Comand_IP.cs" />

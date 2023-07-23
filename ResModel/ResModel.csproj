@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Image\PhotoTime.cs" />
     <Compile Include="nw\mw_data_error.cs" />
     <Compile Include="nw\nw_camera_action.cs" />
     <Compile Include="nw\nw_center.cs" />

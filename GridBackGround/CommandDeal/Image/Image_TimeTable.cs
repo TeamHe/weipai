@@ -1,6 +1,7 @@
 ﻿using ResModel;
 using System.Collections.Generic;
 using ResModel.PowerPole;
+using ResModel.Image;
 
 namespace GridBackGround.CommandDeal
 {
@@ -8,14 +9,14 @@ namespace GridBackGround.CommandDeal
     {
         private static string CMD_ID;
         private static int PacLength = 1 + 1;
-        public static List<CommandDeal.IPhoto_Time> TimeTable { get; set; }
+        public static List<IPhotoTime> TimeTable { get; set; }
         #region 公共函数
         public static void Query(string cmd_ID, int Channel_No)
         {
             Con(cmd_ID, false,Channel_No,null);
         }
 
-        public static bool Set(string cmd_ID, int Channel_No, List<IPhoto_Time> model)
+        public static bool Set(string cmd_ID, int Channel_No, List<IPhotoTime> model)
         {
             return Con(cmd_ID, true, Channel_No, model);
         }
@@ -79,7 +80,7 @@ namespace GridBackGround.CommandDeal
         /// <param name="Data_Type">数据类型</param>
         /// <param name="sample_Time">采样周期</param>
         /// <param name="heart_Time">心跳周期</param>
-        private static bool Con(string cmd_ID, bool conMode,int Channel_No,List<IPhoto_Time> timeTable)
+        private static bool Con(string cmd_ID, bool conMode,int Channel_No,List<IPhotoTime> timeTable)
         {
             string pacMsg = "";
             CMD_ID = cmd_ID;

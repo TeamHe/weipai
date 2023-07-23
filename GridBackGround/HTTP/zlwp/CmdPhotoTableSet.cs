@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Net;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using ResModel.Image;
 
 namespace GridBackGround.HTTP.zlwp
 {
@@ -43,7 +41,7 @@ namespace GridBackGround.HTTP.zlwp
                 }
                 string mn = jObject["mn"].ToString();
                 int channel = (int)jObject["channel"];
-                List<CommandDeal.IPhoto_Time> list = new List<CommandDeal.IPhoto_Time>();
+                List<IPhotoTime> list = new List<IPhotoTime>();
                 JArray jArray = jObject["tables"] as JArray;
                 foreach(JObject jObject in jArray)
                 {
@@ -55,7 +53,7 @@ namespace GridBackGround.HTTP.zlwp
                     int hour = (int )jObject["hour"];
                     int minute = (int)jObject["minute"];
                     int preseting = (int)jObject["preseting"];
-                    CommandDeal.PhotoTime time = new CommandDeal.PhotoTime(hour,minute,preseting);
+                    PhotoTime time = new PhotoTime(hour,minute,preseting);
                     list.Add(time);
                 }
 

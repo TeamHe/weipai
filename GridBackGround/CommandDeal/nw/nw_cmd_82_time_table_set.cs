@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using ResModel.nw;
+using ResModel.Image;
 
 namespace GridBackGround.CommandDeal.nw
 {
@@ -24,13 +25,13 @@ namespace GridBackGround.CommandDeal.nw
         /// <summary>
         /// 拍照时间表
         /// </summary>
-        public List<IPhoto_Time> TimeTable { get; set; }
+        public List<IPhotoTime> TimeTable { get; set; }
 
         public nw_cmd_82_time_table_set() { }
 
         public nw_cmd_82_time_table_set(IPowerPole pole):base(pole) { }
 
-        public int Decode_PhotoTime(byte[] data, int offset, out IPhoto_Time photoing_time)
+        public int Decode_PhotoTime(byte[] data, int offset, out IPhotoTime photoing_time)
         {
             photoing_time = null;
             if (data.Length - offset < 3)
@@ -43,7 +44,7 @@ namespace GridBackGround.CommandDeal.nw
             return no - offset;
         }
 
-        public int Encode_PhotoTime(byte[] data, int offset, IPhoto_Time photoing_time)
+        public int Encode_PhotoTime(byte[] data, int offset, IPhotoTime photoing_time)
         {
             data[offset++] = (byte)photoing_time.Hour;
             data[offset++] = (byte)photoing_time.Minute;
@@ -76,11 +77,11 @@ namespace GridBackGround.CommandDeal.nw
                         6 + group * 3, this.Data.Length));
 
             int ret = 0;
-            this.TimeTable = new List<IPhoto_Time>();
+            this.TimeTable = new List<IPhotoTime>();
             msg = string.Format("设置成功. 通道:{0} 共{1}组:", this.Channel_No, group);
             for(int i = 0; i < group; i++)
             {
-                offset += this.Decode_PhotoTime(this.Data, offset, out IPhoto_Time photo_time);
+                offset += this.Decode_PhotoTime(this.Data, offset, out IPhotoTime photo_time);
                 this.TimeTable.Add(photo_time);
                 msg += string.Format("第{0}组:{1}", i + 1, photo_time);
             }
