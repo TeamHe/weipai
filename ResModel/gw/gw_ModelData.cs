@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GridBackGround.CommandDeal
+namespace ResModel.gw
 {
-    public interface IModel_Data
+    public interface IModelData
     {
         /// <summary>
         /// 模型数据名称
@@ -21,7 +21,7 @@ namespace GridBackGround.CommandDeal
         /// </summary>
         int DataType { get; set; }
     }
-    public class Model_Data:IModel_Data
+    public class gw_ModelData:IModelData
     {
         /// <summary>
         /// 模型数据名称
@@ -36,7 +36,7 @@ namespace GridBackGround.CommandDeal
         /// 数值类型
         /// </summary>
         public int DataType { get;  set; }
-        public Model_Data(string name, float data, int dataType)
+        public gw_ModelData(string name, float data, int dataType)
         {
             this.Name = name;
             this.Data = data;

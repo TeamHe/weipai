@@ -35,7 +35,7 @@ namespace ResModel.DataBase
             "偏斜角2",
             "原始拉力值2",
             "风偏角2",
-            "偏斜角2"
+            "偏斜角2" 
          };
     }
 }

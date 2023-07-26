@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using ResModel.gw;
 
 namespace GridBackGround.Forms
 {
@@ -29,7 +25,7 @@ namespace GridBackGround.Forms
         {
             this.CenterToParent();
             InitWindow();
-            modelData = new List<CommandDeal.IModel_Data>();
+            modelData = new List<IModelData>();
             this.AcceptButton = button_OK;
             this.CancelButton = this.button_Cancel;
             this.button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -83,7 +79,7 @@ namespace GridBackGround.Forms
         }
         #endregion
 
-        public List<CommandDeal.IModel_Data> modelData { get; private set; }
+        public List<IModelData> modelData { get; private set; }
 
         /// <summary>
         /// 确定按钮
@@ -101,7 +97,7 @@ namespace GridBackGround.Forms
                     try
                     {
                         float value = Convert.ToSingle(this.textBox[i].Text);
-                        var model = new CommandDeal.Model_Data(name, value, DataTye);
+                        var model = new gw_ModelData(name, value, DataTye);
                         modelData.Add(model);
                     }
                     catch

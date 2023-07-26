@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ResModel.PowerPole;
+using ResModel.gw;
 
 namespace GridBackGround.CommandDeal
 {
@@ -18,7 +19,7 @@ namespace GridBackGround.CommandDeal
             Con(cmd_ID, false,null);
         }
 
-        public static void Set(string cmd_ID, List<IModel_Data> model)
+        public static void Set(string cmd_ID, List<IModelData> model)
         {
             Con(cmd_ID,true,model);
         }
@@ -128,7 +129,7 @@ namespace GridBackGround.CommandDeal
         /// <param name="Data_Type">数据类型</param>
         /// <param name="sample_Time">采样周期</param>
         /// <param name="heart_Time">心跳周期</param>
-        private static void Con(string cmd_ID, bool conMode, List<IModel_Data> model)
+        private static void Con(string cmd_ID, bool conMode, List<IModelData> model)
         {
             string pacMsg = "";
             CMD_ID = cmd_ID;
