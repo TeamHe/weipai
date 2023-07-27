@@ -164,6 +164,24 @@ namespace ResModel.nw
             return 2;
         }
 
+        public static int GetU32(byte[] data, int offset, out uint value)
+        {
+            value = (uint)data[offset];
+            value = (value << 8) + data[offset + 1] ;
+            value = (value << 8) + data[offset + 2] ;
+            value = (value << 8) + data[offset + 3] ;
+            return 4;
+        }
+
+        public static int SetU32(byte[] data, int offset, uint value)
+        {
+            data[offset++] = (byte)((value & 0xff000000) >> 24);
+            data[offset++] = (byte)((value & 0x00ff0000) >> 16);
+            data[offset++] = (byte)((value & 0x0000ff00) >> 8);
+            data[offset++] = (byte)((value & 0x000000ff));
+            return 4;
+        }
+
         /// <summary>
         /// 获取最高位位符号位的16位整形
         /// </summary>
@@ -265,6 +283,15 @@ namespace ResModel.nw
             return 4;
         }
 
+
+        public byte[] ResponseData(int frameflag)
+        {
+            byte[] data = new byte[3];
+            data[0] = (byte)frameflag;
+            data[1] = 0xaa;
+            data[2] = 0x55;
+            return data;
+        }
 
         /// <summary>
         /// 发送数据帧
