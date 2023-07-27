@@ -101,7 +101,7 @@ namespace GridBackGround.CommandDeal.nw
                         break;
                     }
 
-                    offset += this.GetU16(this.Data, offset, out int period);
+                    offset += nw_cmd_base.GetU16(this.Data, offset, out int period);
                     datatime = datatime.AddSeconds(period);
                 }
 

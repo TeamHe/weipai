@@ -144,9 +144,9 @@ namespace ResModel.nw
         /// <param name="offset"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        protected int GetU16(byte[] data,int offset,out int value)
+        public static int GetU16(byte[] data, int offset, out int value)
         {
-            value = data[offset + 0] * 256 + data[offset + 1] ;
+            value = data[offset + 0] * 256 + data[offset + 1];
             return 2;
         }
 
@@ -157,7 +157,7 @@ namespace ResModel.nw
         /// <param name="offset"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        protected int SetU16(byte[] data, int offset, int value)
+        public static int SetU16(byte[] data, int offset, int value)
         {
             data[offset + 0] = (byte)(value / 256);
             data[offset + 1] = (byte)(value % 256);

@@ -50,7 +50,7 @@ namespace GridBackGround.CommandDeal.nw
             int offset = 0;
             offset += this.GetPassword(this.Data, offset, out string password);
             offset += this.GetIPAddress(this.Data, offset, out IPAddress ip);
-            offset += this.GetU16(this.Data, offset, out int port);
+            offset += nw_cmd_base.GetU16(this.Data, offset, out int port);
             offset += 6; //跳过重复的IP端口
             offset += this.GetPhoneNumber(this.Data, offset, out string phoneno);
 
@@ -73,9 +73,9 @@ namespace GridBackGround.CommandDeal.nw
             int offset = 0;
             offset += this.SetPassword(data, offset, this.center.Password);
             offset += this.SetIPAddress(data, offset, this.center.IPAddress);
-            offset += this.SetU16(data, offset, this.center.Port);
+            offset += nw_cmd_base.SetU16(data, offset, this.center.Port);
             offset += this.SetIPAddress(data, offset, this.center.IPAddress);
-            offset += this.SetU16(data, offset, this.center.Port);
+            offset += nw_cmd_base.SetU16(data, offset, this.center.Port);
             offset += this.SetPhoneNumber(data, offset, this.center.PhoneNumber);
             offset += this.SetPhoneNumber(data, offset, this.center.PhoneNumber);
             msg = string.Format("密码:{0} {1}", this.center.Password, this.center.ToString());

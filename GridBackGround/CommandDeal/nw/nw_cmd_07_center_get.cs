@@ -40,7 +40,7 @@ namespace GridBackGround.CommandDeal.nw
 
             byte[] ipaddress = new byte[4];
             Buffer.BlockCopy(this.Data,0,ipaddress,0,4);
-            this.GetU16(this.Data, 4, out int port);
+            nw_cmd_base.GetU16(this.Data, 4, out int port);
             this.GetPhoneNumber(this.Data, 6, out string phone);
 
             if (this.Center == null)

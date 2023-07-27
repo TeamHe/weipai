@@ -40,7 +40,7 @@ namespace GridBackGround.CommandDeal.nw
             int offset = 0;
             this.Channel_NO = Data[offset++];
             this.PresetNo = Data[offset++];
-            offset += this.GetU16(this.Data, offset, out int pno);
+            offset += nw_cmd_base.GetU16(this.Data, offset, out int pno);
             this.PacNO = pno;
 
             this.PhotoData = new byte[this.Data.Length - 4];

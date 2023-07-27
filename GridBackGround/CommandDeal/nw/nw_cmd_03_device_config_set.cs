@@ -41,13 +41,13 @@ namespace GridBackGround.CommandDeal.nw
                 this.Password = password;
                 Para.Heart = Data[offset++];
 
-                offset += this.GetU16(this.Data, offset, out value);
+                offset += nw_cmd_base.GetU16(this.Data, offset, out value);
                 Para.ScanInterval = value;
 
-                offset += this.GetU16(this.Data, offset, out value);
+                offset += nw_cmd_base.GetU16(this.Data, offset, out value);
                 Para.DormancyDuration = value;
 
-                offset += this.GetU16(this.Data, offset, out value);
+                offset += nw_cmd_base.GetU16(this.Data, offset, out value);
                 Para.OnlineTime = value;
 
                 Para.Reboot_day = Data[offset++];
@@ -74,9 +74,9 @@ namespace GridBackGround.CommandDeal.nw
 
             offset += this.SetPassword(data, offset, this.Password);
             data[offset++] = (byte)Para.Heart;
-            offset += this.SetU16(data, offset, this.Para.ScanInterval);
-            offset += this.SetU16(data, offset, this.Para.DormancyDuration);
-            offset += this.SetU16(data, offset, this.Para.OnlineTime);
+            offset += nw_cmd_base.SetU16(data, offset, this.Para.ScanInterval);
+            offset += nw_cmd_base.SetU16(data, offset, this.Para.DormancyDuration);
+            offset += nw_cmd_base.SetU16(data, offset, this.Para.OnlineTime);
             data[offset++] = (byte)this.Para.Reboot_day;
             data[offset++] = (byte)this.Para.Reboot_hour;
             data[offset++] = (byte)this.Para.Reboot_min;

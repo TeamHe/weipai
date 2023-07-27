@@ -55,7 +55,7 @@ namespace GridBackGround.CommandDeal.nw
                 this.Channel_NO,this.PresetNo,num);
             for(int i = 0; i < num;i++)
             {
-                offset += this.SetU16(data, offset, List_Pac[i]);
+                offset += nw_cmd_base.SetU16(data, offset, List_Pac[i]);
                 stringBuilder.AppendFormat("{0},", List_Pac[i]);
             }
             msg = stringBuilder.ToString();

@@ -36,13 +36,13 @@ namespace GridBackGround.CommandDeal.nw
             int value;
             int offset = 0;
             Para.Heart = Data[offset++];
-            offset += this.GetU16(this.Data, offset, out value);
+            offset += nw_cmd_base.GetU16(this.Data, offset, out value);
             Para.ScanInterval = value;
 
-            offset += this.GetU16(this.Data, offset, out value);
+            offset += nw_cmd_base.GetU16(this.Data, offset, out value);
             Para.DormancyDuration = value;
 
-            offset += this.GetU16(this.Data, offset, out value);
+            offset += nw_cmd_base.GetU16(this.Data, offset, out value);
             Para.OnlineTime = value;
 
             Para.Reboot_day = Data[offset++];

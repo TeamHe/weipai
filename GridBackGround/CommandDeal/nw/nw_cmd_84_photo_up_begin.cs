@@ -47,7 +47,7 @@ namespace GridBackGround.CommandDeal.nw
             offset += this.GetDateTime(this.Data, offset, out DateTime time);
             this.Channel_NO = Data[offset++];
             this.PresetNo = Data[offset++];
-            offset += this.GetU16(this.Data, offset, out int pnum);
+            offset += nw_cmd_base.GetU16(this.Data, offset, out int pnum);
 
             this.photo_time = time;
             this.PacNum = pnum;

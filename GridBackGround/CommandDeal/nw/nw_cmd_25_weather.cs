@@ -70,50 +70,50 @@ namespace GridBackGround.CommandDeal.nw
             int u16 = 0;
             weather = new nw_data_weather();
             //温度
-            no += this.GetU16(data, no, out u16);
+            no += nw_cmd_base.GetU16(data, no, out u16);
             weather.Temp = (u16 - 500) / 10.0;
 
             //湿度
             weather.Humidity = (int)data[no++];
 
             //风速
-            no += this.GetU16(data, no, out u16);
+            no += nw_cmd_base.GetU16(data, no, out u16);
             weather.Speed = u16 / 10.0;
 
             //风向
-            no += this.GetU16(data, no, out u16);
+            no += nw_cmd_base.GetU16(data, no, out u16);
             weather.Direction = u16;
 
             //雨量
-            no += this.GetU16(data, no, out u16);
+            no += nw_cmd_base.GetU16(data, no, out u16);
             weather.Rain = u16 / 100.0;
 
             //气压
-            no += this.GetU16(data, no, out u16);
+            no += nw_cmd_base.GetU16(data, no, out u16);
             weather.Pressure = u16;
 
             //日照
-            no += this.GetU16(data, no, out u16);
+            no += nw_cmd_base.GetU16(data, no, out u16);
             weather.Sun = u16;
 
             //1 分钟平均风速
-            no += this.GetU16(data, no, out u16);
+            no += nw_cmd_base.GetU16(data, no, out u16);
             weather.Speed_1_min = u16 / 10.0;
 
             //1 分钟平均风向
-            no += this.GetU16(data, no, out u16);
+            no += nw_cmd_base.GetU16(data, no, out u16);
             weather.Direction_1_min = u16;
 
             //10 分钟平均风速
-            no += this.GetU16(data, no, out u16);
+            no += nw_cmd_base.GetU16(data, no, out u16);
             weather.Speed_10_min = u16 / 10.0;
 
             //10 分钟平均风向
-            no += this.GetU16(data, no, out u16);
+            no += nw_cmd_base.GetU16(data, no, out u16);
             weather.Direction_10_min = u16;
 
             //10 分钟最大风速
-            no += this.GetU16(data, no, out u16);
+            no += nw_cmd_base.GetU16(data, no, out u16);
             weather.Speed_max = u16 / 10.0;
 
             return no-offset;
@@ -169,7 +169,7 @@ namespace GridBackGround.CommandDeal.nw
                     break;
                 }
                     
-                offset += this.GetU16(this.Data, offset, out int period);
+                offset += nw_cmd_base.GetU16(this.Data, offset, out int period);
                 datatime = datatime.AddSeconds(period);
             }
             this.Response = true;

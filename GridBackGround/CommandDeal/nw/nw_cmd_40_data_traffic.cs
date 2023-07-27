@@ -77,7 +77,7 @@ namespace GridBackGround.CommandDeal.nw
                         break;
                     }
 
-                    offset += this.GetU16(this.Data, offset, out int timestramp);
+                    offset += nw_cmd_base.GetU16(this.Data, offset, out int timestramp);
                     datatime = datatime.AddSeconds(timestramp);
                 }
             }
