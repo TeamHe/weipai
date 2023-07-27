@@ -16,6 +16,9 @@ namespace ResModel.nw
         [Description("设备故障自检")]
         Fault_Detect = 0x30,
 
+        [Description("装置流量数据")]
+        Traffic = 0x40,
+
         [Description("图像监测")]
         Picture = 0x84,
     }

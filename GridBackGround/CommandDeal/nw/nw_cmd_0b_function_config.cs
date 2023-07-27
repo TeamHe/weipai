@@ -15,7 +15,7 @@ namespace GridBackGround.CommandDeal.nw
 
         public string Password { get; set; }
 
-        public List<e_nw_function> Functions { get; set; }
+        public List<nw_func_code> Functions { get; set; }
 
 
         public nw_cmd_0b_function_config() { }
@@ -40,7 +40,7 @@ namespace GridBackGround.CommandDeal.nw
             offset += this.SetPassword(data, offset, this.Password);
             if(this.Functions != null)
             {
-                foreach (e_nw_function function in this.Functions)
+                foreach (nw_func_code function in this.Functions)
                 {
                     data[offset++] = (byte)function;
                     msg += " " + function.GetDescription();

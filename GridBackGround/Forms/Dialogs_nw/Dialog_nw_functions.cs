@@ -8,7 +8,7 @@ namespace GridBackGround.Forms.Dialogs_nw
     public partial class Dialog_nw_function : Form
     {
 
-        public List<System.Windows.Forms.CheckBox> Checkbox_list { get; set; }
+        public List<CheckBox> Checkbox_list { get; set; }
 
         public string Password
         {
@@ -16,7 +16,7 @@ namespace GridBackGround.Forms.Dialogs_nw
             set { this.textBox_password.Text = value; }
         }
 
-        public List<e_nw_function> Functions 
+        public List<nw_func_code> Functions 
         { 
             get { return GetFunctions(); }
             set { SetFunctions(value); }
@@ -27,33 +27,33 @@ namespace GridBackGround.Forms.Dialogs_nw
             InitializeComponent();
             this.CenterToParent();
 
-            Function_Checkbox_init(this.checkBox1, e_nw_function.Pull_angle);
-            Function_Checkbox_init(this.checkBox2, e_nw_function.Weather);
-            Function_Checkbox_init(this.checkBox3, e_nw_function.Image_Tranfer);
-            Function_Checkbox_init(this.checkBox4, e_nw_function.Device_Error);
-
+            Function_Checkbox_init(this.checkBox1, nw_func_code.Pull);
+            Function_Checkbox_init(this.checkBox2, nw_func_code.Weather);
+            Function_Checkbox_init(this.checkBox3, nw_func_code.Picture);
+            Function_Checkbox_init(this.checkBox4, nw_func_code.Fault_Detect);
+            Function_Checkbox_init(this.checkBox5, nw_func_code.Traffic);
         }
 
-        public List<e_nw_function> GetFunctions()
+        public List<nw_func_code> GetFunctions()
         {
-            List<e_nw_function> funcs= new List<e_nw_function>();
+            List<nw_func_code> funcs= new List<nw_func_code>();
             foreach(System.Windows.Forms.CheckBox checkbox in this.Checkbox_list)
             {
                 if (checkbox.Checked)
-                    funcs.Add((e_nw_function)checkbox.Tag);
+                    funcs.Add((nw_func_code)checkbox.Tag);
             }
             return funcs;
         }
 
-        public void SetFunctions(List<e_nw_function> funcs)
+        public void SetFunctions(List<nw_func_code> funcs)
         {
             foreach (System.Windows.Forms.CheckBox checkbox in this.Checkbox_list)
                 checkbox.Checked = false;
-            foreach(e_nw_function func in funcs)
+            foreach(nw_func_code func in funcs)
             {
-                foreach (System.Windows.Forms.CheckBox checkbox in this.Checkbox_list)
+                foreach (CheckBox checkbox in this.Checkbox_list)
                 {
-                    if((e_nw_function)checkbox.Tag == func)
+                    if((nw_func_code)checkbox.Tag == func)
                     {
                         checkbox.Checked= true;
                         break;
@@ -62,10 +62,10 @@ namespace GridBackGround.Forms.Dialogs_nw
             }
         }
 
-        private void Function_Checkbox_init(System.Windows.Forms.CheckBox checkBox,e_nw_function fuction)
+        private void Function_Checkbox_init(System.Windows.Forms.CheckBox checkBox, nw_func_code fuction)
         {
             if(Checkbox_list == null)
-                Checkbox_list = new List<System.Windows.Forms.CheckBox>();
+                Checkbox_list = new List<CheckBox>();
             checkBox.Text = fuction.GetDescription();
             checkBox.Tag = fuction;
             checkBox.Checked = true;
