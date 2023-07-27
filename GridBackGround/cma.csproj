@@ -118,6 +118,7 @@
     <Compile Include="CommandDeal\nw\nw_cmd_0c_sleep_notice.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_0e_send_sms.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_30_error_data.cs" />
+    <Compile Include="CommandDeal\nw\nw_cmd_40_data_traffic.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_86_photo_up_end.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_84_photo_up_begin.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_81_img_para.cs" />
