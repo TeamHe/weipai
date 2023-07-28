@@ -26,16 +26,16 @@ namespace GridBackGround.CommandDeal.nw
 
         protected bool Response { get; set; }
 
-        public List<nw_data_traffic> values { get; set; }
+        public List<nw_data_40_traffic> values { get; set; }
 
         public nw_cmd_40_data_traffic()
         {
-            this.values = new List<nw_data_traffic> { };
+            this.values = new List<nw_data_40_traffic> { };
         }
 
         public nw_cmd_40_data_traffic(IPowerPole pole) : base(pole)
         {
-            this.values = new List<nw_data_traffic> { };
+            this.values = new List<nw_data_40_traffic> { };
         }
 
         public override int Decode(out string msg)
@@ -56,7 +56,7 @@ namespace GridBackGround.CommandDeal.nw
                 offset += this.GetDateTime(this.Data, offset, out DateTime datatime);
                 for (int i = 0; i < Pnum; i++)
                 {
-                    nw_data_traffic value = new nw_data_traffic() { DataTime = datatime };
+                    nw_data_40_traffic value = new nw_data_40_traffic() { DataTime = datatime };
                     if((ret = value.Decode(this.Data, offset)) < 0)
                     {
                         msg = string.Format("第{0}包数据解析失败", i); 

@@ -9,7 +9,7 @@ namespace ResModel.nw
     /// <summary>
     /// 南网实时数据: 装置流量数据类
     /// </summary>
-    public class nw_data_traffic : nw_data_base
+    public class nw_data_40_traffic : nw_data_base
     {
         /// <summary>
         /// 今日已用流量

@@ -57,7 +57,7 @@
     <Compile Include="nw\nw_center.cs" />
     <Compile Include="nw\nw_cmd_base.cs" />
     <Compile Include="nw\nw_data_base.cs" />
-    <Compile Include="nw\nw_data_traffic.cs" />
+    <Compile Include="nw\nw_data_40_traffic.cs" />
     <Compile Include="nw\nw_device_config.cs" />
     <Compile Include="nw\nw_img_para.cs" />
     <Compile Include="nw\nw_service.cs" />
