@@ -19,6 +19,9 @@ namespace ResModel.nw
         [Description("装置流量数据")]
         Traffic = 0x40,
 
+        [Description("电能量状态数据")]
+        EnergySatus = 0x48,
+
         [Description("图像监测")]
         Picture = 0x84,
     }
