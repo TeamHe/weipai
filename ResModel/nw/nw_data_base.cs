@@ -6,6 +6,8 @@ namespace ResModel.nw
     {
         public DateTime DataTime { get; set; }
 
+        public int UnitNo { get; set; }
+
         public abstract int PackLength { get; }
 
         public nw_data_base() { }
