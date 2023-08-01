@@ -47,6 +47,19 @@ namespace ResModel.nw
 
         protected abstract int DecodeValue(byte[] data, int offset);
 
+        /// <summary>
+        /// 数据包中包数后续部分，首包数据时间之前数据部分解析
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="offset"></param>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        protected virtual int ExtraDecode(byte[] data, int offset, out string msg)
+        {
+            msg = null;
+            return 0;
+        }
+
         public override int Decode(out string msg)
         {
             msg = null;
@@ -65,15 +78,28 @@ namespace ResModel.nw
             if(HasUnitNo)
                 this.UnitNO = this.Data[offset++];
 
-            if(this.Pnum == 0)
-                return this.Response(out msg);
+            int ret;
+            if((ret = this.ExtraDecode(this.Data, offset, out string msg1))<0)
+            {
+                    msg = msg1;
+                    return ret;
+            }
+            else
+                offset += ret;
+
+
+            if (this.Pnum == 0)
+            {
+                this.Response(out string msg2);
+                msg = msg1 + msg2;
+                return 0;
+            }
 
             offset += this.GetDateTime(this.Data, offset, out DateTime time);
             this.DataTime = time;
 
             for(int i = 0; i < Pnum; i++)
             {
-                int ret = 0;
                 try
                 {
                     if ((ret = this.DecodeValue(Data, offset)) < 0)
@@ -98,7 +124,10 @@ namespace ResModel.nw
                 offset += nw_cmd_base.GetU16(this.Data, offset, out int timestramp);
                 this.DataTime = this.DataTime.AddSeconds(timestramp);
             }
-            return this.Response(out msg);
+            this.Response(out string msg3);
+            msg = msg1 + msg3;
+            return 0;
+
         }
 
         protected int Response(out string msg_send)
