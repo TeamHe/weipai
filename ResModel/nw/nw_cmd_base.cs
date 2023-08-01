@@ -189,7 +189,7 @@ namespace ResModel.nw
         /// <param name="offset"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        protected int GetS16(byte[] data, int offset, out int value)
+        public static int GetS16(byte[] data, int offset, out int value)
         {
             value = data[offset + 1] + (data[offset + 0]&0x7f) * 256;
             if((data[offset + 0] & 0x80)>0)
@@ -204,7 +204,7 @@ namespace ResModel.nw
         /// <param name="offset"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        protected int SetS16(byte[] data, int offset, int value)
+       public static int SetS16(byte[] data, int offset, int value)
         {
             bool sign = false;
             if(value < 0)

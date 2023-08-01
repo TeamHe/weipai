@@ -37,14 +37,14 @@ namespace DB_Operation.RealData
 
         protected override string Table_Name { get { return "t_nw_pull"; } }
 
-        public nw_data_pull_angle Data { get; set; }
+        public nw_data_22_pull_angle Data { get; set; }
 
 
         public db_data_nw_pull_angle(IPowerPole pole) : base(pole) { }
 
         public db_data_nw_pull_angle(){ }
 
-        public db_data_nw_pull_angle(IPowerPole pole, nw_data_pull_angle data)
+        public db_data_nw_pull_angle(IPowerPole pole, nw_data_22_pull_angle data)
             : base(pole)
         {
             this.Data = data;
@@ -90,7 +90,7 @@ namespace DB_Operation.RealData
             return this.DataSave(this.Data);
         }
 
-        public ErrorCode DataSave(nw_data_pull_angle data)
+        public ErrorCode DataSave(nw_data_22_pull_angle data)
         {
             if (this.Pole == null)
                 return ErrorCode.TowerIDError;
@@ -111,7 +111,7 @@ namespace DB_Operation.RealData
                  data.DataTime,
                  this.Pole.Pole_id,
                  DateTime.Now,
-                 data.FuncCode,
+                 data.UnitNo,
                  data.Pull_max_pull,
                  data.AngleDec_max_pull,
                  data.AngleInc_max_pull,
