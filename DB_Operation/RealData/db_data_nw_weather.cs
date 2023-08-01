@@ -34,7 +34,7 @@ namespace DB_Operation.RealData
              "@speed_max",
         };
 
-        nw_data_weather Weather { get; set; }
+        nw_data_25_weather Weather { get; set; }
 
         protected override string Table_Name { get { return "t_nw_weather"; } }
 
@@ -42,7 +42,7 @@ namespace DB_Operation.RealData
 
         public db_data_nw_weather(IPowerPole pole):base(pole) { }
 
-        public db_data_nw_weather(IPowerPole pole,nw_data_weather weather) 
+        public db_data_nw_weather(IPowerPole pole,nw_data_25_weather weather) 
             :base(pole)
         {
             this.Weather = weather;
@@ -87,7 +87,7 @@ namespace DB_Operation.RealData
             return this.DataSave(this.Weather);
         }
 
-        public ErrorCode DataSave(nw_data_weather weather)
+        public ErrorCode DataSave(nw_data_25_weather weather)
         {
             if (this.Pole == null)
                 return ErrorCode.TowerIDError;
