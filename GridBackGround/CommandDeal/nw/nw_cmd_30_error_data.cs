@@ -1,31 +1,21 @@
-﻿using GridBackGround.PacketAnaLysis;
-using ResModel;
+﻿using ResModel;
 using System;
 using ResModel.PowerPole;
 using ResModel.nw;
 
 namespace GridBackGround.CommandDeal.nw
 {
-    public class nw_cmd_30_error_data : nw_cmd_base
+    public class nw_cmd_30_error_data : nw_cmd_base_data
     {
         public override int Control { get { return 0x30; } }
 
         public override string Name { get { return "设备故障信息"; } }
 
         /// <summary>
-        /// 帧标识
-        /// </summary>
-        private byte FrameFlag { get; set; }
-
-        /// <summary>
         /// 设备状态
         /// </summary>
         private byte DevStatus { get; set; }
 
-        /// <summary>
-        /// 是否为主站请求数据
-        /// </summary>
-        private bool Response { get; set; }
 
         public nw_cmd_30_error_data()
         {
@@ -37,95 +27,23 @@ namespace GridBackGround.CommandDeal.nw
 
         }
 
-
-        /// <summary>
-        /// 微气象数据内容解析
-        /// </summary>
-        /// <param name="data"></param>
-        /// <param name="offset"></param>
-        /// <param name="weather"></param>
-        /// <returns></returns>
-        public int Decode_Error(byte[] data, int offset, out mw_data_error error)
+        protected override int DecodeValue(byte[] data, int offset)
         {
-            error = null;
-            if (data.Length - offset < 2)
-                return -1;
-            int no = offset;
-            error = new mw_data_error();
-            error.FunctionCode = data[no++];
-            byte err = data[no++];
-            error.Code = err & 0x7f;
-            if ((err & 0x80) > 0)
-                error.Status = true;
-            else
-               error.Status = false;
-            return no - offset;
-        }
-
-        public override int Decode(out string msg)
-        {
-            msg = null;
-            if (this.Data == null || this.Data.Length == 0)
-            {
-                msg = "装置无未上送数据";
-                return 0;
-            }
-            int offset = 4; //不验证密文信息，以及帧标识
-            int ret = 0;
-            this.FrameFlag = this.Data[offset++];
-            int pnum = this.Data[offset++];
-            this.DevStatus = this.Data[offset++];
-            msg += string.Format("当前故障状态:{0}", DevStatus > 0x00 ? "故障" : "正常");
-            if(pnum > 0 )
-            {
-                offset += this.GetDateTime(this.Data, offset, out DateTime datatime);
-                for (int i = 0; i < pnum; i++)
-                {
-                    if ((ret = this.Decode_Error(this.Data, offset, out mw_data_error error)) < 0)
-                    {
-                        msg = string.Format("第{0}包数据解析失败", i);
-                        break;
-                    }
-
-                    offset += ret;
-                    error.DataTime = datatime;
-                    //显示数据
-                    NewDataInfo(this.Pole, new DataInfo(DataInfoState.rec, this.Pole,
-                        this.Name, error.ToString()));
-
-                    if (i == pnum - 1)
-                        break;
-                    if ((this.Data.Length - offset) < 2)
-                    {
-                        msg = string.Format("第{0}包数据长度错误", i + 1);
-                        break;
-                    }
-
-                    offset += nw_cmd_base.GetU16(this.Data, offset, out int period);
-                    datatime = datatime.AddSeconds(period);
-                }
-
-            }
-            this.Response = true;
-            this.SendCommand(out string msg_send);
-            msg += msg_send;
+            ///TODO: Save this data to database
+            nw_data_30_error value = new nw_data_30_error() { DataTime = this.DataTime };
+            int ret = value.Decode(this.Data, offset);
+            //显示数据
+            NewDataInfo(this.Pole, new DataInfo(DataInfoState.rec, this.Pole,
+                this.Name, value.ToString()));
             return ret;
 
         }
 
-        public override byte[] Encode(out string msg)
+        protected override int ExtraDecode(byte[] data, int offset, out string msg)
         {
-            msg = string.Empty;
-            if (this.Response)
-            {
-                byte[] data = new byte[3];
-                data[0] = this.FrameFlag;
-                data[1] = 0xaa;
-                data[2] = 0x55;
-                return data;
-            }
-            msg = "主站请求上传设备故障信息";
-            return null;
+            this.DevStatus = this.Data[offset++];
+            msg = string.Format("当前故障状态:{0}", DevStatus > 0x00 ? "故障" : "正常");
+            return 1;
         }
     }
 }

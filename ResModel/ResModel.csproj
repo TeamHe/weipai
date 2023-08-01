@@ -54,7 +54,7 @@
     <Compile Include="Image\PhotoTime.cs" />
     <Compile Include="nw\nw_cmd_base_data.cs" />
     <Compile Include="nw\nw_data_48_energy_status.cs" />
-    <Compile Include="nw\mw_data_error.cs" />
+    <Compile Include="nw\nw_data_30_error.cs" />
     <Compile Include="nw\nw_camera_action.cs" />
     <Compile Include="nw\nw_center.cs" />
     <Compile Include="nw\nw_cmd_base.cs" />
