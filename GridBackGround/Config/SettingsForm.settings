@@ -17,9 +17,6 @@
     <Setting Name="WindowState" Type="System.String" Scope="User">
       <Value Profile="(Default)">Normal</Value>
     </Setting>
-    <Setting Name="CMD_Port" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">6011</Value>
-    </Setting>
     <Setting Name="WEB_Port" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">80</Value>
     </Setting>
@@ -46,6 +43,12 @@
     </Setting>
     <Setting Name="ServiceMode" Type="System.String" Scope="User">
       <Value Profile="(Default)">nw</Value>
+    </Setting>
+    <Setting Name="gw_port" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">6012</Value>
+    </Setting>
+    <Setting Name="nw_port" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">6011</Value>
     </Setting>
   </Settings>
 </SettingsFile>

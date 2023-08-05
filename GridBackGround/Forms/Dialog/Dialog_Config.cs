@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.IO;
 
@@ -28,12 +22,16 @@ namespace GridBackGround.Forms
         /// <param name="e"></param>
         private void button_OK_Click(object sender, EventArgs e)
         {
-            int port, webPort;
+            int nw_port, webPort, gw_port;
             try
             {
-                port = System.Int32.Parse(this.textBox_CMD_Port.Text);
-                webPort = System.Int32.Parse(this.textBox_Web_Port.Text);
-                if (port > 65535)
+                nw_port = int.Parse(this.textBox_nw_port.Text);
+                gw_port = int.Parse (this.textBox_gw_port.Text);
+                webPort = int.Parse(this.textBox_Web_Port.Text);
+
+                if(gw_port > 65535)
+                    throw new Exception("端口号不能大于65535");
+                if (nw_port > 65535)
                     throw new Exception("端口号不能大于65535");
                 if (webPort > 65535)
                     throw new Exception("端口号不能大于65535");
@@ -51,7 +49,8 @@ namespace GridBackGround.Forms
                 }
 
                 Config.SettingsForm.Default.WEB_Port = webPort;
-                Config.SettingsForm.Default.CMD_Port = port;
+                Config.SettingsForm.Default.nw_port = nw_port;
+                Config.SettingsForm.Default.gw_port = gw_port;
                 Config.SettingsForm.Default.DisPackNum = int.Parse(this.textBox_PacketNum.Text);
                 Config.SettingsForm.Default.DisReportNum = int.Parse(this.textBox_ReportNum.Text);
                 //Config.SettingsForm.Default.PicturePath = this.textBox_PicPath.Text;
@@ -75,10 +74,11 @@ namespace GridBackGround.Forms
             }
 
             this.textBox_PicPath.Text = Config.SettingsForm.Default.PicturePath;
-            this.textBox_CMD_Port.Text = Config.SettingsForm.Default.CMD_Port.ToString();
+            this.textBox_nw_port.Text = Config.SettingsForm.Default.nw_port.ToString();
             this.textBox_Web_Port.Text = Config.SettingsForm.Default.WEB_Port.ToString();
             this.textBox_PacketNum.Text = Config.SettingsForm.Default.DisPackNum.ToString();
             this.textBox_ReportNum.Text = Config.SettingsForm.Default.DisReportNum.ToString();
+            this.textBox_gw_port.Text = Config.SettingsForm.Default.gw_port.ToString();
 
             this.CancelButton = this.button_Cancel;
             this.AcceptButton = this.button_OK;

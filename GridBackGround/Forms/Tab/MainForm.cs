@@ -271,7 +271,7 @@ namespace GridBackGround
 
                 Communicat.Service.reStartCom();
                 this.toolStripStatusLabel_Port.Text =
-                    "装置端口：" + Config.SettingsForm.Default.CMD_Port + "  WEB端口：" +
+                    "装置端口：" + Config.SettingsForm.Default.nw_port + "  WEB端口：" +
                     Config.SettingsForm.Default.WEB_Port + "已成功打开";
             }
             catch (Exception ex)

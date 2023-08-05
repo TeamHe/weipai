@@ -38,15 +38,19 @@
             this.label = new System.Windows.Forms.Label();
             this.textBox_Web_Port = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox_CMD_Port = new System.Windows.Forms.TextBox();
+            this.textBox_nw_port = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button_OK = new System.Windows.Forms.Button();
             this.button_Cancel = new System.Windows.Forms.Button();
+            this.textBox_gw_port = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.textBox_gw_port);
+            this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.button_Browse);
             this.panel1.Controls.Add(this.textBox_PicPath);
             this.panel1.Controls.Add(this.label_PicPath);
@@ -56,7 +60,7 @@
             this.panel1.Controls.Add(this.label);
             this.panel1.Controls.Add(this.textBox_Web_Port);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.textBox_CMD_Port);
+            this.panel1.Controls.Add(this.textBox_nw_port);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.button_OK);
             this.panel1.Controls.Add(this.button_Cancel);
@@ -110,7 +114,7 @@
             // 
             // textBox_PacketNum
             // 
-            this.textBox_PacketNum.Location = new System.Drawing.Point(280, 37);
+            this.textBox_PacketNum.Location = new System.Drawing.Point(284, 37);
             this.textBox_PacketNum.Name = "textBox_PacketNum";
             this.textBox_PacketNum.Size = new System.Drawing.Size(100, 21);
             this.textBox_PacketNum.TabIndex = 13;
@@ -118,7 +122,7 @@
             // label
             // 
             this.label.AutoSize = true;
-            this.label.Location = new System.Drawing.Point(212, 41);
+            this.label.Location = new System.Drawing.Point(216, 41);
             this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(53, 12);
             this.label.TabIndex = 12;
@@ -126,7 +130,7 @@
             // 
             // textBox_Web_Port
             // 
-            this.textBox_Web_Port.Location = new System.Drawing.Point(82, 75);
+            this.textBox_Web_Port.Location = new System.Drawing.Point(82, 107);
             this.textBox_Web_Port.Name = "textBox_Web_Port";
             this.textBox_Web_Port.Size = new System.Drawing.Size(100, 21);
             this.textBox_Web_Port.TabIndex = 11;
@@ -134,19 +138,19 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(29, 79);
+            this.label2.Location = new System.Drawing.Point(29, 111);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 12);
             this.label2.TabIndex = 10;
             this.label2.Text = "WEB端口";
             // 
-            // textBox_CMD_Port
+            // textBox_nw_port
             // 
-            this.textBox_CMD_Port.Location = new System.Drawing.Point(82, 37);
-            this.textBox_CMD_Port.Name = "textBox_CMD_Port";
-            this.textBox_CMD_Port.Size = new System.Drawing.Size(100, 21);
-            this.textBox_CMD_Port.TabIndex = 9;
-            this.textBox_CMD_Port.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.textBox_nw_port.Location = new System.Drawing.Point(82, 37);
+            this.textBox_nw_port.Name = "textBox_nw_port";
+            this.textBox_nw_port.Size = new System.Drawing.Size(100, 21);
+            this.textBox_nw_port.TabIndex = 9;
+            this.textBox_nw_port.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // label1
             // 
@@ -155,7 +159,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 8;
-            this.label1.Text = "装置端口";
+            this.label1.Text = "南网端口";
             // 
             // button_OK
             // 
@@ -175,6 +179,23 @@
             this.button_Cancel.TabIndex = 6;
             this.button_Cancel.Text = "取消";
             this.button_Cancel.UseVisualStyleBackColor = true;
+            // 
+            // textBox_gw_port
+            // 
+            this.textBox_gw_port.Location = new System.Drawing.Point(82, 75);
+            this.textBox_gw_port.Name = "textBox_gw_port";
+            this.textBox_gw_port.Size = new System.Drawing.Size(100, 21);
+            this.textBox_gw_port.TabIndex = 20;
+            this.textBox_gw_port.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(29, 79);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(53, 12);
+            this.label4.TabIndex = 19;
+            this.label4.Text = "国网端口";
             // 
             // Dialog_Config
             // 
@@ -200,12 +221,14 @@
         private System.Windows.Forms.Label label;
         private System.Windows.Forms.TextBox textBox_Web_Port;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox_CMD_Port;
+        private System.Windows.Forms.TextBox textBox_nw_port;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button_OK;
         private System.Windows.Forms.Button button_Cancel;
         private System.Windows.Forms.Button button_Browse;
         private System.Windows.Forms.TextBox textBox_PicPath;
         private System.Windows.Forms.Label label_PicPath;
+        private System.Windows.Forms.TextBox textBox_gw_port;
+        private System.Windows.Forms.Label label4;
     }
 }

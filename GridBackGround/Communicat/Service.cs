@@ -49,20 +49,20 @@ namespace GridBackGround.Communicat
             if(Config.SettingsForm.Default.ServiceMode == "nw")
             {
 
-                if (!PowerPoleMan_nw_init(Config.SettingsForm.Default.CMD_Port))
+                if (!PowerPoleMan_nw_init(Config.SettingsForm.Default.nw_port))
                 {
-                    msg += "UDP端口：" + Config.SettingsForm.Default.CMD_Port.ToString() + "被占用\n";
+                    msg += "UDP端口：" + Config.SettingsForm.Default.nw_port.ToString() + "被占用\n";
                     state = false;
-                }
+            }
             }
             else
             {
-                //装置UDP连接
+            //装置UDP连接
                 CMD_UDP = new UdpServer<CommandInfoV2>(
-                    Config.SettingsForm.Default.CMD_Port, new UdpProtocol(), new UdpSeverCMD());
+                    Config.SettingsForm.Default.gw_port, new UdpProtocol(), new UdpSeverCMD());
                 if (!CMD_UDP.Start())
                 {
-                    msg += "UDP端口：" + Config.SettingsForm.Default.CMD_Port.ToString() + "被占用\n";
+                    msg += "UDP端口：" + Config.SettingsForm.Default.gw_port.ToString() + "被占用\n";
                     state = false;
                 }
                 //装置TCP连接
@@ -73,10 +73,10 @@ namespace GridBackGround.Communicat
                     102400,
                     20000);
                 CMD_TCP.AddListener("binary", new System.Net.IPEndPoint
-                    (System.Net.IPAddress.Any, Config.SettingsForm.Default.CMD_Port));
+                    (System.Net.IPAddress.Any, Config.SettingsForm.Default.gw_port));
                 if (!CMD_TCP.Start())
                 {
-                    msg += "TCP端口：" + Config.SettingsForm.Default.CMD_Port.ToString() + "被占用\n";
+                    msg += "TCP端口：" + Config.SettingsForm.Default.gw_port.ToString() + "被占用\n";
                     state = false;
                 }
 

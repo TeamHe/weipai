@@ -12,7 +12,7 @@ namespace GridBackGround.Config {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.5.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.6.0.0")]
     internal sealed partial class SettingsForm : global::System.Configuration.ApplicationSettingsBase {
         
         private static SettingsForm defaultInstance = ((SettingsForm)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new SettingsForm())));
@@ -80,18 +80,6 @@ namespace GridBackGround.Config {
             }
             set {
                 this["WindowState"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("6011")]
-        public int CMD_Port {
-            get {
-                return ((int)(this["CMD_Port"]));
-            }
-            set {
-                this["CMD_Port"] = value;
             }
         }
         
@@ -200,6 +188,30 @@ namespace GridBackGround.Config {
             }
             set {
                 this["ServiceMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("6012")]
+        public int gw_port {
+            get {
+                return ((int)(this["gw_port"]));
+            }
+            set {
+                this["gw_port"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("6011")]
+        public int nw_port {
+            get {
+                return ((int)(this["nw_port"]));
+            }
+            set {
+                this["nw_port"] = value;
             }
         }
     }

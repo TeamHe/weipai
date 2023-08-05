@@ -454,7 +454,6 @@
       <DependentUpon>Dialog_Con_NA.cs</DependentUpon>
     </Compile>
     <Compile Include="PackeDeal.cs" />
-    <Compile Include="Config\ConfigPort.cs" />
     <Compile Include="Forms\Dialog\Dialog_Con_IP.cs">
       <SubType>Form</SubType>
     </Compile>
