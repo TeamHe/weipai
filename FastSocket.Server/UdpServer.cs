@@ -74,8 +74,11 @@ namespace Sodao.FastSocket.Server
         {
             try
             {
-                if (!this._socket.ReceiveFromAsync(e))
-                    this.ReceiveCompleted(this, e);
+                if(_socket != null)
+                {
+                    if (!this._socket.ReceiveFromAsync(e))
+                        this.ReceiveCompleted(this, e);
+                }
             }
             catch
             {
