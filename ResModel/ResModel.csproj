@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gw\gw_ModelData.cs" />
+    <Compile Include="gw\gw_service_udp.cs" />
     <Compile Include="Image\PhotoTime.cs" />
     <Compile Include="nw\nw_cmd_base_data.cs" />
     <Compile Include="nw\nw_data_48_energy_status.cs" />

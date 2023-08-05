@@ -4,16 +4,16 @@ using Sodao.FastSocket.Server;
 using GridBackGround.Termination;
 using ResModel;
 using ResModel.nw;
+using ResModel.gw;
 
 namespace GridBackGround.Communicat
 {
     public class Service
     {
-
-        private static UdpServer<CommandInfoV2> CMD_UDP;
         private static SocketServer<CommandInfoV2> CMD_TCP;
-        private static SocketServer<CommandInfoV2> WEB_TCP;
         private static HTTP.HttpListeners httpListeners = null;
+
+        private static gw_service_udp service_gw_udp = null;
 
         #region 南网Service 处理
         private static nw_service powerPoleMan_Nw = null;
@@ -41,30 +41,44 @@ namespace GridBackGround.Communicat
         }
         #endregion
 
+        public static bool PowerPoleMan_gw_udp_init(int port)
+        {
+            if (service_gw_udp == null)
+            {
+                service_gw_udp = new gw_service_udp(port);
+                service_gw_udp.OnPackageRecvd += Service_gw_udp_OnPackageRecvd; ;
+            }
+            else
+            {
+                service_gw_udp.Port = port;
+            }
+            return service_gw_udp.Start();
+        }
+
+        private static void Service_gw_udp_OnPackageRecvd(object sender, gw_pack_recv_args e)
+        {
+            UdpSession session = e.Session;
+            CommandInfoV2 cmdInfo = e.CmdInfo;
+            IPowerPole pole = PowerPoleManage.PowerPole(cmdInfo.CMD_ID, session);
+            PackeDeal.RecDataDeal(cmdInfo, EConnectType.UDP, pole);
+        }
+
         public static bool CommunicatInit()
         {
             bool state = true;
             string msg = "";
-            //service mode 配置为南网模式
-            if(Config.SettingsForm.Default.ServiceMode == "nw")
+            if (!PowerPoleMan_nw_init(Config.SettingsForm.Default.nw_port))
             {
+                msg += "南网UDP端口：" + Config.SettingsForm.Default.nw_port.ToString() + "被占用\n";
+                state = false;
+            }
+            if (!PowerPoleMan_gw_udp_init(Config.SettingsForm.Default.gw_port))
+            {
+                msg += "国网UDP端口：" + Config.SettingsForm.Default.gw_port.ToString() + "被占用\n";
+                state = false;
+            }
 
-                if (!PowerPoleMan_nw_init(Config.SettingsForm.Default.nw_port))
-                {
-                    msg += "UDP端口：" + Config.SettingsForm.Default.nw_port.ToString() + "被占用\n";
-                    state = false;
-            }
-            }
-            else
-            {
             //装置UDP连接
-                CMD_UDP = new UdpServer<CommandInfoV2>(
-                    Config.SettingsForm.Default.gw_port, new UdpProtocol(), new UdpSeverCMD());
-                if (!CMD_UDP.Start())
-                {
-                    msg += "UDP端口：" + Config.SettingsForm.Default.gw_port.ToString() + "被占用\n";
-                    state = false;
-                }
                 //装置TCP连接
                 CMD_TCP = new SocketServer<CommandInfoV2>(new TCPSeverCMD(),
                     new Protocol(),
@@ -80,10 +94,10 @@ namespace GridBackGround.Communicat
                     state = false;
                 }
 
-                httpListeners = new HTTP.HttpListeners(Config.SettingsForm.Default.WEB_Port);
-                httpListeners.ListenerStart();
+            //httpListeners = new HTTP.HttpListeners(Config.SettingsForm.Default.WEB_Port);
+            //httpListeners.ListenerStart();
 
-            }
+            //}
 
             //WebTCP连接
             //int WEB_Port = Config.SettingsForm.Default.WEB_Port;
@@ -107,8 +121,6 @@ namespace GridBackGround.Communicat
         {
             try
             {
-                if (CMD_UDP != null)
-                    CMD_UDP.Stop();
                 if (CMD_TCP != null)
                     CMD_TCP.Stop();
                 if (httpListeners != null)

@@ -401,7 +401,6 @@
     <Compile Include="CommandDeal\WorkState_Heart.cs" />
     <Compile Include="CommandDeal\Data\Data_Line_Temperature.cs" />
     <Compile Include="Communicat\TCPSeverWeb.cs" />
-    <Compile Include="Communicat\UDPSeverV2.cs" />
     <Compile Include="Forms\AboutBox1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -410,7 +409,6 @@
     </Compile>
     <Compile Include="CommandDeal\Comand\Comand_Reset.cs" />
     <Compile Include="Communicat\Service.cs" />
-    <Compile Include="Communicat\UDPSever.cs" />
     <Compile Include="Forms\Dialog\Dialog_Con_HisData.cs">
       <SubType>Form</SubType>
     </Compile>
