@@ -51,7 +51,7 @@ namespace GridBackGround.PacketAnaLysis
             }
             catch(Exception ex) 
             {
-                PacketAnaLysis.DisPacket.NewRecord(
+                DisPacket.NewRecord(
                    new DataInfo(
                        DataInfoState.rec,
                        pole,

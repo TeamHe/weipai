@@ -133,7 +133,7 @@ namespace GridBackGround.CommandDeal
             {
                   pacMsg += "数据异常："+ex.Message;
             }
-            PacketAnaLysis.DisPacket.NewRecord(
+            DisPacket.NewRecord(
                    new DataInfo(
                        DataInfoState.rec,
                        pole,
@@ -189,7 +189,7 @@ namespace GridBackGround.CommandDeal
             {
                 pacMsg += "添加数据失败："+ ex.Message;
                 //触发图片解析事件
-                PacketAnaLysis.DisPacket.NewRecord(
+                DisPacket.NewRecord(
                       new DataInfo(
                           DataInfoState.rec,
                           pole,
@@ -232,7 +232,7 @@ namespace GridBackGround.CommandDeal
             if(pic == null || pic.UploadingState == true)
             {   //没有图片缓存,或正在上传图片不处理
                 pacMsg += " 没有图片缓存，或正在上传图片，不响应";
-                PacketAnaLysis.DisPacket.NewRecord(
+                DisPacket.NewRecord(
                    new DataInfo(
                        DataInfoState.rec,
                        pole,
@@ -242,7 +242,7 @@ namespace GridBackGround.CommandDeal
             }
             pic.Maintime = time;
 
-            PacketAnaLysis.DisPacket.NewRecord(
+            DisPacket.NewRecord(
               new DataInfo(
                   DataInfoState.rec,
                   pole,
@@ -293,7 +293,7 @@ namespace GridBackGround.CommandDeal
             }
             catch (Exception ex)
             {
-                PacketAnaLysis.DisPacket.NewRecord(
+                DisPacket.NewRecord(
                 new DataInfo(
                     DataInfoState.rec,
                     pole,
@@ -402,7 +402,7 @@ namespace GridBackGround.CommandDeal
             
             }
             //显示请求上传报文
-            PacketAnaLysis.DisPacket.NewRecord(
+            DisPacket.NewRecord(
                 new DataInfo(
                     DataInfoState.rec,
                     pole,
@@ -437,7 +437,7 @@ namespace GridBackGround.CommandDeal
                 saveMsg += "图片合成失败:" + ex.Message;
                 state = false;
             } 
-            PacketAnaLysis.DisPacket.NewRecord(                         //输出保存信息
+            DisPacket.NewRecord(                         //输出保存信息
                     new DataInfo(
                         DataInfoState.none,
                         pole,
@@ -514,7 +514,7 @@ namespace GridBackGround.CommandDeal
             //图片上传到服务器
 
 
-            PacketAnaLysis.DisPacket.NewRecord(                         //输出保存信息
+            DisPacket.NewRecord(                         //输出保存信息
                     new DataInfo(
                         DataInfoState.none,
                         pole,

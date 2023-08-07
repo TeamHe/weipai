@@ -48,7 +48,7 @@ namespace GridBackGround.CommandDeal
             if (ret)
             {
                 //显示发送的数据
-                PacketAnaLysis.DisPacket.NewRecord(
+                DisPacket.NewRecord(
                     new DataInfo(
                         DataInfoState.send,
                          Termination.PowerPoleManage.Find(cmd_id),
@@ -75,7 +75,7 @@ namespace GridBackGround.CommandDeal
             }
                
             //显示发送的数据
-            PacketAnaLysis.DisPacket.NewRecord(
+            DisPacket.NewRecord(
                 new DataInfo(
                     DataInfoState.rec,
                     Termination.PowerPoleManage.Find(pole.CMD_ID),

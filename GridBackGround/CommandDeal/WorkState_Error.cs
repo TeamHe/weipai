@@ -32,7 +32,7 @@ namespace GridBackGround.CommandDeal
             
             psMsg = "故障描述：" + ErrorMsg;
 
-            PacketAnaLysis.DisPacket.NewRecord(
+            DisPacket.NewRecord(
                    new DataInfo(
                        DataInfoState.rec,
                        pole,

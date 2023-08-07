@@ -108,7 +108,7 @@ namespace GridBackGround
         {
             if (this.InvokeRequired)
             {
-                this.Invoke(new PacketAnaLysis.NewRecordS(this.DisNewPackedS), new object[] { packets });
+                this.Invoke(new NewRecordS(this.DisNewPackedS), new object[] { packets });
             }
             else
             {
@@ -289,12 +289,12 @@ namespace GridBackGround
         {
             if (this.checkBox1.Checked)
             {
-                PacketAnaLysis.DisPacket.OnNewRecordS += new PacketAnaLysis.NewRecordS(DisNewPackedS);
+                DisPacket.OnNewRecordS += new NewRecordS(DisNewPackedS);
                 this.checkBox2.Enabled = true;
             }
             else
             {
-                PacketAnaLysis.DisPacket.OnNewRecordS -= new PacketAnaLysis.NewRecordS(DisNewPackedS);
+                DisPacket.OnNewRecordS -= new NewRecordS(DisNewPackedS);
                 this.checkBox2.Enabled = false;
             }
 

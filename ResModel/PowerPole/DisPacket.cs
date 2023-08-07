@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Timers;
-using ResModel.PowerPole;
 using ResModel.nw;
 
-namespace GridBackGround.PacketAnaLysis
+namespace ResModel.PowerPole
 {
     public delegate void NewRecord(DataInfo packet);
     public delegate void NewPacket(string msg);

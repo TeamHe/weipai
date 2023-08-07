@@ -121,7 +121,7 @@ namespace GridBackGround.CommandDeal
             reader.Close();
 
             pack_update_start();
-            PacketAnaLysis.DisPacket.NewRecord(
+            DisPacket.NewRecord(
                    new DataInfo(
                        DataInfoState.send,
                         Termination.PowerPoleManage.Find(CMD_ID),
@@ -153,7 +153,7 @@ namespace GridBackGround.CommandDeal
             StartTimer();
 
             //显示解析结果
-            PacketAnaLysis.DisPacket.NewRecord(
+            DisPacket.NewRecord(
                 new DataInfo(
                     DataInfoState.rec,
                     pole,
@@ -183,7 +183,7 @@ namespace GridBackGround.CommandDeal
                 }
                 BuBaoState = true;
                 //显示发送的数据
-                PacketAnaLysis.DisPacket.NewRecord(
+                DisPacket.NewRecord(
                     new DataInfo(
                         DataInfoState.send,
                          pole,
@@ -211,7 +211,7 @@ namespace GridBackGround.CommandDeal
             pacMsg += "语音类型：" + BubaoNum.ToString() + "   ";
 
             //显示发送的数据
-            PacketAnaLysis.DisPacket.NewRecord(
+            DisPacket.NewRecord(
                 new DataInfo(
                     DataInfoState.send,
                      pole,
@@ -230,7 +230,7 @@ namespace GridBackGround.CommandDeal
             string msg = string.Format("语音文件:{0}， 删除完成", BubaoNum);
 
             //显示发送的数据
-            PacketAnaLysis.DisPacket.NewRecord(
+            DisPacket.NewRecord(
                 new DataInfo(
                     DataInfoState.send,
                      pole,
@@ -410,7 +410,7 @@ namespace GridBackGround.CommandDeal
             if (PackeDeal.SendData(CMD_ID, data, out errorMsg))
             {
                 //显示发送的数据
-                PacketAnaLysis.DisPacket.NewRecord(
+                DisPacket.NewRecord(
                     new DataInfo(
                         DataInfoState.send,
                          Termination.PowerPoleManage.Find(CMD_ID),

@@ -134,7 +134,7 @@ namespace GridBackGround.CommandDeal.Data
         /// </summary>
         private void DisAyanMsg()
         {
-            PacketAnaLysis.DisPacket.NewRecord(
+            DisPacket.NewRecord(
                         new DataInfo(
                             DataInfoState.rec,
                             this.Name,

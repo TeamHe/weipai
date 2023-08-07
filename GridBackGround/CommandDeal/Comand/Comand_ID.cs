@@ -46,7 +46,7 @@ namespace GridBackGround.CommandDeal
             }
 
             //显示发送的数据
-            PacketAnaLysis.DisPacket.NewRecord(
+            DisPacket.NewRecord(
                 new DataInfo(
                     DataInfoState.rec,
                     Termination.PowerPoleManage.Find(cmd_id),
@@ -85,7 +85,7 @@ namespace GridBackGround.CommandDeal
             pacMsg += "被测设备ID:" + Component_ID +" ";
             Original_ID = Encoding.Default.GetString(data, 3 + 17, 17);
             pacMsg += "原始ID：" +  Original_ID +" ";
-            PacketAnaLysis.DisPacket.NewRecord(
+            DisPacket.NewRecord(
                 new DataInfo(
                     DataInfoState.rec,
                     pole,
@@ -152,7 +152,7 @@ namespace GridBackGround.CommandDeal
             if (PackeDeal.SendData(CMD_ID, packet, out errorMsg))
             {
                 //显示发送的数据
-                PacketAnaLysis.DisPacket.NewRecord(
+                DisPacket.NewRecord(
                     new DataInfo(
                         DataInfoState.send,
                          Termination.PowerPoleManage.Find(CMD_ID),

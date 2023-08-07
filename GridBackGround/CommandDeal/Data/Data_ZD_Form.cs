@@ -123,7 +123,7 @@ namespace GridBackGround.CommandDeal
             List_WFZD[Forms_NO].Forms[Form_NO].Data = temp;
             
             //显示发送的数据
-            PacketAnaLysis.DisPacket.NewRecord(
+            DisPacket.NewRecord(
                 new DataInfo(
                     DataInfoState.rec,
                     pole,

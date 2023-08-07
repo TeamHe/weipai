@@ -86,7 +86,7 @@ namespace GridBackGround.CommandDeal
             StartNo += 4;
 
             //显示发送的数据
-            PacketAnaLysis.DisPacket.NewRecord(
+            DisPacket.NewRecord(
                 new DataInfo(
                     DataInfoState.rec,
                     pole,

@@ -83,7 +83,7 @@ namespace GridBackGround.CommandDeal
             Protocol_Version += data[startNo].ToString();
             psMsg += " 通信协议版本号：" + Protocol_Version;
 
-            PacketAnaLysis.DisPacket.NewRecord(
+            DisPacket.NewRecord(
                    new DataInfo(
                        DataInfoState.rec,
                        pole,

@@ -114,7 +114,7 @@ namespace GridBackGround.CommandDeal
             pacMsg += "手机串号：" + PhoneNumber + " ";
 
             //显示发送的数据
-            PacketAnaLysis.DisPacket.NewRecord(
+            DisPacket.NewRecord(
                 new DataInfo(
                     DataInfoState.rec,
                     Termination.PowerPoleManage.Find(cmd_id),
@@ -158,7 +158,7 @@ namespace GridBackGround.CommandDeal
 
             PhoneNumber = Encoding.Default.GetString(data, 3 + 4 + 4 + 4, 20);
             pacMsg += "手机串号：" + PhoneNumber + " ";
-            PacketAnaLysis.DisPacket.NewRecord(
+            DisPacket.NewRecord(
                 new DataInfo(
                     DataInfoState.rec,
                     pole,
@@ -257,7 +257,7 @@ namespace GridBackGround.CommandDeal
             if (PackeDeal.SendData(CMD_ID, packet, out errorMsg))
             {
                 //显示发送的数据
-                PacketAnaLysis.DisPacket.NewRecord(
+                DisPacket.NewRecord(
                     new DataInfo(
                         DataInfoState.send,
                          Termination.PowerPoleManage.Find(CMD_ID),

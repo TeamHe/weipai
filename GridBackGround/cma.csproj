@@ -474,7 +474,6 @@
     <Compile Include="PacketAnaLysis\PackDeal_Data.cs" />
     <Compile Include="PacketAnaLysis\PackDeal_Control.cs" />
     <Compile Include="PacketAnaLysis\PackDeal_WorkState.cs" />
-    <Compile Include="PacketAnaLysis\DisPacket.cs" />
     <Compile Include="PacketAnaLysis\TypeFrame.cs" />
     <Compile Include="PacketAnaLysis\TypePacket.cs" />
     <Compile Include="SerialPort.cs" />

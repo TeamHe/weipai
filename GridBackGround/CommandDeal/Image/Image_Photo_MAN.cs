@@ -51,7 +51,7 @@ namespace GridBackGround.CommandDeal
             powerPole.OnPhotiongFinish(code);
 
 
-            PacketAnaLysis.DisPacket.NewRecord(
+            DisPacket.NewRecord(
                 new DataInfo(
                     DataInfoState.rec,
                     pole,
@@ -87,7 +87,7 @@ namespace GridBackGround.CommandDeal
             if (PackeDeal.SendData(CMD_ID, packet, out errorMsg))
             {
                 //显示发送的数据
-                PacketAnaLysis.DisPacket.NewRecord(
+                DisPacket.NewRecord(
                     new DataInfo(
                         DataInfoState.send,
                          Termination.PowerPoleManage.Find(CMD_ID),

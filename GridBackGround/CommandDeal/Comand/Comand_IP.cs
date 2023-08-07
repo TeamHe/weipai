@@ -66,7 +66,7 @@ namespace GridBackGround.CommandDeal
             Port = BitConverter.ToUInt16(data, 0x07);
             pacMsg +=  " 端口号：" + Port.ToString();
             //显示数据响应解析结果
-            PacketAnaLysis.DisPacket.NewRecord(
+            DisPacket.NewRecord(
                 new DataInfo(
                     DataInfoState.send,
                     pole,
@@ -98,7 +98,7 @@ namespace GridBackGround.CommandDeal
             }
 
             //显示发送的数据
-            PacketAnaLysis.DisPacket.NewRecord(
+            DisPacket.NewRecord(
                 new DataInfo(
                     DataInfoState.rec,
                     Termination.PowerPoleManage.Find(cmd_id),
@@ -156,7 +156,7 @@ namespace GridBackGround.CommandDeal
             if (PackeDeal.SendData(CMD_ID, packet, out errorMsg))
             {
                 //显示发送的数据
-                PacketAnaLysis.DisPacket.NewRecord(
+                DisPacket.NewRecord(
                     new DataInfo(
                         DataInfoState.send,
                          Termination.PowerPoleManage.Find(CMD_ID),

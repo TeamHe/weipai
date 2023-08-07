@@ -6,6 +6,7 @@ using Sodao.FastSocket.Server;
 using GridBackGround.Communicat;
 using GridBackGround.Termination;
 using ResModel;
+using ResModel.PowerPole;
 
 namespace GridBackGround
 {
@@ -24,7 +25,7 @@ namespace GridBackGround
                 + "  " + iconnection.RemoteEndPoint.ToString()+"  DisConnected: " ;
             if(ex != null)
                 str +=  ex.Message; 
-            PacketAnaLysis.DisPacket.NewPacket(str);
+            DisPacket.NewPacket(str);
         }
 
         /// <summary>
@@ -38,7 +39,7 @@ namespace GridBackGround
             string str = DateTime.Now.ToShortTimeString()
                + "  " + iconnection.RemoteEndPoint.ToString();
             str += "connected";
-            PacketAnaLysis.DisPacket.NewPacket(str);
+            DisPacket.NewPacket(str);
             return false;
         }
         #region 发送数据处理
@@ -125,7 +126,7 @@ namespace GridBackGround
                     OnSend = true;
                     System.Threading.Thread.Sleep(5);
                     disData += Tools.StringTurn.ByteToHexString(data); ;
-                    PacketAnaLysis.DisPacket.NewPacket(disData);                      //显示报文
+                    DisPacket.NewPacket(disData);                      //显示报文
                     return true;
                 }
                 catch
@@ -140,7 +141,7 @@ namespace GridBackGround
                 {
                     powerPole.Connection.BeginSend(new Packet(data));
                     disData += Tools.StringTurn.ByteToHexString(data); ;
-                    PacketAnaLysis.DisPacket.NewPacket(disData);                      //显示报文
+                    DisPacket.NewPacket(disData);                      //显示报文
                     return true;
                 }
                 catch
@@ -221,7 +222,7 @@ namespace GridBackGround
             string data = "接收:　" + "错误代码：" + cmdInfo.ErrorCode.ToString() + "  数据：";
             int errorcode = cmdInfo.ErrorCode;
             data += Tools.StringTurn.ByteToHexString(cmdInfo.Data);
-            PacketAnaLysis.DisPacket.NewPacket(data);                      //显示报文
+            DisPacket.NewPacket(data);                      //显示报文
             if ((cmdInfo.ErrorCode == 0) || (cmdInfo.ErrorCode == 3))
             {
                 //PacketAnaLysis.PackDivid_FrameType.PackDivid(cmdInfo, ref errorcode);
@@ -278,7 +279,7 @@ namespace GridBackGround
             int errorcode = cmdInfo.ErrorCode;
             string data = "接收:　" + "错误代码：" + cmdInfo.ErrorCode.ToString() + "  数据：";
             data += Tools.StringTurn.ByteToHexString(cmdInfo.Packet);
-            PacketAnaLysis.DisPacket.NewPacket(data);
+            DisPacket.NewPacket(data);
             //显示报文
             if ((cmdInfo.ErrorCode == 0))// || (cmdInfo.Code == 3))
             {
@@ -309,7 +310,7 @@ namespace GridBackGround
 
             string data = "接收:　" + "错误代码：" + cmdInfo.ErrorCode.ToString() + "  数据：";
             data += Tools.StringTurn.ByteToHexString(cmdInfo.Pakcet);
-            PacketAnaLysis.DisPacket.NewPacket(data);
+            DisPacket.NewPacket(data);
             CommandDeal.nw.nw_cmd_handle.Deal(pole, cmdInfo);
             cmdInfo = null;
             return false;

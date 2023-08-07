@@ -68,7 +68,7 @@ namespace GridBackGround.CommandDeal.Private
             PhoneNO = phone;
             pacMsg += "  用户手机号码：" + phone;
             //显示数据响应解析结果
-            PacketAnaLysis.DisPacket.NewRecord(
+            DisPacket.NewRecord(
                 new DataInfo(
                     DataInfoState.send,
                     pole,
@@ -124,7 +124,7 @@ namespace GridBackGround.CommandDeal.Private
             if (PackeDeal.SendData(CMD_ID, packet, out errorMsg))
             {
                 //显示发送的数据
-                PacketAnaLysis.DisPacket.NewRecord(
+                DisPacket.NewRecord(
                     new DataInfo(
                         DataInfoState.send,
                          Termination.PowerPoleManage.Find(CMD_ID),

@@ -4,7 +4,7 @@ using System.Text;
 using Sodao.FastSocket.SocketBase;
 using Sodao.FastSocket.Server.Command;
 using System.Timers;
-
+using ResModel.PowerPole;
 using ResModel.EQU;
 
 namespace GridBackGround.Termination
@@ -270,7 +270,7 @@ namespace GridBackGround.Termination
                 //PackeDeal.DisPac(cmdinfo);
                 string disData = "WEB发送:";
                 disData += Tools.StringTurn.ByteToHexString(data);
-                PacketAnaLysis.DisPacket.NewPacket(disData);                      //显示报文
+                DisPacket.NewPacket(disData);                      //显示报文
                 web.Stop();
                 Web_Control_Mang.Delate(web);
 
@@ -291,7 +291,7 @@ namespace GridBackGround.Termination
             string data = "WEB接收:　" + "错误代码：" + cmdinfo.ErrorCode.ToString() + "  数据：";
             int errorcode = cmdinfo.ErrorCode;
             data += Tools.StringTurn.ByteToHexString(cmdinfo.Packet);
-            PacketAnaLysis.DisPacket.NewPacket(data);                      //显示报文
+            DisPacket.NewPacket(data);                      //显示报文
 
             if (cmdinfo.ErrorCode != 0 && cmdinfo.ErrorCode < 4)
                 return;

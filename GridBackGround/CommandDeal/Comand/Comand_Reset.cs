@@ -33,7 +33,7 @@ namespace GridBackGround.CommandDeal
             if (PackeDeal.SendData(CMD_ID, packet, out errorMsg))
             {
                 //显示发送的数据
-                PacketAnaLysis.DisPacket.NewRecord(
+                DisPacket.NewRecord(
                     new DataInfo(
                         DataInfoState.send,
                         Termination.PowerPoleManage.Find(CMD_ID),
@@ -52,7 +52,7 @@ namespace GridBackGround.CommandDeal
             else
                 pacMsg += "复位至调试模式";
             //显示发送的数据
-            PacketAnaLysis.DisPacket.NewRecord(
+            DisPacket.NewRecord(
                 new DataInfo(
                     DataInfoState.rec,
                     Termination.PowerPoleManage.Find(cmd_id),
@@ -70,7 +70,7 @@ namespace GridBackGround.CommandDeal
             if (data[0] == 0xff)
             {
                 //显示发送的数据
-                PacketAnaLysis.DisPacket.NewRecord(
+                DisPacket.NewRecord(
                     new DataInfo(
                         DataInfoState.rec,
                         pole,

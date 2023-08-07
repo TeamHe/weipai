@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ResModel.PowerPole;
 
 namespace GridBackGround
 {
@@ -41,7 +42,7 @@ namespace GridBackGround
         {
             if(this.InvokeRequired)
             {
-                this.Invoke(new PacketAnaLysis.NewPacketS(this.UserListsChanged), new object[] { msgs });
+                this.Invoke(new NewPacketS(this.UserListsChanged), new object[] { msgs });
             }
             else
             {
@@ -136,9 +137,9 @@ namespace GridBackGround
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if(this.checkBox1.Checked)
-                PacketAnaLysis.DisPacket.OnNewPacketS += new PacketAnaLysis.NewPacketS(UserListsChanged);
+                DisPacket.OnNewPacketS += new NewPacketS(UserListsChanged);
             else
-                PacketAnaLysis.DisPacket.OnNewPacketS -= new PacketAnaLysis.NewPacketS(UserListsChanged);
+                DisPacket.OnNewPacketS -= new NewPacketS(UserListsChanged);
         }
     }
 }
