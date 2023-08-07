@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using Sodao.FastSocket.SocketBase;
-using Sodao.FastSocket.Server;
 using Sodao.FastSocket.Server.Command;
 using System.Timers;
 
@@ -50,7 +48,7 @@ namespace GridBackGround.Termination
         /// 装置初始化
         /// </summary>
         /// <param name="CMD_ID"></param>
-        public WEB_Control(CommandInfoV2 cmdInfo, IConnection connection)
+        public WEB_Control(CommandInfo_gw cmdInfo, IConnection connection)
         {
             //new PowerPole("", CMD_ID);
             if (cmdInfo == null) throw new ArgumentNullException("配置内容");
@@ -120,7 +118,7 @@ namespace GridBackGround.Termination
     {
         private static List<IWeb_Control> list_WebControl;
 
-        public static IWeb_Control New(CommandInfoV2 cmdinfo, IConnection connection)
+        public static IWeb_Control New(CommandInfo_gw cmdinfo, IConnection connection)
         {
             var web = new WEB_Control(cmdinfo, connection);
             if (list_WebControl == null)
@@ -287,7 +285,7 @@ namespace GridBackGround.Termination
 
     public class WebDataDeal
     {
-        public static void Deal(CommandInfoV2 cmdinfo, IConnection connection)
+        public static void Deal(CommandInfo_gw cmdinfo, IConnection connection)
         {
 
             string data = "WEB接收:　" + "错误代码：" + cmdinfo.ErrorCode.ToString() + "  数据：";

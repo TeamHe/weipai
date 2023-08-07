@@ -10,7 +10,7 @@ namespace GridBackGround.Communicat
 {
     public class Service
     {
-        private static SocketServer<CommandInfoV2> CMD_TCP;
+        private static SocketServer<CommandInfo_gw> CMD_TCP;
         private static HTTP.HttpListeners httpListeners = null;
 
         private static gw_service_udp service_gw_udp = null;
@@ -58,7 +58,7 @@ namespace GridBackGround.Communicat
         private static void Service_gw_udp_OnPackageRecvd(object sender, gw_pack_recv_args e)
         {
             UdpSession session = e.Session;
-            CommandInfoV2 cmdInfo = e.CmdInfo;
+            CommandInfo_gw cmdInfo = e.CmdInfo;
             IPowerPole pole = PowerPoleManage.PowerPole(cmdInfo.CMD_ID, session);
             PackeDeal.RecDataDeal(cmdInfo, EConnectType.UDP, pole);
         }
@@ -80,7 +80,7 @@ namespace GridBackGround.Communicat
 
             //装置UDP连接
                 //装置TCP连接
-                CMD_TCP = new SocketServer<CommandInfoV2>(new TCPSeverCMD(),
+                CMD_TCP = new SocketServer<CommandInfo_gw>(new TCPSeverCMD(),
                     new Protocol(),
                     8192,
                     8192,

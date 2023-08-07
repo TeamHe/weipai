@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Sodao.FastSocket.Server.Command;
 using Sodao.FastSocket.Server;
 using Sodao.FastSocket.SocketBase;
-using GridBackGround.Communicat;
 
 namespace GridBackGround.Communicat
 {
-    public class TCPSeverWeb : CommandSocketService<CommandInfoV2>
+    public class TCPSeverWeb : CommandSocketService<CommandInfo_gw>
     {
 
         //连接事件
@@ -35,7 +31,7 @@ namespace GridBackGround.Communicat
         }
 
         //接收数据事件
-        public override void OnReceived(IConnection connection, CommandInfoV2 cmdInfo)
+        public override void OnReceived(IConnection connection, CommandInfo_gw cmdInfo)
         {
             try
             {
@@ -62,7 +58,7 @@ namespace GridBackGround.Communicat
         }
 
         #region 私有命令处理
-        protected override void AddCommand(ICommand<CommandInfoV2> cmd)
+        protected override void AddCommand(ICommand<CommandInfo_gw> cmd)
         {
             base.AddCommand(cmd);
         }
@@ -72,7 +68,7 @@ namespace GridBackGround.Communicat
         //{
         //    throw new NotImplementedException();
         //}
-        protected override void HandleUnKnowCommand(IConnection connection, CommandInfoV2 commandInfo)
+        protected override void HandleUnKnowCommand(IConnection connection, CommandInfo_gw commandInfo)
         {
             //throw new NotImplementedException();
         }

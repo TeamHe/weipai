@@ -5,7 +5,7 @@ namespace Sodao.FastSocket.Server.Command
     /// <summary>
     /// async binary command info.
     /// </summary>
-    public class CommandInfoV2 : ICommandInfo
+    public class CommandInfo_gw : ICommandInfo
     {
         #region Constructors
         /// <summary>
@@ -20,7 +20,7 @@ namespace Sodao.FastSocket.Server.Command
         /// <param name="data">数据内容</param>
         /// <param name="Crc">CRC校验码</param>
         /// <param name="errorCode">错误代码</param>
-        public CommandInfoV2(  string  CMD_ID,
+        public CommandInfo_gw(  string  CMD_ID,
                                         int     packet_Length,
                                         int     frame_Type,
                                         int     packet_Type,

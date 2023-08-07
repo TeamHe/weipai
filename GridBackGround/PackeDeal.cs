@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using Sodao.FastSocket.SocketBase;
 using Sodao.FastSocket.Server.Command;
 using Sodao.FastSocket.Server;
-using System.Windows.Forms;
 using GridBackGround.Communicat;
 using GridBackGround.Termination;
 using ResModel;
 
 namespace GridBackGround
-{ 
+{
     public class PackeDeal
     {
         public static bool OnSend;
@@ -242,7 +239,7 @@ namespace GridBackGround
         /// <param name="session"></param>
         /// <param name="cmdInfo"></param>
         /// <returns></returns>
-        public static bool RecData(UdpSession session, CommandInfoV2 cmdInfo)
+        public static bool RecData(UdpSession session, CommandInfo_gw cmdInfo)
         {
             IPowerPole pole = null;
             if (cmdInfo.CMD_ID.Length == 17)
@@ -259,7 +256,7 @@ namespace GridBackGround
         /// <param name="connection"></param>
         /// <param name="cmdInfo"></param>
         /// <returns></returns>
-        public static bool RecData(IConnection connection, CommandInfoV2 cmdInfo)
+        public static bool RecData(IConnection connection, CommandInfo_gw cmdInfo)
         {
             IPowerPole pole = null;
             if (cmdInfo.CMD_ID.Length == 17)
@@ -275,7 +272,7 @@ namespace GridBackGround
         /// <param name="cmdInfo"></param>
         /// <param name="conType"></param>
         /// <returns></returns>
-        public static bool RecDataDeal(CommandInfoV2 cmdInfo, EConnectType conType,IPowerPole pole)
+        public static bool RecDataDeal(CommandInfo_gw cmdInfo, EConnectType conType,IPowerPole pole)
         {
 
             int errorcode = cmdInfo.ErrorCode;

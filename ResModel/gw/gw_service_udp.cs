@@ -11,13 +11,13 @@ namespace ResModel.gw
 
         public UdpSession Session { get; set; }
 
-        public CommandInfoV2 CmdInfo { get; set; }
+        public CommandInfo_gw CmdInfo { get; set; }
     }
 
 
-    public class gw_service_udp : IUdpService<CommandInfoV2>
+    public class gw_service_udp : IUdpService<CommandInfo_gw>
     {
-        private UdpServer<CommandInfoV2> udp_server_gw;
+        private UdpServer<CommandInfo_gw> udp_server_gw;
 
         public event EventHandler<gw_pack_recv_args> OnPackageRecvd;
         public int Port { get; set; }
@@ -40,7 +40,7 @@ namespace ResModel.gw
                 this.udp_server_gw.Stop();
                 this.udp_server_gw = null;
             }
-            udp_server_gw = new UdpServer<CommandInfoV2>(
+            udp_server_gw = new UdpServer<CommandInfo_gw>(
                 this.Port, new UdpProtocol(), this);
             return this.udp_server_gw.Start();
         }
@@ -52,7 +52,7 @@ namespace ResModel.gw
 
         }
 
-        public void OnReceived(UdpSession session, CommandInfoV2 cmdInfo)
+        public void OnReceived(UdpSession session, CommandInfo_gw cmdInfo)
         {
             try
             {

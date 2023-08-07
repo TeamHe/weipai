@@ -47,12 +47,12 @@
     <Compile Include="BaseSocketServer.cs" />
     <Compile Include="CommandSocketService.cs" />
     <Compile Include="Command\CommandInfo.cs" />
+    <Compile Include="Command\CommandInfo_gw.cs" />
     <Compile Include="Command\CommandInfo_nw.cs" />
     <Compile Include="Command\ICommand.cs" />
     <Compile Include="Command\ICommandInfo.cs" />
     <Compile Include="Command\StringCommandInfo.cs" />
     <Compile Include="Command\ThriftCommandInfo.cs" />
-    <Compile Include="Command\V2CommandInfo.cs" />
     <Compile Include="Config\Server.cs" />
     <Compile Include="Config\ServerCollection.cs" />
     <Compile Include="Config\SocketServerConfig.cs" />

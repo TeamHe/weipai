@@ -10,7 +10,7 @@ namespace Sodao.FastSocket.Server.Protocol
     /// [Message Length(int32)][SeqID(int32)][Request|Response Flag Length(int16)][Request|Response Flag + Body Buffer]
     /// </summary>
 
-    public sealed class Protocol : IProtocol<Command.CommandInfoV2>
+    public sealed class Protocol : IProtocol<Command.CommandInfo_gw>
     {
         #region IProtocol Members
         /// <summary>
@@ -22,7 +22,7 @@ namespace Sodao.FastSocket.Server.Protocol
         /// <param name="readlength"></param>
         /// <returns></returns>
         /// <exception cref="BadProtocolException">bad async binary protocl</exception>
-        public Command.CommandInfoV2 FindCommandInfo(IConnection connection, ArraySegment<byte> buffer,
+        public Command.CommandInfo_gw FindCommandInfo(IConnection connection, ArraySegment<byte> buffer,
             int maxMessageSize, out int readlength)
         {
             return CommandAnalysis.AnalysisPacketV2(buffer, out readlength);

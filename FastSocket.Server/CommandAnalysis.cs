@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace Sodao.FastSocket.Server
@@ -110,7 +108,7 @@ namespace Sodao.FastSocket.Server
         /// <param name="buffer"></param>
         /// <param name="readlength"></param>
         /// <returns></returns>
-        public static Command.CommandInfoV2 AnalysisPacketV2(ArraySegment<byte> buffer, out int readlength)
+        public static Command.CommandInfo_gw AnalysisPacketV2(ArraySegment<byte> buffer, out int readlength)
         {
             int Packet_Lenth = 0;       //报文长度
             string CMD_ID = "";         //状态监测装置ID
@@ -174,7 +172,7 @@ namespace Sodao.FastSocket.Server
                     Buffer.BlockCopy(payload, startNo, Pacekt, 0, readlength);
                     data = new byte[1];
                     erroCode = 0x03; //错误代码8
-                    return new Command.CommandInfoV2(CMD_ID,
+                    return new Command.CommandInfo_gw(CMD_ID,
                         Packet_Lenth,
                         Frame_Type,
                         Packet_Type,
@@ -221,7 +219,7 @@ namespace Sodao.FastSocket.Server
             data = new byte[Packet_Lenth];
             int DataStart = 2+2+17+1+1+1;
             Buffer.BlockCopy(Pacekt, DataStart, data, 0, Packet_Lenth);
-            return new Command.CommandInfoV2(CMD_ID,
+            return new Command.CommandInfo_gw(CMD_ID,
                     Packet_Lenth,
                     Frame_Type,
                     Packet_Type,
