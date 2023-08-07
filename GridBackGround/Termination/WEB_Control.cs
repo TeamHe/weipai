@@ -176,7 +176,7 @@ namespace GridBackGround.Termination
             int errCode = 0;
             try
             {
-                byte[] crc = Sodao.FastSocket.SocketBase.CRC16.Crc(web.Pack, 2, web.PacLength + 22);
+                byte[] crc = CRC16.Crc(web.Pack, 2, web.PacLength + 22);
                 web.Pack[web.PacLength + 24] = crc[0];
                 web.Pack[web.PacLength + 25] = crc[1];
                 web.Pack[web.PacLength + 26] = 0x96;

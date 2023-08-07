@@ -44,7 +44,6 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CRC16.cs" />
     <Compile Include="ISAEAPool.cs" />
     <Compile Include="ConnectionCollection.cs" />
     <Compile Include="DefaultConnection.cs" />

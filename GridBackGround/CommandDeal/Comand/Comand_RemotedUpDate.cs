@@ -4,6 +4,7 @@ using System.Text;
 using System.IO;
 using ResModel;
 using ResModel.PowerPole;
+using Sodao.FastSocket.Server.Command;
 
 namespace GridBackGround.CommandDeal
 {
@@ -383,7 +384,7 @@ namespace GridBackGround.CommandDeal
             num = Tools.intTurn.intToByte4(pacNO);            //包号
             Buffer.BlockCopy(num, 0, packet, 24, 4);
             Buffer.BlockCopy(data, 0, packet, 28, data.Length);             //包内容
-            byte[] crc = Sodao.FastSocket.SocketBase.CRC16.Crc(data, data.Length);
+            byte[] crc = CRC16.Crc(data, data.Length);
             Buffer.BlockCopy(crc, 0, packet, data.Length + 28, 2);
             var Packet = PacketAnaLysis.BuildPacket.PackBuild(
                 CMD_ID,
