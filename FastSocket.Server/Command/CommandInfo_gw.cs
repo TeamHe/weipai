@@ -41,75 +41,48 @@ namespace Sodao.FastSocket.Server.Command
             this.Crc = Crc;
             this.ErrorCode = errorCode;
         }
+
+        public CommandInfo_gw() 
+        {
+
+        }
+
         #endregion
 
         #region Public Properties
         /// <summary>
         /// 装置ID
         /// </summary>
-        public string CMD_ID
-        {
-            get;
-            private set;
-        }
+        public string CMD_ID { get; set; }
         /// <summary>
         /// 包长
         /// </summary>
-        public int Packet_Lenth
-        {
-            get;
-            private set;
-        }
+        public int Packet_Lenth { get; set; }
         /// <summary>
         /// 帧类型
         /// </summary>
-        public int Frame_Type
-        {
-            get;
-            private set;
-        }
-
+        public int Frame_Type { get; set; }
         /// <summary>
         /// 报文类型
         /// </summary>
-        public int Packet_Type
-        {
-            get;
-            private set;
-        }
+        public int Packet_Type { get; set; }
         /// <summary>
         /// 帧序列号
         /// </summary>
-        public byte Frame_No
-        {
-            get;
-            private set;
-        }
+        public byte Frame_No { get; set; }
         /// <summary>
         /// 报文内容
         /// </summary>
-        public byte[] Packet
-        {
-            get;
-            private set;
-        }
+        public byte[] Packet { get; set; }
         /// <summary>
         /// 数据内容
         /// </summary>
-        public byte[] Data
-        {
-            get;
-            private set;
-        }
+        public byte[] Data { get; set; }
 
         /// <summary>
         /// 校验码
         /// </summary>
-        public byte[] Crc
-        {
-            get;
-            private set;
-        }
+        public byte[] Crc { get; set; }
 
         /// <summary>
         /// 校验码
@@ -264,6 +237,38 @@ namespace Sodao.FastSocket.Server.Command
             #endregion
         }
 
+        /// <summary>
+        /// 数据编码
+        /// </summary>
+        /// <returns></returns>
+        public byte[] encode()
+        {
+            //byte[] data = ;
+            short messageLength = (short)this.Packet_Lenth;
+            var sendBuffer = new byte[messageLength + 27];
+
+            sendBuffer[0] = 0xa5;
+            sendBuffer[1] = 0x5a;
+            //包长
+            sendBuffer[2] = (byte)((messageLength) % 256);
+            sendBuffer[3] = (byte)((messageLength) / 256);
+            //CMA_ID
+            byte[] cma_ID_Byte = Encoding.UTF8.GetBytes(CMD_ID);
+            Buffer.BlockCopy(cma_ID_Byte, 0, sendBuffer, 4, 17);
+
+            sendBuffer[21] = (byte)this.Frame_Type;     //帧类型
+            sendBuffer[22] = (byte)this.Packet_Type;    //报文类型
+            sendBuffer[23] = this.Frame_No;
+
+            Buffer.BlockCopy(this.Data, 0, sendBuffer, 24, messageLength);  //数据内容
+
+            byte[] crc = SocketBase.CRC16.Crc(sendBuffer, 2, messageLength + 22);
+            sendBuffer[messageLength + 24] = crc[0];
+            sendBuffer[messageLength + 25] = crc[1];
+            sendBuffer[messageLength + 26] = 0x96;
+            this.Packet = sendBuffer;
+            return sendBuffer;
+        }
         #endregion
     }
 
