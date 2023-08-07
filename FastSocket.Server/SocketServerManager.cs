@@ -84,7 +84,7 @@ namespace Sodao.FastSocket.Server
         {
             switch (protocol)
             {
-                case Protocol.ProtocolNames.AsyncBinary: return new Protocol.Protocol();
+                case Protocol.ProtocolNames.AsyncBinary: return new Protocol.Protocol_tcp_gw();
                 //case Protocol.ProtocolNames.Thrift: return new Protocol.ThriftProtocol();
                 //case Protocol.ProtocolNames.CommandLine: return new Protocol.CommandLineProtocol();
             }

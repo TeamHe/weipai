@@ -81,7 +81,7 @@ namespace GridBackGround.Communicat
             //装置UDP连接
                 //装置TCP连接
                 CMD_TCP = new SocketServer<CommandInfo_gw>(new TCPSeverCMD(),
-                    new Protocol(),
+                    new Protocol_tcp_gw(),
                     8192,
                     8192,
                     102400,

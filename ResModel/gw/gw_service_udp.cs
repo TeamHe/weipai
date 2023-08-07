@@ -41,7 +41,7 @@ namespace ResModel.gw
                 this.udp_server_gw = null;
             }
             udp_server_gw = new UdpServer<CommandInfo_gw>(
-                this.Port, new UdpProtocol(), this);
+                this.Port, new Protocol_udp_gw(), this);
             return this.udp_server_gw.Start();
         }
 

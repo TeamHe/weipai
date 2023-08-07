@@ -66,8 +66,7 @@
     <Compile Include="PacketBuilder.cs" />
     <Compile Include="Protocol\Protocol_nw.cs" />
     <Compile Include="Protocol\IUdpProtocol.cs" />
-    <Compile Include="Protocol\ProtocolV2.cs" />
-    <Compile Include="Protocol\UDPProtocolV2.cs" />
+    <Compile Include="Protocol\Protocol_gw.cs" />
     <Compile Include="SocketListener.cs" />
     <Compile Include="ISocketService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
