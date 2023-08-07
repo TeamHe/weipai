@@ -56,7 +56,6 @@
     <Compile Include="Config\Server.cs" />
     <Compile Include="Config\ServerCollection.cs" />
     <Compile Include="Config\SocketServerConfig.cs" />
-    <Compile Include="CommandAnalysis.cs" />
     <Compile Include="ISocketListener.cs" />
     <Compile Include="IUdpServer.cs" />
     <Compile Include="IUdpService.cs" />

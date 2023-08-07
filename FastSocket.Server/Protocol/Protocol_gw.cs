@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using Sodao.FastSocket.SocketBase;
+using Sodao.FastSocket.Server.Command;
 
 namespace Sodao.FastSocket.Server.Protocol
 {
@@ -10,7 +11,7 @@ namespace Sodao.FastSocket.Server.Protocol
     /// [Message Length(int32)][SeqID(int32)][Request|Response Flag Length(int16)][Request|Response Flag + Body Buffer]
     /// </summary>
 
-    public sealed class Protocol_tcp_gw : IProtocol<Command.CommandInfo_gw>
+    public sealed class Protocol_tcp_gw : IProtocol<CommandInfo_gw>
     {
         #region IProtocol Members
         /// <summary>
@@ -22,10 +23,10 @@ namespace Sodao.FastSocket.Server.Protocol
         /// <param name="readlength"></param>
         /// <returns></returns>
         /// <exception cref="BadProtocolException">bad async binary protocl</exception>
-        public Command.CommandInfo_gw FindCommandInfo(IConnection connection, ArraySegment<byte> buffer,
+        public CommandInfo_gw FindCommandInfo(IConnection connection, ArraySegment<byte> buffer,
             int maxMessageSize, out int readlength)
         {
-            return CommandAnalysis.AnalysisPacketV2(buffer, out readlength);
+            return CommandInfo_gw.Find_commandinfo(buffer, out readlength);
         }
         #endregion
 
@@ -34,17 +35,17 @@ namespace Sodao.FastSocket.Server.Protocol
     /// <summary>
     /// UDP协议格式
     /// </summary>
-    public class Protocol_udp_gw : IUdpProtocol<Command.CommandInfo_gw>
+    public class Protocol_udp_gw : IUdpProtocol<CommandInfo_gw>
     {
         /// <summary>
         /// 查找对应的命令格式
         /// </summary>
         /// <param name="buffer"></param>
         /// <returns></returns>
-        public Command.CommandInfo_gw FindCommandInfo(ArraySegment<byte> buffer)
+        public CommandInfo_gw FindCommandInfo(ArraySegment<byte> buffer)
         {
             int readlength;
-            return CommandAnalysis.AnalysisPacketV2(buffer, out readlength);
+            return CommandInfo_gw.Find_commandinfo(buffer, out readlength);
         }
     }
 

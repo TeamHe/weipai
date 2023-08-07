@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Sodao.FastSocket.Server.Command
 {
@@ -131,6 +132,138 @@ namespace Sodao.FastSocket.Server.Command
             //var packet = PacketBuilder.ToAsyncBinary(this.CMD_ID, this.Packet_Lenth, payload);
             //connection.BeginSend(packet);
         }
+
+        /// <summary>
+        /// 报文基本规范解析
+        /// 协议格式
+        /// [Sync][Packet_Lenth][CMD_ID][Frame_Type][Packet_Type][FrameNo][data][CRC16][End]
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="readlength"></param>
+        /// <returns></returns>
+        public static CommandInfo_gw Find_commandinfo(ArraySegment<byte> buffer, out int readlength)
+        {
+            int Packet_Lenth = 0;       //报文长度
+            string CMD_ID = "";         //状态监测装置ID
+            byte Frame_Type = 0;         //帧类型
+            byte Packet_Type = 0;       //报文类型
+            byte Frame_No = 0;
+            byte[] Pacekt = null;
+            byte[] data = null;                //报文内容
+            byte[] CRC = { 0x00 };         //CRC校验码
+            int erroCode = 0;
+
+            var payload = buffer.Array;
+            readlength = buffer.Count;
+
+            #region  数据长度校验
+            //[Sync][Packet_Lenth][CMD_ID][Frame_Type][Packet_Type][FrameNo][data][CRC16][End]
+            int MinLength = 27;      // 2 + 2 + 17 + 1 + 1 +1 + 2 + 1; //不包括报文内容
+            if (buffer.Count < MinLength)
+            {
+                readlength = 0;
+                return null;
+            }
+            #endregion
+
+            #region 寻找包头
+            //开始计数
+            int startNo = 0;
+            int i;
+            //找到包的起始位置
+            for (i = 0; i < buffer.Count - MinLength; i++)
+            {
+                if ((payload[i + buffer.Offset] == 0xa5) && (payload[buffer.Offset + i + 1] == 0x5a))
+                {
+                    startNo = i + buffer.Offset;
+                    break;
+                }
+            }
+            //没找到包头
+            if (i == buffer.Count - MinLength)
+            {
+                erroCode = 0x02; //错误代码2
+                //数据长度小于最小包长，将数据提取并出来交给上层处理
+                Pacekt = new byte[buffer.Count - MinLength];
+                readlength = buffer.Count - MinLength;
+                return null;
+
+            }
+            #endregion
+
+            #region 包长校验
+
+            //计算包长
+            Packet_Lenth = (int)(payload[startNo + 2]) + (int)(payload[startNo + 3]) * 256;
+            if (Packet_Lenth > 2096)
+            {
+                //readlength = 4;
+                try
+                {
+                    //if(Pacekt == null)
+                    //    Pacekt = new byte[readlength];
+                    Buffer.BlockCopy(payload, startNo, Pacekt, 0, readlength);
+                    data = new byte[1];
+                    erroCode = 0x03; //错误代码8
+                    return new CommandInfo_gw(CMD_ID,
+                        Packet_Lenth,
+                        Frame_Type,
+                        Packet_Type,
+                        Frame_No,
+                        Pacekt,
+                        data,
+                        CRC,
+                        erroCode);
+                }
+                catch (Exception ex)
+                {
+                    string str = ex.Message;
+                }
+            }
+            Pacekt = new byte[Packet_Lenth + MinLength];
+            readlength = startNo - buffer.Offset + MinLength + Packet_Lenth;   //读数长度
+
+            if (buffer.Count < readlength)
+            {
+                readlength = 0;
+                return null;
+            }
+            #endregion
+
+            #region CRC校验
+            Buffer.BlockCopy(payload, startNo, Pacekt, 0, Packet_Lenth + MinLength);
+            CRC = SocketBase.CRC16.Crc(Pacekt, 2, Packet_Lenth + MinLength - 5);           //计算CRC16
+            int CRC_Position = Packet_Lenth + MinLength - 3;
+            if (!((CRC[0] == Pacekt[CRC_Position]) && CRC[1] == Pacekt[CRC_Position + 1]))        //CRC校验失败
+            {
+                erroCode = 0x04; //错误代码3
+            }
+            #endregion
+            if (Pacekt[Packet_Lenth + MinLength - 1] != 0x96)
+            {
+                erroCode = 0x05;
+            }
+            #region 校验通过
+
+            CMD_ID = Encoding.UTF8.GetString(Pacekt, 4, 17);          //装置ID
+            Frame_Type = Pacekt[21];                                  //帧类型
+            Packet_Type = Pacekt[22];                                 //报文类型
+            Frame_No = Pacekt[23];                                    //帧序列号
+            data = new byte[Packet_Lenth];
+            int DataStart = 2 + 2 + 17 + 1 + 1 + 1;
+            Buffer.BlockCopy(Pacekt, DataStart, data, 0, Packet_Lenth);
+            return new CommandInfo_gw(CMD_ID,
+                    Packet_Lenth,
+                    Frame_Type,
+                    Packet_Type,
+                    Frame_No,
+                    Pacekt,
+                    data,
+                    CRC,
+                    erroCode);
+            #endregion
+        }
+
         #endregion
     }
 
