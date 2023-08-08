@@ -32,6 +32,7 @@ namespace GridBackGround.Forms.Dialogs_nw
             Function_Checkbox_init(this.checkBox3, nw_func_code.Picture);
             Function_Checkbox_init(this.checkBox4, nw_func_code.Fault_Detect);
             Function_Checkbox_init(this.checkBox5, nw_func_code.Traffic);
+            Function_Checkbox_init(this.checkBox6, nw_func_code.EnergySatus);
         }
 
         public List<nw_func_code> GetFunctions()
@@ -47,7 +48,7 @@ namespace GridBackGround.Forms.Dialogs_nw
 
         public void SetFunctions(List<nw_func_code> funcs)
         {
-            foreach (System.Windows.Forms.CheckBox checkbox in this.Checkbox_list)
+            foreach (CheckBox checkbox in this.Checkbox_list)
                 checkbox.Checked = false;
             foreach(nw_func_code func in funcs)
             {
@@ -62,7 +63,7 @@ namespace GridBackGround.Forms.Dialogs_nw
             }
         }
 
-        private void Function_Checkbox_init(System.Windows.Forms.CheckBox checkBox, nw_func_code fuction)
+        private void Function_Checkbox_init(CheckBox checkBox, nw_func_code fuction)
         {
             if(Checkbox_list == null)
                 Checkbox_list = new List<CheckBox>();
