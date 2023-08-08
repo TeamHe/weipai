@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResModel", "ResModel\ResMod
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dos.Common", "Dos.Common-master\Dos.Common.csproj", "{B9FEF835-EC96-4314-A77D-FFFEA7C43BEE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cma.service", "cma.service\cma.service.csproj", "{ED49658A-07B6-4A38-8B0D-AB4297F25814}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,8 +113,23 @@ Global
 		{B9FEF835-EC96-4314-A77D-FFFEA7C43BEE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B9FEF835-EC96-4314-A77D-FFFEA7C43BEE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B9FEF835-EC96-4314-A77D-FFFEA7C43BEE}.Release|x86.ActiveCfg = Release|Any CPU
+		{ED49658A-07B6-4A38-8B0D-AB4297F25814}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED49658A-07B6-4A38-8B0D-AB4297F25814}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED49658A-07B6-4A38-8B0D-AB4297F25814}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{ED49658A-07B6-4A38-8B0D-AB4297F25814}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{ED49658A-07B6-4A38-8B0D-AB4297F25814}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{ED49658A-07B6-4A38-8B0D-AB4297F25814}.Debug|x86.Build.0 = Debug|Any CPU
+		{ED49658A-07B6-4A38-8B0D-AB4297F25814}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED49658A-07B6-4A38-8B0D-AB4297F25814}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED49658A-07B6-4A38-8B0D-AB4297F25814}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{ED49658A-07B6-4A38-8B0D-AB4297F25814}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{ED49658A-07B6-4A38-8B0D-AB4297F25814}.Release|x86.ActiveCfg = Release|Any CPU
+		{ED49658A-07B6-4A38-8B0D-AB4297F25814}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8175B9A8-CBF5-48E1-B854-5D47D9043F44}
 	EndGlobalSection
 EndGlobal

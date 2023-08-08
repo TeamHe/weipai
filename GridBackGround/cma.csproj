@@ -702,6 +702,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\cma.service\cma.service.csproj">
+      <Project>{ed49658a-07b6-4a38-8b0d-ab4297f25814}</Project>
+      <Name>cma.service</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataTurn\Tools.csproj">
       <Project>{5B332DA9-EE1D-40C2-97A2-4570397BD7ED}</Project>
       <Name>Tools</Name>
