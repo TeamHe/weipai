@@ -5,6 +5,7 @@ using ResModel.CollectData;
 using DB_Operation.EQUManage;
 using ResModel;
 using ResModel.PowerPole;
+using DB_Operation;
 
 namespace GridBackGround.CommandDeal
 {

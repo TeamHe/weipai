@@ -6,6 +6,7 @@ using ResModel.EQU;
 using System;
 using System.Collections.Generic;
 using ResModel.PowerPole;
+using DB_Operation;
 
 namespace GridBackGround.CommandDeal.Image
 {

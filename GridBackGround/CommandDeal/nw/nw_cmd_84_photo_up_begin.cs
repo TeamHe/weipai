@@ -3,6 +3,7 @@ using ResModel;
 using ResModel.CollectData;
 using System;
 using ResModel.nw;
+using DB_Operation;
 
 namespace GridBackGround.CommandDeal.nw
 {

@@ -34,9 +34,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DB_Operation">
-      <HintPath>..\GridBackGround\bin\Debug\DB_Operation.dll</HintPath>
-    </Reference>
     <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.12\lib\net40\log4net.dll</HintPath>
     </Reference>
@@ -70,7 +67,6 @@
     <Compile Include="EQU\EQU.cs" />
     <Compile Include="EQU\UrlInterFace.cs" />
     <Compile Include="EQU\OptionType.cs" />
-    <Compile Include="CollectData\Picture.cs" />
     <Compile Include="CollectData\Wave_Character.cs" />
     <Compile Include="CollectData\Wave_Trajectorycs.cs" />
     <Compile Include="CollectData\Windage_Yaw.cs" />

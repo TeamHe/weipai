@@ -6,10 +6,12 @@ using Tools;
 using System.Collections.Specialized;
 using DB_Operation.RealData;
 using DB_Operation.EQUManage;
+using ResModel.CollectData;
+using ResModel.EQU;
 using System.IO;
 
-namespace ResModel.CollectData
-{
+namespace DB_Operation
+{ 
     /// <summary>
     /// 图片保存
     /// </summary>
@@ -266,7 +268,7 @@ namespace ResModel.CollectData
         /// </summary>
         public override void SaveToDB()
         {
-            IRealData_OP iRdo = Real_Data_Op.Creat(EQU.ICMP.Picture);   //获取图片操作接口
+            IRealData_OP iRdo = Real_Data_Op.Creat(ICMP.Picture);   //获取图片操作接口
             if (iRdo == null) throw new Exception("不支持的数据类型");
             if (this.PicPath == null) throw new ArgumentNullException("图片路径为空");
             //try                  //保存到数据库中
