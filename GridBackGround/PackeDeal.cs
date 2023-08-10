@@ -7,6 +7,7 @@ using GridBackGround.Communicat;
 using GridBackGround.Termination;
 using ResModel;
 using ResModel.PowerPole;
+using cma.service.gw_cmd;
 
 namespace GridBackGround
 {
@@ -284,13 +285,19 @@ namespace GridBackGround
             if ((cmdInfo.ErrorCode == 0))// || (cmdInfo.Code == 3))
             {
                 if(pole != null)
-                    PacketAnaLysis.PackDivid_FrameType.PackDivid(
-                        pole,
-                        cmdInfo.Frame_Type,
-                        cmdInfo.Packet_Type,
-                        cmdInfo.Frame_No,
-                        cmdInfo.Data,
-                        ref errorcode);
+                {
+                    if (gw_cmd_handler.Deal(pole, cmdInfo))
+                        return true;
+                    else
+                        PacketAnaLysis.PackDivid_FrameType.PackDivid(
+                            pole,
+                            cmdInfo.Frame_Type,
+                            cmdInfo.Packet_Type,
+                            cmdInfo.Frame_No,
+                            cmdInfo.Data,
+                            ref errorcode);
+
+                }
             }
 
             //if (cmdInfo.Code == 3)

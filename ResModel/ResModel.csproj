@@ -47,6 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="gw\gw_code.cs" />
+    <Compile Include="gw\gw_data_base.cs" />
+    <Compile Include="gw\gw_data_weather.cs" />
+    <Compile Include="gw\gw_frame_type.cs" />
     <Compile Include="gw\gw_ModelData.cs" />
     <Compile Include="gw\gw_service_udp.cs" />
     <Compile Include="Image\PhotoTime.cs" />
