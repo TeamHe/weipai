@@ -68,7 +68,7 @@ namespace GridBackGround.Forms
                 MessageBox.Show("请输入正确的预置位号");
                 return;
             }
-            if (Presetting_No > 255 || Presetting_No == 0)
+            if (Presetting_No > 255)
             {
                 MessageBox.Show("请输入正确的预置位号");
                 return;
