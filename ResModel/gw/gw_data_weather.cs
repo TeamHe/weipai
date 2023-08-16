@@ -7,11 +7,6 @@ namespace ResModel.gw
         public gw_data_weather() { }
 
         /// <summary>
-        /// 平均风速
-        /// </summary>
-        public double SpeedAvg { get; set; }
-
-        /// <summary>
         /// 10分钟平均风速
         /// </summary>
         public float AvgSpeed { get; set; }

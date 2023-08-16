@@ -1,5 +1,6 @@
 ﻿using System;
 using ResModel.gw;
+using DB_Operation.RealData;
 
 namespace cma.service.gw_cmd
 {
@@ -19,10 +20,15 @@ namespace cma.service.gw_cmd
 
         public gw_cmd_01_weather() { }
 
-        //public override bool SaveData()
-        //{
-        //    throw new Exception("当前数据类型不支持数据存储");
-        //}
+        public override bool SaveData()
+        {
+            db_data_gw_weather db = new db_data_gw_weather(this.Pole);
+            ErrorCode code = db.DataSave(this.Value);
+            if (code == ErrorCode.NoError)
+                return true;
+            else
+                return false;
+        }
 
         public override int DecodeData(byte[] data, int offset, out string msg)
         {
