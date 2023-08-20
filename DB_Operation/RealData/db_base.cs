@@ -70,7 +70,9 @@ namespace DB_Operation.RealData
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("from {0} as d ", this.Table_Name);
             sb.Append("left join t_powerpole as pole on d.poleid = pole.id ");
-            sb.AppendFormat("where d.time between '{0:G}' and '{1:G}' and pole.CMD_ID = '{2}'",
+            sb.AppendFormat("where d.time between '{0:G}' and '{1:G}' and pole.CMD_ID = '{2}' ",
+                        start, end, cmdid);
+            sb.AppendFormat("order by d.time desc",
                         start, end, cmdid);
             return sb.ToString();
         }
