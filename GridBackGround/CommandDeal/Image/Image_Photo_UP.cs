@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using ResModel.EQU;
-using ResModel.CollectData;
 using DB_Operation.EQUManage;
 using ResModel;
 using ResModel.PowerPole;
 using DB_Operation;
+using cma.service.PowerPole;
 
 namespace GridBackGround.CommandDeal
 {

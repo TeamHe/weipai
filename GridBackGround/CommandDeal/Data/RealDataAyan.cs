@@ -5,6 +5,7 @@ using Tools;
 using ResModel.CollectData;
 using DB_Operation.RealData;
 using ResModel.PowerPole;
+using cma.service.PowerPole;
 
 
 namespace GridBackGround.CommandDeal.Data

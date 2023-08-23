@@ -6,8 +6,8 @@ using Sodao.FastSocket.Server;
 using GridBackGround.Communicat;
 using GridBackGround.Termination;
 using ResModel;
-using ResModel.PowerPole;
 using cma.service.gw_cmd;
+using cma.service.PowerPole;
 
 namespace GridBackGround
 {

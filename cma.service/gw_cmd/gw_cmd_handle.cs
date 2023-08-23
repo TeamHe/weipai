@@ -4,6 +4,7 @@ using Sodao.FastSocket.Server.Command;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using cma.service.PowerPole;
 
 namespace cma.service.gw_cmd
 {

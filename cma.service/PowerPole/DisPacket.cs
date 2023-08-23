@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Timers;
 using ResModel.nw;
+using ResModel.PowerPole;
 
-namespace ResModel.PowerPole
+namespace cma.service.PowerPole
 {
     public delegate void NewRecord(DataInfo packet);
     public delegate void NewPacket(string msg);

@@ -2,6 +2,7 @@
 using ResModel.EQU;
 using Tools;
 using ResModel.PowerPole;
+using cma.service.PowerPole;
 
 namespace GridBackGround.CommandDeal
 {

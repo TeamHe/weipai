@@ -46,6 +46,7 @@
     <Compile Include="gw_cmd\gw_cmd_base.cs" />
     <Compile Include="gw_cmd\gw_cmd_base_data.cs" />
     <Compile Include="gw_cmd\gw_cmd_handle.cs" />
+    <Compile Include="PowerPole\DisPacket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -2,6 +2,7 @@
 using System;
 using System.Text;
 using ResModel.PowerPole;
+using cma.service.PowerPole;
 
 namespace GridBackGround.CommandDeal
 {

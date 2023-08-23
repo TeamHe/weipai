@@ -3,6 +3,7 @@ using ResModel;
 using ResModel.EQU;
 using Tools;
 using ResModel.PowerPole;
+using cma.service.PowerPole;
 
 //采样参数设置
 namespace GridBackGround.CommandDeal

@@ -5,6 +5,7 @@ using System.IO;
 using ResModel;
 using ResModel.PowerPole;
 using Sodao.FastSocket.Server.Command;
+using cma.service.PowerPole;
 
 namespace GridBackGround.CommandDeal
 {
