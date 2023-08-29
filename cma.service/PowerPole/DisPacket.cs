@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Timers;
 using DB_Operation.RealData;
 using ResModel;
@@ -8,28 +9,39 @@ using ResModel.PowerPole;
 namespace cma.service.PowerPole
 {
     public delegate void NewRecordS(List<DataInfo> packets);
-    public delegate void NewPacketS(List<string> msgs);
+
+    public class PackageMessageEventArgs:EventArgs
+    {
+        public List<PackageMessage> Msgs { get; set; }
+
+        public PackageMessageEventArgs(List<PackageMessage> msgs)
+        {
+            this.Msgs = msgs;
+        }
+    }
 
     public class DisPacket
     {
         public static event NewRecordS OnNewRecordS;
-        public static event NewPacketS OnNewPacketS;
+        public static event EventHandler<PackageMessageEventArgs> OnNewPakageMessage;
+
+        private static object obj_message=new object();
 
         private DisPacket packet { get; set; }
 
         private static Timer timer { get; set; }
 
         private static List<DataInfo> infos { get; set; }
-        private static List<string> msgs { get; set; }
+        private static List<PackageMessage> msgs { get; set; }
 
         private static void TimerStart()
         {
             if (timer != null)
                 return;
-            timer = new Timer(1000);
+            timer = new Timer(500);
             timer.Elapsed += Timer_Elapsed;
             infos = new List<DataInfo>();
-            msgs = new List<string>();
+            msgs = new List<PackageMessage>();
             timer.Start();
         }
 
@@ -44,10 +56,14 @@ namespace cma.service.PowerPole
             }
             if(msgs.Count >0)
             {
-                List<string> msg1 = msgs;
-                msgs = new List<string>();
-                if (DisPacket.OnNewPacketS != null)
-                    OnNewPacketS(msg1);
+                List<PackageMessage> msg1 = null;
+                lock (obj_message)
+                {
+                    msg1 = msgs;
+                    msgs = new List<PackageMessage>();
+                }
+                if (OnNewPakageMessage != null)
+                    OnNewPakageMessage(null,new PackageMessageEventArgs(msg1));
             }
         }
 
@@ -61,20 +77,38 @@ namespace cma.service.PowerPole
             infos.Add(packet);
 
         }
+
+        public static void NewPackageMessage(PackageMessage msg)
+        {
+            if (msg == null)
+                return;
+            TimerStart();
+            lock(obj_message)
+                msgs.Add(msg);
+
+            if (msg.pole == null)
+                return;
+            try
+            {
+                db_package_message db_msg = new db_package_message(msg.pole);
+                db_msg.DataSave(msg);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("PackageMessage save failed. " + e.ToString());
+            }
+        }
+
         /// <summary>
         /// 新报文显示
         /// </summary>
         /// <param name="data"></param>
         public static void NewPacket(string data)
         {
-            //TimerStart();
-            //msgs.Add(data);
-            //if (DisPacket.OnNewPacket != null)
-            //    OnNewPacket(data);
-            List<string> msg1 = new List<string>();
-            msg1.Add(data);
-            if (DisPacket.OnNewPacketS != null)
-                OnNewPacketS(msg1);
+            NewPackageMessage(new PackageMessage()
+            {
+                Description = data
+            });
         }
 
         /// <summary>
@@ -89,7 +123,7 @@ namespace cma.service.PowerPole
         public static void NewPackageMessage(IPowerPole pole, RSType rstype, SrcType srctype, 
             string src_name, int flag, byte[] data)
         {
-            PackageMessage msg = new PackageMessage()
+            NewPackageMessage(new PackageMessage()
             {
                 pole = pole,
                 rstype = rstype,
@@ -97,10 +131,7 @@ namespace cma.service.PowerPole
                 src_id = src_name,
                 code = flag,
                 data = data,
-            };
-            db_package_message db_msg= new db_package_message(pole);
-            db_msg.DataSave(msg);
-            NewPacket(msg.ToString());
+            });
         }
 
         public static void Init()

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using cma.service.PowerPole;
+using ResModel.PowerPole;
 
 namespace GridBackGround
 {
@@ -33,25 +34,30 @@ namespace GridBackGround
             //PacketAnaLysis.DisPacket.OnNewPacketS += new PacketAnaLysis.NewPacketS(UserListsChanged);
         }
 
-        private void UserListsChanged(List<string> msgs)
+        private void DisPacket_OnNewPakageMessage(object sender, PackageMessageEventArgs e)
         {
-            if(this.InvokeRequired)
+            if (this.InvokeRequired)
             {
-                this.Invoke(new NewPacketS(this.UserListsChanged), new object[] { msgs });
+                this.Invoke(new EventHandler<PackageMessageEventArgs>(this.DisPacket_OnNewPakageMessage), 
+                    new object[] { sender, e});
             }
             else
             {
-                if (msgs == null)
+                if (e.Msgs == null || e.Msgs.Count == 0)
                     return;
-                foreach(string msg in msgs)
+                foreach (PackageMessage msg in e.Msgs)
                 {
-                    listViewPackageAdd(msg);
+                    listViewPackageAdd(msg.ToString());
                 }
                 while (listBox_Packet.Items.Count > PacketDisNum)
                 {
                     listBox_Packet.Items.RemoveAt(0);
                 }
             }
+        }
+
+        private void OnNewPackageMessage(List<PackageMessage> msgs)
+        {
         }
         #endregion
 
@@ -132,9 +138,10 @@ namespace GridBackGround
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if(this.checkBox1.Checked)
-                DisPacket.OnNewPacketS += new NewPacketS(UserListsChanged);
+                DisPacket.OnNewPakageMessage += DisPacket_OnNewPakageMessage;
             else
-                DisPacket.OnNewPacketS -= new NewPacketS(UserListsChanged);
+                DisPacket.OnNewPakageMessage -= DisPacket_OnNewPakageMessage;
         }
+
     }
 }
