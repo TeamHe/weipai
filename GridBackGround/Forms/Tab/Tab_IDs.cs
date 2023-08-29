@@ -382,16 +382,20 @@ namespace GridBackGround.Forms.Tab
         #endregion
 
         public event EventHandler<CMDid_Change> CMD_ID_Change;
-        
-       /// <summary>
-       /// 节点选择变化事件
-       /// </summary>
-       /// <param name="sender"></param>
-       /// <param name="e"></param>
+
+        public void SelectedEquChange(CMDid_Change change)
+        {
+            if(this.CMD_ID_Change != null)
+                this.CMD_ID_Change(this, change);
+        }
+
+        /// <summary>
+        /// 节点选择变化事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            EventHandler<CMDid_Change> handler = CMD_ID_Change;
-            if (handler == null) return;
             if (e.Node.Level == 2)
             {
                 TreeNode nodeEqu = e.Node;
@@ -401,10 +405,14 @@ namespace GridBackGround.Forms.Tab
                 var tower = (Tower)nodeTower.Tag;
                 var line = (Line)nodeLine.Tag;
                 this.textBox1.Text = equ.EquID;
-                handler(this, new CMDid_Change(equ.EquID, string.Format("{0}->{1}->{2}",line.Name,tower.TowerName,equ.Name)));
+                
+                this.SelectedEquChange(new CMDid_Change(equ.EquID, string.Format("{0}->{1}->{2}", line.Name, tower.TowerName, equ.Name))
+                {
+                    equ = equ,
+                });
             }
             else
-                handler(this, new CMDid_Change(null));
+                this.SelectedEquChange(new CMDid_Change(null));
         }
 
         /// <summary>

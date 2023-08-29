@@ -41,6 +41,7 @@
             this.删除当前节点toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.修改当前节点ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox_display_all = new System.Windows.Forms.CheckBox();
             this.panelGPRS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerGPRS)).BeginInit();
             this.splitContainerGPRS.Panel1.SuspendLayout();
@@ -67,6 +68,7 @@
             // 
             // splitContainerGPRS.Panel1
             // 
+            this.splitContainerGPRS.Panel1.Controls.Add(this.checkBox_display_all);
             this.splitContainerGPRS.Panel1.Controls.Add(this.checkBox1);
             this.splitContainerGPRS.Panel1.Controls.Add(this.listBox_Packet);
             // 
@@ -165,6 +167,16 @@
             this.修改当前节点ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.修改当前节点ToolStripMenuItem.Text = "修改当前节点";
             // 
+            // checkBox_display_all
+            // 
+            this.checkBox_display_all.AutoSize = true;
+            this.checkBox_display_all.Location = new System.Drawing.Point(91, 14);
+            this.checkBox_display_all.Name = "checkBox_display_all";
+            this.checkBox_display_all.Size = new System.Drawing.Size(72, 16);
+            this.checkBox_display_all.TabIndex = 2;
+            this.checkBox_display_all.Text = "显示所有";
+            this.checkBox_display_all.UseVisualStyleBackColor = true;
+            // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
@@ -211,5 +223,6 @@
         private System.Windows.Forms.ToolStripMenuItem 删除当前节点toolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 修改当前节点ToolStripMenuItem;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox_display_all;
     }
 }

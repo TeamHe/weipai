@@ -18,6 +18,8 @@ namespace GridBackGround
 
         private HTTP.HttpListeners httpListeners = null;
 
+        public event EventHandler<CMDid_Change> OnSelectedEquChanged;
+
         public MainForm()
         {
             LogHelper.WriteLog("System Start");
@@ -116,6 +118,15 @@ namespace GridBackGround
             {
                 this.toolStripStatusLabel_ID.Text = "当前没有选中设备";
             }
+            try
+            {
+                if (OnSelectedEquChanged != null)
+                    OnSelectedEquChanged(this, e);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Selected equ changed error." + ex.Message);
+            }
         }
 
         #region 初始化函数
@@ -158,6 +169,7 @@ namespace GridBackGround
             if (true)
             {
                 TabPacket = new Tab_Packet();
+                TabPacket.MainForm = this;
                 this.tabPageGPRS.Controls.Add(TabPacket);
                 TabPacket.Dock = DockStyle.Fill;
                 this.tabControl1.SelectedTab = tabControl1.TabPages[0];

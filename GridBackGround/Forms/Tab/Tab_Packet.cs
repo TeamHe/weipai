@@ -8,6 +8,19 @@ namespace GridBackGround
 {
     public partial class Tab_Packet : Form
     {
+        private string CMD_ID { get; set; }
+
+        private MainForm mainForm;
+
+        public MainForm MainForm { get { return this.mainForm; }
+            set {
+                if (mainForm != null)
+                    mainForm.OnSelectedEquChanged -= Main_OnSelectedEquChanged;
+                this.mainForm = value;
+                if(mainForm != null)
+                    mainForm.OnSelectedEquChanged += Main_OnSelectedEquChanged;
+            }
+        }
         ////装置ID
         //private string CMD_ID = null;
         /// <summary>
@@ -28,10 +41,19 @@ namespace GridBackGround
         }
 
         private void Tab_Packet_Load(object sender, EventArgs e)
-        {          
-            //新报文显示
-            //PacketAnaLysis.DisPacket.OnNewPacket += new PacketAnaLysis.NewPacket(UserListChanged);
-            //PacketAnaLysis.DisPacket.OnNewPacketS += new PacketAnaLysis.NewPacketS(UserListsChanged);
+        {
+        }
+
+        /// <summary>
+        /// 当前选中的设备变化事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Main_OnSelectedEquChanged(object sender, CMDid_Change e)
+        {
+            if (e == null || e.CMD_ID == null)
+                return;
+            this.CMD_ID = e.CMD_ID;
         }
 
         private void DisPacket_OnNewPakageMessage(object sender, PackageMessageEventArgs e)
@@ -47,6 +69,13 @@ namespace GridBackGround
                     return;
                 foreach (PackageMessage msg in e.Msgs)
                 {
+                    if(this.checkBox_display_all.Checked)
+                    {
+                        listViewPackageAdd(msg.ToString());
+                        continue;
+                    }
+                    if (msg.pole == null || msg.pole.CMD_ID != this.CMD_ID)
+                        continue;
                     listViewPackageAdd(msg.ToString());
                 }
                 while (listBox_Packet.Items.Count > PacketDisNum)

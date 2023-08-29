@@ -1,4 +1,5 @@
 ﻿using ResModel;
+using ResModel.EQU;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -266,5 +267,7 @@ namespace GridBackGround
         public string CMD_ID { get; set; }
 
         public string CMD_NAME { get; set; }
+
+        public Equ equ { get; set; }
     }
 }
