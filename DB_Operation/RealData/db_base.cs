@@ -12,7 +12,7 @@ namespace DB_Operation.RealData
 {
     public abstract class db_base
     {
-        private ISQLUtils Connection = DB.Connection;
+        protected ISQLUtils Connection = DB.Connection;
         protected abstract string Table_Name { get; }
 
         public IPowerPole Pole { get; set; }

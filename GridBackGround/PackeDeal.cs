@@ -6,6 +6,7 @@ using Sodao.FastSocket.Server;
 using GridBackGround.Communicat;
 using GridBackGround.Termination;
 using ResModel;
+using ResModel.PowerPole;
 using cma.service.gw_cmd;
 using cma.service.PowerPole;
 
@@ -125,9 +126,8 @@ namespace GridBackGround
                 {
                     powerPole.udpSession.SendAsync(data);
                     OnSend = true;
-                    System.Threading.Thread.Sleep(5);
-                    disData += Tools.StringTurn.ByteToHexString(data); ;
-                    DisPacket.NewPacket(disData);                      //显示报文
+                    DisPacket.NewPackageMessage(powerPole, RSType.Send, SrcType.NW_UDP,
+                        powerPole.IP!=null? powerPole.IP.ToString():"unknown", 0, data);
                     return true;
                 }
                 catch
@@ -141,8 +141,8 @@ namespace GridBackGround
                 try
                 {
                     powerPole.Connection.BeginSend(new Packet(data));
-                    disData += Tools.StringTurn.ByteToHexString(data); ;
-                    DisPacket.NewPacket(disData);                      //显示报文
+                    DisPacket.NewPackageMessage(powerPole, RSType.Send, SrcType.GW_TCP,
+                        powerPole.IP != null ? powerPole.IP.ToString() : "unknown", 0, data);
                     return true;
                 }
                 catch
@@ -183,55 +183,6 @@ namespace GridBackGround
          {
              OnSend = false;
          }
-        #endregion
-       
-        #region   接收数据处理
-        /// <summary>
-        /// 接收到UDP数据
-        /// </summary>
-        /// <param name="session"></param>
-        /// <param name="cmdInfo"></param>
-        /// <returns></returns>
-        public static bool RecData(UdpSession session, CommandInfo cmdInfo)
-        {
-            if(cmdInfo.CMD_ID.Length == 17)
-               Termination.PowerPoleManage.PowerPole(cmdInfo.CMD_ID, session);
-            RecDataDeal(cmdInfo,Communicat.EConnectType.UDP);
-            return false;
-        }
-        /// <summary>
-        /// 接收到TCP数据
-        /// </summary>
-        /// <param name="connection"></param>
-        /// <param name="cmdInfo"></param>
-        /// <returns></returns>
-        public static bool RecData(IConnection connection, CommandInfo cmdInfo)
-        {
-            if (cmdInfo.CMD_ID.Length == 17)
-                PowerPoleManage.PowerPole(cmdInfo.CMD_ID, connection);
-            RecDataDeal(cmdInfo, EConnectType.TCP);
-            return false;
-        }
-        /// <summary>
-        /// 对接收到的数据进行处理
-        /// </summary>
-        /// <param name="cmdInfo"></param>
-        /// <param name="conType"></param>
-        /// <returns></returns>
-        public static bool RecDataDeal(CommandInfo cmdInfo, EConnectType conType)
-        {
-            string data = "接收:　" + "错误代码：" + cmdInfo.ErrorCode.ToString() + "  数据：";
-            int errorcode = cmdInfo.ErrorCode;
-            data += Tools.StringTurn.ByteToHexString(cmdInfo.Data);
-            DisPacket.NewPacket(data);                      //显示报文
-            if ((cmdInfo.ErrorCode == 0) || (cmdInfo.ErrorCode == 3))
-            {
-                //PacketAnaLysis.PackDivid_FrameType.PackDivid(cmdInfo, ref errorcode);
-            }
-            //if (cmdInfo.Code == 3)
-                //PacketAnaLysis.PackDivid_FrameType.PackDivid(cmdInfo, ref errorcode);
-            return false;
-        }
         #endregion
 
         #region   接收数据处理V2
@@ -276,11 +227,9 @@ namespace GridBackGround
         /// <returns></returns>
         public static bool RecDataDeal(CommandInfo_gw cmdInfo, EConnectType conType,IPowerPole pole)
         {
-
             int errorcode = cmdInfo.ErrorCode;
-            string data = "接收:　" + "错误代码：" + cmdInfo.ErrorCode.ToString() + "  数据：";
-            data += Tools.StringTurn.ByteToHexString(cmdInfo.Packet);
-            DisPacket.NewPacket(data);
+            DisPacket.NewPackageMessage(pole, RSType.Send, SrcType.NW_UDP,
+                pole.IP != null ? pole.IP.ToString() : "unknown", errorcode, cmdInfo.Packet);
             //显示报文
             if ((cmdInfo.ErrorCode == 0))// || (cmdInfo.Code == 3))
             {
@@ -314,10 +263,9 @@ namespace GridBackGround
         /// <returns></returns>
         public static bool RecDataDeal(CommandInfo_nw cmdInfo, EConnectType conType, IPowerPole pole)
         {
+            DisPacket.NewPackageMessage(pole, RSType.Recv, SrcType.NW_UDP,
+                   pole.IP != null ? pole.IP.ToString() : "unknown", 0, cmdInfo.Pakcet);
 
-            string data = "接收:　" + "错误代码：" + cmdInfo.ErrorCode.ToString() + "  数据：";
-            data += Tools.StringTurn.ByteToHexString(cmdInfo.Pakcet);
-            DisPacket.NewPacket(data);
             CommandDeal.nw.nw_cmd_handle.Deal(pole, cmdInfo);
             cmdInfo = null;
             return false;

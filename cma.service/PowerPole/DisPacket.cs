@@ -1,21 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Timers;
+using DB_Operation.RealData;
+using ResModel;
 using ResModel.nw;
 using ResModel.PowerPole;
 
 namespace cma.service.PowerPole
 {
-    public delegate void NewRecord(DataInfo packet);
-    public delegate void NewPacket(string msg);
-
     public delegate void NewRecordS(List<DataInfo> packets);
     public delegate void NewPacketS(List<string> msgs);
 
     public class DisPacket
     {
-        //public static event NewRecord OnNewRecord;
-        //public static event NewPacket OnNewPacket;
-
         public static event NewRecordS OnNewRecordS;
         public static event NewPacketS OnNewPacketS;
 
@@ -79,6 +75,32 @@ namespace cma.service.PowerPole
             msg1.Add(data);
             if (DisPacket.OnNewPacketS != null)
                 OnNewPacketS(msg1);
+        }
+
+        /// <summary>
+        /// 数据包收发静态处理函数
+        /// </summary>
+        /// <param name="pole"></param>
+        /// <param name="rstype"></param>
+        /// <param name="srctype"></param>
+        /// <param name="src_name"></param>
+        /// <param name="flag"></param>
+        /// <param name="data"></param>
+        public static void NewPackageMessage(IPowerPole pole, RSType rstype, SrcType srctype, 
+            string src_name, int flag, byte[] data)
+        {
+            PackageMessage msg = new PackageMessage()
+            {
+                pole = pole,
+                rstype = rstype,
+                srctype = srctype,
+                src_id = src_name,
+                code = flag,
+                data = data,
+            };
+            db_package_message db_msg= new db_package_message(pole);
+            db_msg.DataSave(msg);
+            NewPacket(msg.ToString());
         }
 
         public static void Init()
