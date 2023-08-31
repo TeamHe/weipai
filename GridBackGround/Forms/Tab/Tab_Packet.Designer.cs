@@ -31,6 +31,17 @@
             this.components = new System.ComponentModel.Container();
             this.panelGPRS = new System.Windows.Forms.Panel();
             this.splitContainerGPRS = new System.Windows.Forms.SplitContainer();
+            this.label_curdev = new System.Windows.Forms.Label();
+            this.button_save = new System.Windows.Forms.Button();
+            this.button_his_day = new System.Windows.Forms.Button();
+            this.button_his_hour = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dateTimePicker_end = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dateTimePicker_start = new System.Windows.Forms.DateTimePicker();
+            this.button_his_custom = new System.Windows.Forms.Button();
+            this.checkBox_all = new System.Windows.Forms.CheckBox();
+            this.checkBox_real = new System.Windows.Forms.CheckBox();
             this.listBox_Packet = new System.Windows.Forms.ListBox();
             this.buttonSendData = new System.Windows.Forms.Button();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
@@ -40,8 +51,6 @@
             this.添加节点ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.删除当前节点toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.修改当前节点ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox_display_all = new System.Windows.Forms.CheckBox();
             this.panelGPRS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerGPRS)).BeginInit();
             this.splitContainerGPRS.Panel1.SuspendLayout();
@@ -68,8 +77,17 @@
             // 
             // splitContainerGPRS.Panel1
             // 
-            this.splitContainerGPRS.Panel1.Controls.Add(this.checkBox_display_all);
-            this.splitContainerGPRS.Panel1.Controls.Add(this.checkBox1);
+            this.splitContainerGPRS.Panel1.Controls.Add(this.label_curdev);
+            this.splitContainerGPRS.Panel1.Controls.Add(this.button_save);
+            this.splitContainerGPRS.Panel1.Controls.Add(this.button_his_day);
+            this.splitContainerGPRS.Panel1.Controls.Add(this.button_his_hour);
+            this.splitContainerGPRS.Panel1.Controls.Add(this.label2);
+            this.splitContainerGPRS.Panel1.Controls.Add(this.dateTimePicker_end);
+            this.splitContainerGPRS.Panel1.Controls.Add(this.label1);
+            this.splitContainerGPRS.Panel1.Controls.Add(this.dateTimePicker_start);
+            this.splitContainerGPRS.Panel1.Controls.Add(this.button_his_custom);
+            this.splitContainerGPRS.Panel1.Controls.Add(this.checkBox_all);
+            this.splitContainerGPRS.Panel1.Controls.Add(this.checkBox_real);
             this.splitContainerGPRS.Panel1.Controls.Add(this.listBox_Packet);
             // 
             // splitContainerGPRS.Panel2
@@ -82,6 +100,114 @@
             this.splitContainerGPRS.SplitterDistance = 405;
             this.splitContainerGPRS.TabIndex = 0;
             // 
+            // label_curdev
+            // 
+            this.label_curdev.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_curdev.Location = new System.Drawing.Point(485, 8);
+            this.label_curdev.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_curdev.Name = "label_curdev";
+            this.label_curdev.Size = new System.Drawing.Size(370, 19);
+            this.label_curdev.TabIndex = 16;
+            this.label_curdev.Text = "选中设备";
+            this.label_curdev.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // button_save
+            // 
+            this.button_save.Location = new System.Drawing.Point(485, 30);
+            this.button_save.Name = "button_save";
+            this.button_save.Size = new System.Drawing.Size(81, 23);
+            this.button_save.TabIndex = 10;
+            this.button_save.Text = "保存到文件";
+            this.button_save.UseVisualStyleBackColor = true;
+            this.button_save.Click += new System.EventHandler(this.button_save_Click);
+            // 
+            // button_his_day
+            // 
+            this.button_his_day.Location = new System.Drawing.Point(372, 31);
+            this.button_his_day.Name = "button_his_day";
+            this.button_his_day.Size = new System.Drawing.Size(107, 23);
+            this.button_his_day.TabIndex = 9;
+            this.button_his_day.Text = "最近一天记录";
+            this.button_his_day.UseVisualStyleBackColor = true;
+            this.button_his_day.Click += new System.EventHandler(this.button_his_day_Click);
+            // 
+            // button_his_hour
+            // 
+            this.button_his_hour.Location = new System.Drawing.Point(372, 6);
+            this.button_his_hour.Name = "button_his_hour";
+            this.button_his_hour.Size = new System.Drawing.Size(107, 23);
+            this.button_his_hour.TabIndex = 8;
+            this.button_his_hour.Text = "最近一小时记录";
+            this.button_his_hour.UseVisualStyleBackColor = true;
+            this.button_his_hour.Click += new System.EventHandler(this.button_his_hour_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(84, 37);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "结束时间";
+            // 
+            // dateTimePicker_end
+            // 
+            this.dateTimePicker_end.CustomFormat = " yyyy-MM-dd HH:mm";
+            this.dateTimePicker_end.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker_end.Location = new System.Drawing.Point(141, 32);
+            this.dateTimePicker_end.Name = "dateTimePicker_end";
+            this.dateTimePicker_end.Size = new System.Drawing.Size(141, 21);
+            this.dateTimePicker_end.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(84, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 12);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "开始时间";
+            // 
+            // dateTimePicker_start
+            // 
+            this.dateTimePicker_start.CustomFormat = " yyyy-MM-dd HH:mm";
+            this.dateTimePicker_start.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker_start.Location = new System.Drawing.Point(141, 5);
+            this.dateTimePicker_start.Name = "dateTimePicker_start";
+            this.dateTimePicker_start.Size = new System.Drawing.Size(141, 21);
+            this.dateTimePicker_start.TabIndex = 4;
+            // 
+            // button_his_custom
+            // 
+            this.button_his_custom.Location = new System.Drawing.Point(288, 33);
+            this.button_his_custom.Name = "button_his_custom";
+            this.button_his_custom.Size = new System.Drawing.Size(75, 23);
+            this.button_his_custom.TabIndex = 3;
+            this.button_his_custom.Text = "查询";
+            this.button_his_custom.UseVisualStyleBackColor = true;
+            this.button_his_custom.Click += new System.EventHandler(this.buttonHistoryCustom_Click);
+            // 
+            // checkBox_all
+            // 
+            this.checkBox_all.AutoSize = true;
+            this.checkBox_all.Location = new System.Drawing.Point(13, 35);
+            this.checkBox_all.Name = "checkBox_all";
+            this.checkBox_all.Size = new System.Drawing.Size(72, 16);
+            this.checkBox_all.TabIndex = 2;
+            this.checkBox_all.Text = "显示所有";
+            this.checkBox_all.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_real
+            // 
+            this.checkBox_real.AutoSize = true;
+            this.checkBox_real.Location = new System.Drawing.Point(12, 6);
+            this.checkBox_real.Name = "checkBox_real";
+            this.checkBox_real.Size = new System.Drawing.Size(72, 16);
+            this.checkBox_real.TabIndex = 1;
+            this.checkBox_real.Text = "实时报文";
+            this.checkBox_real.UseVisualStyleBackColor = true;
+            this.checkBox_real.CheckedChanged += new System.EventHandler(this.checkBox_real_CheckedChanged);
+            // 
             // listBox_Packet
             // 
             this.listBox_Packet.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -90,9 +216,9 @@
             this.listBox_Packet.FormattingEnabled = true;
             this.listBox_Packet.HorizontalScrollbar = true;
             this.listBox_Packet.ItemHeight = 12;
-            this.listBox_Packet.Location = new System.Drawing.Point(0, 36);
+            this.listBox_Packet.Location = new System.Drawing.Point(0, 60);
             this.listBox_Packet.Name = "listBox_Packet";
-            this.listBox_Packet.Size = new System.Drawing.Size(863, 364);
+            this.listBox_Packet.Size = new System.Drawing.Size(863, 340);
             this.listBox_Packet.TabIndex = 0;
             this.listBox_Packet.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
             // 
@@ -167,27 +293,6 @@
             this.修改当前节点ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.修改当前节点ToolStripMenuItem.Text = "修改当前节点";
             // 
-            // checkBox_display_all
-            // 
-            this.checkBox_display_all.AutoSize = true;
-            this.checkBox_display_all.Location = new System.Drawing.Point(91, 14);
-            this.checkBox_display_all.Name = "checkBox_display_all";
-            this.checkBox_display_all.Size = new System.Drawing.Size(72, 16);
-            this.checkBox_display_all.TabIndex = 2;
-            this.checkBox_display_all.Text = "显示所有";
-            this.checkBox_display_all.UseVisualStyleBackColor = true;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(13, 13);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(72, 16);
-            this.checkBox1.TabIndex = 1;
-            this.checkBox1.Text = "显示报文";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
             // Tab_Packet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -222,7 +327,16 @@
         private System.Windows.Forms.ToolStripMenuItem 添加节点ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 删除当前节点toolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 修改当前节点ToolStripMenuItem;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox_display_all;
+        private System.Windows.Forms.CheckBox checkBox_real;
+        private System.Windows.Forms.CheckBox checkBox_all;
+        private System.Windows.Forms.Button button_his_custom;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_start;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_end;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button_his_day;
+        private System.Windows.Forms.Button button_his_hour;
+        private System.Windows.Forms.Button button_save;
+        private System.Windows.Forms.Label label_curdev;
     }
 }
