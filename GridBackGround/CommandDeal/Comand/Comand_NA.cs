@@ -116,8 +116,8 @@ namespace GridBackGround.CommandDeal
 
             //显示发送的数据
             DisPacket.NewRecord(
-                new DataInfo(
-                    DataInfoState.rec,
+                new PackageRecord(
+                    PackageRecord_RSType.rec,
                     Termination.PowerPoleManage.Find(cmd_id),
                     "网络适配器",
                     pacMsg));
@@ -160,8 +160,8 @@ namespace GridBackGround.CommandDeal
             PhoneNumber = Encoding.Default.GetString(data, 3 + 4 + 4 + 4, 20);
             pacMsg += "手机串号：" + PhoneNumber + " ";
             DisPacket.NewRecord(
-                new DataInfo(
-                    DataInfoState.rec,
+                new PackageRecord(
+                    PackageRecord_RSType.rec,
                     pole,
                     "网络适配器",
                     pacMsg));
@@ -259,8 +259,8 @@ namespace GridBackGround.CommandDeal
             {
                 //显示发送的数据
                 DisPacket.NewRecord(
-                    new DataInfo(
-                        DataInfoState.send,
+                    new PackageRecord(
+                        PackageRecord_RSType.send,
                          Termination.PowerPoleManage.Find(CMD_ID),
                         "网络适配器",
                         pacMsg));

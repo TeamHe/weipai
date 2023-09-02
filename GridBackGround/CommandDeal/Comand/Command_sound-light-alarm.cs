@@ -50,8 +50,8 @@ namespace GridBackGround.CommandDeal
             {
                 //显示发送的数据
                 DisPacket.NewRecord(
-                    new DataInfo(
-                        DataInfoState.send,
+                    new PackageRecord(
+                        PackageRecord_RSType.send,
                          Termination.PowerPoleManage.Find(cmd_id),
                         "播放设备端录音文件",
                         msg));
@@ -77,8 +77,8 @@ namespace GridBackGround.CommandDeal
                
             //显示发送的数据
             DisPacket.NewRecord(
-                new DataInfo(
-                    DataInfoState.rec,
+                new PackageRecord(
+                    PackageRecord_RSType.rec,
                     Termination.PowerPoleManage.Find(pole.CMD_ID),
                     "播放设备端录音文件",
                     pacMsg));

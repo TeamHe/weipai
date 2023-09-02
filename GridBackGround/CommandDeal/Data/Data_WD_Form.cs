@@ -124,8 +124,8 @@ namespace GridBackGround.CommandDeal
             List_WD[Forms_NO].Forms[Form_NO].Data = temp;
             //显示发送的数据
             DisPacket.NewRecord(
-                new DataInfo(
-                    DataInfoState.rec,
+                new PackageRecord(
+                    PackageRecord_RSType.rec,
                     pole,
                     "舞动波形数据",
                     pacMsg));

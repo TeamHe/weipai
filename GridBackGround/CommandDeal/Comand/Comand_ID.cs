@@ -48,8 +48,8 @@ namespace GridBackGround.CommandDeal
 
             //显示发送的数据
             DisPacket.NewRecord(
-                new DataInfo(
-                    DataInfoState.rec,
+                new PackageRecord(
+                    PackageRecord_RSType.rec,
                     Termination.PowerPoleManage.Find(cmd_id),
                     "状态监测装置ID",
                     pacMsg));
@@ -87,8 +87,8 @@ namespace GridBackGround.CommandDeal
             Original_ID = Encoding.Default.GetString(data, 3 + 17, 17);
             pacMsg += "原始ID：" +  Original_ID +" ";
             DisPacket.NewRecord(
-                new DataInfo(
-                    DataInfoState.rec,
+                new PackageRecord(
+                    PackageRecord_RSType.rec,
                     pole,
                     "状态监测装置ID",
                     pacMsg)); 
@@ -154,8 +154,8 @@ namespace GridBackGround.CommandDeal
             {
                 //显示发送的数据
                 DisPacket.NewRecord(
-                    new DataInfo(
-                        DataInfoState.send,
+                    new PackageRecord(
+                        PackageRecord_RSType.send,
                          Termination.PowerPoleManage.Find(CMD_ID),
                         "状态监测装置ID",
                         pacMsg));

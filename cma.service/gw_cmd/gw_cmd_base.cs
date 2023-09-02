@@ -117,7 +117,7 @@ namespace cma.service.gw_cmd
             {
                 msg = string.Format("指令发送{0}.{1}", "失败", ex.Message);
             }
-            NewDataInfo(this.Pole, new DataInfo(DataInfoState.send, this.Pole, this.Name, msg));
+            NewDataInfo(this.Pole, new PackageRecord(PackageRecord_RSType.send, this.Pole, this.Name, msg));
             return res;
         }
 
@@ -131,20 +131,20 @@ namespace cma.service.gw_cmd
             {
                 this.decode(this.Data,0,out string msg);
                 if (msg != null && msg.Length > 0)
-                    NewDataInfo(this.Pole, new DataInfo(DataInfoState.rec, this.Pole,
+                    NewDataInfo(this.Pole, new PackageRecord(PackageRecord_RSType.rec, this.Pole,
                         this.Name, msg));
             }
             catch (Exception ex)
             {
-                NewDataInfo(this.Pole, new DataInfo(DataInfoState.rec, this.Pole,
+                NewDataInfo(this.Pole, new PackageRecord(PackageRecord_RSType.rec, this.Pole,
                     this.Name, string.Format("数据解析处理失败:" + ex.Message)));
             }
             return true;
         }
 
-        public static event EventHandler<DataInfo> OnNewDataInfo;
+        public static event EventHandler<PackageRecord> OnNewDataInfo;
 
-        protected static void NewDataInfo(IPowerPole pole, DataInfo dataInfo)
+        protected static void NewDataInfo(IPowerPole pole, PackageRecord dataInfo)
         {
             //if (OnNewDataInfo != null)
             //{

@@ -102,8 +102,8 @@ namespace GridBackGround.CommandDeal
             pacMsg += "饱和度:" + ((int)data[StartNO++]).ToString() + " ";
 
             DisPacket.NewRecord(
-                new DataInfo(
-                    DataInfoState.rec,
+                new PackageRecord(
+                    PackageRecord_RSType.rec,
                     pole,
                     "图像采集参数",
                     pacMsg)); 
@@ -193,8 +193,8 @@ namespace GridBackGround.CommandDeal
             {
                 //显示发送的数据
                 DisPacket.NewRecord(
-                    new DataInfo(
-                        DataInfoState.send,
+                    new PackageRecord(
+                        PackageRecord_RSType.send,
                          Termination.PowerPoleManage.Find(CMD_ID),
                         "图像采集参数",
                         pacMsg));

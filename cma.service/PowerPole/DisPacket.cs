@@ -8,7 +8,7 @@ using ResModel.PowerPole;
 
 namespace cma.service.PowerPole
 {
-    public delegate void NewRecordS(List<DataInfo> packets);
+    public delegate void NewRecordS(List<PackageRecord> packets);
 
     public class PackageMessageEventArgs:EventArgs
     {
@@ -31,7 +31,7 @@ namespace cma.service.PowerPole
 
         private static Timer timer { get; set; }
 
-        private static List<DataInfo> infos { get; set; }
+        private static List<PackageRecord> infos { get; set; }
         private static List<PackageMessage> msgs { get; set; }
 
         private static void TimerStart()
@@ -40,7 +40,7 @@ namespace cma.service.PowerPole
                 return;
             timer = new Timer(500);
             timer.Elapsed += Timer_Elapsed;
-            infos = new List<DataInfo>();
+            infos = new List<PackageRecord>();
             msgs = new List<PackageMessage>();
             timer.Start();
         }
@@ -49,8 +49,8 @@ namespace cma.service.PowerPole
         {
             if (infos.Count > 0)
             {
-                List<DataInfo> info1 = infos;
-                infos = new List<DataInfo>();
+                List<PackageRecord> info1 = infos;
+                infos = new List<PackageRecord>();
                 if (DisPacket.OnNewRecordS != null)
                     OnNewRecordS(info1);
             }
@@ -71,7 +71,7 @@ namespace cma.service.PowerPole
         /// 新解析数据显示
         /// </summary>
         /// <param name="packet"></param>
-        public static void NewRecord(DataInfo packet)
+        public static void NewRecord(PackageRecord packet)
         {
             TimerStart();
             infos.Add(packet);
@@ -139,7 +139,7 @@ namespace cma.service.PowerPole
             nw_cmd_base.OnNewDataInfo += Nw_cmd_base_NewDataInfo;
         }
 
-        private static void Nw_cmd_base_NewDataInfo(object sender, DataInfo e)
+        private static void Nw_cmd_base_NewDataInfo(object sender, PackageRecord e)
         {
             NewRecord(e);
         }

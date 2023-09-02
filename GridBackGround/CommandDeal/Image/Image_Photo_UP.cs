@@ -134,8 +134,8 @@ namespace GridBackGround.CommandDeal
                   pacMsg += "数据异常："+ex.Message;
             }
             DisPacket.NewRecord(
-                   new DataInfo(
-                       DataInfoState.rec,
+                   new PackageRecord(
+                       PackageRecord_RSType.rec,
                        pole,
                        "装置请求上送照片",
                        pacMsg));
@@ -190,8 +190,8 @@ namespace GridBackGround.CommandDeal
                 pacMsg += "添加数据失败："+ ex.Message;
                 //触发图片解析事件
                 DisPacket.NewRecord(
-                      new DataInfo(
-                          DataInfoState.rec,
+                      new PackageRecord(
+                          PackageRecord_RSType.rec,
                           pole,
                           "远程图像数据",
                           pacMsg));
@@ -233,8 +233,8 @@ namespace GridBackGround.CommandDeal
             {   //没有图片缓存,或正在上传图片不处理
                 pacMsg += " 没有图片缓存，或正在上传图片，不响应";
                 DisPacket.NewRecord(
-                   new DataInfo(
-                       DataInfoState.rec,
+                   new PackageRecord(
+                       PackageRecord_RSType.rec,
                        pole,
                        "远程图像数据上送结束标记",
                        pacMsg));
@@ -243,8 +243,8 @@ namespace GridBackGround.CommandDeal
             pic.Maintime = time;
 
             DisPacket.NewRecord(
-              new DataInfo(
-                  DataInfoState.rec,
+              new PackageRecord(
+                  PackageRecord_RSType.rec,
                   pole,
                   "远程图像数据上送结束标记",
                   pacMsg));
@@ -294,8 +294,8 @@ namespace GridBackGround.CommandDeal
             catch (Exception ex)
             {
                 DisPacket.NewRecord(
-                new DataInfo(
-                    DataInfoState.rec,
+                new PackageRecord(
+                    PackageRecord_RSType.rec,
                     pole,
                     "图片合成上传异常：",
                     ex.Message));
@@ -403,8 +403,8 @@ namespace GridBackGround.CommandDeal
             }
             //显示请求上传报文
             DisPacket.NewRecord(
-                new DataInfo(
-                    DataInfoState.rec,
+                new PackageRecord(
+                    PackageRecord_RSType.rec,
                     pole,
                     "补包数据下发",
                     pacMsg));
@@ -438,8 +438,8 @@ namespace GridBackGround.CommandDeal
                 state = false;
             } 
             DisPacket.NewRecord(                         //输出保存信息
-                    new DataInfo(
-                        DataInfoState.none,
+                    new PackageRecord(
+                        PackageRecord_RSType.none,
                         pole,
                         "照片合成",
                         saveMsg));
@@ -515,8 +515,8 @@ namespace GridBackGround.CommandDeal
 
 
             DisPacket.NewRecord(                         //输出保存信息
-                    new DataInfo(
-                        DataInfoState.none,
+                    new PackageRecord(
+                        PackageRecord_RSType.none,
                         pole,
                         "图片上传",
                         saveMsg));

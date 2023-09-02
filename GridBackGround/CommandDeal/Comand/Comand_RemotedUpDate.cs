@@ -130,8 +130,8 @@ namespace GridBackGround.CommandDeal
 
             BuildStartUpdateData();
             DisPacket.NewRecord(
-                   new DataInfo(
-                       DataInfoState.send,
+                   new PackageRecord(
+                       PackageRecord_RSType.send,
                         Termination.PowerPoleManage.Find(CMD_ID),
                        "开始远程升级",
                        "开始远程升级"));
@@ -179,8 +179,8 @@ namespace GridBackGround.CommandDeal
 
             //显示解析结果
             DisPacket.NewRecord(
-                new DataInfo(
-                    DataInfoState.rec,
+                new PackageRecord(
+                    PackageRecord_RSType.rec,
                     pole,
                     "开始远程升级响应",
                     pacMsg));
@@ -213,8 +213,8 @@ namespace GridBackGround.CommandDeal
                 UpdateState = false;
                 //显示发送的数据
                 DisPacket.NewRecord(
-                    new DataInfo(
-                        DataInfoState.send,
+                    new PackageRecord(
+                        PackageRecord_RSType.send,
                          Termination.PowerPoleManage.Find(CMD_ID),
                         "远程升级补包数据上传",
                         pacMsg));
@@ -231,8 +231,8 @@ namespace GridBackGround.CommandDeal
                 BuBaoState = true;
                 //显示发送的数据
                 DisPacket.NewRecord(
-                    new DataInfo(
-                        DataInfoState.send,
+                    new PackageRecord(
+                        PackageRecord_RSType.send,
                          pole,
                         "远程升级补包数据上传",
                         pacMsg));
@@ -453,8 +453,8 @@ namespace GridBackGround.CommandDeal
             {
                 //显示发送的数据
                 DisPacket.NewRecord(
-                    new DataInfo(
-                        DataInfoState.send,
+                    new PackageRecord(
+                        PackageRecord_RSType.send,
                          Termination.PowerPoleManage.Find(CMD_ID),
                         "远程升级数据报",
                         pacMsg));

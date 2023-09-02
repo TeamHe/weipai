@@ -3,12 +3,12 @@ using System.ComponentModel;
 
 namespace ResModel.PowerPole
 {
-    public class DataInfo
+    public class PackageRecord
     {
         /// <summary>
         /// 收发状态
         /// </summary>
-        public DataInfoState state { get; set; }
+        public PackageRecord_RSType state { get; set; }
         /// <summary>
         /// 设备名称
         /// </summary>
@@ -33,8 +33,8 @@ namespace ResModel.PowerPole
        /// <param name="pole"></param>
        /// <param name="Command"></param>
        /// <param name="data"></param>
-        public DataInfo(
-                 DataInfoState state,
+        public PackageRecord(
+                 PackageRecord_RSType state,
                  IPowerPole pole,
                  string Command,
                  string data)
@@ -59,8 +59,8 @@ namespace ResModel.PowerPole
         /// <param name="equName"></param>
         /// <param name="Command"></param>
         /// <param name="data"></param>
-        public DataInfo(
-                 DataInfoState state,
+        public PackageRecord(
+                 PackageRecord_RSType state,
                  string equName,
                  string Command,
                  string data)
@@ -79,8 +79,8 @@ namespace ResModel.PowerPole
         /// <param name="cmdID"></param>
         /// <param name="Command"></param>
         /// <param name="data"></param>
-        public DataInfo(
-                 DataInfoState state,
+        public PackageRecord(
+                 PackageRecord_RSType state,
                  string equName,
                  string cmdID,
                  string Command,
@@ -100,7 +100,7 @@ namespace ResModel.PowerPole
     /// <summary>
     /// 监测数据报文类型
     /// </summary>
-    public enum DataInfoState
+    public enum PackageRecord_RSType
     {
         [Description("未知")]
         none = 0,

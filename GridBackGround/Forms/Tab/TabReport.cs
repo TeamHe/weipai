@@ -102,7 +102,7 @@ namespace GridBackGround
         /// 新的解析数据显示
         /// </summary>
         /// <param name = "packet" ></ param >
-        protected void DisNewPackedS(List<DataInfo> packets)
+        protected void DisNewPackedS(List<PackageRecord> packets)
         {
             if (this.InvokeRequired)
             {
@@ -112,7 +112,7 @@ namespace GridBackGround
             {
                 if (packets == null)
                     return;
-                foreach (DataInfo info in packets)
+                foreach (PackageRecord info in packets)
                 {
                     if(this.DispalyAll || info.EquName == this.cmdid)
                         dataGridViewAddRow(info);
@@ -168,7 +168,7 @@ namespace GridBackGround
         /// 显示新解析数据
         /// </summary>
         /// <param name="packet"></param>
-        public void dataGridViewAddRow(DataInfo packet)
+        public void dataGridViewAddRow(PackageRecord packet)
         {
 
             int index = this.dataGridViewReport.Rows.Add();
@@ -198,7 +198,7 @@ namespace GridBackGround
             }
             else
                 dataGridViewReport.Rows[index].Cells[3].Value = packet.AnalyResult;
-            dataGridViewReport.Rows[index].Cells[4].Value = (packet.state == DataInfoState.rec) ? "接收" : "发送";
+            dataGridViewReport.Rows[index].Cells[4].Value = (packet.state == PackageRecord_RSType.rec) ? "接收" : "发送";
             //dataGridViewReport.CurrentCell = dataGridViewReport.Rows[index].Cells[0];
             //dataGridViewReport.Rows[index].Selected = true;
 

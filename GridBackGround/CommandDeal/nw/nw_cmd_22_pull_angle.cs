@@ -47,7 +47,7 @@ namespace GridBackGround.CommandDeal.nw
             {
                 msg1 = "数据存储失败" + ex.Message;
             }
-            NewDataInfo(this.Pole, new DataInfo(DataInfoState.rec, this.Pole,
+            NewDataInfo(this.Pole, new PackageRecord(PackageRecord_RSType.rec, this.Pole,
                 this.Name, angle.ToString()+ msg1));
             return ret;
         }

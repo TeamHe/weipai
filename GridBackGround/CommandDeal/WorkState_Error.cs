@@ -34,8 +34,8 @@ namespace GridBackGround.CommandDeal
             psMsg = "故障描述：" + ErrorMsg;
 
             DisPacket.NewRecord(
-                   new DataInfo(
-                       DataInfoState.rec,
+                   new PackageRecord(
+                       PackageRecord_RSType.rec,
                        pole,
                        "装置故障",
                        psMsg));

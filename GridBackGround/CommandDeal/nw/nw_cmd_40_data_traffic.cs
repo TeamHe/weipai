@@ -37,7 +37,7 @@ namespace GridBackGround.CommandDeal.nw
             nw_data_40_traffic value = new nw_data_40_traffic() { DataTime = this.DataTime };
             int ret= value.Decode(this.Data, offset);
             //显示数据
-            NewDataInfo(this.Pole, new DataInfo(DataInfoState.rec, this.Pole,
+            NewDataInfo(this.Pole, new PackageRecord(PackageRecord_RSType.rec, this.Pole,
                 this.Name, value.ToString()));
             return ret;
         }

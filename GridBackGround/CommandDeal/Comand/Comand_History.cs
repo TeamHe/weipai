@@ -54,8 +54,8 @@ namespace GridBackGround.CommandDeal
                 pacMsg += "申请历史数据失败";
             //显示发送的数据
             DisPacket.NewRecord(
-                new DataInfo(
-                    DataInfoState.rec,
+                new PackageRecord(
+                    PackageRecord_RSType.rec,
                      Termination.PowerPoleManage.Find(CMD_ID),
                     "请求历史数据",
                     pacMsg));
@@ -78,8 +78,8 @@ namespace GridBackGround.CommandDeal
 
             //显示发送的数据
             DisPacket.NewRecord(
-                new DataInfo(
-                    DataInfoState.rec,
+                new PackageRecord(
+                    PackageRecord_RSType.rec,
                     Termination.PowerPoleManage.Find(cmd_id),
                     "请求装置历史数据",
                     pacMsg));
@@ -142,8 +142,8 @@ namespace GridBackGround.CommandDeal
             {
                 //显示发送的数据
                 DisPacket.NewRecord(
-                    new DataInfo(
-                        DataInfoState.send,
+                    new PackageRecord(
+                        PackageRecord_RSType.send,
                          Termination.PowerPoleManage.Find(CMD_ID),
                         "请求装置历史数据",
                         pacMsg));

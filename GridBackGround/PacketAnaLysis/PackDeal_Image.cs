@@ -53,8 +53,8 @@ namespace GridBackGround.PacketAnaLysis
             catch(Exception ex) 
             {
                 DisPacket.NewRecord(
-                   new DataInfo(
-                       DataInfoState.rec,
+                   new PackageRecord(
+                       PackageRecord_RSType.rec,
                        pole,
                        "远程图像数据",
                        "数据异常:" + ex.Message));

@@ -48,8 +48,8 @@ namespace GridBackGround.CommandDeal
                 pacMsg += "心跳周期:" + ((int)data[5]).ToString() + "分钟 ";
             //显示发送的数据
             DisPacket.NewRecord(
-                new DataInfo(
-                    DataInfoState.rec,
+                new PackageRecord(
+                    PackageRecord_RSType.rec,
                     Termination.PowerPoleManage.Find(cmd_id),
                     "采样周期",
                     pacMsg));
@@ -90,8 +90,8 @@ namespace GridBackGround.CommandDeal
             pacMsg += "心跳周期:" + ((int)data[6]).ToString()+ "分钟 ";
             //显示发送的数据
             DisPacket.NewRecord(
-                new DataInfo(
-                    DataInfoState.rec,
+                new PackageRecord(
+                    PackageRecord_RSType.rec,
                     pole,
                     "采样周期",
                     pacMsg));
@@ -148,8 +148,8 @@ namespace GridBackGround.CommandDeal
             {
                 //显示发送的数据
                 DisPacket.NewRecord(
-                    new DataInfo(
-                        DataInfoState.send,
+                    new PackageRecord(
+                        PackageRecord_RSType.send,
                          Termination.PowerPoleManage.Find(CMD_ID),
                         "采样周期",
                         pacMsg));

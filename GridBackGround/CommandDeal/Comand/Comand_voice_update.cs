@@ -123,8 +123,8 @@ namespace GridBackGround.CommandDeal
 
             pack_update_start();
             DisPacket.NewRecord(
-                   new DataInfo(
-                       DataInfoState.send,
+                   new PackageRecord(
+                       PackageRecord_RSType.send,
                         Termination.PowerPoleManage.Find(CMD_ID),
                        "扩展语音播放协议",
                        string.Format("语音文件开始更新，文件名:\"{2}\"，总共{0}字节，{1}包", file_length,PacketNum, fileName)));
@@ -155,8 +155,8 @@ namespace GridBackGround.CommandDeal
 
             //显示解析结果
             DisPacket.NewRecord(
-                new DataInfo(
-                    DataInfoState.rec,
+                new PackageRecord(
+                    PackageRecord_RSType.rec,
                     pole,
                     "扩展语音播放协议",
                     pacMsg));
@@ -185,8 +185,8 @@ namespace GridBackGround.CommandDeal
                 BuBaoState = true;
                 //显示发送的数据
                 DisPacket.NewRecord(
-                    new DataInfo(
-                        DataInfoState.send,
+                    new PackageRecord(
+                        PackageRecord_RSType.send,
                          pole,
                         "扩展语音播放协议",
                         pacMsg));
@@ -213,8 +213,8 @@ namespace GridBackGround.CommandDeal
 
             //显示发送的数据
             DisPacket.NewRecord(
-                new DataInfo(
-                    DataInfoState.send,
+                new PackageRecord(
+                    PackageRecord_RSType.send,
                      pole,
                     "扩展语音播放协议",
                     pacMsg));
@@ -232,8 +232,8 @@ namespace GridBackGround.CommandDeal
 
             //显示发送的数据
             DisPacket.NewRecord(
-                new DataInfo(
-                    DataInfoState.send,
+                new PackageRecord(
+                    PackageRecord_RSType.send,
                      pole,
                     "扩展语音播放协议",
                     msg));
@@ -412,8 +412,8 @@ namespace GridBackGround.CommandDeal
             {
                 //显示发送的数据
                 DisPacket.NewRecord(
-                    new DataInfo(
-                        DataInfoState.send,
+                    new PackageRecord(
+                        PackageRecord_RSType.send,
                          Termination.PowerPoleManage.Find(CMD_ID),
                         "扩展语音播放协议",
                         pacMsg));

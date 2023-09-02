@@ -100,8 +100,8 @@ namespace GridBackGround.CommandDeal
             }
             //显示发送的数据
             DisPacket.NewRecord(
-                new DataInfo(
-                    DataInfoState.rec,
+                new PackageRecord(
+                    PackageRecord_RSType.rec,
                     pole,
                     "覆冰数据报",
                     pacMsg));

@@ -70,8 +70,8 @@ namespace GridBackGround.CommandDeal.Private
             pacMsg += "  用户手机号码：" + phone;
             //显示数据响应解析结果
             DisPacket.NewRecord(
-                new DataInfo(
-                    DataInfoState.send,
+                new PackageRecord(
+                    PackageRecord_RSType.send,
                     pole,
                     "用户手机号",
                     pacMsg)); ;
@@ -126,8 +126,8 @@ namespace GridBackGround.CommandDeal.Private
             {
                 //显示发送的数据
                 DisPacket.NewRecord(
-                    new DataInfo(
-                        DataInfoState.send,
+                    new PackageRecord(
+                        PackageRecord_RSType.send,
                          Termination.PowerPoleManage.Find(CMD_ID),
                         "用户手机号",
                         pacMsg));

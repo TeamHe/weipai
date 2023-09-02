@@ -118,7 +118,7 @@ namespace cma.service.gw_cmd
         /// <param name="msg"></param>
         public static void LogInfo(IPowerPole pole, gw_cmd_base ctl, string msg)
         {
-            DisPacket.NewRecord(new DataInfo(DataInfoState.rec, pole,
+            DisPacket.NewRecord(new PackageRecord(PackageRecord_RSType.rec, pole,
                                 ctl != null ? ctl.Name : "未知协议", msg));
         }
 
@@ -155,7 +155,7 @@ namespace cma.service.gw_cmd
                 }
                 catch (Exception ex)
                 {
-                    DisPacket.NewRecord(new DataInfo(DataInfoState.rec, pole,
+                    DisPacket.NewRecord(new PackageRecord(PackageRecord_RSType.rec, pole,
                     handle.name, string.Format("数据解析处理失败:" + ex.Message)));
                 }
                 return true;    

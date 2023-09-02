@@ -85,8 +85,8 @@ namespace GridBackGround.CommandDeal
             psMsg += " 通信协议版本号：" + Protocol_Version;
 
             DisPacket.NewRecord(
-                   new DataInfo(
-                       DataInfoState.rec,
+                   new PackageRecord(
+                       PackageRecord_RSType.rec,
                        pole,
                        "心跳",
                        psMsg)); 

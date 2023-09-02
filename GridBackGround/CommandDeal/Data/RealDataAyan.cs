@@ -136,8 +136,8 @@ namespace GridBackGround.CommandDeal.Data
         private void DisAyanMsg()
         {
             DisPacket.NewRecord(
-                        new DataInfo(
-                            DataInfoState.rec,
+                        new PackageRecord(
+                            PackageRecord_RSType.rec,
                             this.Name,
                             this.ID,
                             Type.GetDescription() + "数据报",

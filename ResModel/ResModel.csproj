@@ -65,7 +65,7 @@
     <Compile Include="nw\nw_device_config.cs" />
     <Compile Include="nw\nw_img_para.cs" />
     <Compile Include="nw\nw_service.cs" />
-    <Compile Include="PowerPole\DataInfo.cs" />
+    <Compile Include="PowerPole\PackageRecord.cs" />
     <Compile Include="CollectData\CollectData.cs" />
     <Compile Include="DataBase\Table_Ice.cs" />
     <Compile Include="DataBase\Table_Inclination.cs" />
