@@ -8,8 +8,6 @@ using ResModel.PowerPole;
 
 namespace cma.service.PowerPole
 {
-    public delegate void NewRecordS(List<PackageRecord> packets);
-
     public class PackageMessageEventArgs:EventArgs
     {
         public List<PackageMessage> Msgs { get; set; }
@@ -20,12 +18,25 @@ namespace cma.service.PowerPole
         }
     }
 
+    public class PackageRecordsEventArgs : EventArgs
+    {
+        public List<PackageRecord> Infos { get; set; }
+
+        public PackageRecordsEventArgs(List<PackageRecord> infos)
+        {
+            this.Infos = infos;
+        }
+    }
+
     public class DisPacket
     {
-        public static event NewRecordS OnNewRecordS;
+        public static event EventHandler<PackageRecordsEventArgs> OnNewPackageInfo;
+
         public static event EventHandler<PackageMessageEventArgs> OnNewPakageMessage;
 
         private static object obj_message=new object();
+
+        private static object obj_record = new object();
 
         private DisPacket packet { get; set; }
 
@@ -49,10 +60,14 @@ namespace cma.service.PowerPole
         {
             if (infos.Count > 0)
             {
-                List<PackageRecord> info1 = infos;
-                infos = new List<PackageRecord>();
-                if (DisPacket.OnNewRecordS != null)
-                    OnNewRecordS(info1);
+                List<PackageRecord> info1 = null;
+                lock (obj_record)
+                {
+                    info1 = infos;
+                    infos = new List<PackageRecord>();
+                }
+                if (OnNewPackageInfo != null)
+                    OnNewPackageInfo(null,new PackageRecordsEventArgs(info1));
             }
             if(msgs.Count >0)
             {
@@ -74,8 +89,20 @@ namespace cma.service.PowerPole
         public static void NewRecord(PackageRecord packet)
         {
             TimerStart();
-            infos.Add(packet);
+            lock(obj_record)
+                infos.Add(packet);
 
+            if (packet.Pole == null)
+                return;
+            try
+            {
+                db_package_record db = new db_package_record(packet.Pole);
+                db.DataSave(packet);
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine("PackageRecord save failed. " + ex.Message.ToString());
+            }
         }
 
         public static void NewPackageMessage(PackageMessage msg)

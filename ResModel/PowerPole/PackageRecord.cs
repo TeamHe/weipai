@@ -20,19 +20,30 @@ namespace ResModel.PowerPole
         /// <summary>
         /// 解析结果
         /// </summary>
-        public string AnalyResult { get; set; }
+        public string Info { get; set; }
         /// <summary>
         /// 命令发生时间
         /// </summary>
         public DateTime Time { get; set; }
-       /// <summary>
-       /// 用来存储数据解析结果
-       /// </summary>
-       /// <param name="dt"></param>
-       /// <param name="state"></param>
-       /// <param name="pole"></param>
-       /// <param name="Command"></param>
-       /// <param name="data"></param>
+
+        /// <summary>
+        /// 关联装置handle
+        /// </summary>
+        public IPowerPole Pole { get; set; }
+
+        public PackageRecord() 
+        {
+            
+        }
+
+        /// <summary>
+        /// 用来存储数据解析结果
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <param name="state"></param>
+        /// <param name="pole"></param>
+        /// <param name="Command"></param>
+        /// <param name="data"></param>
         public PackageRecord(
                  PackageRecord_RSType state,
                  IPowerPole pole,
@@ -41,60 +52,17 @@ namespace ResModel.PowerPole
         {
             this.state = state;
             this.EquName = "";
+            this.Pole = pole;
             if (pole != null)
             {
                 //if (pole.Name != null)
                 //    this.EquName = pole.Name + "->";
                 this.EquName += pole.CMD_ID;
-            }               
+            }
             this.Command = Command;
-            this.AnalyResult = data;
+            this.Info = data;
             this.Time = DateTime.Now;
         }
-       
-        /// <summary>
-        /// 创建数据解析
-        /// </summary>
-        /// <param name="state"></param>
-        /// <param name="equName"></param>
-        /// <param name="Command"></param>
-        /// <param name="data"></param>
-        public PackageRecord(
-                 PackageRecord_RSType state,
-                 string equName,
-                 string Command,
-                 string data)
-        {
-            this.state = state;
-            this.Command = Command;
-            this.EquName = EquName;
-            this.AnalyResult = data;
-            this.Time = DateTime.Now;
-        }
-        /// <summary>
-        /// 数据解析
-        /// </summary>
-        /// <param name="state"></param>
-        /// <param name="equName"></param>
-        /// <param name="cmdID"></param>
-        /// <param name="Command"></param>
-        /// <param name="data"></param>
-        public PackageRecord(
-                 PackageRecord_RSType state,
-                 string equName,
-                 string cmdID,
-                 string Command,
-                 string data)
-        {
-            this.state = state;
-            this.Command = Command;
-            if(equName!= null)
-                this.EquName = equName + "->";
-            this.EquName += cmdID;
-            this.AnalyResult = data;
-            Time = DateTime.Now;
-        }
-
     }
 
     /// <summary>

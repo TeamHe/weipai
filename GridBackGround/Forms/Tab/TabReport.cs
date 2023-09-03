@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using ResModel.PowerPole;
 using cma.service.PowerPole;
+using System.Security.Policy;
 
 namespace GridBackGround
 {
@@ -85,66 +86,30 @@ namespace GridBackGround
             this.dataGridViewReport.Columns[2].Width = 100;
         }
 
-        /// <summary>
-        /// 新的解析数据显示
-        /// </summary>
-        /// <param name="packet"></param>
-        //protected void DisNewPacked(PacketAnaLysis.DataInfo packet)
-        //{
-        //    DateTime start = DateTime.Now;
-        //    dataGridViewAddRow(packet);
-        //    packet = null;
-        //    TimeSpan span = DateTime.Now.Subtract(start);
-        //    Console.WriteLine("report:{0} ms", span.TotalMilliseconds);
-        //}
-
-        /// <summary>
-        /// 新的解析数据显示
-        /// </summary>
-        /// <param name = "packet" ></ param >
-        protected void DisNewPackedS(List<PackageRecord> packets)
+        private void DisPacket_OnNewPackageInfo(object sender, PackageRecordsEventArgs e)
         {
             if (this.InvokeRequired)
             {
-                this.Invoke(new NewRecordS(this.DisNewPackedS), new object[] { packets });
+                this.Invoke(new EventHandler<PackageRecordsEventArgs>(
+                    this.DisPacket_OnNewPackageInfo),
+                    new object[] { sender, e });
             }
             else
             {
-                if (packets == null)
+                if (e == null || e.Infos == null || e.Infos.Count == 0)
                     return;
-                foreach (PackageRecord info in packets)
+                if (this.DispalyAll)
                 {
-                    if(this.DispalyAll || info.EquName == this.cmdid)
-                        dataGridViewAddRow(info);
-                }
-                while (this.dataGridViewReport.Rows.Count > Config.SettingsForm.Default.DisReportNum)
-                    this.dataGridViewReport.Rows.RemoveAt(0);
-                int index = this.dataGridViewReport.Rows.Count - 1;
-                if (index < 0)
+                    this.AddPackageRecords(e.Infos);
                     return;
-                dataGridViewReport.CurrentCell = dataGridViewReport.Rows[index].Cells[0];
-                dataGridViewReport.Rows[index].Selected = true;
-                //if (source == null)
-                //    DataTable_init();
-                //foreach (PacketAnaLysis.DataInfo info in packets)
-                //{
-                //    if (info == null)
-                //        continue;
-                //    object[] values = new object[5];
-                //    values[0] = info.Time.ToString();
-                //    values[1] = this.m_GetEquName(info.EquName);
-                //    values[2] = info.Command;
-                //    values[3] = info.AnalyResult;
-                //    values[4] = (info.state == PacketAnaLysis.DataRecSendState.rec) ? "接收" : "发送";
-                //    source.Rows.Add(values);
-                //    //dataGridViewAddRow(info);
-                //}
-
-                //while (source.Rows.Count > Config.SettingsForm.Default.DisReportNum)
-                //{
-                //    dataGridViewReport.Rows.RemoveAt(0);
-                //}
-                //this.dataGridViewReport.DataSource = source;
+                }
+                List<PackageRecord> list = new List<PackageRecord>();
+                foreach (PackageRecord info in e.Infos)
+                {
+                    if (info.EquName == this.cmdid)
+                        list.Add(info);
+                }
+                this.AddPackageRecords(list);
             }
         }
 
@@ -168,7 +133,7 @@ namespace GridBackGround
         /// 显示新解析数据
         /// </summary>
         /// <param name="packet"></param>
-        public void dataGridViewAddRow(PackageRecord packet)
+        public void AddPackageRecord(PackageRecord packet)
         {
 
             int index = this.dataGridViewReport.Rows.Add();
@@ -185,24 +150,38 @@ namespace GridBackGround
             dataGridViewReport.Rows[index].Cells[2].Value = packet.Command;
             if (packet.Command.Contains("照片合成"))
             {
-                if (packet.AnalyResult.Contains("file:///"))
+                if (packet.Info.Contains("file:///"))
                 {
-                    int fileIndex = packet.AnalyResult.IndexOf("file:///");
-                    dataGridViewReport.Rows[index].Cells[3].Tag = packet.AnalyResult.Substring(fileIndex, packet.AnalyResult.Length - fileIndex);
-                    dataGridViewReport.Rows[index].Cells[3].Value = packet.AnalyResult.Substring(0, fileIndex) + "  点击查看"; ;
+                    int fileIndex = packet.Info.IndexOf("file:///");
+                    dataGridViewReport.Rows[index].Cells[3].Tag = packet.Info.Substring(fileIndex, packet.Info.Length - fileIndex);
+                    dataGridViewReport.Rows[index].Cells[3].Value = packet.Info.Substring(0, fileIndex) + "  点击查看"; ;
                 }
                 else
                 {
-                    dataGridViewReport.Rows[index].Cells[3].Value = packet.AnalyResult;
+                    dataGridViewReport.Rows[index].Cells[3].Value = packet.Info;
                 }
             }
             else
-                dataGridViewReport.Rows[index].Cells[3].Value = packet.AnalyResult;
+                dataGridViewReport.Rows[index].Cells[3].Value = packet.Info;
             dataGridViewReport.Rows[index].Cells[4].Value = (packet.state == PackageRecord_RSType.rec) ? "接收" : "发送";
             //dataGridViewReport.CurrentCell = dataGridViewReport.Rows[index].Cells[0];
             //dataGridViewReport.Rows[index].Selected = true;
 
+        }
 
+        public void AddPackageRecords(List<PackageRecord> records)
+        {
+            foreach (PackageRecord record in records)
+            {
+                AddPackageRecord(record);
+            }
+            while (this.dataGridViewReport.Rows.Count > Config.SettingsForm.Default.DisReportNum)
+                this.dataGridViewReport.Rows.RemoveAt(0);
+            int index = this.dataGridViewReport.Rows.Count - 1;
+            if (index < 0)
+                return;
+            dataGridViewReport.CurrentCell = dataGridViewReport.Rows[index].Cells[0];
+            dataGridViewReport.Rows[index].Selected = true;
         }
 
         #endregion
@@ -287,12 +266,12 @@ namespace GridBackGround
         {
             if (this.checkBox1.Checked)
             {
-                DisPacket.OnNewRecordS += new NewRecordS(DisNewPackedS);
+                DisPacket.OnNewPackageInfo += DisPacket_OnNewPackageInfo;
                 this.checkBox2.Enabled = true;
             }
             else
             {
-                DisPacket.OnNewRecordS -= new NewRecordS(DisNewPackedS);
+                DisPacket.OnNewPackageInfo -= DisPacket_OnNewPackageInfo;
                 this.checkBox2.Enabled = false;
             }
 

@@ -25,6 +25,8 @@ namespace GridBackGround.CommandDeal.Data
         /// 装置类型
         /// </summary>
         public ICMP Type { get; set; }
+
+        public IPowerPole Pole { get; set; }
         #endregion
         
         /// <summary>
@@ -33,10 +35,6 @@ namespace GridBackGround.CommandDeal.Data
         private string AyanMsg = "";  
 
         #region Construction
-        public RealDataAyan()
-        { 
-        
-        }
         /// <summary>
         /// 实时数据内容解析
         /// </summary>
@@ -46,18 +44,7 @@ namespace GridBackGround.CommandDeal.Data
         public RealDataAyan(IPowerPole pole, int datatype,byte[] data)
             :this(data,(ICMP)datatype,pole.Name ,pole.CMD_ID)
         {
-            DisAyanMsg();
-        }
-        /// <summary>
-        /// 实时数据内容解析
-        /// </summary>
-        /// <param name="cmd_name"></param>
-        /// <param name="cmd_id"></param>
-        /// <param name="datatype"></param>
-        /// <param name="data"></param>
-        public RealDataAyan(string cmd_name, string cmd_id, int datatype,byte[] data)
-            :this(data,(ICMP)datatype,cmd_name,cmd_id)
-        {
+            this.Pole = pole;
             DisAyanMsg();
         }
 
@@ -138,8 +125,7 @@ namespace GridBackGround.CommandDeal.Data
             DisPacket.NewRecord(
                         new PackageRecord(
                             PackageRecord_RSType.rec,
-                            this.Name,
-                            this.ID,
+                            this.Pole,
                             Type.GetDescription() + "数据报",
                             AyanMsg));
         }
