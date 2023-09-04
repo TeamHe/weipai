@@ -1,19 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using ResModel.PowerPole;
 using cma.service.PowerPole;
-using System.Security.Policy;
+using System.Diagnostics;
+using Tools;
+using DB_Operation.RealData;
+using System.Data;
+using System.IO;
+using System.Text;
 
 namespace GridBackGround
 {
     public partial class Tab_Report : Form
     {
         private Forms.Tab.Tab_IDs tabid;
-        private string cmdid;
-        private bool DispalyAll = false;
+        private string CurDeviceID;
+        private bool History = false;
         /// <summary>
         /// 显示记录列表的数目
         /// </summary>
@@ -31,7 +35,7 @@ namespace GridBackGround
                 this.tabid = value;
                 if(this.tabid == null)
                 {
-                    this.cmdid = null;
+                    this.CurDeviceID = null;
                 }
                 else
                 {
@@ -42,8 +46,14 @@ namespace GridBackGround
 
         private void Tabid_CMD_ID_Change(object sender, CMDid_Change e)
         {
-            this.cmdid = e.CMD_ID;
-            this.label1.Text = e.CMD_NAME + ":"+this.cmdid;
+            if (this.CurDeviceID != e.CMD_ID &&
+                this.checkBox_real_record.Checked &&
+                ! this.checkBox_all.Checked )
+            {
+                ClearRecords();
+            }
+            this.CurDeviceID = e.CMD_ID;
+            this.label1.Text = e.CMD_NAME + ":"+this.CurDeviceID;
         }
 
         /// <summary>
@@ -52,7 +62,6 @@ namespace GridBackGround
         public Tab_Report()
         {
             InitializeComponent();
-            //this.IsMdiContainer = true;
             this.TopLevel = false;
             this.Dock = DockStyle.Fill;
         }
@@ -63,17 +72,9 @@ namespace GridBackGround
         /// <param name="e"></param>
         private void FormRePort_Load(object sender, EventArgs e)
         {
-           
             this.DataGridViewInit();
-            //接收数据解析事件
-            //PacketAnaLysis.DisPacket.OnNewRecord += new PacketAnaLysis.NewRecord(DisNewPacked);
-            //////新报文显示
-            ////PacketAnaLysis.DisPacket.OnNewPacket += new PacketAnaLysis.NewPacket(UserListChanged);
-            //////终端状态变化事件
-            //Termination.PowerPoleManage.OnStateChange += new Termination.OnLineStateChange(PowerPoleManage_OnStateChange);
+            this.dateTimePicker_start.Value = DateTime.Now.AddHours(-1);
         }
-
-
 
         /// <summary>
         /// DataGridView初始化
@@ -98,7 +99,7 @@ namespace GridBackGround
             {
                 if (e == null || e.Infos == null || e.Infos.Count == 0)
                     return;
-                if (this.DispalyAll)
+                if (this.checkBox_all.Checked)
                 {
                     this.AddPackageRecords(e.Infos);
                     return;
@@ -106,7 +107,7 @@ namespace GridBackGround
                 List<PackageRecord> list = new List<PackageRecord>();
                 foreach (PackageRecord info in e.Infos)
                 {
-                    if (info.EquName == this.cmdid)
+                    if (info.EquName == this.CurDeviceID)
                         list.Add(info);
                 }
                 this.AddPackageRecords(list);
@@ -114,67 +115,46 @@ namespace GridBackGround
         }
 
         #region 添加报文解析
-
-        private DataTable source;
-
-        private void DataTable_init()
-        {
-            source = new DataTable();
-            source.Columns.Add("时间",typeof(string));
-            source.Columns.Add("装置ID", typeof(string));
-            source.Columns.Add("命令", typeof(string));
-            source.Columns.Add("数据", typeof(string));
-            source.Columns.Add("状态", typeof(string));
-            this.dataGridViewReport.Columns.Clear();
-        }
-
-        //public delegate void GridViewAddRow(PacketAnaLysis.DataInfo packet);
         /// <summary>
-        /// 显示新解析数据
+        /// 将PakageRecord 转换为 dataGridViewRow
         /// </summary>
         /// <param name="packet"></param>
-        public void AddPackageRecord(PackageRecord packet)
+        public DataGridViewRow PackageRecord_2_DataGridViewRow(PackageRecord packet,DataGridView  gridView)
         {
-
-            int index = this.dataGridViewReport.Rows.Add();
-
-            dataGridViewReport.Rows[index].Cells[0].Value =packet.Time.ToString();
+            DataGridViewRow row = new DataGridViewRow();
+            row.CreateCells(gridView); 
+            row.Cells[0].Value = packet.Time.ToString();
             try
             {
-                string name = this.m_GetEquName(packet.EquName);
-                dataGridViewReport.Rows[index].Cells[1].Value = name;// father.GetTowerNameByID(packet.EquName);
-            }
-            catch { }
-            //MainForm father = (MainForm)this.Parent;
-
-            dataGridViewReport.Rows[index].Cells[2].Value = packet.Command;
-            if (packet.Command.Contains("照片合成"))
+                row.Cells[1].Value = this.m_GetEquName(packet.EquName);
+            }catch (Exception) { }
+            row.Cells[2].Value = packet.Command;
+            string info = packet.Info;
+            if (packet.Command.Contains("照片合成") && packet.Info.Contains("file:///"))
             {
-                if (packet.Info.Contains("file:///"))
-                {
-                    int fileIndex = packet.Info.IndexOf("file:///");
-                    dataGridViewReport.Rows[index].Cells[3].Tag = packet.Info.Substring(fileIndex, packet.Info.Length - fileIndex);
-                    dataGridViewReport.Rows[index].Cells[3].Value = packet.Info.Substring(0, fileIndex) + "  点击查看"; ;
-                }
-                else
-                {
-                    dataGridViewReport.Rows[index].Cells[3].Value = packet.Info;
-                }
+                int fileIndex = packet.Info.IndexOf("file:///");
+                string path = packet.Info.Substring(fileIndex, packet.Info.Length - fileIndex);
+                info = packet.Info.Substring(0, fileIndex) + "  点击查看";
+                row.Cells[3].Tag = path;
+                row.Cells[3].ToolTipText = path;
             }
-            else
-                dataGridViewReport.Rows[index].Cells[3].Value = packet.Info;
-            dataGridViewReport.Rows[index].Cells[4].Value = (packet.state == PackageRecord_RSType.rec) ? "接收" : "发送";
-            //dataGridViewReport.CurrentCell = dataGridViewReport.Rows[index].Cells[0];
-            //dataGridViewReport.Rows[index].Selected = true;
-
+            row.Cells[3].Value = info;
+            row.Cells[4].Value = EnumUtil.GetDescription(packet.state);
+            row.Tag = packet.EquName;
+            return row;
         }
 
         public void AddPackageRecords(List<PackageRecord> records)
         {
+            List<DataGridViewRow> rows = new List<DataGridViewRow>();
             foreach (PackageRecord record in records)
             {
-                AddPackageRecord(record);
+                var row = PackageRecord_2_DataGridViewRow(record,this.dataGridViewReport);
+                if(row != null)
+                    rows.Add(row);  
             }
+            this.dataGridViewReport.Rows.AddRange(rows.ToArray());
+
             while (this.dataGridViewReport.Rows.Count > Config.SettingsForm.Default.DisReportNum)
                 this.dataGridViewReport.Rows.RemoveAt(0);
             int index = this.dataGridViewReport.Rows.Count - 1;
@@ -183,6 +163,47 @@ namespace GridBackGround
             dataGridViewReport.CurrentCell = dataGridViewReport.Rows[index].Cells[0];
             dataGridViewReport.Rows[index].Selected = true;
         }
+
+        private void ClearRecords()
+        {
+            this.dataGridViewReport.Rows.Clear();
+            this.richTextBox1.Text = string.Empty;
+        }
+
+        /// <summary>
+        /// 从数据库加载记录列表并显示
+        /// </summary>
+        /// <param name="cmdid">关联的设备ID</param>
+        /// <param name="start">起始时间</param>
+        /// <param name="end">结束时间</param>
+        /// <param name="limits">最大数据量</param>
+        /// <returns></returns>
+        private void LoadHistoryRecords(string cmdid, DateTime start, DateTime end, int limits)
+        {
+            try
+            {
+                db_package_record db = new db_package_record();
+                DataTable dt = db.DataGet(cmdid, start, end, limits);
+                this.AddPackageRecords(db.GetPackageMessage_from_datatable(dt, cmdid));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Load package messages failed." + ex.Message);
+            }
+        }
+        private void LoadHistoryRecors(DateTime start, DateTime end, int limits = 0)
+        {
+            if (this.CurDeviceID == null)
+            {
+                MessageBox.Show("当前没有选中任何设备，请先选中设备");
+                return;
+            }
+            this.checkBox_real_record.Checked = false;
+            this.History = true;
+            this.ClearRecords();
+            LoadHistoryRecords(this.CurDeviceID, start, end, limits);
+        }
+
 
         #endregion
 
@@ -193,9 +214,7 @@ namespace GridBackGround
         /// <param name="e"></param>
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            this.dataGridViewReport.Rows.Clear();
-            //source.Clear();
-            //this.dataGridViewReport.DataSource = source;
+            ClearRecords();
         }
 
         /// <summary>
@@ -223,24 +242,25 @@ namespace GridBackGround
         /// <param name="e"></param>
         private void dataGridViewReport_SelectionChanged(object sender, EventArgs e)
         {
-            if (this.dataGridViewReport.CurrentCell == null)
-            {
-                this.richTextBox1.Text = "";
+            DataGridView view = sender as DataGridView;
+            this.richTextBox1.Text = "";
+            if (view.CurrentCell == null || view.CurrentCell.Value == null)
                 return;
-            }
 
-            int index = this.dataGridViewReport.CurrentCell.RowIndex;
-            try
+            int rowIndex= view.CurrentCell.RowIndex;
+            try 
             {
-                if (dataGridViewReport.CurrentCell.Value != null)
-                {
-                    string text = dataGridViewReport.Rows[this.dataGridViewReport.CurrentCell.RowIndex].Cells[3].Value.ToString();
-                    this.richTextBox1.Text = text;
-                }
+                this.richTextBox1.Text = 
+                    view.Rows[rowIndex].Cells[3].Value.ToString();
             }
             catch { }
         }
 
+        /// <summary>
+        /// dataGridView 单元格点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridViewReport_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var gridView = (DataGridView)sender;
@@ -254,7 +274,7 @@ namespace GridBackGround
                 return;
             try
             {
-                System.Diagnostics.Process.Start(path);
+                Process.Start(path);
             }
             catch(Exception ex)
             {
@@ -262,24 +282,85 @@ namespace GridBackGround
             }
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        /// <summary>
+        /// 实时记录checkbox 选中状态变化事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void checkBox_realRecord_CheckedChanged(object sender, EventArgs e)
         {
-            if (this.checkBox1.Checked)
+            if (this.checkBox_real_record.Checked)
             {
                 DisPacket.OnNewPackageInfo += DisPacket_OnNewPackageInfo;
-                this.checkBox2.Enabled = true;
+                this.checkBox_all.Enabled = true;
+                this.History = false;
             }
             else
             {
                 DisPacket.OnNewPackageInfo -= DisPacket_OnNewPackageInfo;
-                this.checkBox2.Enabled = false;
+                this.checkBox_all.Enabled = false;
             }
-
         }
 
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        private void button_his_custom_Click(object sender, EventArgs e)
         {
-            this.DispalyAll = this.checkBox2.Checked;
+            DateTime start = this.dateTimePicker_start.Value;
+            DateTime end = this.dateTimePicker_end.Value;
+            if (start > end)
+            {
+                MessageBox.Show("起始时间不能大于结束时间");
+                return;
+            }
+            LoadHistoryRecors(start, end);
+        }
+
+        private void button_his_hour_Click(object sender, EventArgs e)
+        {
+            LoadHistoryRecors(DateTime.Now.AddHours(-1), DateTime.Now);
+        }
+
+        private void button_his_day_Click(object sender, EventArgs e)
+        {
+            LoadHistoryRecors(DateTime.Now.AddDays(-1), DateTime.Now);
+        }
+
+        private void button_save_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dialog = new SaveFileDialog()
+            {
+                Title = "保存为",
+                Filter = "文本文件| *.txt",
+                RestoreDirectory = true,
+            };
+            if (dialog.ShowDialog() != DialogResult.OK)
+                return;
+            if (this.dataGridViewReport.Rows.Count == 0)
+            {
+                MessageBox.Show("没有通讯记录可以存储");
+                return;
+            }
+            StreamWriter stream = null;
+            try
+            {
+                stream = new StreamWriter(dialog.FileName);
+                foreach(DataGridViewRow row in this.dataGridViewReport.Rows)
+                {
+                    StringBuilder str = new StringBuilder();
+                    str.AppendFormat("{0} ", row.Cells[0].Value); //DateTime
+                    str.AppendFormat("<{0}> [{1}] ", row.Tag.ToString(), row.Cells[4].Value); //CMDID
+                    str.AppendFormat("{0}----{1}", row.Cells[2].Value.ToString(),row.Cells[3].Value); //Command
+                    stream.WriteLine(str.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("通讯记录保存失败," + ex.Message);
+            }
+            finally
+            {
+                if (stream != null)
+                    stream.Close();
+            }
         }
     }
 }

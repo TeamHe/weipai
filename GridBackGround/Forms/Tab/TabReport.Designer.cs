@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Tab_Report));
             this.panel_RePort = new System.Windows.Forms.Panel();
             this.splitContainerReport = new System.Windows.Forms.SplitContainer();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridViewReport = new System.Windows.Forms.DataGridView();
             this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,35 +50,42 @@
             this.toolStripButton_Clear_Record = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.button_save = new System.Windows.Forms.Button();
+            this.button_his_day = new System.Windows.Forms.Button();
+            this.button_his_hour = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dateTimePicker_end = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dateTimePicker_start = new System.Windows.Forms.DateTimePicker();
+            this.button_his_custom = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.checkBox_all = new System.Windows.Forms.CheckBox();
+            this.checkBox_real_record = new System.Windows.Forms.CheckBox();
             this.panel_RePort.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerReport)).BeginInit();
             this.splitContainerReport.Panel1.SuspendLayout();
             this.splitContainerReport.Panel2.SuspendLayout();
             this.splitContainerReport.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_RePort
             // 
             this.panel_RePort.Controls.Add(this.splitContainerReport);
             this.panel_RePort.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_RePort.Location = new System.Drawing.Point(0, 48);
-            this.panel_RePort.Margin = new System.Windows.Forms.Padding(4);
+            this.panel_RePort.Location = new System.Drawing.Point(0, 59);
             this.panel_RePort.Name = "panel_RePort";
-            this.panel_RePort.Size = new System.Drawing.Size(1112, 437);
+            this.panel_RePort.Size = new System.Drawing.Size(834, 329);
             this.panel_RePort.TabIndex = 2;
             // 
             // splitContainerReport
             // 
             this.splitContainerReport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerReport.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerReport.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainerReport.Name = "splitContainerReport";
             this.splitContainerReport.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -91,21 +97,9 @@
             // splitContainerReport.Panel2
             // 
             this.splitContainerReport.Panel2.Controls.Add(this.richTextBox1);
-            this.splitContainerReport.Size = new System.Drawing.Size(1112, 437);
-            this.splitContainerReport.SplitterDistance = 348;
-            this.splitContainerReport.SplitterWidth = 5;
+            this.splitContainerReport.Size = new System.Drawing.Size(834, 329);
+            this.splitContainerReport.SplitterDistance = 261;
             this.splitContainerReport.TabIndex = 0;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.checkBox2);
-            this.panel1.Controls.Add(this.checkBox1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1112, 48);
-            this.panel1.TabIndex = 2;
             // 
             // dataGridViewReport
             // 
@@ -120,11 +114,10 @@
             this.State});
             this.dataGridViewReport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewReport.Location = new System.Drawing.Point(0, 0);
-            this.dataGridViewReport.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewReport.MultiSelect = false;
             this.dataGridViewReport.Name = "dataGridViewReport";
             this.dataGridViewReport.RowTemplate.Height = 23;
-            this.dataGridViewReport.Size = new System.Drawing.Size(1112, 321);
+            this.dataGridViewReport.Size = new System.Drawing.Size(834, 234);
             this.dataGridViewReport.TabIndex = 1;
             this.dataGridViewReport.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewReport_CellContentClick);
             this.dataGridViewReport.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridViewReport_RowPostPaint);
@@ -173,21 +166,21 @@
             this.bindingNavigatorSeparator2,
             this.toolStripButton_Clear_Record,
             this.toolStripSeparator1});
-            this.bindingNavigator1.Location = new System.Drawing.Point(0, 321);
+            this.bindingNavigator1.Location = new System.Drawing.Point(0, 234);
             this.bindingNavigator1.MoveFirstItem = null;
             this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.bindingNavigator1.MoveNextItem = this.bindingNavigatorMoveNextItem;
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(1112, 27);
+            this.bindingNavigator1.Size = new System.Drawing.Size(834, 27);
             this.bindingNavigator1.TabIndex = 0;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(38, 24);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(32, 24);
             this.bindingNavigatorCountItem.Text = "/ {0}";
             this.bindingNavigatorCountItem.ToolTipText = "总项数";
             // 
@@ -209,8 +202,9 @@
             // 
             this.bindingNavigatorPositionItem.AccessibleName = "位置";
             this.bindingNavigatorPositionItem.AutoSize = false;
+            this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
             this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(65, 27);
+            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "当前位置";
             // 
@@ -261,54 +255,150 @@
             // 
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(4);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(1112, 84);
+            this.richTextBox1.Size = new System.Drawing.Size(834, 64);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
-            // checkBox1
+            // panel1
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(13, 13);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(119, 19);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "显示通讯日志";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.panel1.Controls.Add(this.button_save);
+            this.panel1.Controls.Add(this.button_his_day);
+            this.panel1.Controls.Add(this.button_his_hour);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.dateTimePicker_end);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.dateTimePicker_start);
+            this.panel1.Controls.Add(this.button_his_custom);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.checkBox_all);
+            this.panel1.Controls.Add(this.checkBox_real_record);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(834, 59);
+            this.panel1.TabIndex = 2;
             // 
-            // checkBox2
+            // button_save
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Enabled = false;
-            this.checkBox2.Location = new System.Drawing.Point(148, 13);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(89, 19);
-            this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "显示全部";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            this.button_save.Location = new System.Drawing.Point(491, 28);
+            this.button_save.Name = "button_save";
+            this.button_save.Size = new System.Drawing.Size(81, 23);
+            this.button_save.TabIndex = 18;
+            this.button_save.Text = "保存到文件";
+            this.button_save.UseVisualStyleBackColor = true;
+            this.button_save.Click += new System.EventHandler(this.button_save_Click);
+            // 
+            // button_his_day
+            // 
+            this.button_his_day.Location = new System.Drawing.Point(378, 29);
+            this.button_his_day.Name = "button_his_day";
+            this.button_his_day.Size = new System.Drawing.Size(107, 23);
+            this.button_his_day.TabIndex = 17;
+            this.button_his_day.Text = "最近一天记录";
+            this.button_his_day.UseVisualStyleBackColor = true;
+            this.button_his_day.Click += new System.EventHandler(this.button_his_day_Click);
+            // 
+            // button_his_hour
+            // 
+            this.button_his_hour.Location = new System.Drawing.Point(378, 4);
+            this.button_his_hour.Name = "button_his_hour";
+            this.button_his_hour.Size = new System.Drawing.Size(107, 23);
+            this.button_his_hour.TabIndex = 16;
+            this.button_his_hour.Text = "最近一小时记录";
+            this.button_his_hour.UseVisualStyleBackColor = true;
+            this.button_his_hour.Click += new System.EventHandler(this.button_his_hour_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(90, 35);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.TabIndex = 15;
+            this.label2.Text = "结束时间";
+            // 
+            // dateTimePicker_end
+            // 
+            this.dateTimePicker_end.CustomFormat = " yyyy-MM-dd HH:mm";
+            this.dateTimePicker_end.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker_end.Location = new System.Drawing.Point(147, 30);
+            this.dateTimePicker_end.Name = "dateTimePicker_end";
+            this.dateTimePicker_end.Size = new System.Drawing.Size(141, 21);
+            this.dateTimePicker_end.TabIndex = 14;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(90, 8);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 12);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "开始时间";
+            // 
+            // dateTimePicker_start
+            // 
+            this.dateTimePicker_start.CustomFormat = " yyyy-MM-dd HH:mm";
+            this.dateTimePicker_start.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker_start.Location = new System.Drawing.Point(147, 3);
+            this.dateTimePicker_start.Name = "dateTimePicker_start";
+            this.dateTimePicker_start.Size = new System.Drawing.Size(141, 21);
+            this.dateTimePicker_start.TabIndex = 12;
+            // 
+            // button_his_custom
+            // 
+            this.button_his_custom.Location = new System.Drawing.Point(294, 31);
+            this.button_his_custom.Name = "button_his_custom";
+            this.button_his_custom.Size = new System.Drawing.Size(75, 23);
+            this.button_his_custom.TabIndex = 11;
+            this.button_his_custom.Text = "查询";
+            this.button_his_custom.UseVisualStyleBackColor = true;
+            this.button_his_custom.Click += new System.EventHandler(this.button_his_custom_Click);
             // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Location = new System.Drawing.Point(295, 17);
+            this.label1.Location = new System.Drawing.Point(547, 4);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(805, 23);
+            this.label1.Size = new System.Drawing.Size(278, 18);
             this.label1.TabIndex = 2;
             this.label1.Text = "选中设备";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // checkBox_all
+            // 
+            this.checkBox_all.AutoSize = true;
+            this.checkBox_all.Enabled = false;
+            this.checkBox_all.Location = new System.Drawing.Point(10, 30);
+            this.checkBox_all.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox_all.Name = "checkBox_all";
+            this.checkBox_all.Size = new System.Drawing.Size(72, 16);
+            this.checkBox_all.TabIndex = 1;
+            this.checkBox_all.Text = "显示全部";
+            this.checkBox_all.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_real_record
+            // 
+            this.checkBox_real_record.AutoSize = true;
+            this.checkBox_real_record.Location = new System.Drawing.Point(10, 10);
+            this.checkBox_real_record.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox_real_record.Name = "checkBox_real_record";
+            this.checkBox_real_record.Size = new System.Drawing.Size(72, 16);
+            this.checkBox_real_record.TabIndex = 0;
+            this.checkBox_real_record.Text = "实时记录";
+            this.checkBox_real_record.UseVisualStyleBackColor = true;
+            this.checkBox_real_record.CheckedChanged += new System.EventHandler(this.checkBox_realRecord_CheckedChanged);
+            // 
             // Tab_Report
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1112, 485);
+            this.ClientSize = new System.Drawing.Size(834, 388);
             this.Controls.Add(this.panel_RePort);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Tab_Report";
             this.Text = "FormRePort";
             this.Load += new System.EventHandler(this.FormRePort_Load);
@@ -318,12 +408,12 @@
             this.splitContainerReport.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerReport)).EndInit();
             this.splitContainerReport.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -351,8 +441,16 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox_real_record;
+        private System.Windows.Forms.CheckBox checkBox_all;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button_save;
+        private System.Windows.Forms.Button button_his_day;
+        private System.Windows.Forms.Button button_his_hour;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_end;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_start;
+        private System.Windows.Forms.Button button_his_custom;
     }
 }

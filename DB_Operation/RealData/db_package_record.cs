@@ -98,44 +98,45 @@ namespace DB_Operation.RealData
             if (cmdid != null)
                 sql.AppendFormat("pole.CMD_ID = '{0}' and ", cmdid);
             sql.AppendFormat("time between  '{0:G}' and '{1:G}' ", start, end);
-            sql.Append("order by idt_pac_comm desc");
+            sql.Append("order by idt_pac_record desc");
             if (limit > 0)
                 sql.AppendFormat("limit {0}", limit);
             return Connection.GetTable(sql.ToString());
         }
 
-        //public PackageRecord GetPackageMessage_from_row(DataRow row)
-        //{
-        //    if (row == null)
-        //        return null;
+        public PackageRecord GetPackageRecord_from_row(DataRow row)
+        {
+            if (row == null)
+                return null;
 
-        //    PackageRecord record = new PackageRecord();
-        //    if (row["time"] != null)
-        //        record.time = Convert.ToDateTime(row["time"]);
-        //    if (row["rs_type"] != null)
-        //        record.rstype = (RSType)Convert.ToInt32(row["rs_type"]);
-        //    if (row["src_type"] != null)
-        //        record.srctype = (SrcType)Convert.ToInt32(row["rs_type"]);
-        //    if (row["src_id"] != null)
-        //        record.src_id = Convert.ToString(row["src_id"]);
-        //    if (row["code"] != null)
-        //        record.code = Convert.ToInt32(row["code"]);
-        //    if (row["data"] != null)
-        //        record.data = (byte[])row["data"];
-        //    return record;
-        //}
+            PackageRecord record = new PackageRecord();
+            if (row["time"] != null)
+                record.Time = Convert.ToDateTime(row["time"]);
+            if (row["rs_type"] != null)
+                record.state = (PackageRecord_RSType)Convert.ToInt32(row["rs_type"]);
+            if (row["cmd_type"] != null)
+                record.Command = row["cmd_type"].ToString();
+            if (row["info"] != null)
+                record.Info = row["info"].ToString();
+            return record;
+        }
 
-        //public List<PackageMessage> GetPackageMessage_from_datatable(DataTable dt)
-        //{
-        //    List<PackageMessage> list = new List<PackageMessage>();
-        //    foreach (DataRow row in dt.Rows)
-        //    {
-        //        PackageMessage msg = GetPackageMessage_from_row(row);
-        //        if (msg != null)
-        //            list.Insert(0, msg);
-        //    }
-        //    return list;
-        //}
+        public List<PackageRecord> GetPackageMessage_from_datatable(DataTable dt,string cmdid)
+        {
+            List<PackageRecord> list = new List<PackageRecord>();
+            if(dt == null)
+                return list;
+            foreach (DataRow row in dt.Rows)
+            {
+                PackageRecord msg = GetPackageRecord_from_row(row);
+                if (msg != null)
+                {
+                    msg.EquName = cmdid;
+                    list.Insert(0, msg);
+                }
+            }
+            return list;
+        }
 
     }
 }

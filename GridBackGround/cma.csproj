@@ -597,6 +597,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Tab\TabReport.resx">
       <DependentUpon>TabReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Tab\FormSerialPort.resx">
       <DependentUpon>FormSerialPort.cs</DependentUpon>
