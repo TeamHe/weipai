@@ -128,7 +128,7 @@ namespace GridBackGround.Forms.EquMan
             try{
                 this.treeView_Nodes.Nodes.Clear();
 
-                var lineTowerList = DB_Operation.EQUManage.DB_Line.List_LineTower();
+                var lineTowerList = new DB_Line().List_LineTower();
                 if (lineTowerList == null) return;
                 foreach(Line line in lineTowerList)
                 {
@@ -210,7 +210,7 @@ namespace GridBackGround.Forms.EquMan
         private void LineListInit()
         {
             this.comboBox1.Items.Clear();
-            var linelist = DB_Line.List();
+            var linelist = new DB_Line().List();
             this.comboBox1.Items.Add(new ComboBoxItem("", 0));
             this.comboBox1.SelectedIndex = 0;
 

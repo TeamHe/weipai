@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-
 using DB_Operation.EQUManage;
 using ResModel.EQU;
-using SQLUtils;
 
 namespace GridBackGround.Forms.EquMan
 {
@@ -25,6 +19,12 @@ namespace GridBackGround.Forms.EquMan
         /// 当前选中节点信息
         /// </summary>
         private TreeNode curNode;
+
+        private TreeNode treenode_gw;
+
+        private TreeNode treenode_nw;
+
+        private DevFlag flag;
         #endregion
         
 
@@ -47,6 +47,7 @@ namespace GridBackGround.Forms.EquMan
                 {
                     this.textBox_LineName.Text = "";
                 }
+                Check_TowerChanged();
             }
         }
         #endregion
@@ -64,10 +65,32 @@ namespace GridBackGround.Forms.EquMan
         /// <param name="e"></param>
         private void Dialog_Load(object sender, EventArgs e)
         {
+            TreeNodesInit();
             GetLineList();
         }
         #endregion
         
+        private void TreeNodesInit()
+        {
+            this.treenode_gw = new TreeNode()
+            {
+                Text = "国网",
+                Tag = DevFlag.GW,
+            };
+            this.treenode_nw = new TreeNode()
+            {
+                Text = "南网",
+                Tag = DevFlag.GW,
+            };
+            this.treeView_Nodes.Nodes.Add(this.treenode_gw);
+            this.treeView_Nodes.Nodes.Add(this.treenode_nw);
+        }
+
+        private void TreeNodesClear()
+        {
+            this.treenode_gw.Nodes.Clear();
+            this.treenode_nw.Nodes.Clear();
+        }
 
         /// <summary>
         /// 杆塔列表初始化
@@ -75,20 +98,33 @@ namespace GridBackGround.Forms.EquMan
         /// <param name="tn_line"></param>
         private void GetLineList()
         {
+            this.TreeNodesClear();
+            
             //杆塔节点生产
             try{
-                this.treeView_Nodes.Nodes.Clear();
-                var lineList = DB_Operation.EQUManage.DB_Line.List();
-                if (lineList == null) return;
-                foreach (Line line in lineList )                         //逐个添加装置信息
+                List<Line> lines = new DB_Line().List();
+                if (lines == null || lines.Count == 0)
+                    return;
+
+                foreach (Line line in lines)                         //逐个添加装置信息
                 {
-                    TreeNode tn_line = new TreeNode();                     //生产杆塔节点
-                    tn_line.Text = line.Name;
-                    tn_line.Tag = line;
-                    this.treeView_Nodes.Nodes.Add(tn_line);
-                    if (curLine != null)
-                    if (line.NO == curLine.NO)
-                        this.treeView_Nodes.SelectedNode = tn_line;
+                    TreeNode tn_line = new TreeNode()
+                    {
+                        Text = line.Name,
+                        Tag = line
+                    };
+                    switch (line.Flag)
+                    {
+                        case DevFlag.GW:
+                            this.treenode_gw.Nodes.Add(tn_line);
+                            break;
+                        case DevFlag.NW:
+                            this.treenode_nw.Nodes.Add(tn_line);
+                            break;
+                    }
+                    if (this.CurLine == null || CurLine.NO != line.NO)
+                        continue;
+                    this.treeView_Nodes.SelectedNode = tn_line;
                 }
             }
             catch(Exception ex)
@@ -101,7 +137,6 @@ namespace GridBackGround.Forms.EquMan
                     MessageBoxDefaultButton.Button1
                     );
             }
-            
         }
 
         /// <summary>
@@ -111,7 +146,8 @@ namespace GridBackGround.Forms.EquMan
         /// <param name="e"></param>
         private void treeView_Nodes_AfterSelect(object sender, TreeViewEventArgs e)
         {
-
+            if(e.Node == null) 
+                return;
             if (curNode != null)
             {
                 curNode.ForeColor = Color.Black;
@@ -120,10 +156,16 @@ namespace GridBackGround.Forms.EquMan
             curNode = e.Node;
             curNode.ForeColor = Color.White;
             curNode.BackColor = Color.DeepSkyBlue;
-            if (e.Node != null)
+            switch (curNode.Level)
             {
-                Line line = (Line)curNode.Tag;
-                this.CurLine = line;
+                case 0:             //单位类型层级
+                    this.CurLine = null;
+                    this.flag = (DevFlag)curNode.Tag;
+                    break;
+                case 1:             //单位名称层级
+                    this.CurLine = (Line)curNode.Tag;
+                    this.flag = this.CurLine.Flag;
+                    break;
             }
         }
         #region 杆塔装置操作
@@ -138,8 +180,15 @@ namespace GridBackGround.Forms.EquMan
             {
                 if (this.textBox_LineName.TextLength == 0)
                     return;
-                DB_Line.Add(this.textBox_LineName.Text);  //新建杆塔
+                Line line = new Line()
+                {
+                    Name = this.textBox_LineName.Text,
+                    Flag = this.flag,
+                };
+
+                new DB_Line().Add(line);  //新建杆塔
                 GetLineList();
+                MessageBox.Show(string.Format("单位“{0}”添加成功", line.Name));
             }
             catch (Exception ex)
             {
@@ -150,10 +199,8 @@ namespace GridBackGround.Forms.EquMan
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error,
                     MessageBoxDefaultButton.Button1
-                    );
+                );
             }
-
-
         }
         /// <summary>
         /// 更新杆塔信息
@@ -162,16 +209,24 @@ namespace GridBackGround.Forms.EquMan
         /// <param name="e"></param>
         private void button_Update_Click(object sender, EventArgs e)
         {
+            if(this.CurLine == null)
+            {
+                MessageBox.Show("当前没有选中单位");
+                return;
+            }
+            if(this.textBox_LineName.Text == string.Empty)
+            {
+                MessageBox.Show("单位名称不能为空");
+                return;
+            }
             try
             {
-                
-                string name = this.textBox_LineName.Text;
-                if (name.Length == 0)
-                {
-                    MessageBox.Show("单位名称不能为空");
-                }
-                DB_Line.Update(curLine, name);
+                var oldline = CurLine;
+                string old_name = CurLine.Name;
+                new DB_Line().Update(CurLine, this.textBox_LineName.Text);
                 GetLineList();
+                MessageBox.Show(string.Format("单位 “{0}”更名为“{1}”成功",
+                    oldline.Name, CurLine.Name));
             }
             catch (Exception ex)
             {
@@ -192,14 +247,19 @@ namespace GridBackGround.Forms.EquMan
         /// <param name="e"></param>
         private void button_Del_Click(object sender, EventArgs e)
         {
+            if (CurLine == null)
+            {
+                MessageBox.Show("当前没有选中单位");
+                return;
+            }
+            string str = "您确定要删除单位：" + CurLine.Name + "  ?";
+            if (MessageBox.Show(this, str, "提示", MessageBoxButtons.YesNo,
+                     MessageBoxIcon.Question,
+                     MessageBoxDefaultButton.Button1) == DialogResult.No)
+                return;
             try
             {
-                string str = "您确定要删除单位：" + curLine.Name + "  ?";
-                var result = MessageBox.Show(this, str, "提示", MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question,
-                    MessageBoxDefaultButton.Button1);
-                if (result == System.Windows.Forms.DialogResult.No) return;
-                DB_Line.Delete(curLine);
+                new DB_Line().Delete(CurLine);
                 this.CurLine = null;
                 GetLineList();
             }
@@ -231,6 +291,7 @@ namespace GridBackGround.Forms.EquMan
         /// </summary>
         private void Check_TowerChanged()
         {
+            Disabled_TowerOP();
             if (this.curLine == null)  //当前没有选中任何杆塔
             {
                 if (textBox_LineName.TextLength != 0)
@@ -242,14 +303,13 @@ namespace GridBackGround.Forms.EquMan
             //杆塔ID长度出错
             //杆塔ID变化了
             //杆塔ID不变，检查名称是否变化
-            if (this.textBox_LineName.Text != curLine.Name)
+            if (this.textBox_LineName.Text != CurLine.Name)
             {
                 this.button_Add.Enabled = true;
                 if (this.textBox_LineName.TextLength > 0)
                     this.button_Update.Enabled = true;
             }
         }
-
         #endregion
 
         #region TextBoxTextChange
@@ -261,26 +321,10 @@ namespace GridBackGround.Forms.EquMan
         private void textBox_T_TowerID_TextChanged(object sender, EventArgs e)
         {
             TextBox textBox = (TextBox)sender;
-            if (textBox.Name == "textBox_T_TowerID")
+            if (textBox == this.textBox_LineName)
             {
-                TowerIDChanged();
-            }
-            if (textBox.Name == "textBox_LineName")
-            {
-                Disabled_TowerOP();
                 Check_TowerChanged();
             }
-
-        }
-        /// <summary>
-        /// 杆塔ID变化更新对应的
-        /// </summary>
-        private void TowerIDChanged()
-        {
-          
-            Disabled_TowerOP();
-           
-            Check_TowerChanged();
         }
         #endregion
 

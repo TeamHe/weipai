@@ -8,6 +8,10 @@ namespace ResModel.EQU
     public class Line
     {
         /// <summary>
+        /// 类型标识
+        /// </summary>
+        public DevFlag Flag { get; set; }
+        /// <summary>
         /// 线路数据库编号
         /// </summary>
         public int NO { get; set; }
@@ -23,6 +27,12 @@ namespace ResModel.EQU
         /// 下属杆塔装置
         /// </summary>
         public List<Tower> TowerList { get; set; }
+
+        public Line() 
+        {
+            this.Flag = DevFlag.NW;
+            this.TowerList = new List<Tower>();
+        }
 
         public override string ToString()
         {

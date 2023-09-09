@@ -37,19 +37,56 @@ namespace DB_Operation
 
         public db_base() { }
 
-        //protected abstract string GetSql();
 
-        //protected abstract object[] GetFileds();
+        protected int ExecuteNoneQuery(string strCmd)
+        {
+            return Connection.ExecuteNoneQuery(strCmd);
+        }
 
+        /// <summary>
+        /// 执行带参数的sql语句或存储过程，返回事务执行结果
+        /// </summary>
+        /// <param name="strCmd">sql语句或存储过程名</param>
+        /// <param name="cmdType">说明strCmd是sql语句或存储过程名</param>
+        /// <param name="fields">参数名</param>
+        /// <param name="obj">参数值</param>
+        /// <returns>事务执行结果</returns>
+        protected int ExecuteNoneQuery(string strCmd, CommandType cmdType, string[] fields, object[] obj)
+        {
+            return Connection.ExecuteNoneQuery(strCmd, cmdType, fields, obj);
+        }
+
+        /// <summary>
+        /// 执行带参数的sql语句或存储过程，返回事务执行结果
+        /// </summary>
+        /// <param name="strCmd">sql语句或存储过程名</param>
+        /// <param name="cmdType">说明strCmd是sql语句或存储过程名</param>
+        /// <param name="fields">参数名</param>
+        /// <param name="obj">参数值</param>
+        /// <returns>事务执行结果</returns>
+        protected int ExecuteNoneQuery(string strCmd, string[] fields, object[] obj)
+        {
+            return Connection.ExecuteNoneQuery(strCmd, CommandType.Text, fields, obj);
+        }
+
+        /// <summary>
+        /// 执行sql语句，返回数据表
+        /// </summary>
+        /// <param name="strCmd">sql语句</param>
+        /// <returns>数据表</returns>
+        protected DataTable GetTable(string strCmd)
+        {
+            return this.Connection.GetTable(strCmd);
+        }
 
         protected ErrorCode DataSave(string strCmd, string[] fields, object[] obj)
         {
-            int m = Connection.ExecuteNoneQuery(strCmd, CommandType.Text, fields, obj);
+            int m = this.ExecuteNoneQuery(strCmd, CommandType.Text, fields, obj);
             if (m == 0)
                 return ErrorCode.DataExist;
             return ErrorCode.NoError;
-
         }
+
 
         protected DataTable DataGet(Dictionary<string,string> dics,
                                     string cmdid, 

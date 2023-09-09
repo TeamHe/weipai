@@ -192,7 +192,7 @@ namespace GridBackGround.Forms.Tab
             };
             this.comboBox_Department.Items.Add(item);
 
-            var lineList = DB_Line.List_LineTower();
+            var lineList = new DB_Line().List_LineTower();
             foreach (Line line in lineList)
             {
                 item = new ComboBoxItem()
@@ -243,7 +243,7 @@ namespace GridBackGround.Forms.Tab
         private void DataGridDisplay()
         {
             this.dataGridView_Display.Rows.Clear();
-            var linelist = DB_Line.List_LineTowerEqu();
+            var linelist = new DB_Line().List_LineTowerEqu();
             linelist.Sort((x,y)=>x.Name.CompareTo(y.Name));
             foreach(Line line in linelist)
             {

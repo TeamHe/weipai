@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.ComponentModel;
 using Tools;
 
@@ -21,6 +18,21 @@ namespace ResModel.EQU
         Offline,
         [Description("休眠")]
         Sleep,
+    }
+
+    /// <summary>
+    /// 设备类型标识
+    /// </summary>
+    public enum DevFlag
+    {
+        /// <summary>
+        /// 国网设备
+        /// </summary>
+        GW,
+        /// <summary>
+        /// 南网设备
+        /// </summary>
+        NW,
     }
 
     public class Equ

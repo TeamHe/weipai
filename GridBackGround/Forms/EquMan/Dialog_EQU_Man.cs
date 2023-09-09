@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using ResModel.EQU;
+using DB_Operation.EQUManage;
 
 namespace GridBackGround.Forms.EquMan
 {
@@ -125,7 +121,7 @@ namespace GridBackGround.Forms.EquMan
         private void LineList()
         {
             this.treeView1.Nodes.Clear();          
-            var linelist = DB_Operation.EQUManage.DB_Line.List_LineTowerEqu();
+            var linelist = new DB_Line().List_LineTowerEqu();
             int curID = 0;
             if(CurEqu != null) curID = CurEqu.ID;
             TreeNode selectedNode = null;

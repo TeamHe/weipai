@@ -471,7 +471,7 @@ namespace GridBackGround.Forms.EquMan
         /// </summary>
         private void UpdateLineList()
         {
-            var lineList = DB_Line.List();
+            var lineList = new DB_Line().List();
             this.comboBox_DepartMent.Items.Clear();
 
             ComboBoxItem nullitem = new ComboBoxItem();

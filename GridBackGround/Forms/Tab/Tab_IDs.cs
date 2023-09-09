@@ -264,7 +264,7 @@ namespace GridBackGround.Forms.Tab
         #region  Tree控件刷新
         public void TreeViewUpdate()
         {
-            var lineList = DB_Line.List_LineTowerEqu();
+            var lineList = new DB_Line().List_LineTowerEqu();
             TreeNode selectedNode = null;
             TreeViewList.LineList(this.treeView1.Nodes,lineList,out selectedNode);
             tree_lines_image_flush(this.treeView1.Nodes);
