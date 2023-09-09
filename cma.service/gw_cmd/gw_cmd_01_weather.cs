@@ -1,5 +1,6 @@
 ﻿using System;
 using ResModel.gw;
+using DB_Operation;
 using DB_Operation.RealData;
 
 namespace cma.service.gw_cmd

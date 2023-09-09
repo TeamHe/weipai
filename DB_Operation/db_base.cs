@@ -1,15 +1,28 @@
 ﻿using SQLUtils;
-using ResModel.EQU;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using ResModel;
 using System.Data;
+using System.ComponentModel;
 
-namespace DB_Operation.RealData
+namespace DB_Operation
 {
+    public enum ErrorCode
+    {
+        [Description("数据操作成功")]
+        NoError = 0,
+
+        [Description("装置ID不存在")]
+        TowerIDError = -1,
+
+        [Description("数据操作异常")]
+        SqlError = -3,
+
+        [Description("数据已存在")]
+        DataExist = -2,
+    }
+
     public abstract class db_base
     {
         protected ISQLUtils Connection = DB.Connection;
