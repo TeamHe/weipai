@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
 using ResModel.EQU;
 
@@ -9,93 +6,162 @@ namespace GridBackGround.Forms
 {
     public class TreeViewList
     {
-        public static bool LineList(TreeNodeCollection nodes, List<Line> linelist, out TreeNode selectedNode, int SelectedEquID = 0, int SelectedTowerID = 0, int SelectedID = 0)
-        {
-            bool state = false;
-            selectedNode = null;
-            nodes.Clear();
-            if(linelist == null) return state;
+        public TreeNodeCollection ParentNodes { get; set; }
 
-            linelist.Sort((x,y)=>x.Name.CompareTo(y.Name));
-            TreeNode selNode;
-            foreach (Line line in linelist)
+        public List<Line> Lines { get; set; }
+
+        public TreeNode SelectedTreeNode { get; set; }
+
+        public int SelectedEquID {  get; set; }
+
+        public int SelectedTowerID { get; set; }
+
+        public int SelectedLineID { get; set; }
+
+        public bool HasTypeNode { get; set; }
+
+        private TreeNode _line_get_parent(DevFlag flag)
+        {
+            if(this.ParentNodes == null)
+                return null;
+
+            foreach(TreeNode node in  this.ParentNodes)
             {
-                TreeNode node = new TreeNode();
-                node.Name = line.NO.ToString();
-                node.Text = line.Name;
-                node.ToolTipText = line.ToString() ;
-                node.Tag = line;
-                nodes.Add(node);
-                if (SelectedID == line.NO)
-                    selectedNode = node;
-                if (TowerList(node.Nodes, line.TowerList, out selNode,SelectedEquID))
-                {
-                    selectedNode = selNode;
-                    node.Expand();
-                    state = true;
-                }
+                if(node.Tag == null) continue;
+                if (flag == (DevFlag)node.Tag)
+                    return node;
             }
-            return state;
+            return null;
         }
 
-        public static bool TowerList(TreeNodeCollection nodes, List<Tower> towerlist, out TreeNode selectedNode, int SelectedEquID = 0, int SelectedID = 0)
+        public bool Add_equ(TreeNode parent, Equ equ)
         {
-            bool state = false;
-            selectedNode = null;
-            if (towerlist == null)
+            TreeNode node = new TreeNode();
+            node.Text = equ.Name;
+            node.Tag = equ;
+            node.ToolTipText = equ.ToString();
+            parent.Nodes.Add(node);
+
+            if (equ.ID != SelectedEquID && equ.ID > 0)
                 return false;
-            TreeNode selNode;
-            nodes.Clear();
-            towerlist.Sort((x, y) => x.TowerName.CompareTo(y.TowerName));
-            foreach (Tower tower in towerlist)
-            {
-                TreeNode node = new TreeNode();
-                node.Text = tower.TowerName;
-                node.Tag = tower;
-                node.ToolTipText = tower.ToString();
-                nodes.Add(node);
-                if (SelectedID == tower.TowerNO)
-                {
-                    state = true;
-                    node.Expand();
-                    selectedNode = node;
-                }
-
-                if (EquList(node.Nodes, tower.EquList,out selNode,SelectedEquID))
-                {
-                    selectedNode = selNode;
-                    node.Expand();
-                    state = true;
-                }
-               
-            }
-            return state;
+            this.SelectedTreeNode = node;
+            return true;
         }
 
-        public static bool EquList(TreeNodeCollection nodes, List<Equ> equList,out TreeNode selectedNode,int SelectedID = 0)
+        public bool Add_equs(TreeNode parent, List<Equ> equs)
         {
-            bool state = false;
-            selectedNode = null;
-            if (equList == null) return false;
-
-            nodes.Clear();
-            equList.Sort((x, y) => x.Name.CompareTo(y.Name));
-            foreach (Equ equ in equList)
+            bool selected = false;
+            if (parent==null || equs == null)
+                return false;
+            foreach(Equ equ in equs)
             {
-                TreeNode node = new TreeNode();
-                node.Text = equ.Name;
-                node.Tag = equ;
-                node.ToolTipText = equ.ToString();
-                if (equ.ID == SelectedID)
-                { 
-                    state = true;
-                    node.Expand();
-                    selectedNode = node;
-                }
-                nodes.Add(node);
+                if(Add_equ(parent,equ))
+                    selected = true;
             }
-            return state;
+            if(selected)
+                parent.Expand();
+            return selected;
         }
 
+
+
+        public bool Add_Tower(TreeNode parent, Tower tower)
+        {
+            bool selected = false;
+            TreeNode node = new TreeNode();
+            node.Text = tower.TowerName;
+            node.Tag = tower;
+            node.ToolTipText = tower.ToString();
+            if(SelectedTowerID >0 && SelectedTowerID == tower.TowerNO)
+            {
+                this.SelectedTreeNode = node;
+                selected = true;
+            }
+            parent.Nodes.Add(node);
+            bool sel_equ = Add_equs(node, tower.EquList);
+            return sel_equ || selected;
+        }
+
+        public bool Add_towers(TreeNode parent, List<Tower> towers)
+        {
+            bool selected = false;
+            if (parent == null || towers == null)
+                return false;
+            foreach (Tower tower in towers)
+            {
+                if (Add_Tower(parent, tower))
+                    selected = true;
+            }
+            if(selected)
+                parent.Expand();
+            return selected;
+        }
+
+
+        public bool Add_line(TreeNodeCollection parent, Line line)
+        {
+            bool selected  = false;
+            TreeNode node = new TreeNode();
+            parent.Add(node);
+            node.Name = line.NO.ToString();
+            node.Text = line.Name;
+            node.ToolTipText = line.ToString();
+            node.Tag = line;
+            if(this.SelectedLineID >0 && this.SelectedLineID == line.NO)
+            {
+                this.SelectedTreeNode = node;
+                selected = true;
+            }
+            bool sel_tower = Add_towers(node, line.TowerList);
+            return selected || sel_tower;
+        }
+
+        public bool Add_lines(TreeNodeCollection nodes, List<Line> lines)
+        {
+            TreeNodeCollection parent = nodes;
+            TreeNode pNode = null;
+            bool selected = false;
+            if(nodes == null || lines == null) return false;
+            foreach (Line line in lines)
+            {
+                if (this.HasTypeNode)
+                {
+                    if ((pNode = this._line_get_parent(line.Flag)) == null)
+                        continue;
+                     parent = pNode.Nodes;
+                }
+                if (Add_line(parent, line))
+                {
+                    selected = true;
+                    if (parent != null)
+                        pNode.Expand();
+                }
+            }
+            return selected;
+        }
+        public bool Add_lines()
+        {
+            return this.Add_lines(ParentNodes, Lines);
+        }
+
+
+        public static bool LineList(TreeNodeCollection nodes, List<Line> linelist, 
+            out TreeNode selectedNode, 
+            int SelectedEquID = 0, 
+            int SelectedTowerID = 0, 
+            int SelectedLineID = 0)
+        {
+            TreeViewList tree = new TreeViewList()
+            {
+                ParentNodes = nodes,
+                Lines = linelist,
+                SelectedEquID = SelectedEquID,
+                SelectedTowerID = SelectedTowerID,
+                SelectedLineID = SelectedLineID,
+            };
+            bool ret =tree.Add_lines();
+            selectedNode = tree.SelectedTreeNode;
+            return ret;
+        }
     }
 }

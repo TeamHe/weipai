@@ -32,7 +32,7 @@
             this.panel_Backgroound = new System.Windows.Forms.Panel();
             this.panel_Center = new System.Windows.Forms.Panel();
             this.panel_Left = new System.Windows.Forms.Panel();
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.treeView_Nodes = new System.Windows.Forms.TreeView();
             this.contextMenuStrip_TreeView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.你好ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel_Backgroound.SuspendLayout();
@@ -60,33 +60,33 @@
             // 
             // panel_Left
             // 
-            this.panel_Left.Controls.Add(this.treeView1);
+            this.panel_Left.Controls.Add(this.treeView_Nodes);
             this.panel_Left.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel_Left.Location = new System.Drawing.Point(0, 0);
             this.panel_Left.Name = "panel_Left";
             this.panel_Left.Size = new System.Drawing.Size(164, 450);
             this.panel_Left.TabIndex = 2;
             // 
-            // treeView1
+            // treeView_Nodes
             // 
-            this.treeView1.ContextMenuStrip = this.contextMenuStrip_TreeView;
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Location = new System.Drawing.Point(0, 0);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(164, 450);
-            this.treeView1.TabIndex = 1;
+            this.treeView_Nodes.ContextMenuStrip = this.contextMenuStrip_TreeView;
+            this.treeView_Nodes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView_Nodes.Location = new System.Drawing.Point(0, 0);
+            this.treeView_Nodes.Name = "treeView_Nodes";
+            this.treeView_Nodes.Size = new System.Drawing.Size(164, 450);
+            this.treeView_Nodes.TabIndex = 1;
             // 
             // contextMenuStrip_TreeView
             // 
             this.contextMenuStrip_TreeView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.你好ToolStripMenuItem});
             this.contextMenuStrip_TreeView.Name = "contextMenuStrip_TreeView";
-            this.contextMenuStrip_TreeView.Size = new System.Drawing.Size(153, 48);
+            this.contextMenuStrip_TreeView.Size = new System.Drawing.Size(101, 26);
             // 
             // 你好ToolStripMenuItem
             // 
             this.你好ToolStripMenuItem.Name = "你好ToolStripMenuItem";
-            this.你好ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.你好ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.你好ToolStripMenuItem.Text = "你好";
             // 
             // Dialog_EQU_Man
@@ -109,7 +109,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel_Backgroound;
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView treeView_Nodes;
         private System.Windows.Forms.Panel panel_Center;
         private System.Windows.Forms.Panel panel_Left;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip_TreeView;
