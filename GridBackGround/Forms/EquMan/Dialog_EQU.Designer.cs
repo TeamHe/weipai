@@ -35,9 +35,9 @@
             this.linkLabel_DepartMent_Update = new System.Windows.Forms.LinkLabel();
             this.comboBox_DepartMent = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox_market = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox_updatetime = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.textBox_Name = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -71,9 +71,9 @@
             this.panel1.Controls.Add(this.linkLabel_DepartMent_Update);
             this.panel1.Controls.Add(this.comboBox_DepartMent);
             this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.textBox_market);
             this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.textBox_updatetime);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.textBox_Name);
             this.panel1.Controls.Add(this.label6);
@@ -99,7 +99,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(378, 388);
+            this.panel1.Size = new System.Drawing.Size(399, 409);
             this.panel1.TabIndex = 0;
             // 
             // checkBox_istime
@@ -125,7 +125,7 @@
             // linkLabel_Department_Man
             // 
             this.linkLabel_Department_Man.AutoSize = true;
-            this.linkLabel_Department_Man.Location = new System.Drawing.Point(302, 64);
+            this.linkLabel_Department_Man.Location = new System.Drawing.Point(302, 33);
             this.linkLabel_Department_Man.Name = "linkLabel_Department_Man";
             this.linkLabel_Department_Man.Size = new System.Drawing.Size(53, 12);
             this.linkLabel_Department_Man.TabIndex = 28;
@@ -135,7 +135,7 @@
             // linkLabel_DepartMent_Update
             // 
             this.linkLabel_DepartMent_Update.AutoSize = true;
-            this.linkLabel_DepartMent_Update.Location = new System.Drawing.Point(266, 64);
+            this.linkLabel_DepartMent_Update.Location = new System.Drawing.Point(266, 33);
             this.linkLabel_DepartMent_Update.Name = "linkLabel_DepartMent_Update";
             this.linkLabel_DepartMent_Update.Size = new System.Drawing.Size(29, 12);
             this.linkLabel_DepartMent_Update.TabIndex = 27;
@@ -145,8 +145,9 @@
             // 
             // comboBox_DepartMent
             // 
+            this.comboBox_DepartMent.Enabled = false;
             this.comboBox_DepartMent.FormattingEnabled = true;
-            this.comboBox_DepartMent.Location = new System.Drawing.Point(82, 60);
+            this.comboBox_DepartMent.Location = new System.Drawing.Point(82, 29);
             this.comboBox_DepartMent.Name = "comboBox_DepartMent";
             this.comboBox_DepartMent.Size = new System.Drawing.Size(181, 20);
             this.comboBox_DepartMent.TabIndex = 26;
@@ -154,18 +155,18 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(25, 64);
+            this.label9.Location = new System.Drawing.Point(25, 33);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(53, 12);
             this.label9.TabIndex = 25;
             this.label9.Text = "所属单位";
             // 
-            // textBox2
+            // textBox_market
             // 
-            this.textBox2.Location = new System.Drawing.Point(82, 235);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(181, 21);
-            this.textBox2.TabIndex = 24;
+            this.textBox_market.Location = new System.Drawing.Point(82, 235);
+            this.textBox_market.Name = "textBox_market";
+            this.textBox_market.Size = new System.Drawing.Size(181, 21);
+            this.textBox_market.TabIndex = 24;
             // 
             // label8
             // 
@@ -176,13 +177,13 @@
             this.label8.TabIndex = 23;
             this.label8.Text = "水印文字";
             // 
-            // textBox1
+            // textBox_updatetime
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(82, 271);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(181, 21);
-            this.textBox1.TabIndex = 22;
+            this.textBox_updatetime.Enabled = false;
+            this.textBox_updatetime.Location = new System.Drawing.Point(82, 271);
+            this.textBox_updatetime.Name = "textBox_updatetime";
+            this.textBox_updatetime.Size = new System.Drawing.Size(181, 21);
+            this.textBox_updatetime.TabIndex = 22;
             // 
             // label7
             // 
@@ -195,7 +196,7 @@
             // 
             // textBox_Name
             // 
-            this.textBox_Name.Location = new System.Drawing.Point(82, 24);
+            this.textBox_Name.Location = new System.Drawing.Point(82, 101);
             this.textBox_Name.Name = "textBox_Name";
             this.textBox_Name.Size = new System.Drawing.Size(181, 21);
             this.textBox_Name.TabIndex = 20;
@@ -204,7 +205,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(25, 28);
+            this.label6.Location = new System.Drawing.Point(25, 105);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 12);
             this.label6.TabIndex = 19;
@@ -213,7 +214,7 @@
             // linkLabel_Tower_Man
             // 
             this.linkLabel_Tower_Man.AutoSize = true;
-            this.linkLabel_Tower_Man.Location = new System.Drawing.Point(302, 99);
+            this.linkLabel_Tower_Man.Location = new System.Drawing.Point(302, 68);
             this.linkLabel_Tower_Man.Name = "linkLabel_Tower_Man";
             this.linkLabel_Tower_Man.Size = new System.Drawing.Size(53, 12);
             this.linkLabel_Tower_Man.TabIndex = 18;
@@ -223,7 +224,7 @@
             // linkLabel_Tower_Update
             // 
             this.linkLabel_Tower_Update.AutoSize = true;
-            this.linkLabel_Tower_Update.Location = new System.Drawing.Point(266, 99);
+            this.linkLabel_Tower_Update.Location = new System.Drawing.Point(266, 68);
             this.linkLabel_Tower_Update.Name = "linkLabel_Tower_Update";
             this.linkLabel_Tower_Update.Size = new System.Drawing.Size(29, 12);
             this.linkLabel_Tower_Update.TabIndex = 17;
@@ -232,8 +233,9 @@
             // 
             // comboBox_Line
             // 
+            this.comboBox_Line.Enabled = false;
             this.comboBox_Line.FormattingEnabled = true;
-            this.comboBox_Line.Location = new System.Drawing.Point(82, 95);
+            this.comboBox_Line.Location = new System.Drawing.Point(82, 64);
             this.comboBox_Line.Name = "comboBox_Line";
             this.comboBox_Line.Size = new System.Drawing.Size(181, 20);
             this.comboBox_Line.TabIndex = 16;
@@ -242,7 +244,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(25, 100);
+            this.label5.Location = new System.Drawing.Point(25, 69);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 12);
             this.label5.TabIndex = 15;
@@ -386,7 +388,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(378, 388);
+            this.ClientSize = new System.Drawing.Size(399, 409);
             this.Controls.Add(this.panel1);
             this.Name = "Dialog_EQU";
             this.Text = "Dialog_EQU";
@@ -420,9 +422,9 @@
         private System.Windows.Forms.LinkLabel linkLabel_Tower_Man;
         private System.Windows.Forms.TextBox textBox_Name;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox_updatetime;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox_market;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.LinkLabel linkLabel_Department_Man;
         private System.Windows.Forms.LinkLabel linkLabel_DepartMent_Update;

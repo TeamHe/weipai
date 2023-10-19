@@ -24,7 +24,8 @@ namespace GridBackGround.Forms.EquMan
     public partial class Dialog_EQU : Form
     {
         #region Public Variable
-        private int id_length = 17;
+        private int id_length = 6;
+        private DevFlag flag = DevFlag.NW;
         /// <summary>
         /// 管理按钮点击事件
         /// </summary>
@@ -81,7 +82,24 @@ namespace GridBackGround.Forms.EquMan
                     }
                 }
             }
-        
+        }
+
+        public DevFlag Flag 
+        { 
+            get { return this.flag; } 
+            set 
+            { 
+                this.flag = value; 
+                switch(this.flag)
+                {
+                    case DevFlag.NW:
+                        this.id_length = 6;
+                        break;
+                    case DevFlag.GW:
+                        this.id_length = 17;
+                        break;
+                }
+            } 
         }
         #endregion
 
@@ -154,16 +172,23 @@ namespace GridBackGround.Forms.EquMan
             //this.linkLabel_LinkClicked(this.linkLabel_Tower_Update,         new EventArgs());
             this.linkLabel_LinkClicked(this.linkLabel_DepartMent_Update,    new EventArgs());
 
-            //if (this.CurrentEqu == null)
-            //    CurrentEqu = new Equ();
             if (Config.SettingsForm.Default.ServiceMode == "nw")
             {
-                this.id_length = 6;
+                this.Flag = DevFlag.NW;
                 this.label_URL.Visible = false;
                 this.comboBox_Url.Visible = false;
                 this.linkLabel_Url_Man.Visible = false;
                 this.linkLabel_Url_Update.Visible = false;
                 this.textBox_ID.Text = "ZT1234";
+            }
+            else
+            {
+                this.Flag = DevFlag.GW;
+                this.label_URL.Visible = true;
+                this.comboBox_Url.Visible = true;
+                this.linkLabel_Url_Man.Visible = true;
+                this.linkLabel_Url_Update.Visible = true;
+                this.textBox_ID.Text = "A0000000000000023";
             }
         }
         /// <summary>
@@ -302,10 +327,15 @@ namespace GridBackGround.Forms.EquMan
         {
             if (this.equ == null)
             {
-                this.textBox1.Text = "";
+                this.textBox_updatetime.Text = "";
                 this.button_Update.Enabled = false;
                 this.button_Delete.Enabled = false;
                 this.button_Add.Enabled = true;
+                this.textBox_market.Text = "";
+                this.textBox_Name.Text = "";
+                this.textBox_ID.Text = "";
+                this.textBox_Phone.Text = "";
+                this.textBox_EquNumber.Text = "";
                 return;
             }
             else
@@ -313,19 +343,17 @@ namespace GridBackGround.Forms.EquMan
                 this.button_Add.Enabled = true;
                 this.button_Update.Enabled = true;
                 this.button_Delete.Enabled = true;
+                this.textBox_market.Text = equ.MarketText;  //水印文字
+                this.textBox_updatetime.Text = equ.UpdateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                this.textBox_Name.Text = equ.Name;
+                this.textBox_ID.Text = equ.EquID;
+                this.textBox_Phone.Text = equ.Phone;
+                this.textBox_EquNumber.Text = equ.EquNumber;
+                this.checkBox_isname.Checked = equ.IS_Mark;
+                this.checkBox_istime.Checked = equ.Is_Time;
+                ComboxSeletUrl(equ.UrlID);
+                ComboxSelectTower(equ.TowerNO);
             }
-            this.textBox2.Text = equ.MarketText;
-            this.textBox1.Text = equ.UpdateTime.ToString("yyyy-MM-dd HH:mm:ss");
-            this.textBox_Name.Text = equ.Name;
-            this.textBox_ID.Text = equ.EquID;
-            this.textBox_Phone.Text = equ.Phone;
-            this.textBox_EquNumber.Text = equ.EquNumber;
-            this.checkBox_isname.Checked = equ.IS_Mark;
-            this.checkBox_istime.Checked = equ.Is_Time;
-            
-            ComboxSeletUrl(equ.UrlID);
-            ComboxSelectTower(equ.TowerNO);
-            
         }
         /// <summary>
         /// 获取当前设备信息
@@ -346,7 +374,7 @@ namespace GridBackGround.Forms.EquMan
 
             if (equ == null)
                 equ = new Equ();
-            equ.MarketText = this.textBox2.Text;
+            equ.MarketText = this.textBox_market.Text;
             equ.Name = this.textBox_Name.Text;
             equ.EquID = this.textBox_ID.Text;
             equ.EquNumber = this.textBox_EquNumber.Text;
