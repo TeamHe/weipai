@@ -23,6 +23,8 @@ namespace ResModel.EQU
         /// 杆塔装置ID信息
         /// </summary>
         public string TowerID { get; set; }
+
+        public DevFlag Flag { get; set; }
         /// <summary>
         /// 装置列表
         /// </summary>

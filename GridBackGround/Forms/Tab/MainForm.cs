@@ -101,6 +101,15 @@ namespace GridBackGround
 
         }
 
+        private void flush_menuitem(ResModel.EQU.DevFlag flag)
+        {
+            this.主站ToolStripMenuItem.Visible = false;
+            this.设备控制ToolStripMenuItem.Visible=false;
+            if(flag == ResModel.EQU.DevFlag.NW)
+                this.设备控制ToolStripMenuItem.Visible = true;
+            if (flag == ResModel.EQU.DevFlag.GW)
+                this.主站ToolStripMenuItem.Visible = true;
+        }
      
         /// <summary>
         /// ID选择变化事件
@@ -118,6 +127,7 @@ namespace GridBackGround
             {
                 this.toolStripStatusLabel_ID.Text = "当前没有选中设备";
             }
+            flush_menuitem(e.Flag);
             try
             {
                 if (OnSelectedEquChanged != null)

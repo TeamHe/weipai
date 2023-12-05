@@ -268,6 +268,8 @@ namespace GridBackGround
 
         public string CMD_NAME { get; set; }
 
+        public DevFlag Flag { get; set; }
+
         public Equ equ { get; set; }
     }
 }

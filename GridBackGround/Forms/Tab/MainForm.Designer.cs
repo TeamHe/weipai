@@ -99,8 +99,8 @@
             this.tabPageGPRS = new System.Windows.Forms.TabPage();
             this.tabPageReport = new System.Windows.Forms.TabPage();
             this.tabPageData = new System.Windows.Forms.TabPage();
-            this.tabPageOnLineStatus = new System.Windows.Forms.TabPage();
             this.tabPage_nw_history = new System.Windows.Forms.TabPage();
+            this.tabPageOnLineStatus = new System.Windows.Forms.TabPage();
             this.panel = new System.Windows.Forms.Panel();
             this.panel_SerialPort = new System.Windows.Forms.Panel();
             this.panel_TabControl = new System.Windows.Forms.Panel();
@@ -126,8 +126,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.常规ToolStripMenuItem,
             this.记录列表ToolStripMenuItem,
-            this.主站ToolStripMenuItem,
             this.私有控制ToolStripMenuItem,
+            this.主站ToolStripMenuItem,
             this.设备控制ToolStripMenuItem,
             this.数据曲线ToolStripMenuItem,
             this.设置ToolStripMenuItem});
@@ -220,8 +220,8 @@
             this.切换装置运行程序ToolStripMenuItem,
             this.录音文件管理ToolStripMenuItem});
             this.主站ToolStripMenuItem.Name = "主站ToolStripMenuItem";
-            this.主站ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
-            this.主站ToolStripMenuItem.Text = "主站";
+            this.主站ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
+            this.主站ToolStripMenuItem.Text = "设备控制";
             // 
             // 网络适配器ToolStripMenuItem
             // 
@@ -229,7 +229,7 @@
             this.查询网络适配器ToolStripMenuItem,
             this.设置网络适配器ToolStripMenuItem});
             this.网络适配器ToolStripMenuItem.Name = "网络适配器ToolStripMenuItem";
-            this.网络适配器ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.网络适配器ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.网络适配器ToolStripMenuItem.Text = "网络适配器";
             // 
             // 查询网络适配器ToolStripMenuItem
@@ -252,7 +252,7 @@
             this.当前数据ToolStripMenuItem,
             this.历史数据ToolStripMenuItem});
             this.请求历史数据ToolStripMenuItem.Name = "请求历史数据ToolStripMenuItem";
-            this.请求历史数据ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.请求历史数据ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.请求历史数据ToolStripMenuItem.Text = "请求历史数据";
             this.请求历史数据ToolStripMenuItem.Click += new System.EventHandler(this.历史数据ToolStripMenuItem_Click);
             // 
@@ -277,7 +277,7 @@
             this.查询采样参数ToolStripMenuItem,
             this.设定采样参数ToolStripMenuItem});
             this.采样参数查询设定ToolStripMenuItem.Name = "采样参数查询设定ToolStripMenuItem";
-            this.采样参数查询设定ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.采样参数查询设定ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.采样参数查询设定ToolStripMenuItem.Text = "采样参数";
             this.采样参数查询设定ToolStripMenuItem.Click += new System.EventHandler(this.设定采样参数ToolStripMenuItem_Click);
             // 
@@ -302,7 +302,7 @@
             this.查询上位机信息ToolStripMenuItem1,
             this.设定上位机信息ToolStripMenuItem1});
             this.上位机信息查询设定ToolStripMenuItem.Name = "上位机信息查询设定ToolStripMenuItem";
-            this.上位机信息查询设定ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.上位机信息查询设定ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.上位机信息查询设定ToolStripMenuItem.Text = "上位机信息";
             // 
             // 查询上位机信息ToolStripMenuItem1
@@ -325,7 +325,7 @@
             this.查询装置IDToolStripMenuItem,
             this.设定装置IDToolStripMenuItem});
             this.装置IDToolStripMenuItem.Name = "装置IDToolStripMenuItem";
-            this.装置IDToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.装置IDToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.装置IDToolStripMenuItem.Text = "装置ID";
             // 
             // 查询装置IDToolStripMenuItem
@@ -348,7 +348,7 @@
             this.常规复位ToolStripMenuItem,
             this.复位至调试模式ToolStripMenuItem});
             this.装置复位ToolStripMenuItem.Name = "装置复位ToolStripMenuItem";
-            this.装置复位ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.装置复位ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.装置复位ToolStripMenuItem.Text = "装置复位";
             // 
             // 常规复位ToolStripMenuItem
@@ -371,7 +371,7 @@
             this.查询模型参数ToolStripMenuItem,
             this.设置模型参数ToolStripMenuItem});
             this.模型参数ToolStripMenuItem.Name = "模型参数ToolStripMenuItem";
-            this.模型参数ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.模型参数ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.模型参数ToolStripMenuItem.Text = "模型参数";
             // 
             // 查询模型参数ToolStripMenuItem
@@ -391,7 +391,7 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(169, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // 图像采集参数ToolStripMenuItem
             // 
@@ -399,7 +399,7 @@
             this.查询图像采集参数ToolStripMenuItem,
             this.设定图像采集参数ToolStripMenuItem});
             this.图像采集参数ToolStripMenuItem.Name = "图像采集参数ToolStripMenuItem";
-            this.图像采集参数ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.图像采集参数ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.图像采集参数ToolStripMenuItem.Text = "图像采集参数";
             // 
             // 查询图像采集参数ToolStripMenuItem
@@ -422,7 +422,7 @@
             this.查询拍照时间表ToolStripMenuItem,
             this.设定拍照时间表ToolStripMenuItem1});
             this.拍照时间表设置ToolStripMenuItem.Name = "拍照时间表设置ToolStripMenuItem";
-            this.拍照时间表设置ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.拍照时间表设置ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.拍照时间表设置ToolStripMenuItem.Text = "拍照时间表";
             this.拍照时间表设置ToolStripMenuItem.Click += new System.EventHandler(this.设定拍照时间表ToolStripMenuItem_Click);
             // 
@@ -444,41 +444,41 @@
             // 手动请求照片ToolStripMenuItem
             // 
             this.手动请求照片ToolStripMenuItem.Name = "手动请求照片ToolStripMenuItem";
-            this.手动请求照片ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.手动请求照片ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.手动请求照片ToolStripMenuItem.Text = "手动请求照片";
             this.手动请求照片ToolStripMenuItem.Click += new System.EventHandler(this.手动请求照片ToolStripMenuItem_Click);
             // 
             // 摄像机远程调节ToolStripMenuItem
             // 
             this.摄像机远程调节ToolStripMenuItem.Name = "摄像机远程调节ToolStripMenuItem";
-            this.摄像机远程调节ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.摄像机远程调节ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.摄像机远程调节ToolStripMenuItem.Text = "摄像机远程调节";
             this.摄像机远程调节ToolStripMenuItem.Click += new System.EventHandler(this.摄像机远程调节ToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(169, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
             // 
             // 远程升级装置程序ToolStripMenuItem
             // 
             this.远程升级装置程序ToolStripMenuItem.Name = "远程升级装置程序ToolStripMenuItem";
             this.远程升级装置程序ToolStripMenuItem.ShowShortcutKeys = false;
-            this.远程升级装置程序ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.远程升级装置程序ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.远程升级装置程序ToolStripMenuItem.Text = "远程升级装置程序";
             this.远程升级装置程序ToolStripMenuItem.Click += new System.EventHandler(this.远程升级装置程序ToolStripMenuItem_Click);
             // 
             // 正式运行升级程序ToolStripMenuItem
             // 
             this.正式运行升级程序ToolStripMenuItem.Name = "正式运行升级程序ToolStripMenuItem";
-            this.正式运行升级程序ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.正式运行升级程序ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.正式运行升级程序ToolStripMenuItem.Text = "正式运行升级程序";
             this.正式运行升级程序ToolStripMenuItem.Visible = false;
             // 
             // 切换装置运行程序ToolStripMenuItem
             // 
             this.切换装置运行程序ToolStripMenuItem.Name = "切换装置运行程序ToolStripMenuItem";
-            this.切换装置运行程序ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.切换装置运行程序ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.切换装置运行程序ToolStripMenuItem.Text = "切换装置运行程序";
             this.切换装置运行程序ToolStripMenuItem.Click += new System.EventHandler(this.工作模式切换ToolStripMenuItem_Click);
             // 
@@ -489,7 +489,7 @@
             this.录音文件升级ToolStripMenuItem,
             this.录音删除ToolStripMenuItem});
             this.录音文件管理ToolStripMenuItem.Name = "录音文件管理ToolStripMenuItem";
-            this.录音文件管理ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.录音文件管理ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.录音文件管理ToolStripMenuItem.Text = "录音文件管理";
             // 
             // 播放录音ToolStripMenuItem1
@@ -572,21 +572,21 @@
             // 本机端口设置ToolStripMenuItem
             // 
             this.本机端口设置ToolStripMenuItem.Name = "本机端口设置ToolStripMenuItem";
-            this.本机端口设置ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.本机端口设置ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.本机端口设置ToolStripMenuItem.Text = "本机端口设置";
             this.本机端口设置ToolStripMenuItem.Click += new System.EventHandler(this.本机端口设置ToolStripMenuItem_Click);
             // 
             // 工作模式ToolStripMenuItem
             // 
             this.工作模式ToolStripMenuItem.Name = "工作模式ToolStripMenuItem";
-            this.工作模式ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.工作模式ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.工作模式ToolStripMenuItem.Text = "串口模式";
             this.工作模式ToolStripMenuItem.Click += new System.EventHandler(this.打开串口调试工具ToolStripMenuItem_Click);
             // 
             // 数据库测试ToolStripMenuItem
             // 
             this.数据库测试ToolStripMenuItem.Name = "数据库测试ToolStripMenuItem";
-            this.数据库测试ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.数据库测试ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.数据库测试ToolStripMenuItem.Text = "数据库测试";
             this.数据库测试ToolStripMenuItem.Click += new System.EventHandler(this.数据库测试ToolStripMenuItem_Click);
             // 
@@ -597,7 +597,7 @@
             this.清理ToolStripMenuItem,
             this.参数设置ToolStripMenuItem});
             this.图片清理ToolStripMenuItem.Name = "图片清理ToolStripMenuItem";
-            this.图片清理ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.图片清理ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.图片清理ToolStripMenuItem.Text = "图片清理";
             this.图片清理ToolStripMenuItem.Visible = false;
             // 
@@ -700,15 +700,6 @@
             this.tabPageData.Text = "数据";
             this.tabPageData.UseVisualStyleBackColor = true;
             // 
-            // tabPageOnLineStatus
-            // 
-            this.tabPageOnLineStatus.Location = new System.Drawing.Point(4, 22);
-            this.tabPageOnLineStatus.Name = "tabPageOnLineStatus";
-            this.tabPageOnLineStatus.Size = new System.Drawing.Size(870, 427);
-            this.tabPageOnLineStatus.TabIndex = 3;
-            this.tabPageOnLineStatus.Text = "在线状态";
-            this.tabPageOnLineStatus.UseVisualStyleBackColor = true;
-            // 
             // tabPage_nw_history
             // 
             this.tabPage_nw_history.Location = new System.Drawing.Point(4, 22);
@@ -718,6 +709,15 @@
             this.tabPage_nw_history.TabIndex = 4;
             this.tabPage_nw_history.Text = "南网历史数据";
             this.tabPage_nw_history.UseVisualStyleBackColor = true;
+            // 
+            // tabPageOnLineStatus
+            // 
+            this.tabPageOnLineStatus.Location = new System.Drawing.Point(4, 22);
+            this.tabPageOnLineStatus.Name = "tabPageOnLineStatus";
+            this.tabPageOnLineStatus.Size = new System.Drawing.Size(870, 427);
+            this.tabPageOnLineStatus.TabIndex = 3;
+            this.tabPageOnLineStatus.Text = "在线状态";
+            this.tabPageOnLineStatus.UseVisualStyleBackColor = true;
             // 
             // panel
             // 

@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-
 using ResModel.EQU;
-using ResModel.CollectData;
 using DB_Operation.EQUManage;
-using Tools;
 using ResModel;
+using System.Text;
+using Tools;
 
 namespace GridBackGround.Forms.Tab
 {
@@ -50,9 +45,14 @@ namespace GridBackGround.Forms.Tab
 
         private int TestEquNum = 0;
 
+        private TreeNode treenode_gw;
+
+        private TreeNode treenode_nw;
+
+        private Equ CurEqu;
         #endregion
-        
-        
+
+
         #region Construction
         public Tab_IDs()
         {
@@ -72,14 +72,41 @@ namespace GridBackGround.Forms.Tab
         /// <param name="e"></param>
         private void Tab_IDs_Load(object sender, EventArgs e)
         {
+            TreeNodesClear();
+            TreeNodesInit();
             TreeViewUpdate();
+
             //终端状态变化事件
             Termination.PowerPoleManage.OnStateChange +=
                 new Termination.OnLineStateChange(OnLineStateChange);
             treeView1.ShowNodeToolTips = true;
         }
+
+        private void TreeNodesInit()
+        {
+            this.treenode_gw = new TreeNode()
+            {
+                Text = "国网",
+                Tag = DevFlag.GW,
+            };
+            this.treenode_nw = new TreeNode()
+            {
+                Text = "南网",
+                Tag = DevFlag.NW,
+            };
+            this.treeView1.Nodes.Add(this.treenode_gw);
+            this.treeView1.Nodes.Add(this.treenode_nw);
+        }
+
+        private void TreeNodesClear()
+        {
+            if (this.treenode_gw != null)
+                this.treenode_gw.Nodes.Clear();
+            if (this.treenode_nw != null)
+                this.treenode_nw.Nodes.Clear();
+        }
         #endregion
-        
+
         /// <summary>
         /// 设备在线状态更改
         /// </summary>
@@ -144,7 +171,7 @@ namespace GridBackGround.Forms.Tab
                                 node.Text = powerPole.Name;
                             node.Name = powerPole.CMD_ID;
                             UpdateEquMsg(node, powerPole);              //更新节点提示信息
-                            TreeNode parent = AddTestNode();
+                            TreeNode parent = AddTestNode(powerPole);
                             if(parent != null)
                                 parent.Nodes.Add(node);
                         }
@@ -163,10 +190,13 @@ namespace GridBackGround.Forms.Tab
             }
         }
         
-        private TreeNode AddTestLine()
+        private TreeNode AddTestLine(IPowerPole powerPole)
         {
             TreeNode lineNode = null;
-            foreach (TreeNode node in treeView1.Nodes)
+            TreeNode typenode = treenode_nw;
+            if (powerPole.CMD_ID.Length == 17)
+                typenode = treenode_gw;
+            foreach (TreeNode node in typenode.Nodes)
             {
                 if (node.Name == TestLineName)
                 {
@@ -188,10 +218,10 @@ namespace GridBackGround.Forms.Tab
             return lineNode;
         }
 
-        private TreeNode AddTestNode()
+        private TreeNode AddTestNode(IPowerPole powerPole)
         {
             TreeNode towerNode = null;
-            TreeNode linenode = AddTestLine();
+            TreeNode linenode = AddTestLine(powerPole);
             if (linenode.Nodes.Count == 0)
             {
                 towerNode = new TreeNode();
@@ -264,10 +294,18 @@ namespace GridBackGround.Forms.Tab
         #region  Tree控件刷新
         public void TreeViewUpdate()
         {
-            var lineList = new DB_Line().List_LineTowerEqu();
-            TreeNode selectedNode = null;
-            TreeViewList.LineList(this.treeView1.Nodes,lineList,out selectedNode);
-            tree_lines_image_flush(this.treeView1.Nodes);
+            var linelist = new DB_Line().List_LineTowerEqu();
+            TreeViewList tree = new TreeViewList()
+            {
+                ParentNodes = this.treeView1.Nodes,
+                Lines = linelist,
+                SelectedEquID = this.CurEqu != null ? this.CurEqu.ID : 0,
+                HasTypeNode = true,
+            };
+            this.TreeNodesClear();
+            tree.Add_lines();
+            tree_lines_image_flush(this.treenode_gw.Nodes);
+            tree_lines_image_flush(this.treenode_nw.Nodes);
             Termination.PowerPoleManage.UpdatePolesStation();
         }
 
@@ -387,6 +425,7 @@ namespace GridBackGround.Forms.Tab
         {
             if(this.CMD_ID_Change != null)
                 this.CMD_ID_Change(this, change);
+            this.CurEqu = change.equ;
         }
 
         /// <summary>
@@ -396,23 +435,45 @@ namespace GridBackGround.Forms.Tab
         /// <param name="e"></param>
         private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (e.Node.Level == 2)
+            DevFlag flag = DevFlag.Unknown;
+            Equ equ = null;
+            Tower tower = null;
+            Line line = null;
+            TreeNode node = e.Node;
+            if (node.Level == 3)
             {
-                TreeNode nodeEqu = e.Node;
-                TreeNode nodeTower = nodeEqu.Parent;
-                TreeNode nodeLine = nodeTower.Parent;
-                var equ = (Equ)nodeEqu.Tag;
-                var tower = (Tower)nodeTower.Tag;
-                var line = (Line)nodeLine.Tag;
-                this.textBox1.Text = equ.EquID;
-                
-                this.SelectedEquChange(new CMDid_Change(equ.EquID, string.Format("{0}->{1}->{2}", line.Name, tower.TowerName, equ.Name))
-                {
-                    equ = equ,
-                });
+                equ = (Equ)node.Tag;
+                node = node.Parent;
             }
-            else
-                this.SelectedEquChange(new CMDid_Change(null));
+            if(node.Level == 2)
+            {
+                tower = (Tower)node.Tag;
+                node = node.Parent;
+            }
+            if(node.Level == 1)
+            {
+                line = (Line)node.Tag;
+                node = node.Parent;
+            }
+            if(node.Level == 0)
+            {
+                flag = (DevFlag)node.Tag;
+            }
+
+            StringBuilder builder = new StringBuilder();
+            builder.Append(EnumUtil.GetDescription(flag));
+            if(line != null)
+                builder.AppendFormat(":{0}",line.Name);
+            if(tower != null)
+                builder.AppendFormat("->{0}", tower.TowerName);
+            if(equ != null)
+                builder.AppendFormat("->{0}", equ.Name);
+
+            this.SelectedEquChange(new CMDid_Change(equ != null ? equ.EquID : null)
+            {
+                Flag = flag,
+                CMD_NAME = builder.ToString(),
+            });
         }
 
         /// <summary>

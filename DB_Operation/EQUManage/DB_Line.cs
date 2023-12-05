@@ -146,11 +146,15 @@ namespace DB_Operation.EQUManage
                 if (curtower == null)
                 {
                     curtower = tower;
+                    curtower.Flag = curLine.Flag;
                     curLine.TowerList.Add(curtower);
                 }
                 Equ equ = RowToEqu(row);
                 if (equ != null)
+                {
+                    equ.Flag = curLine.Flag;
                     curtower.EquList.Add(equ);
+                }
             }
             return list;
         }

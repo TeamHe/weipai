@@ -26,13 +26,21 @@ namespace ResModel.EQU
     public enum DevFlag
     {
         /// <summary>
+        /// 未知设备
+        /// </summary>
+        [Description("未知")]
+        Unknown,
+        /// <summary>
         /// 国网设备
         /// </summary>
+        [Description("国网")]
         GW,
         /// <summary>
         /// 南网设备
         /// </summary>
+        [Description("南网")]
         NW,
+
     }
 
     public class Equ
@@ -71,7 +79,8 @@ namespace ResModel.EQU
         /// </summary>
         public ICMP Type { get; set; }
 
-       
+        public DevFlag Flag { get; set; }
+
         /// <summary>
         /// 设备编号
         /// </summary>
