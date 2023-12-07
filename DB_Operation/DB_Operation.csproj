@@ -97,6 +97,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="db_base.cs" />
+    <Compile Include="RealData\db_data_gw_ice.cs" />
     <Compile Include="RealData\db_data_gw_weather.cs" />
     <Compile Include="RealData\db_data_nw_pull_angle.cs" />
     <Compile Include="RealData\db_data_nw_weather.cs" />
