@@ -144,12 +144,19 @@ namespace GridBackGround.Forms
         {
             public static string MyPublicIP()
             {
-                using (System.Net.WebClient wc = new System.Net.WebClient())
+                try
                 {
-                    string html = wc.DownloadString("http://ip.qq.com");
-                    System.Text.RegularExpressions.Match m = System.Text.RegularExpressions.Regex.Match(html, "<span class=\"red\">([^<]+)</span>");
-                    if (m.Success) return m.Groups[1].Value;
+                    using (System.Net.WebClient wc = new System.Net.WebClient())
+                    {
+                        string html = wc.DownloadString("http://ip.qq.com");
+                        System.Text.RegularExpressions.Match m = System.Text.RegularExpressions.Regex.Match(html, "<span class=\"red\">([^<]+)</span>");
+                        if (m.Success) return m.Groups[1].Value;
 
+                        return "0.0.0.0";
+                    }
+                }
+                catch
+                {
                     return "0.0.0.0";
                 }
             }
