@@ -6,62 +6,20 @@ using ResModel.nw;
 
 namespace GridBackGround.Forms.Dialogs_nw
 {
-    public class MenuItem_nw
+    public class MenuItem_nw : menu_item_control
     {
         #region Base
-        public ToolStripMenuItem ParentMenu { get; set; }
-
         /// <summary>
         /// 私有控制按钮
         /// </summary>
         public ToolStripMenuItem PrivateControlMenu { get; set; }
 
-        public MainForm Parent { get; set; }
-
-        public MenuItem_nw() { }
-
-        public MenuItem_nw(MainForm p_form, ToolStripMenuItem p_menu)
-        { 
-            ParentMenu = p_menu;
-            Parent = p_form;
-        }
-
         public MenuItem_nw(MainForm p_form)
+            :base(p_form)
         {
-            Parent = p_form;
-        }
-
-        public ToolStripMenuItem AddDropDownMenuItem(string text)
-        {
-            return AddDropDownMenuItem(this.ParentMenu, text);
-        }
-
-        public ToolStripMenuItem AddDropDownMenuItem(string text,
-                                                     EventHandler handler)
-        {
-            ToolStripMenuItem item = AddDropDownMenuItem(text);
-            item.Click += handler;
-            return item;
         }
 
 
-        public ToolStripMenuItem AddDropDownMenuItem(ToolStripMenuItem parent, 
-                                                     string text)
-        {
-            ToolStripMenuItem item = new ToolStripMenuItem(text);
-            parent.DropDownItems.Add(item);
-           
-            return item;
-        }
-
-        public ToolStripMenuItem AddDropDownMenuItem(ToolStripMenuItem parent, 
-                                                     string text,
-                                                     EventHandler handler)
-        {
-            ToolStripMenuItem item = AddDropDownMenuItem(parent, text);
-            item.Click += handler;
-            return item;
-        }
         #endregion
 
         #region 图像菜单相关操作
@@ -73,9 +31,6 @@ namespace GridBackGround.Forms.Dialogs_nw
         /// <param name="e"></param>
         private void menu_click_81_img_para(object sender, EventArgs e)
         {
-            IPowerPole pole;
-            if ((pole = Parent.GetSeletedPole()) == null)
-                return;
             Dialog_nw_image_para dialog = new Dialog_nw_image_para();
             dialog.para_ch1 = new nw_img_para() { Color = nw_img_para.EColor.Color, Resolution = nw_img_para.EResolution.R_800_600, Brightness = 20, Contrast = 30, Saturation = 10 };
             dialog.para_ch2 = new nw_img_para() { Color = nw_img_para.EColor.Color, Resolution = nw_img_para.EResolution.R_800_600, Brightness = 20, Contrast = 30, Saturation = 10 };
@@ -95,9 +50,6 @@ namespace GridBackGround.Forms.Dialogs_nw
         /// <param name="e"></param>
         private void menu_click_82_time_table_set(object sender, EventArgs e)
         {
-            IPowerPole pole;
-            if ((pole = Parent.GetSeletedPole()) == null)
-                return;
             Dialog_Image_TimeTable dialog = new Dialog_Image_TimeTable();
             dialog.nw_flag = true;
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -117,9 +69,6 @@ namespace GridBackGround.Forms.Dialogs_nw
         /// <param name="e"></param>
         private void menu_click_83_photoing(object sender, EventArgs e)
         {
-            IPowerPole pole;
-            if ((pole = Parent.GetSeletedPole()) == null)
-                return;
             Dialog_Image_Photo dialog = new Dialog_Image_Photo();
             if (dialog.ShowDialog() == DialogResult.OK)
             {
@@ -141,9 +90,6 @@ namespace GridBackGround.Forms.Dialogs_nw
         /// <param name="e"></param>
         private void menu_click_88_remote_camera_control(object sender, EventArgs e)
         {
-            IPowerPole pole;
-            if ((pole = Parent.GetSeletedPole()) == null)
-                return;
             nw_cmd_88_remote_camera_control cmd = new nw_cmd_88_remote_camera_control(pole);
             Dialog_nw_camera_control dialog = new Dialog_nw_camera_control()
             {
@@ -159,9 +105,6 @@ namespace GridBackGround.Forms.Dialogs_nw
         /// <param name="e"></param>
         private void menu_click_8B_time_table_get(object sender, EventArgs e)
         {
-            IPowerPole pole;
-            if ((pole = Parent.GetSeletedPole()) == null)
-                return;
             Dialog_Image_Photo dialog = new Dialog_Image_Photo();
             dialog.nw_get_table = true;
 
@@ -204,12 +147,8 @@ namespace GridBackGround.Forms.Dialogs_nw
         /// <param name="e"></param>
         private void menu_click_cur_time_set(object sender, EventArgs e)
         {
-            IPowerPole pole = Parent.GetSeletedPole();
-            if (pole != null)
-            {
-                nw_cmd_01_timing timing = new nw_cmd_01_timing(pole);
-                timing.Execute();
-            }
+            nw_cmd_01_timing timing = new nw_cmd_01_timing(pole);
+            timing.Execute();
         }
         /// <summary>
         /// 7.13 	查询装置时间（控制字：0DH）
@@ -218,12 +157,10 @@ namespace GridBackGround.Forms.Dialogs_nw
         /// <param name="e"></param>
         private void menu_click_cur_time_get(object sender, EventArgs e)
         {
-            IPowerPole pole = Parent.GetSeletedPole();
-            if (pole != null)
-            {
-                nw_cmd_0d_time_get timing = new nw_cmd_0d_time_get(pole);
-                timing.Execute();
-            }
+            if (this.GetPowerPole() == null)
+                return;
+            nw_cmd_0d_time_get timing = new nw_cmd_0d_time_get(pole);
+            timing.Execute();
         }
 
 
@@ -234,12 +171,8 @@ namespace GridBackGround.Forms.Dialogs_nw
         /// <param name="e"></param>
         private void menu_click_center_get(object sender, EventArgs e)
         {
-            IPowerPole pole = Parent.GetSeletedPole();
-            if (pole != null)
-            {
-                nw_cmd_07_center_get center = new nw_cmd_07_center_get(pole);
-                center.Execute();
-            }
+            nw_cmd_07_center_get center = new nw_cmd_07_center_get(pole);
+            center.Execute();
         }
 
         /// <summary>
@@ -249,10 +182,9 @@ namespace GridBackGround.Forms.Dialogs_nw
         /// <param name="e"></param>
         private void menu_click_center_set(object sender, EventArgs e)
         {
-            IPowerPole pole;
-            if ((pole = Parent.GetSeletedPole()) == null)
+            if (this.GetPowerPole() == null)
                 return;
-            Forms.Dialogs_nw.Dialog_nw_ip dialog = new Forms.Dialogs_nw.Dialog_nw_ip();
+            Dialog_nw_ip dialog = new Dialog_nw_ip();
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 nw_cmd_06_center_set cmd = new nw_cmd_06_center_set(pole);
@@ -268,12 +200,8 @@ namespace GridBackGround.Forms.Dialogs_nw
         /// <param name="e"></param>
         private void menu_click_data_get(object sender, EventArgs e)
         {
-            IPowerPole pole = Parent.GetSeletedPole();
-            if (pole != null)
-            {
-                nw_cmd_21_data cmd = new nw_cmd_21_data(pole);
-                cmd.Execute();
-            }
+            nw_cmd_21_data cmd = new nw_cmd_21_data(pole);
+            cmd.Execute();
         }
 
         /// <summary>
@@ -283,13 +211,9 @@ namespace GridBackGround.Forms.Dialogs_nw
         /// <param name="e"></param>
         private void menu_click_data_get_imediately(object sender, EventArgs e)
         {
-            IPowerPole pole = Parent.GetSeletedPole();
-            if (pole != null)
-            {
-                nw_cmd_21_data cmd = new nw_cmd_21_data(pole);
-                cmd.ImeData = true;
-                cmd.Execute();
-            }
+            nw_cmd_21_data cmd = new nw_cmd_21_data(pole);
+            cmd.ImeData = true;
+            cmd.Execute();
         }
 
         /// <summary>
@@ -299,12 +223,8 @@ namespace GridBackGround.Forms.Dialogs_nw
         /// <param name="e"></param>
         private void menu_click_22_data_pull_get(object sender, EventArgs e)
         {
-            IPowerPole pole = Parent.GetSeletedPole();
-            if (pole != null)
-            {
-                nw_cmd_22_pull_angle cmd = new nw_cmd_22_pull_angle(pole);
-                cmd.Execute();
-            }
+            nw_cmd_22_pull_angle cmd = new nw_cmd_22_pull_angle(pole);
+            cmd.Execute();
         }
 
 
@@ -315,12 +235,8 @@ namespace GridBackGround.Forms.Dialogs_nw
         /// <param name="e"></param>
         private void menu_click_data_weather_get(object sender, EventArgs e)
         {
-            IPowerPole pole = Parent.GetSeletedPole();
-            if (pole != null)
-            {
-                nw_cmd_25_weather cmd = new nw_cmd_25_weather(pole);
-                cmd.Execute();
-            }
+            nw_cmd_25_weather cmd = new nw_cmd_25_weather(pole);
+            cmd.Execute();
         }
 
         /// <summary>
@@ -345,12 +261,8 @@ namespace GridBackGround.Forms.Dialogs_nw
         /// <param name="e"></param>
         private void menu_click_data_energy_status_get(object sender, EventArgs e)
         {
-            IPowerPole pole = Parent.GetSeletedPole();
-            if (pole != null)
-            {
-                nw_cmd_48_energy_status cmd = new nw_cmd_48_energy_status(pole);
-                cmd.Execute();
-            }
+            nw_cmd_48_energy_status cmd = new nw_cmd_48_energy_status(pole);
+            cmd.Execute();
         }
 
         /// <summary>
@@ -360,12 +272,8 @@ namespace GridBackGround.Forms.Dialogs_nw
         /// <param name="e"></param>
         private void menu_click_data_error_get(object sender, EventArgs e)
         {
-            IPowerPole pole = Parent.GetSeletedPole();
-            if (pole != null)
-            {
-                nw_cmd_30_error_data cmd = new nw_cmd_30_error_data(pole);
-                cmd.Execute();
-            }
+            nw_cmd_30_error_data cmd = new nw_cmd_30_error_data(pole);
+            cmd.Execute();
         }
 
         /// <summary>
@@ -375,10 +283,7 @@ namespace GridBackGround.Forms.Dialogs_nw
         /// <param name="e"></param>
         private void menu_click_set_password(object sender, EventArgs e)
         {
-            IPowerPole pole;
-            if ((pole = Parent.GetSeletedPole()) == null)
-                return;
-            Forms.Dialogs_nw.Dialog_nw_password dialog = new Forms.Dialogs_nw.Dialog_nw_password();
+            Dialog_nw_password dialog = new Dialog_nw_password();
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 nw_cmd_02_password cmd = new nw_cmd_02_password(pole);
@@ -396,10 +301,7 @@ namespace GridBackGround.Forms.Dialogs_nw
         /// <param name="e"></param>
         private void menu_click_reboot(object sender, EventArgs e)
         {
-            IPowerPole pole;
-            if ((pole = Parent.GetSeletedPole()) == null)
-                return;
-            Forms.Dialogs_nw.Dialog_nw_password_input dialog = new Forms.Dialogs_nw.Dialog_nw_password_input();
+            Dialog_nw_password_input dialog = new Dialog_nw_password_input();
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 nw_cmd_08_rest cmd = new nw_cmd_08_rest(pole);
@@ -415,9 +317,6 @@ namespace GridBackGround.Forms.Dialogs_nw
         /// <param name="e"></param>
         private void menu_click_weekup(object sender, EventArgs e)
         {
-            IPowerPole pole;
-            if ((pole = Parent.GetSeletedPole()) == null)
-                return;
             Dialog_nw_password_input dialog = new Dialog_nw_password_input();
             if (dialog.ShowDialog() == DialogResult.OK)
             {
@@ -435,9 +334,6 @@ namespace GridBackGround.Forms.Dialogs_nw
         /// <param name="e"></param>
         public void menu_click_para_get(object sender, EventArgs e)
         {
-            IPowerPole pole;
-            if ((pole = Parent.GetSeletedPole()) == null)
-                return;
             nw_cmd_0a_device_config_get cmd = new nw_cmd_0a_device_config_get(pole);
             cmd.Execute();
         }
@@ -449,9 +345,6 @@ namespace GridBackGround.Forms.Dialogs_nw
         /// <param name="e"></param>
         public void menu_click_para_set(object sender, EventArgs e)
         {
-            IPowerPole pole;
-            if ((pole = Parent.GetSeletedPole()) == null)
-                return;
             Dialog_nw_para_config dialog = new Dialog_nw_para_config();
             if (dialog.ShowDialog() == DialogResult.OK)
             {
@@ -469,9 +362,6 @@ namespace GridBackGround.Forms.Dialogs_nw
         /// <param name="e"></param>
         public void menu_click_send_sms(object sender, EventArgs e)
         {
-            IPowerPole pole;
-            if ((pole = Parent.GetSeletedPole()) == null)
-                return;
             Dialog_nw_send_sms dialog = new Dialog_nw_send_sms();
             if (dialog.ShowDialog() == DialogResult.OK)
             {
@@ -489,9 +379,6 @@ namespace GridBackGround.Forms.Dialogs_nw
         /// <param name="e"></param>
         public void menu_click_dev_function(object sender, EventArgs e)
         {
-            IPowerPole pole;
-            if ((pole = Parent.GetSeletedPole()) == null)
-                return;
             Dialog_nw_function dialog = new Dialog_nw_function();
             if (dialog.ShowDialog() == DialogResult.OK)
             {

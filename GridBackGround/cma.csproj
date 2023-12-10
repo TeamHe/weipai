@@ -251,6 +251,7 @@
     <Compile Include="Forms\Dialog\Form_UserCon.designer.cs">
       <DependentUpon>Form_UserCon.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Dialog\MenuItem_gw.cs" />
     <Compile Include="Forms\EquMan\Dialog_TowerMan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -306,6 +307,7 @@
     <Compile Include="Forms\EquMan\Dialog_LineMan.Designer.cs">
       <DependentUpon>Dialog_LineMan.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\menu_item_control.cs" />
     <Compile Include="Forms\Tab\MainMan.cs" />
     <Compile Include="Forms\Dialogs_nw\Tab_HisData_nw.cs">
       <SubType>Form</SubType>
