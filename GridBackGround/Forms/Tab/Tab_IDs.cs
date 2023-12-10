@@ -213,7 +213,7 @@ namespace GridBackGround.Forms.Tab
                 lineNode.Tag = new Line() { Name = "测试单位", LineID = "00000000000000000",NO =-1 };
                 lineNode.ImageIndex = (int)image_index.Line;
                 lineNode.SelectedImageIndex = (int)image_index.Line;
-                this.treeView1.Nodes.Add(lineNode);
+                typenode.Nodes.Add(lineNode);
             }
             return lineNode;
         }
@@ -253,11 +253,19 @@ namespace GridBackGround.Forms.Tab
         /// <param name="str"></param>
         /// <returns></returns>
         private bool FindItem(string ID, out TreeNode findNode)
-        {            
-            for (int i = 0; i < treeView1.Nodes.Count; i++)
+        { 
+            foreach(TreeNode node in this.treenode_gw.Nodes)
             {
-                var RootNode = treeView1.Nodes[i];
-                TreeNode treeNode = CheckTower(RootNode, ID);
+                TreeNode treeNode = CheckTower(node, ID);
+                if (treeNode != null)
+                {
+                    findNode = treeNode;
+                    return true;
+                }
+            }
+            foreach (TreeNode node in this.treenode_nw.Nodes)
+            {
+                TreeNode treeNode = CheckTower(node, ID);
                 if (treeNode != null)
                 {
                     findNode = treeNode;
@@ -277,7 +285,7 @@ namespace GridBackGround.Forms.Tab
         {
             foreach (TreeNode node in RootNode.Nodes)
             {
-                if (node.Level != 2)
+                if (node.Level != 3)
                 {
                     var checkedNode = CheckTower(node,ID);
                     if (checkedNode != null)
