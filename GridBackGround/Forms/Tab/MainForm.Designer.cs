@@ -697,7 +697,7 @@
             this.tabPageData.Name = "tabPageData";
             this.tabPageData.Size = new System.Drawing.Size(870, 427);
             this.tabPageData.TabIndex = 2;
-            this.tabPageData.Text = "数据";
+            this.tabPageData.Text = "国网历史数据";
             this.tabPageData.UseVisualStyleBackColor = true;
             // 
             // tabPage_nw_history
