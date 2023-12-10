@@ -39,47 +39,9 @@
             this.记录列表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.保存到excelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.从Excel中导入ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.主站ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.网络适配器ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.查询网络适配器ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.设置网络适配器ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.请求历史数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.当前数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.历史数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.采样参数查询设定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.查询采样参数ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.设定采样参数ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.上位机信息查询设定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.查询上位机信息ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.设定上位机信息ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.装置IDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.查询装置IDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.设定装置IDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.装置复位ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.常规复位ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.复位至调试模式ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.模型参数ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.查询模型参数ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.设置模型参数ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.图像采集参数ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.查询图像采集参数ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.设定图像采集参数ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.拍照时间表设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.查询拍照时间表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.设定拍照时间表ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.手动请求照片ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.摄像机远程调节ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.远程升级装置程序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.正式运行升级程序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.切换装置运行程序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.录音文件管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.播放录音ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.录音文件升级ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.录音删除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.私有控制ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.用户手机号ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.主站ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.设备控制ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.数据曲线ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.微风振动ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -199,320 +161,6 @@
             this.从Excel中导入ToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.从Excel中导入ToolStripMenuItem.Text = "从Excel中导入";
             // 
-            // 主站ToolStripMenuItem
-            // 
-            this.主站ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.网络适配器ToolStripMenuItem,
-            this.请求历史数据ToolStripMenuItem,
-            this.采样参数查询设定ToolStripMenuItem,
-            this.上位机信息查询设定ToolStripMenuItem,
-            this.装置IDToolStripMenuItem,
-            this.装置复位ToolStripMenuItem,
-            this.模型参数ToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.图像采集参数ToolStripMenuItem,
-            this.拍照时间表设置ToolStripMenuItem,
-            this.手动请求照片ToolStripMenuItem,
-            this.摄像机远程调节ToolStripMenuItem,
-            this.toolStripSeparator4,
-            this.远程升级装置程序ToolStripMenuItem,
-            this.正式运行升级程序ToolStripMenuItem,
-            this.切换装置运行程序ToolStripMenuItem,
-            this.录音文件管理ToolStripMenuItem});
-            this.主站ToolStripMenuItem.Name = "主站ToolStripMenuItem";
-            this.主站ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
-            this.主站ToolStripMenuItem.Text = "设备控制";
-            // 
-            // 网络适配器ToolStripMenuItem
-            // 
-            this.网络适配器ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.查询网络适配器ToolStripMenuItem,
-            this.设置网络适配器ToolStripMenuItem});
-            this.网络适配器ToolStripMenuItem.Name = "网络适配器ToolStripMenuItem";
-            this.网络适配器ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.网络适配器ToolStripMenuItem.Text = "网络适配器";
-            // 
-            // 查询网络适配器ToolStripMenuItem
-            // 
-            this.查询网络适配器ToolStripMenuItem.Name = "查询网络适配器ToolStripMenuItem";
-            this.查询网络适配器ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.查询网络适配器ToolStripMenuItem.Text = "查询";
-            this.查询网络适配器ToolStripMenuItem.Click += new System.EventHandler(this.查询网络适配器ToolStripMenuItem_Click);
-            // 
-            // 设置网络适配器ToolStripMenuItem
-            // 
-            this.设置网络适配器ToolStripMenuItem.Name = "设置网络适配器ToolStripMenuItem";
-            this.设置网络适配器ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.设置网络适配器ToolStripMenuItem.Text = "设置";
-            this.设置网络适配器ToolStripMenuItem.Click += new System.EventHandler(this.设置网络适配器ToolStripMenuItem_Click);
-            // 
-            // 请求历史数据ToolStripMenuItem
-            // 
-            this.请求历史数据ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.当前数据ToolStripMenuItem,
-            this.历史数据ToolStripMenuItem});
-            this.请求历史数据ToolStripMenuItem.Name = "请求历史数据ToolStripMenuItem";
-            this.请求历史数据ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.请求历史数据ToolStripMenuItem.Text = "请求历史数据";
-            this.请求历史数据ToolStripMenuItem.Click += new System.EventHandler(this.历史数据ToolStripMenuItem_Click);
-            // 
-            // 当前数据ToolStripMenuItem
-            // 
-            this.当前数据ToolStripMenuItem.Name = "当前数据ToolStripMenuItem";
-            this.当前数据ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.当前数据ToolStripMenuItem.Text = "当前数据";
-            this.当前数据ToolStripMenuItem.Visible = false;
-            // 
-            // 历史数据ToolStripMenuItem
-            // 
-            this.历史数据ToolStripMenuItem.Name = "历史数据ToolStripMenuItem";
-            this.历史数据ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.历史数据ToolStripMenuItem.Text = "历史数据";
-            this.历史数据ToolStripMenuItem.Visible = false;
-            this.历史数据ToolStripMenuItem.Click += new System.EventHandler(this.历史数据ToolStripMenuItem_Click);
-            // 
-            // 采样参数查询设定ToolStripMenuItem
-            // 
-            this.采样参数查询设定ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.查询采样参数ToolStripMenuItem,
-            this.设定采样参数ToolStripMenuItem});
-            this.采样参数查询设定ToolStripMenuItem.Name = "采样参数查询设定ToolStripMenuItem";
-            this.采样参数查询设定ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.采样参数查询设定ToolStripMenuItem.Text = "采样参数";
-            this.采样参数查询设定ToolStripMenuItem.Click += new System.EventHandler(this.设定采样参数ToolStripMenuItem_Click);
-            // 
-            // 查询采样参数ToolStripMenuItem
-            // 
-            this.查询采样参数ToolStripMenuItem.Name = "查询采样参数ToolStripMenuItem";
-            this.查询采样参数ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.查询采样参数ToolStripMenuItem.Text = "查询";
-            this.查询采样参数ToolStripMenuItem.Visible = false;
-            // 
-            // 设定采样参数ToolStripMenuItem
-            // 
-            this.设定采样参数ToolStripMenuItem.Name = "设定采样参数ToolStripMenuItem";
-            this.设定采样参数ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.设定采样参数ToolStripMenuItem.Text = "设定";
-            this.设定采样参数ToolStripMenuItem.Visible = false;
-            this.设定采样参数ToolStripMenuItem.Click += new System.EventHandler(this.设定采样参数ToolStripMenuItem_Click);
-            // 
-            // 上位机信息查询设定ToolStripMenuItem
-            // 
-            this.上位机信息查询设定ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.查询上位机信息ToolStripMenuItem1,
-            this.设定上位机信息ToolStripMenuItem1});
-            this.上位机信息查询设定ToolStripMenuItem.Name = "上位机信息查询设定ToolStripMenuItem";
-            this.上位机信息查询设定ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.上位机信息查询设定ToolStripMenuItem.Text = "上位机信息";
-            // 
-            // 查询上位机信息ToolStripMenuItem1
-            // 
-            this.查询上位机信息ToolStripMenuItem1.Name = "查询上位机信息ToolStripMenuItem1";
-            this.查询上位机信息ToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
-            this.查询上位机信息ToolStripMenuItem1.Text = "查询";
-            this.查询上位机信息ToolStripMenuItem1.Click += new System.EventHandler(this.查询上位机信息ToolStripMenuItem_Click);
-            // 
-            // 设定上位机信息ToolStripMenuItem1
-            // 
-            this.设定上位机信息ToolStripMenuItem1.Name = "设定上位机信息ToolStripMenuItem1";
-            this.设定上位机信息ToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
-            this.设定上位机信息ToolStripMenuItem1.Text = "设定";
-            this.设定上位机信息ToolStripMenuItem1.Click += new System.EventHandler(this.设定上位机信息ToolStripMenuItem_Click);
-            // 
-            // 装置IDToolStripMenuItem
-            // 
-            this.装置IDToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.查询装置IDToolStripMenuItem,
-            this.设定装置IDToolStripMenuItem});
-            this.装置IDToolStripMenuItem.Name = "装置IDToolStripMenuItem";
-            this.装置IDToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.装置IDToolStripMenuItem.Text = "装置ID";
-            // 
-            // 查询装置IDToolStripMenuItem
-            // 
-            this.查询装置IDToolStripMenuItem.Name = "查询装置IDToolStripMenuItem";
-            this.查询装置IDToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.查询装置IDToolStripMenuItem.Text = "查询";
-            this.查询装置IDToolStripMenuItem.Click += new System.EventHandler(this.查询装置IDToolStripMenuItem_Click);
-            // 
-            // 设定装置IDToolStripMenuItem
-            // 
-            this.设定装置IDToolStripMenuItem.Name = "设定装置IDToolStripMenuItem";
-            this.设定装置IDToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.设定装置IDToolStripMenuItem.Text = "设定";
-            this.设定装置IDToolStripMenuItem.Click += new System.EventHandler(this.设定装置IDToolStripMenuItem_Click);
-            // 
-            // 装置复位ToolStripMenuItem
-            // 
-            this.装置复位ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.常规复位ToolStripMenuItem,
-            this.复位至调试模式ToolStripMenuItem});
-            this.装置复位ToolStripMenuItem.Name = "装置复位ToolStripMenuItem";
-            this.装置复位ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.装置复位ToolStripMenuItem.Text = "装置复位";
-            // 
-            // 常规复位ToolStripMenuItem
-            // 
-            this.常规复位ToolStripMenuItem.Name = "常规复位ToolStripMenuItem";
-            this.常规复位ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.常规复位ToolStripMenuItem.Text = "常规复位";
-            this.常规复位ToolStripMenuItem.Click += new System.EventHandler(this.常规复位ToolStripMenuItem_Click);
-            // 
-            // 复位至调试模式ToolStripMenuItem
-            // 
-            this.复位至调试模式ToolStripMenuItem.Name = "复位至调试模式ToolStripMenuItem";
-            this.复位至调试模式ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.复位至调试模式ToolStripMenuItem.Text = "复位至调试模式";
-            this.复位至调试模式ToolStripMenuItem.Click += new System.EventHandler(this.复位至调试模式ToolStripMenuItem_Click);
-            // 
-            // 模型参数ToolStripMenuItem
-            // 
-            this.模型参数ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.查询模型参数ToolStripMenuItem,
-            this.设置模型参数ToolStripMenuItem});
-            this.模型参数ToolStripMenuItem.Name = "模型参数ToolStripMenuItem";
-            this.模型参数ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.模型参数ToolStripMenuItem.Text = "模型参数";
-            // 
-            // 查询模型参数ToolStripMenuItem
-            // 
-            this.查询模型参数ToolStripMenuItem.Name = "查询模型参数ToolStripMenuItem";
-            this.查询模型参数ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.查询模型参数ToolStripMenuItem.Text = "查询";
-            this.查询模型参数ToolStripMenuItem.Click += new System.EventHandler(this.查询模型参数ToolStripMenuItem_Click);
-            // 
-            // 设置模型参数ToolStripMenuItem
-            // 
-            this.设置模型参数ToolStripMenuItem.Name = "设置模型参数ToolStripMenuItem";
-            this.设置模型参数ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.设置模型参数ToolStripMenuItem.Text = "设置";
-            this.设置模型参数ToolStripMenuItem.Click += new System.EventHandler(this.设置模型参数ToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
-            // 
-            // 图像采集参数ToolStripMenuItem
-            // 
-            this.图像采集参数ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.查询图像采集参数ToolStripMenuItem,
-            this.设定图像采集参数ToolStripMenuItem});
-            this.图像采集参数ToolStripMenuItem.Name = "图像采集参数ToolStripMenuItem";
-            this.图像采集参数ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.图像采集参数ToolStripMenuItem.Text = "图像采集参数";
-            // 
-            // 查询图像采集参数ToolStripMenuItem
-            // 
-            this.查询图像采集参数ToolStripMenuItem.Name = "查询图像采集参数ToolStripMenuItem";
-            this.查询图像采集参数ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.查询图像采集参数ToolStripMenuItem.Text = "查询";
-            this.查询图像采集参数ToolStripMenuItem.Click += new System.EventHandler(this.查询图像采集参数ToolStripMenuItem_Click);
-            // 
-            // 设定图像采集参数ToolStripMenuItem
-            // 
-            this.设定图像采集参数ToolStripMenuItem.Name = "设定图像采集参数ToolStripMenuItem";
-            this.设定图像采集参数ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.设定图像采集参数ToolStripMenuItem.Text = "设定";
-            this.设定图像采集参数ToolStripMenuItem.Click += new System.EventHandler(this.设定图像采集参数ToolStripMenuItem_Click);
-            // 
-            // 拍照时间表设置ToolStripMenuItem
-            // 
-            this.拍照时间表设置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.查询拍照时间表ToolStripMenuItem,
-            this.设定拍照时间表ToolStripMenuItem1});
-            this.拍照时间表设置ToolStripMenuItem.Name = "拍照时间表设置ToolStripMenuItem";
-            this.拍照时间表设置ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.拍照时间表设置ToolStripMenuItem.Text = "拍照时间表";
-            this.拍照时间表设置ToolStripMenuItem.Click += new System.EventHandler(this.设定拍照时间表ToolStripMenuItem_Click);
-            // 
-            // 查询拍照时间表ToolStripMenuItem
-            // 
-            this.查询拍照时间表ToolStripMenuItem.Name = "查询拍照时间表ToolStripMenuItem";
-            this.查询拍照时间表ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.查询拍照时间表ToolStripMenuItem.Text = "查询";
-            this.查询拍照时间表ToolStripMenuItem.Visible = false;
-            // 
-            // 设定拍照时间表ToolStripMenuItem1
-            // 
-            this.设定拍照时间表ToolStripMenuItem1.Name = "设定拍照时间表ToolStripMenuItem1";
-            this.设定拍照时间表ToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
-            this.设定拍照时间表ToolStripMenuItem1.Text = "设定";
-            this.设定拍照时间表ToolStripMenuItem1.Visible = false;
-            this.设定拍照时间表ToolStripMenuItem1.Click += new System.EventHandler(this.设定拍照时间表ToolStripMenuItem_Click);
-            // 
-            // 手动请求照片ToolStripMenuItem
-            // 
-            this.手动请求照片ToolStripMenuItem.Name = "手动请求照片ToolStripMenuItem";
-            this.手动请求照片ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.手动请求照片ToolStripMenuItem.Text = "手动请求照片";
-            this.手动请求照片ToolStripMenuItem.Click += new System.EventHandler(this.手动请求照片ToolStripMenuItem_Click);
-            // 
-            // 摄像机远程调节ToolStripMenuItem
-            // 
-            this.摄像机远程调节ToolStripMenuItem.Name = "摄像机远程调节ToolStripMenuItem";
-            this.摄像机远程调节ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.摄像机远程调节ToolStripMenuItem.Text = "摄像机远程调节";
-            this.摄像机远程调节ToolStripMenuItem.Click += new System.EventHandler(this.摄像机远程调节ToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
-            // 
-            // 远程升级装置程序ToolStripMenuItem
-            // 
-            this.远程升级装置程序ToolStripMenuItem.Name = "远程升级装置程序ToolStripMenuItem";
-            this.远程升级装置程序ToolStripMenuItem.ShowShortcutKeys = false;
-            this.远程升级装置程序ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.远程升级装置程序ToolStripMenuItem.Text = "远程升级装置程序";
-            this.远程升级装置程序ToolStripMenuItem.Click += new System.EventHandler(this.远程升级装置程序ToolStripMenuItem_Click);
-            // 
-            // 正式运行升级程序ToolStripMenuItem
-            // 
-            this.正式运行升级程序ToolStripMenuItem.Name = "正式运行升级程序ToolStripMenuItem";
-            this.正式运行升级程序ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.正式运行升级程序ToolStripMenuItem.Text = "正式运行升级程序";
-            this.正式运行升级程序ToolStripMenuItem.Visible = false;
-            // 
-            // 切换装置运行程序ToolStripMenuItem
-            // 
-            this.切换装置运行程序ToolStripMenuItem.Name = "切换装置运行程序ToolStripMenuItem";
-            this.切换装置运行程序ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.切换装置运行程序ToolStripMenuItem.Text = "切换装置运行程序";
-            this.切换装置运行程序ToolStripMenuItem.Click += new System.EventHandler(this.工作模式切换ToolStripMenuItem_Click);
-            // 
-            // 录音文件管理ToolStripMenuItem
-            // 
-            this.录音文件管理ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.播放录音ToolStripMenuItem1,
-            this.录音文件升级ToolStripMenuItem,
-            this.录音删除ToolStripMenuItem});
-            this.录音文件管理ToolStripMenuItem.Name = "录音文件管理ToolStripMenuItem";
-            this.录音文件管理ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.录音文件管理ToolStripMenuItem.Text = "录音文件管理";
-            // 
-            // 播放录音ToolStripMenuItem1
-            // 
-            this.播放录音ToolStripMenuItem1.Name = "播放录音ToolStripMenuItem1";
-            this.播放录音ToolStripMenuItem1.Size = new System.Drawing.Size(148, 22);
-            this.播放录音ToolStripMenuItem1.Text = "播放录音";
-            this.播放录音ToolStripMenuItem1.Click += new System.EventHandler(this.播放录音ToolStripMenuItem_Click);
-            // 
-            // 录音文件升级ToolStripMenuItem
-            // 
-            this.录音文件升级ToolStripMenuItem.Name = "录音文件升级ToolStripMenuItem";
-            this.录音文件升级ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.录音文件升级ToolStripMenuItem.Text = "录音文件升级";
-            this.录音文件升级ToolStripMenuItem.Click += new System.EventHandler(this.录音文件升级ToolStripMenuItem_Click);
-            // 
-            // 录音删除ToolStripMenuItem
-            // 
-            this.录音删除ToolStripMenuItem.Name = "录音删除ToolStripMenuItem";
-            this.录音删除ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.录音删除ToolStripMenuItem.Text = "录音删除";
-            this.录音删除ToolStripMenuItem.Click += new System.EventHandler(this.录音删除ToolStripMenuItem_Click);
-            // 
             // 私有控制ToolStripMenuItem
             // 
             this.私有控制ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -527,6 +175,12 @@
             this.用户手机号ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.用户手机号ToolStripMenuItem.Text = "用户手机号";
             this.用户手机号ToolStripMenuItem.Click += new System.EventHandler(this.用户手机号ToolStripMenuItem_Click);
+            // 
+            // 主站ToolStripMenuItem
+            // 
+            this.主站ToolStripMenuItem.Name = "主站ToolStripMenuItem";
+            this.主站ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
+            this.主站ToolStripMenuItem.Text = "设备控制";
             // 
             // 设备控制ToolStripMenuItem
             // 
@@ -859,43 +513,9 @@
         private System.Windows.Forms.TabPage tabPageReport;
         private System.Windows.Forms.ToolStripMenuItem 保存到excelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 从Excel中导入ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 采样参数查询设定ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 模型参数ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 网络适配器ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 上位机信息查询设定ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 装置IDToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 请求历史数据ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem 图像采集参数ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 拍照时间表设置ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 手动请求照片ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 摄像机远程调节ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.ToolStripMenuItem 远程升级装置程序ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 正式运行升级程序ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 切换装置运行程序ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 设置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 本机端口设置ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 装置复位ToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel_Port;
-        private System.Windows.Forms.ToolStripMenuItem 查询采样参数ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 设定采样参数ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 查询上位机信息ToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem 设定上位机信息ToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem 常规复位ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 复位至调试模式ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 当前数据ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 历史数据ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 查询装置IDToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 设定装置IDToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 查询网络适配器ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 设置网络适配器ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 查询模型参数ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 设置模型参数ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 查询拍照时间表ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 设定拍照时间表ToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem 查询图像采集参数ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 设定图像采集参数ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 数据曲线ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 微风振动ToolStripMenuItem;
         private System.Windows.Forms.TabPage tabPageData;
@@ -929,10 +549,6 @@
         private System.Windows.Forms.ToolStripMenuItem 清理ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 参数设置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 立即清理ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 录音文件管理ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 录音文件升级ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 录音删除ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 播放录音ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 设备控制ToolStripMenuItem;
         private System.Windows.Forms.TabPage tabPage_nw_history;
     }

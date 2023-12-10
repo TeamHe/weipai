@@ -5,6 +5,7 @@ using GridBackGround.Forms.Dialogs_nw;
 using ResModel;
 using GridBackGround.Forms.Tab;
 using cma.service.PowerPole;
+using GridBackGround.Forms.Dialog;
 
 namespace GridBackGround
 {
@@ -15,6 +16,7 @@ namespace GridBackGround
         bool Flag_TabChange = false;
 
         public MenuItem_nw menu_nw = null;
+        public MenuItem_gw menu_gw = null;
 
         private HTTP.HttpListeners httpListeners = null;
 
@@ -42,6 +44,12 @@ namespace GridBackGround
                 PrivateControlMenu = this.私有控制ToolStripMenuItem,
             };
             this.menu_nw.Menuitem_Flush();
+
+            this.menu_gw = new MenuItem_gw(this)
+            {
+                ParentMenu = this.主站ToolStripMenuItem,
+            };
+            this.menu_gw.Menuitem_Flush();
 
             if (Config.SettingsForm.Default.ServiceMode == "nw")
             {
@@ -81,8 +89,6 @@ namespace GridBackGround
 
                 TabInit();
 
-                
-
                 //控件初始化
                 ControlsInit();
                 //终端管理初始化
@@ -100,7 +106,6 @@ namespace GridBackGround
 
                 Console.WriteLine(DateTime.Now.ToString() + "系统初始化完成");
 
-               
             }
             catch(Exception ex)
             {
@@ -108,11 +113,7 @@ namespace GridBackGround
                 //LogHelper.WriteLog("系统启动失败", ex);
                 //throw ex;
             }
-            
-
-
         }
-
         private void flush_menuitem(ResModel.EQU.DevFlag flag)
         {
             this.主站ToolStripMenuItem.Visible = false;
@@ -339,33 +340,7 @@ namespace GridBackGround
         }
         #endregion
 
-        #region 远程升级
-        private void RemoteUpdate()
-        {
-            if (!GetCMD_SelecState())
-                return;
-            Forms.Dialog.Dialog_Update du = new Forms.Dialog.Dialog_Update();
-            if (du.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
-            string fileName = du.Factory_Name;
-            try
-            {
-                CommandDeal.Comand_RemotedUpDate.RunRemotedUpDate(
-                    du.Factory_Name,
-                    du.Model,
-                    du.Hard_Version,
-                    du.Soft_Version,
-                    du.UpdateTime,
-                    du.FileName, CMD_ID);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-        #endregion      
-
         #region  菜单栏
-
         #region 程序配置
         private void 本机端口设置ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -383,21 +358,6 @@ namespace GridBackGround
             ab.ShowDialog(this);
             this.Activate();
         }
-
-        private void 工作模式切换ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())
-                return;
-            Form_Reset mode = new Form_Reset();
-            if (mode.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                CommandDeal.Comand_ModeChange.Set(CMD_ID,
-                   mode.Mode);
-            }
-            this.Activate();
-        }
-      
-
         #region Ta切换
         private void 显示通讯报文ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -429,285 +389,6 @@ namespace GridBackGround
             return powerPole;
 
         }
-
-        #region 装置配置
-
-        #region 网络适配器
-        private void 查询网络适配器ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())
-                return;
-            CommandDeal.Comand_NA.Query(CMD_ID);
-        }
-        /// <summary>
-        /// 网络适配器设置
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void 设置网络适配器ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())
-                return;
-            Forms.Dialog_Con_NA na = new Forms.Dialog_Con_NA();
-            na.IP = CommandDeal.Comand_NA.IP;
-            na.Subnet_Mask = CommandDeal.Comand_NA.Subnet_Mask;
-            na.Gateway = CommandDeal.Comand_NA.Gateway;
-            na.PhoneNumber = CommandDeal.Comand_NA.PhoneNumber;
-            if (na.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-            {
-                CommandDeal.Comand_NA.Set(CMD_ID,
-                    na.Flag,
-                    na.IP,
-                    na.Subnet_Mask,
-                    na.Gateway,
-                    na.PhoneNumber);
-            }
-            this.Activate();
-        }
-        #endregion
-
-        #region 请求历史数据
-
-
-        private void 历史数据ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())
-                return;
-            Forms.Dialog_Con_HisData dch = new Forms.Dialog_Con_HisData();
-            if (dch.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-            {
-                //当前数据
-                if (dch.CurrentData)                            //请求当前数据
-                    CommandDeal.Comand_History.Current(CMD_ID,
-                        dch.Data_Type);
-                else
-                    //请求历史数据
-                    CommandDeal.Comand_History.History(CMD_ID,
-                        dch.Data_Type,
-                        dch.StartTime,
-                        dch.EndTime);
-            }
-            this.Activate();
-        }
-        #endregion
-
-        #region 采样参数
-
-        private void 设定采样参数ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())//判断设备选中状态
-                return;
-
-            Forms.Dialog_Con_MianTime miantime = new Forms.Dialog_Con_MianTime();
-            if (miantime.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-            {
-                //查询
-                if (miantime.Query)
-                    CommandDeal.Comand_SamplePeriod.Query(CMD_ID, miantime.Data_Type);
-                else
-                    //配置
-                    CommandDeal.Comand_SamplePeriod.Set(CMD_ID,
-                                                    miantime.Data_Type,
-                                                    miantime.Flag,
-                                                    miantime.Main_Time,
-                                                    miantime.Heart_Time);
-            }
-            this.Activate();
-        }
-        #endregion
-
-        #region 上位机信息
-        /// <summary>
-        /// 上位机信息查询
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void 查询上位机信息ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())
-                return;
-            CommandDeal.Comand_IP.Query(CMD_ID);
-        }
-        /// <summary>
-        /// 上位机信息设定
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void 设定上位机信息ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())
-                return;
-
-            Forms.Dialog_Con_IP conIP = new Forms.Dialog_Con_IP();
-            conIP.IP = CommandDeal.Comand_IP.IP_Address;
-            conIP.Port = CommandDeal.Comand_IP.Port;
-            //conIP.SetFlag = CommandDeal.Comand_IP
-            if (conIP.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-            {
-                CommandDeal.Comand_IP.Set(CMD_ID,
-                    conIP.IP,
-                    conIP.Port,
-                    conIP.SetFlag);
-            }
-            this.Activate();
-        }
-        #endregion
-
-        #region 装置ID
-        private void 查询装置IDToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())
-                return;
-            CommandDeal.Comand_ID.Query(CMD_ID);
-        }
-
-        private void 设定装置IDToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())
-                return;
-            Forms.Dialog_Con_ID conID = new Forms.Dialog_Con_ID();
-            conID.Original_ID = CommandDeal.Comand_ID.Original_ID;
-            conID.NEW_CMD_ID = CMD_ID;
-            conID.Component_ID = CommandDeal.Comand_ID.Component_ID;
-            if (conID.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-            {
-                CommandDeal.Comand_ID.Set(CMD_ID,
-                    conID.SetFlag,
-                    conID.Component_ID,
-                    conID.Original_ID,
-                    conID.NEW_CMD_ID);
-            }
-            this.Activate();
-        }
-        #endregion
-
-        #region 复位
-        private void 常规复位ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())
-                return;
-            CommandDeal.Comand_Reset.Reset(CMD_ID, 0x00);
-        }
-
-        private void 复位至调试模式ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())
-                return;
-            CommandDeal.Comand_Reset.Reset(CMD_ID, 0x01);
-        }
-        #endregion
-
-        #region 模型参数
-        private void 查询模型参数ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())
-                return;
-            CommandDeal.Comand_Model.Query(CMD_ID);
-        }
-
-        private void 设置模型参数ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())
-                return;
-            Forms.Dialog_Con_Model model = new Forms.Dialog_Con_Model();
-            if (model.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-            {
-                CommandDeal.Comand_Model.Set(CMD_ID, model.modelData);
-            }
-            this.Activate();
-        }
-        #endregion
-
-        #endregion
-
-        #region 图像
-
-        #region 图像采集参数
-        private void 查询图像采集参数ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())
-                return;
-            CommandDeal.Image_Model.Query(CMD_ID);
-        }
-        private void 设定图像采集参数ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())
-                return;
-            Forms.Dialog_Image_Model dip = new Forms.Dialog_Image_Model();
-            if (dip.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-            {
-                CommandDeal.Image_Model.Set(CMD_ID,
-                    dip.RequestFlag,
-                    dip.Color_Select,
-                    dip.Resolution,
-                    dip.Luminance,
-                    dip.Contrast,
-                    dip.Saturation);
-            }
-            this.Activate();
-        }
-        #endregion
-
-        #region 手动请求照片
-        /// <summary>
-        /// 手动请求照片
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void 手动请求照片ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())
-                return;
-            Forms.Dialog_Image_Photo dip = new Forms.Dialog_Image_Photo();
-            if (dip.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-            {
-                CommandDeal.Image_Photo_MAN.Set(CMD_ID, dip.Channel_NO, dip.Presetting_No);
-            }
-            //CommandDeal.Image_Photo_MAN.Set(CMD_ID, 1, 1);
-        }
-        #endregion
-
-        #region 拍照时间表
-        private void 设定拍照时间表ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())
-                return;
-            Forms.Dialog_Image_TimeTable dit = new Forms.Dialog_Image_TimeTable();
-            dit.TimeTable = CommandDeal.Image_TimeTable.TimeTable;
-            if (dit.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-            {
-                if (dit.Qurey_State)//查询
-                    CommandDeal.Image_TimeTable.Query(CMD_ID, dit.Channel_No);
-                else//设定
-                    CommandDeal.Image_TimeTable.Set(
-                        CMD_ID,
-                        dit.Channel_No,
-                        dit.TimeTable);
-            }
-        }
-        #endregion
-
-        #region 摄像机远程调节
-        private void 摄像机远程调节ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())
-                return;
-            Forms.Dialog_Image_Adjust dia = new Forms.Dialog_Image_Adjust();
-            dia.CMD_ID = CMD_ID;
-            dia.Show();
-        }
-        #endregion
-
-
-        #endregion
-
-        #region 远程升级
-        private void 远程升级装置程序ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //进行远程升级
-            RemoteUpdate();
-        }
-        #endregion
 
         #region 曲线部分
         /// <summary>
@@ -773,13 +454,13 @@ namespace GridBackGround
         #endregion
 
         #region 程序管理
-               
+
         #endregion
 
-        #endregion  
+        #endregion
 
         #region 窗体事件
-           /// <summary>
+        /// <summary>
         /// 窗体关闭事件
         ///     1，保存修改过的配置文件
         ///    
@@ -869,16 +550,6 @@ namespace GridBackGround
         }
         #endregion
 
-        private void 播放录音ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())
-                return;
-            Forms.Dialog.Dialog_sound_light_alarm dialog = new Forms.Dialog.Dialog_sound_light_alarm();
-            if(dialog.ShowDialog() == DialogResult.OK)
-            {
-                CommandDeal.Command_sound_light_alarm.Option1(CMD_ID, dialog.Play, dialog.FileNO, dialog.Interval);
-            }
-        }
 
 
         /// <summary>
@@ -1003,40 +674,6 @@ namespace GridBackGround
             //    Work.PictureClean.Remove(end);
             //}
             throw new Exception("test ui exception");
-        }
-
-        private void 录音文件升级ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())
-                return;
-            Forms.Dialog.Dialog_Update_voice du = new Forms.Dialog.Dialog_Update_voice();
-            if (du.ShowDialog() != DialogResult.OK) return;
-            string fileName = du.FileName;
-            try
-            {
-                CommandDeal.Comand_voice_update.StartUpdate(du.FileName, CMD_ID);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        private void 录音删除ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())
-                return;
-            Forms.Dialog_voice_delete du = new Forms.Dialog_voice_delete();
-            if (du.ShowDialog() != DialogResult.OK) return;
-            try
-            {
-                CommandDeal.Comand_voice_update.Remove(CMD_ID, du.VoiceType);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
         }
     }
 }
