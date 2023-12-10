@@ -29,6 +29,34 @@ namespace GridBackGround
             //Forms.EquMan.FormManEquMan fmm= new Forms.EquMan.FormManEquMan();
             //fmm.FormManEquManInit(this.设置ToolStripMenuItem);
         }
+
+        /// <summary>
+        /// 菜单栏初始化
+        /// </summary>
+        private void menu_init()
+        {
+            this.私有控制ToolStripMenuItem.DropDownItems.Clear();
+            this.menu_nw = new MenuItem_nw(this)
+            {
+                ParentMenu = this.设备控制ToolStripMenuItem,
+                PrivateControlMenu = this.私有控制ToolStripMenuItem,
+            };
+            this.menu_nw.Menuitem_Flush();
+
+            if (Config.SettingsForm.Default.ServiceMode == "nw")
+            {
+                this.工作模式ToolStripMenuItem.Visible = false;
+                this.主站ToolStripMenuItem.Visible = false;
+                this.设备控制ToolStripMenuItem.Visible = true;
+            }
+            else
+            {
+                this.工作模式ToolStripMenuItem.Visible = false;
+                this.主站ToolStripMenuItem.Visible = true;
+                this.设备控制ToolStripMenuItem.Visible = false;
+            }
+        }
+
         /// <summary>
         /// 界面加载的时候进行的必要的处理
         /// </summary>
@@ -41,13 +69,9 @@ namespace GridBackGround
             this.notifyIcon1.Icon = new System.Drawing.Icon("Res\\logo.ico");
             var name = System.Reflection.Assembly.GetExecutingAssembly().GetName();
             this.Text = name.Name;
-            this.私有控制ToolStripMenuItem.DropDownItems.Clear();
-            this.menu_nw = new MenuItem_nw(this) 
-            { 
-                ParentMenu = this.设备控制ToolStripMenuItem,
-                PrivateControlMenu = this.私有控制ToolStripMenuItem,
-            };
-            this.menu_nw.Menuitem_Flush();
+
+            //菜单栏初始化
+            menu_init();
 
             //数据库初始化
             try
@@ -71,18 +95,6 @@ namespace GridBackGround
                 Forms.EquMan.FormManEquMan fmm = new Forms.EquMan.FormManEquMan();
                 fmm.FormManEquManInit(this.设置ToolStripMenuItem);    //设别管理按钮添加
                 fmm.TabID = this.TabID;
-                if(Config.SettingsForm.Default.ServiceMode == "nw")
-                {
-                    this.工作模式ToolStripMenuItem.Visible = false;
-                    this.主站ToolStripMenuItem.Visible = false;
-                    this.设备控制ToolStripMenuItem.Visible = true;
-                }
-                else
-                {
-                    this.工作模式ToolStripMenuItem.Visible = false;
-                    this.主站ToolStripMenuItem.Visible = true;
-                    this.设备控制ToolStripMenuItem.Visible = false;
-                }
 
                 //Work.PictureClean.Start();      //图片清理服务启动
 
