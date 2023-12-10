@@ -1,33 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using ResModel.EQU;
-using Tools;
 using DB_Operation.RealData;
+using GridBackGround.Forms.Tab;
+using ResModel.gw;
+using System.IO;
+using System.Drawing.Imaging;
+using System.Reflection;
 
 namespace GridBackGround
 {
     public partial class Tab_HisData : Form
     {
-        private ICMP curType;
+        internal string CurDeviceID { get; set; }
+
+
+        Tab_Page_Info tab_info { get; set; }
 
         public Tab_HisData()
         {
             InitializeComponent();
             this.TopLevel = false;
             this.Dock = DockStyle.Fill;
-          
-        }
+            DateTime start = DateTime.Parse(DateTime.Now.ToShortDateString());
+            this.dateTimePicker_StartTime.Value = start;
+            this.dateTimePicker_EndTime.Value = start.Add(new TimeSpan(23,59,59));
 
-        public void HisTimeRefresh()
-        {
-            this.dateTimePicker_StartTime.Value = DateTime.Now.AddHours(-5);
-            this.dateTimePicker_EndTime.Value = DateTime.Now.AddSeconds(0 - DateTime.Now.Second);
+            ///datagridview 图像参数配置
+            this.dataGridView_image.CellFormatting += new DataGridViewCellFormattingEventHandler(DataGridView_image_CellFormatting);
+            this.dataGridView_image.CellContentClick += DataGridView_image_CellContentClick;
         }
 
         // <summary>
@@ -35,17 +37,89 @@ namespace GridBackGround
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        private void dataGridView_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
+            DataGridView dataGridView = sender as DataGridView;
             Rectangle rectangle = new Rectangle(e.RowBounds.Location.X,
-               Convert.ToInt32(e.RowBounds.Location.Y + (e.RowBounds.Height - dataGridView1.RowHeadersDefaultCellStyle.Font.Size) / 2),
-               dataGridView1.RowHeadersWidth - 4,
+               Convert.ToInt32(e.RowBounds.Location.Y + (e.RowBounds.Height - dataGridView.RowHeadersDefaultCellStyle.Font.Size) / 2),
+               dataGridView.RowHeadersWidth - 4,
                e.RowBounds.Height);
             TextRenderer.DrawText(e.Graphics, (e.RowIndex + 1).ToString(),
-                dataGridView1.RowHeadersDefaultCellStyle.Font,
+                dataGridView.RowHeadersDefaultCellStyle.Font,
                 rectangle,
-                dataGridView1.RowHeadersDefaultCellStyle.ForeColor,
+                dataGridView.RowHeadersDefaultCellStyle.ForeColor,
                 TextFormatFlags.Right);
+        }
+
+        /// <summary>
+        /// 图像格式化输出
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <exception cref="NotImplementedException"></exception>
+        private void DataGridView_image_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            //图像标签页datagridview 单元格format事件
+            if (sender == this.dataGridView_image)
+            {
+                //图像列数据展示
+                if (e != null && e.ColumnIndex == 3)
+                {
+                    DataGridViewCell cell = dataGridView_image.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    cell.Tag = e.Value;
+                    cell.ToolTipText = e.Value.ToString();
+                    string path = e.Value.ToString();
+                    if (File.Exists(path) == false)
+                    {
+                        path = "Res\\logo.ico";
+                        cell.ToolTipText += " (图片不存在)";
+                    }
+                    byte[] bytes = File.ReadAllBytes(path);
+                    using (MemoryStream oldms = new MemoryStream(bytes))
+                    {
+                        System.Drawing.Image img = System.Drawing.Image.FromStream(oldms);
+                        Bitmap bt = new Bitmap(img, new System.Drawing.Size(100, 100));
+                        using (MemoryStream newms = new MemoryStream())
+                        {
+                            bt.Save(newms, ImageFormat.Jpeg);
+                            e.Value = newms.ToArray();
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// datagridview 单元格单击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DataGridView_image_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //图像标签页datagridview 单击事件
+            if (sender == this.dataGridView_image)
+            {
+                //图片单击事件
+                if (e != null && e.ColumnIndex == 3)
+                {
+                    //显示图片
+                    DataGridViewCell cell = dataGridView_image.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    string path = cell.Tag.ToString();
+                    if (File.Exists(path) == false)
+                    {
+                        MessageBox.Show(string.Format("图片: {0} 不存在", path));
+                        return;
+                    }
+                    try
+                    {
+                        System.Diagnostics.Process.Start(path);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("图片打开失败." + ex.Message);
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -59,112 +133,12 @@ namespace GridBackGround
             var EndTime = this.dateTimePicker_EndTime.Value;            //结束时间
             if (StartTime > EndTime)
             {
-                MessageBox.Show("起始时间应该小于结束时间");
+                System.Windows.MessageBox.Show("起始时间应该小于结束时间");
                 return;
             }
             SelectDataByTime(StartTime,EndTime);
             
         }
-
-        void SelectDataByTime(DateTime start, DateTime end)
-        {
-
-            string ID = this.comboBox_Name.SelectedItem.ToString();
-            try
-            {
-                var item = (ComboBoxItem)this.comboBox_Type.SelectedItem;
-                if (item.Value == null) return;
-                Equ equ = (Equ)item.Value;
-                IRealData_OP iRop = Real_Data_Op.Creat(equ.Type);
-                if (iRop == null) throw new Exception("不支持的数据类型");
-                var dt = iRop.GetData(equ, start, end);
-                this.dataGridView1.DataSource = dt;
-                curType = equ.Type;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("获取装置列表失败，失败原因：" + ex.Message);
-            }
-        }
-
-        private void Tab_HisData_Load(object sender, EventArgs e)
-        {
-            InitTowerList();
-            if(this.comboBox_Type.Items.Count > 0)
-                this.comboBox_Type.SelectedIndex = 0;
-            HisTimeRefresh();
-        }
-
-        /// <summary>
-        /// 初始化装置列表
-        /// </summary>
-        private void InitTowerList()
-        {
-            //获取装置列表
-            this.comboBox_Name.Items.Clear();
-            try
-            {
-                var towerlist = DB_Operation.EQUManage.DB_Tower.List();
-                foreach (Tower tower in towerlist)
-                {
-                    ComboBoxItem cbiItem = new ComboBoxItem(tower.TowerName,tower);
-                    this.comboBox_Name.Items.Add(cbiItem);
-                }
-                if(this.comboBox_Name.Items.Count > 0)
-                    this.comboBox_Name.SelectedIndex = 0;
-            }
-            catch { }
-        }
-        /// <summary>
-        /// 杆塔列表切换，装置类型随之改变
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void comboBox_Name_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.comboBox_Type.Items.Clear();                                       //清除原有类型
-            if (comboBox_Name.SelectedItem == null) return;                         //检查有无选中项目
-            ComboBoxItem nameCBI = (ComboBoxItem)this.comboBox_Name.SelectedItem;   //获取当前选中杆塔
-            if (nameCBI.Value == null) return;
-            Tower tower = (Tower)nameCBI.Value;                     
-
-            try
-            {
-                var equList = DB_Operation.EQUManage.DB_EQU.GetEquList(tower);      //获取该装置下的
-                if (equList == null) return;
-                foreach (Equ equ in equList)
-                {
-                    ComboBoxItem cbi = new ComboBoxItem(equ.Name,equ);
-                    this.comboBox_Type.Items.Add(cbi);
-                }
-                if (this.comboBox_Type.Items.Count > 0)
-                    this.comboBox_Type.SelectedIndex = 0;
-            }
-            catch{}
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (curType != ICMP.Picture) return;
-            //this.dataGridView1.d
-            var gridView = (DataGridView)sender;
-            if (e.ColumnIndex != 3) return;
-            DataGridViewCell cell = gridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
-
-
-            string path = System.IO.Path.Combine(Config.SettingsForm.Default.PicturePath, cell.Value.ToString());
-            if (path.Length == 0)
-                return;
-            try
-            {
-                System.Diagnostics.Process.Start(path);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("图片打开失败，失败原因:" + ex.Message);
-            }
-        }
-
         private void button_DataHour_Click(object sender, EventArgs e)
         {
             SelectDataByTime(DateTime.Now.AddHours(-1), DateTime.Now);
@@ -175,5 +149,107 @@ namespace GridBackGround
             SelectDataByTime(DateTime.Now.AddDays(-1), DateTime.Now);
         }
 
+
+        void SelectDataByTime(DateTime start, DateTime end)
+        {
+            if(this.CurDeviceID ==null || this.CurDeviceID==string.Empty)
+            {
+                MessageBox.Show("当前未选中任何设备");
+                return;
+            }
+            try
+            {
+                if(this.tab_info == null)
+                {
+                    MessageBox.Show("请选择数据类型");
+                    return;
+                }
+
+                if(tab_info.type ==null)
+                {
+                    MessageBox.Show("数据类型"+this.tab_info.name+"不支持数据检索");
+                    return;
+                }
+
+                object db = Activator.CreateInstance(tab_info.type);
+                MethodInfo DataGet = this.tab_info.type.GetMethod("DataGet");
+                DataTable dt = (DataTable)DataGet.Invoke(db,new object[] { this.CurDeviceID, start, end });
+                this.tab_info.gridView.DataSource = dt;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "数据检索失败");
+            }
+        }
+
+        /// <summary>
+        /// 窗体加载事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Tab_HisData_Load(object sender, EventArgs e)
+        {
+            //获取装置列表变化事件
+            MainForm parent = this.ParentForm as MainForm;
+            Tab_IDs tab_IDs = parent.GetTabID();
+            tab_IDs.CMD_ID_Change += Tab_IDs_CMD_ID_Change;
+
+            tabPage_ice.Tag = new Tab_Page_Info()
+            {
+                name = "覆冰数据",
+                type = typeof(db_data_gw_ice),
+                gridView = this.dataGridView_ice,
+            };
+            tabPage_weather.Tag = new Tab_Page_Info()
+            {
+                name = "气象数据",
+                type = typeof(db_data_gw_weather),
+                gridView = this.dataGridView_weather,
+            };
+            tabPage_image.Tag = new Tab_Page_Info()
+            {
+                name = "图像数据",
+                type = typeof(db_data_picture),
+                gridView = this.dataGridView_image,
+            };
+
+
+            this.tabPage_weather.Enter += TabPage_Enter;
+            this.tabPage_image.Enter += TabPage_Enter;
+            this.tabPage_ice.Enter += TabPage_Enter;
+        }
+
+        private void TabPage_Enter(object sender, EventArgs e)
+        {
+            TabPage tabPage = sender as TabPage;
+            Tab_Page_Info info = tabPage.Tag as Tab_Page_Info;
+            this.toolStripStatusLabel1.Text = "当前选中"+info.name;
+            this.tab_info = info;
+        }
+
+        /// <summary>
+        /// 选中设备ID变化事件处理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <exception cref="NotImplementedException"></exception>
+        private void Tab_IDs_CMD_ID_Change(object sender, CMDid_Change e)
+        {
+            if(e.CMD_ID != null && e.CMD_ID.Length >= 6)
+            {
+                this.CurDeviceID = e.CMD_ID;
+                this.label_curdev.Text = e.CMD_NAME + ":" + this.CurDeviceID;
+            }
+        }
+    }
+
+    internal class Tab_Page_Info
+    {
+        public string name;
+
+        public Type type;
+
+        public DataGridView gridView;
     }
 }

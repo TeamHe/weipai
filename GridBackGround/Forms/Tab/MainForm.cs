@@ -259,7 +259,7 @@ namespace GridBackGround
 
         void tabPageData_Enter(object sender, EventArgs e)
         {
-            TabHisData.HisTimeRefresh();
+            //TabHisData.HisTimeRefresh();
             //throw new NotImplementedException();
         }
 
