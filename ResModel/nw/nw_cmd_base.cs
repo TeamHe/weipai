@@ -284,6 +284,24 @@ namespace ResModel.nw
         }
 
 
+        protected int GetString(byte[] data, int offset,int len, out string str)
+        {
+            if (data.Length < offset + len)
+                throw new Exception("数据长度错误");
+           str = Encoding.Default.GetString(data, offset, len).TrimEnd('\0');
+            return len;
+        }
+
+        protected int SetString(byte[] data, int offset, int len, string str)
+        {
+            byte[] buff = Encoding.Default.GetBytes(str);
+            int tmp_len = len;
+            if (buff.Length < len)
+                tmp_len = buff.Length;
+            Buffer.BlockCopy(buff, 0, data, offset, tmp_len);
+            return len;
+        }
+
         public byte[] ResponseData(int frameflag)
         {
             byte[] data = new byte[3];
