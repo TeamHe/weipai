@@ -31,7 +31,7 @@ namespace GridBackGround.Termination
         public static void UpdatePolesStation()
         {
             if(PowerPoleList!= null)
-            foreach (PowerPole pole in PowerPoleList)
+            foreach (PowerPole pole in PowerPoleList.Values)
             {
                 pole.UpstateEqu();
             }
