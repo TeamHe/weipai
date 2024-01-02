@@ -44,6 +44,8 @@ namespace GridBackGround.Termination
 
         public object Lock { get; private set; }
 
+        public Dictionary<string, object> properties { get; private set; }
+
         #region Constructors
         /// <summary>
         /// 装置初始化
@@ -51,7 +53,7 @@ namespace GridBackGround.Termination
         /// <param name="CMD_ID"></param>
         public PowerPole(string CMD_ID)
         {
-            
+            this.properties = new Dictionary<string, object>(); 
             if (CMD_ID == null) throw new ArgumentNullException("装置ID");
             this.CMD_ID = CMD_ID;
             this.Lock = new object();
@@ -463,6 +465,21 @@ namespace GridBackGround.Termination
             {
 
             }
+        }
+
+        public object GetProperty(string key)
+        {
+            if(this.properties.ContainsKey(key)) 
+                return this.properties[key];
+            return null;
+        }
+
+        public void SetProperty(string key, object value, bool save = false)
+        {
+            if(this.properties.ContainsKey(key))
+                this.properties[key] = value;
+            else
+                this.properties.Add(key, value);
         }
         #endregion
     }

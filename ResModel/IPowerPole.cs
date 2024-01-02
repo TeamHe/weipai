@@ -66,5 +66,9 @@ namespace ResModel
         event EventHandler<PowerPoleStateChange> PowerPoleStateChange;
 
         bool SendSocket(IPowerPole pole, byte[] data, out string msg);
+
+        object GetProperty(string key );
+
+        void SetProperty(string key, object value, bool save = false);
     }
 }
