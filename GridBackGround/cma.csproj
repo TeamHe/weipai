@@ -140,7 +140,13 @@
     <Compile Include="CommandDeal\nw\nw_cmd_87_photo_up_bubao.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_88_remote_camera_control.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_8B_time_table_get.cs" />
+    <Compile Include="CommandDeal\nw\nw_cmd_ca_request_update.cs" />
+    <Compile Include="CommandDeal\nw\nw_cmd_cb_update_data.cs" />
+    <Compile Include="CommandDeal\nw\nw_cmd_cc_update_end.cs" />
+    <Compile Include="CommandDeal\nw\nw_cmd_cd_update_bubao.cs" />
+    <Compile Include="CommandDeal\nw\nw_cmd_ce_update_result.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_e1_cmd_id.cs" />
+    <Compile Include="CommandDeal\nw\nw_progress_update.cs" />
     <Compile Include="CommandDeal\Private\UserPhone.cs" />
     <Compile Include="CommandDeal\WorkState_Error.cs" />
     <Compile Include="Config\Common\Messagebox_Textbox.cs">
