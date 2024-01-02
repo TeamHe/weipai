@@ -502,6 +502,38 @@ namespace GridBackGround.Forms.Dialogs_nw
             }
         }
 
+        /// <summary>
+        /// 7.64 	设备升级
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void menu_click_update(object sender, EventArgs e)
+        {
+            IPowerPole pole;
+            if ((pole = Parent.GetSeletedPole()) == null)
+                return;
+
+            nw_progress_update update = 
+                nw_progress_update.GetCurrentUpdate(pole);
+            if(update != null)
+            {
+                if (MessageBox.Show(null,string.Format("通道{0} 正在更新中，进度{1} 确定要当前更新并重新升级吗?",
+                    update.Info.ChannelNO, update.Percent),"询问", 
+                    MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.No)
+                    return;
+            }
+            Dialog_nw_update dialog = new Dialog_nw_update();
+            if(dialog.ShowDialog() == DialogResult.OK)
+            {
+                update = new nw_progress_update()
+                {
+                    pole = pole,
+                    Info = dialog.Update_Info,
+                };
+                update.StartUpdate();
+            }
+        }
+
 
         private void Menuitem_control_flush()
         {
@@ -544,6 +576,7 @@ namespace GridBackGround.Forms.Dialogs_nw
             this.AddDropDownMenuItem("唤醒终端", menu_click_weekup);
             this.AddDropDownMenuItem("发送确认短信", menu_click_send_sms);
             this.AddDropDownMenuItem("装置功能配置", menu_click_dev_function);
+            this.AddDropDownMenuItem("设备升级", menu_click_update);
 
         }
         #endregion
