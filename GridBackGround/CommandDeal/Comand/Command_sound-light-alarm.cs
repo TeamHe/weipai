@@ -82,15 +82,15 @@ namespace GridBackGround.CommandDeal
                     Termination.PowerPoleManage.Find(pole.CMD_ID),
                     "播放设备端录音文件",
                     pacMsg));
-            try
-            {
-                Termination.PowerPole powerPole = pole as Termination.PowerPole;
-                powerPole.OnVoiceLightAlarmFinish(code);
-            }
-            catch
-            {
+            //try
+            //{
+            //    Termination.PowerPole powerPole = pole as Termination.PowerPole;
+            //    powerPole.OnVoiceLightAlarmFinish(code);
+            //}
+            //catch
+            //{
 
-            }
+            //}
 
         }
 

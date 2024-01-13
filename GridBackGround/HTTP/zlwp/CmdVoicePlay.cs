@@ -63,8 +63,9 @@ namespace GridBackGround.HTTP.zlwp
                     Zlwp.SendError(this.Context, Error_Code.DeviceOffLine);
                     return;
                 }
-                pole.VoiceLightAlarmEventHanlder += ResultEventHanlder;
-                Error_Code code = pole.VoicePlay(index, status,interval);
+                Error_Code code = Error_Code.UnknownCommand;
+                //pole.VoiceLightAlarmEventHanlder += ResultEventHanlder;
+                //Error_Code code = pole.VoicePlay(index, status,interval);
                 if(code != Error_Code.Success)
                 {
                     Zlwp.SendError(this.Context, code);
@@ -84,8 +85,8 @@ namespace GridBackGround.HTTP.zlwp
         {
             Zlwp.SendError(this.Context, e.Code);
             HttpRequestManager.RemoveFromRequestList(this);
-            Termination.PowerPole pole = sender as Termination.PowerPole;
-            pole.VoiceLightAlarmEventHanlder -= ResultEventHanlder;
+            //Termination.PowerPole pole = sender as Termination.PowerPole;
+            //pole.VoiceLightAlarmEventHanlder -= ResultEventHanlder;
 
             return;
         }
