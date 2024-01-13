@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using Newtonsoft.Json.Linq;
 using ResModel.Image;
+using ResModel.PowerPole;
 
 namespace GridBackGround.HTTP.zlwp
 {

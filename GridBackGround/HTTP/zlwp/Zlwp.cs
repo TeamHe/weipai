@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.ComponentModel;
 using Tools;
+using ResModel.PowerPole;
+
 namespace GridBackGround.HTTP.zlwp
 {
     public class Zlwp
