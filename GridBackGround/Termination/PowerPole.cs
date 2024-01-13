@@ -338,64 +338,64 @@ namespace GridBackGround.Termination
         //}
         //#endregion
 
-        #region 设置拍照时间表
-        /// <summary>
-        /// 拍照请求事件
-        /// </summary>
-        public event EventHandler<PowerPoleEventArgs> SetTimeTableResultEventHanlder;
+        //#region 设置拍照时间表
+        ///// <summary>
+        ///// 拍照请求事件
+        ///// </summary>
+        //public event EventHandler<PowerPoleEventArgs> SetTimeTableResultEventHanlder;
 
-        private bool busy_settimetable { get; set; }
+        //private bool busy_settimetable { get; set; }
 
-        private Timer timer_settimetable { get; set; }
+        //private Timer timer_settimetable { get; set; }
 
-        public Error_Code SetTimeTable(int channel, List<IPhotoTime> table)
-        {
-            if (!is_online())
-                return Error_Code.DeviceOffLine;
-            if (this.busy_settimetable)
-                return Error_Code.DeviceBusy;
-            if (this.timer_settimetable == null)
-            {
-                this.timer_settimetable = new Timer(this.OverTime * 1000);
-                this.timer_settimetable.AutoReset = false;
-                this.timer_settimetable.Elapsed += Timer_TimeTable_Elapsed;
-            }
-            this.timer_settimetable.Start();
+        //public Error_Code SetTimeTable(int channel, List<IPhotoTime> table)
+        //{
+        //    if (!is_online())
+        //        return Error_Code.DeviceOffLine;
+        //    if (this.busy_settimetable)
+        //        return Error_Code.DeviceBusy;
+        //    if (this.timer_settimetable == null)
+        //    {
+        //        this.timer_settimetable = new Timer(this.OverTime * 1000);
+        //        this.timer_settimetable.AutoReset = false;
+        //        this.timer_settimetable.Elapsed += Timer_TimeTable_Elapsed;
+        //    }
+        //    this.timer_settimetable.Start();
 
-            if (!CommandDeal.Image_TimeTable.Set(this.CMD_ID, channel, table))
-                return Error_Code.DeviceOffLine;
+        //    if (!CommandDeal.Image_TimeTable.Set(this.CMD_ID, channel, table))
+        //        return Error_Code.DeviceOffLine;
 
-            return Error_Code.Success;
-        }
+        //    return Error_Code.Success;
+        //}
 
-        private void Timer_TimeTable_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            this.OnTimeTableFinish(Error_Code.ResponseOverTime);
-        }
+        //private void Timer_TimeTable_Elapsed(object sender, ElapsedEventArgs e)
+        //{
+        //    this.OnTimeTableFinish(Error_Code.ResponseOverTime);
+        //}
 
-        public void OnTimeTableFinish(Error_Code code, string message = null)
-        {
-            this.busy_settimetable = false;
-            if (timer_settimetable != null) {
-                this.timer_settimetable.Stop();
-                this.timer_settimetable = null;
-            }
-            PowerPoleEventArgs args = new PowerPoleEventArgs()
-            {
-                Code = code,
-                Message = message
-            };
-            //try
-            //{
-                if (SetTimeTableResultEventHanlder != null)
-                    this.SetTimeTableResultEventHanlder(this, args);
-            //}
-            //catch(Exception ex)
-            //{
+        //public void OnTimeTableFinish(Error_Code code, string message = null)
+        //{
+        //    this.busy_settimetable = false;
+        //    if (timer_settimetable != null) {
+        //        this.timer_settimetable.Stop();
+        //        this.timer_settimetable = null;
+        //    }
+        //    PowerPoleEventArgs args = new PowerPoleEventArgs()
+        //    {
+        //        Code = code,
+        //        Message = message
+        //    };
+        //    //try
+        //    //{
+        //        if (SetTimeTableResultEventHanlder != null)
+        //            this.SetTimeTableResultEventHanlder(this, args);
+        //    //}
+        //    //catch(Exception ex)
+        //    //{
 
-            //}
-        }
-        #endregion
+        //    //}
+        //}
+        //#endregion
 
         #region 打开声光报警
         public event EventHandler<PowerPoleEventArgs> VoiceLightAlarmEventHanlder;

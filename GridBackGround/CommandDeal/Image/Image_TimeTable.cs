@@ -51,15 +51,15 @@ namespace GridBackGround.CommandDeal
                 }
             }
            
-            try
-            {
-                Termination.PowerPole powerPole = pole as Termination.PowerPole;
-                powerPole.OnTimeTableFinish(code);
-            }
-            catch
-            {
+            //try
+            //{
+            //    Termination.PowerPole powerPole = pole as Termination.PowerPole;
+            //    powerPole.OnTimeTableFinish(code);
+            //}
+            //catch
+            //{
 
-            }
+            //}
             //显示发送的数据
             DisPacket.NewRecord(
                 new PackageRecord(

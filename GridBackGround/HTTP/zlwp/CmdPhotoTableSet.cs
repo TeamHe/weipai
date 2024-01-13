@@ -64,8 +64,9 @@ namespace GridBackGround.HTTP.zlwp
                     Zlwp.SendError(this.Context, Error_Code.DeviceOffLine);
                     return;
                 }
-                pole.SetTimeTableResultEventHanlder += Pole_TimeTableResultEventHanlder;
-                Error_Code code = pole.SetTimeTable(channel, list);
+                Error_Code code = Error_Code.UnknownCommand;
+                //pole.SetTimeTableResultEventHanlder += Pole_TimeTableResultEventHanlder;
+                //Error_Code code = pole.SetTimeTable(channel, list);
                 if (code != Error_Code.Success)
                 {
                     Zlwp.SendError(this.Context, code);
@@ -87,8 +88,8 @@ namespace GridBackGround.HTTP.zlwp
             HttpRequestManager.RemoveFromRequestList(this);
 
             Zlwp.SendError(this.Context, e.Code);
-            Termination.PowerPole pole = sender as Termination.PowerPole;
-            pole.SetTimeTableResultEventHanlder -= Pole_TimeTableResultEventHanlder;
+            //Termination.PowerPole pole = sender as Termination.PowerPole;
+            //pole.SetTimeTableResultEventHanlder -= Pole_TimeTableResultEventHanlder;
             return;
         }
     }
