@@ -396,16 +396,22 @@ namespace GridBackGround.Forms.Dialogs_nw
         /// <param name="e"></param>
         public void menu_click_update(object sender, EventArgs e)
         {
+            nw_update_info info = new nw_update_info();
             nw_progress_update update = 
                 nw_progress_update.GetCurrentUpdate(this.pole);
             if(update != null)
             {
-                if (MessageBox.Show(null,string.Format("通道{0} 正在更新中，进度{1} 确定要当前更新并重新升级吗?",
-                    update.Info.ChannelNO, update.Percent),"询问", 
-                    MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.No)
+                if (MessageBox.Show(null, string.Format("通道{0} 正在更新中，进度{1} 确定要当前更新并重新升级吗?",
+                    update.Info.ChannelNO, update.Percent), "询问",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     return;
+                else
+                    info = update.Info;
             }
-            Dialog_nw_update dialog = new Dialog_nw_update();
+            Dialog_nw_update dialog = new Dialog_nw_update()
+            {
+               Update_Info = info,
+            };
             if(dialog.ShowDialog() == DialogResult.OK)
             {
                 update = new nw_progress_update()
