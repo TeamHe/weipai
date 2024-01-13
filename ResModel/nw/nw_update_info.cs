@@ -32,7 +32,8 @@ namespace ResModel.nw
         private string filepath;
 
         public nw_update_info() { 
-            this.MaxPacLength = 1024;
+            this.MaxPacLength = 512;
+            Password = "1234";
         }
 
         public string Password { get;set; }
