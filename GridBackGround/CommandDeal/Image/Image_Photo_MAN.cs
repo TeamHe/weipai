@@ -48,8 +48,8 @@ namespace GridBackGround.CommandDeal
                 pacMsg += "失败。";
                 code = Error_Code.DeviceError;
             }
-            Termination.PowerPole powerPole = pole as Termination.PowerPole;
-            powerPole.OnPhotiongFinish(code);
+            //Termination.PowerPole powerPole = pole as Termination.PowerPole;
+            //powerPole.OnPhotiongFinish(code);
 
 
             DisPacket.NewRecord(

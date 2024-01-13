@@ -281,62 +281,62 @@ namespace GridBackGround.Termination
         }
 
 
-        #region 手动请求拍照处理
-        /// <summary>
-        /// 拍照请求事件
-        /// </summary>
-        public event EventHandler<PowerPoleEventArgs> PhotoingResultEventHanlder;
+        //#region 手动请求拍照处理
+        ///// <summary>
+        ///// 拍照请求事件
+        ///// </summary>
+        //public event EventHandler<PowerPoleEventArgs> PhotoingResultEventHanlder;
 
-        private bool busy_photoing { get; set; }
+        //private bool busy_photoing { get; set; }
 
-        private Timer timer_photoing { get; set; }
+        //private Timer timer_photoing { get; set; }
 
-        public Error_Code Photiong(int channel,int preseting)
-        {
-            if (preseting > 255)
-                return Error_Code.InvalidPara;
-            if (!is_online())
-                return Error_Code.DeviceOffLine;
-            if (this.busy_photoing)
-                return Error_Code.DeviceBusy;
-            if(this.timer_photoing == null)
-            {
-                this.timer_photoing = new Timer(this.OverTime * 1000);
-                this.timer_photoing.AutoReset = false;
-                this.timer_photoing.Elapsed += Timer_Photoing_Elapsed;
-            }
-            this.timer_photoing.Start();
+        //public Error_Code Photiong(int channel,int preseting)
+        //{
+        //    if (preseting > 255)
+        //        return Error_Code.InvalidPara;
+        //    if (!is_online())
+        //        return Error_Code.DeviceOffLine;
+        //    if (this.busy_photoing)
+        //        return Error_Code.DeviceBusy;
+        //    if(this.timer_photoing == null)
+        //    {
+        //        this.timer_photoing = new Timer(this.OverTime * 1000);
+        //        this.timer_photoing.AutoReset = false;
+        //        this.timer_photoing.Elapsed += Timer_Photoing_Elapsed;
+        //    }
+        //    this.timer_photoing.Start();
 
-            if (!CommandDeal.Image_Photo_MAN.Set(this.CMD_ID, channel, preseting))
-                return Error_Code.DeviceOffLine;
+        //    if (!CommandDeal.Image_Photo_MAN.Set(this.CMD_ID, channel, preseting))
+        //        return Error_Code.DeviceOffLine;
 
-            return Error_Code.Success;
-        }
+        //    return Error_Code.Success;
+        //}
 
-        private void Timer_Photoing_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            this.OnPhotiongFinish(Error_Code.ResponseOverTime);
-        }
+        //private void Timer_Photoing_Elapsed(object sender, ElapsedEventArgs e)
+        //{
+        //    this.OnPhotiongFinish(Error_Code.ResponseOverTime);
+        //}
 
-        public void OnPhotiongFinish(Error_Code code, string message = null)
-        {
-            this.busy_photoing = false ;
-            PowerPoleEventArgs args = new PowerPoleEventArgs()
-            {
-                Code = code,
-                Message = message
-            };
-            try
-            {
-                if (PhotoingResultEventHanlder != null)
-                    this.PhotoingResultEventHanlder(this, args);
-            }
-            catch
-            {
+        //public void OnPhotiongFinish(Error_Code code, string message = null)
+        //{
+        //    this.busy_photoing = false ;
+        //    PowerPoleEventArgs args = new PowerPoleEventArgs()
+        //    {
+        //        Code = code,
+        //        Message = message
+        //    };
+        //    try
+        //    {
+        //        if (PhotoingResultEventHanlder != null)
+        //            this.PhotoingResultEventHanlder(this, args);
+        //    }
+        //    catch
+        //    {
 
-            }
-        }
-        #endregion
+        //    }
+        //}
+        //#endregion
 
         #region 设置拍照时间表
         /// <summary>
@@ -467,20 +467,22 @@ namespace GridBackGround.Termination
             }
         }
 
+        #endregion
+
         public object GetProperty(string key)
         {
-            if(this.properties.ContainsKey(key)) 
+            if (this.properties.ContainsKey(key))
                 return this.properties[key];
             return null;
         }
 
         public void SetProperty(string key, object value, bool save = false)
         {
-            if(this.properties.ContainsKey(key))
+            if (this.properties.ContainsKey(key))
                 this.properties[key] = value;
             else
                 this.properties.Add(key, value);
         }
-        #endregion
+
     }
 }

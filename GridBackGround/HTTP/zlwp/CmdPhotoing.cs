@@ -50,8 +50,9 @@ namespace GridBackGround.HTTP.zlwp
                     Zlwp.SendError(this.Context, Error_Code.DeviceOffLine);
                     return;
                 }
-                pole.PhotoingResultEventHanlder += Pole_PhotoingResultEventHanlder;
-                Error_Code code = pole.Photiong(channel, preseting);
+                Error_Code code = Error_Code.UnknownCommand;
+                //pole.PhotoingResultEventHanlder += Pole_PhotoingResultEventHanlder;
+                //Error_Code code = pole.Photiong(channel, preseting);
                 if(code != Error_Code.Success)
                 {
                     Zlwp.SendError(this.Context, code);
@@ -71,8 +72,8 @@ namespace GridBackGround.HTTP.zlwp
         {
             Zlwp.SendError(this.Context, e.Code);
             HttpRequestManager.RemoveFromRequestList(this);
-            Termination.PowerPole pole = sender as Termination.PowerPole;
-            pole.PhotoingResultEventHanlder -= Pole_PhotoingResultEventHanlder;
+            //Termination.PowerPole pole = sender as Termination.PowerPole;
+            //pole.PhotoingResultEventHanlder -= Pole_PhotoingResultEventHanlder;
 
             return;
         }
