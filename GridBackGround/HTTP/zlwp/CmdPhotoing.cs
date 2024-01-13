@@ -67,7 +67,7 @@ namespace GridBackGround.HTTP.zlwp
             }
         }
 
-        private void Pole_PhotoingResultEventHanlder(object sender, Termination.PowerPoleEventArgs e)
+        private void Pole_PhotoingResultEventHanlder(object sender, PowerPoleEventArgs e)
         {
             Zlwp.SendError(this.Context, e.Code);
             HttpRequestManager.RemoveFromRequestList(this);

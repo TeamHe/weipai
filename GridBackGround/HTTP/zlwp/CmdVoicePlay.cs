@@ -80,7 +80,7 @@ namespace GridBackGround.HTTP.zlwp
             }
         }
 
-        private void ResultEventHanlder(object sender, Termination.PowerPoleEventArgs e)
+        private void ResultEventHanlder(object sender, PowerPoleEventArgs e)
         {
             Zlwp.SendError(this.Context, e.Code);
             HttpRequestManager.RemoveFromRequestList(this);

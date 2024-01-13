@@ -95,6 +95,7 @@
     <Compile Include="nw\nw_func_code.cs" />
     <Compile Include="nw\nw_data_25_weather.cs" />
     <Compile Include="PowerPole\PackageMessage.cs" />
+    <Compile Include="PowerPole\PowerPoleEventArgs.cs" />
     <Compile Include="PowerPole\PowerPoleState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

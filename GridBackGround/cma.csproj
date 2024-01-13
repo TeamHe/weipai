@@ -506,7 +506,6 @@
     <Compile Include="Forms\Tab\Tab_Packet.Designer.cs">
       <DependentUpon>Tab_Packet.cs</DependentUpon>
     </Compile>
-    <Compile Include="Termination\EventHanlder.cs" />
     <Compile Include="PacketAnaLysis\PackDivid_FrameType.cs" />
     <Compile Include="Termination\PowerPole.cs" />
     <Compile Include="Communicat\EConnectType.cs" />

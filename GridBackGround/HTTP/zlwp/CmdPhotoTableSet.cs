@@ -82,7 +82,7 @@ namespace GridBackGround.HTTP.zlwp
         }
     }
 
-        private void Pole_TimeTableResultEventHanlder(object sender, Termination.PowerPoleEventArgs e)
+        private void Pole_TimeTableResultEventHanlder(object sender, PowerPoleEventArgs e)
         {
             HttpRequestManager.RemoveFromRequestList(this);
 

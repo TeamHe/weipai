@@ -1,7 +1,6 @@
 ﻿using System;
-using ResModel.PowerPole;
 
-namespace GridBackGround.Termination
+namespace ResModel.PowerPole
 {
     public class PowerPoleEventArgs : EventArgs
     {
