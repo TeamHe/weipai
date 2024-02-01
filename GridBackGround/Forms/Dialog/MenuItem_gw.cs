@@ -1,6 +1,11 @@
 ﻿using GridBackGround.CommandDeal;
 using System;
 using System.Windows.Forms;
+using cma.service.gw_cmd;
+using ResModel.gw;
+using static ResModel.gw.gw_ctrl_adapter;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace GridBackGround.Forms.Dialog
 {
@@ -13,22 +18,34 @@ namespace GridBackGround.Forms.Dialog
 
         private void 查询网络适配器ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Comand_NA.Query(this.pole.CMD_ID);
+            gw_cmd_ctrl_a1_adaptercs cmd = new gw_cmd_ctrl_a1_adaptercs()
+            {
+                Pole = this.pole,
+            };
+            cmd.Query();
         }
+        static gw_ctrl_adapter adapter = new gw_ctrl_adapter()
+        {
+            Flag = 0xff,
+            GateWay = IPAddress.Parse("192.168.1.1"),
+            Mask = IPAddress.Parse("255.255.255.0"),
+            IP = IPAddress.Parse("192.168.1.10"),
+            PhoneNumber = "12345678901234567890"
+        };
 
         private void 设置网络适配器ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Dialog_Con_NA na = new Dialog_Con_NA()
-            {
-                IP = Comand_NA.IP,
-                Subnet_Mask = Comand_NA.Subnet_Mask,
-                Gateway = Comand_NA.Gateway,
-                PhoneNumber = Comand_NA.PhoneNumber,
-            };
+
+            Dialog_Con_NA na = new Dialog_Con_NA() { Adapter = adapter };
             if (na.ShowDialog() != DialogResult.OK)
                 return;
-            Comand_NA.Set(this.pole.CMD_ID,
-                na.Flag, na.IP, na.Subnet_Mask, na.Gateway, na.PhoneNumber);
+
+            gw_cmd_ctrl_a1_adaptercs cmd = new gw_cmd_ctrl_a1_adaptercs()
+            {
+                Pole = this.pole,
+            };
+            cmd.Update(na.Adapter);
+            adapter = na.Adapter;
         }
         private void 历史数据ToolStripMenuItem_Click(object sender, EventArgs e)
         {

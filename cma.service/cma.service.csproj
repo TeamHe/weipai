@@ -47,6 +47,7 @@
     <Compile Include="gw_cmd\gw_cmd_base.cs" />
     <Compile Include="gw_cmd\gw_cmd_base_ctrl.cs" />
     <Compile Include="gw_cmd\gw_cmd_base_data.cs" />
+    <Compile Include="gw_cmd\gw_cmd_ctrl_a1_adaptercs.cs" />
     <Compile Include="gw_cmd\gw_cmd_handle.cs" />
     <Compile Include="PowerPole\DisPacket.cs" />
     <Compile Include="PowerPole\Equs.cs" />

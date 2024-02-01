@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Tools;
@@ -461,16 +456,16 @@ namespace GridBackGround
         {
             if (!GetCMD_SelecState())
                 return;
-            Forms.Dialog_Con_NA na = new Forms.Dialog_Con_NA();
-            if (na.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-            {
-                CommandDeal.Comand_NA.Set(CMD_ID,
-                    na.Flag,
-                    na.IP,
-                    na.Subnet_Mask,
-                    na.Gateway,
-                    na.PhoneNumber);
-            }
+            //Forms.Dialog_Con_NA na = new Forms.Dialog_Con_NA();
+            //if (na.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            //{
+            //    CommandDeal.Comand_NA.Set(CMD_ID,
+            //        na.Flag,
+            //        na.IP,
+            //        na.Subnet_Mask,
+            //        na.Gateway,
+            //        na.PhoneNumber);
+            //}
         }
         #endregion
 

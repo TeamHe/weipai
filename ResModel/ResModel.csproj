@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="gw\gw_ctrl_adapter.cs" />
     <Compile Include="gw\gw_ctrl_base.cs" />
     <Compile Include="PowerPole\Error_Code.cs" />
     <Compile Include="gw\gw_data_ice.cs" />

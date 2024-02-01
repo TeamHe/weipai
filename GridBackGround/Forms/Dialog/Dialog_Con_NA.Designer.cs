@@ -39,11 +39,13 @@
             this.checkBox_IP = new System.Windows.Forms.CheckBox();
             this.button_Cancel = new System.Windows.Forms.Button();
             this.button_OK = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.textBox_IMEI);
             this.panel1.Controls.Add(this.textBox_GateWay);
             this.panel1.Controls.Add(this.textBox_SubNetMask);
@@ -57,35 +59,36 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(254, 202);
+            this.panel1.Size = new System.Drawing.Size(287, 202);
             this.panel1.TabIndex = 0;
             // 
             // textBox_IMEI
             // 
             this.textBox_IMEI.Location = new System.Drawing.Point(121, 106);
             this.textBox_IMEI.Name = "textBox_IMEI";
-            this.textBox_IMEI.Size = new System.Drawing.Size(100, 21);
+            this.textBox_IMEI.Size = new System.Drawing.Size(131, 21);
             this.textBox_IMEI.TabIndex = 9;
+            this.textBox_IMEI.TextChanged += new System.EventHandler(this.textBox_IMEI_TextChanged);
             // 
             // textBox_GateWay
             // 
             this.textBox_GateWay.Location = new System.Drawing.Point(121, 78);
             this.textBox_GateWay.Name = "textBox_GateWay";
-            this.textBox_GateWay.Size = new System.Drawing.Size(100, 21);
+            this.textBox_GateWay.Size = new System.Drawing.Size(131, 21);
             this.textBox_GateWay.TabIndex = 8;
             // 
             // textBox_SubNetMask
             // 
             this.textBox_SubNetMask.Location = new System.Drawing.Point(121, 50);
             this.textBox_SubNetMask.Name = "textBox_SubNetMask";
-            this.textBox_SubNetMask.Size = new System.Drawing.Size(100, 21);
+            this.textBox_SubNetMask.Size = new System.Drawing.Size(131, 21);
             this.textBox_SubNetMask.TabIndex = 7;
             // 
             // textBox_IP
             // 
             this.textBox_IP.Location = new System.Drawing.Point(121, 22);
             this.textBox_IP.Name = "textBox_IP";
-            this.textBox_IP.Size = new System.Drawing.Size(100, 21);
+            this.textBox_IP.Size = new System.Drawing.Size(131, 21);
             this.textBox_IP.TabIndex = 6;
             // 
             // checkBox_IMEI
@@ -130,6 +133,7 @@
             // 
             // button_Cancel
             // 
+            this.button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button_Cancel.Location = new System.Drawing.Point(149, 160);
             this.button_Cancel.Name = "button_Cancel";
             this.button_Cancel.Size = new System.Drawing.Size(75, 23);
@@ -147,15 +151,22 @@
             this.button_OK.UseVisualStyleBackColor = true;
             this.button_OK.Click += new System.EventHandler(this.button_OK_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(258, 110);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(0, 12);
+            this.label1.TabIndex = 10;
+            // 
             // Dialog_Con_NA
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(254, 202);
+            this.ClientSize = new System.Drawing.Size(287, 202);
             this.Controls.Add(this.panel1);
             this.Name = "Dialog_Con_NA";
             this.Text = "状态监测装置网络适配器设置";
-            this.Load += new System.EventHandler(this.Dialog_Con_NA_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -175,5 +186,6 @@
         private System.Windows.Forms.CheckBox checkBox_IP;
         private System.Windows.Forms.Button button_Cancel;
         private System.Windows.Forms.Button button_OK;
+        private System.Windows.Forms.Label label1;
     }
 }
