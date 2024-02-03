@@ -85,21 +85,37 @@ namespace GridBackGround.Forms.Dialog
 
         private void 查询上位机信息ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Comand_IP.Query(this.pole.CMD_ID);
+            gw_cmd_ctrl_a4_center cmd = new gw_cmd_ctrl_a4_center()
+            {
+                Pole = this.pole
+            };
+            cmd.Query();
         }
+
+        static gw_ctrl_center gw_ctrl_center = null;
 
         private void 设定上位机信息ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Dialog_Con_IP conIP = new Dialog_Con_IP()
+            Dialog_Con_IP dialog = new Dialog_Con_IP();
+            if(gw_ctrl_center != null)
             {
-                IP = Comand_IP.IP_Address,
-                Port = Comand_IP.Port,
-                //SetFlag = CommandDeal.Comand_IP,
-            };
-            if (conIP.ShowDialog() != DialogResult.OK)
+                dialog.IP = gw_ctrl_center.IP;
+                dialog.Port = gw_ctrl_center.Port;
+            }
+            if (dialog.ShowDialog() != DialogResult.OK)
                 return;
-            Comand_IP.Set(this.pole.CMD_ID,
-                conIP.IP, conIP.Port, conIP.SetFlag);
+            gw_cmd_ctrl_a4_center cmd = new gw_cmd_ctrl_a4_center()
+            {
+                Pole = this.pole
+            };
+
+            gw_ctrl_center = new gw_ctrl_center()
+            {
+                Flag = dialog.SetFlag,
+                IP = dialog.IP,
+                Port = dialog.Port
+            };
+            cmd.Update(gw_ctrl_center);
         }
 
         private void 查询装置IDToolStripMenuItem_Click(object sender, EventArgs e)
