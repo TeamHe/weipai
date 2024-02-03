@@ -64,17 +64,23 @@ namespace GridBackGround.Forms.Dialog
 
         private void 采样参数ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Dialog_Con_MianTime miantime = new Dialog_Con_MianTime();
-            if (miantime.ShowDialog() != DialogResult.OK)
+            Dialog_Con_MianTime dialog = new Dialog_Con_MianTime();
+            if (dialog.ShowDialog() != DialogResult.OK)
                 return;
-            //查询
-            if (miantime.Query)
-                Comand_SamplePeriod.Query(this.pole.CMD_ID, miantime.Data_Type);
+            gw_cmd_ctrl_a3_period cmd = new gw_cmd_ctrl_a3_period()
+            {
+                Pole = this.pole,
+            };
+            if (dialog.Query)
+                cmd.Query((gw_func_code)dialog.Flag);
             else
-                //配置
-                Comand_SamplePeriod.Set(this.pole.CMD_ID,
-                        miantime.Data_Type, miantime.Flag,
-                        miantime.Main_Time, miantime.Heart_Time);
+                cmd.Update(new gw_ctrl_period()
+                {
+                    Flag = dialog.Flag,
+                    MainType = (gw_func_code)dialog.Data_Type,
+                    MainTime = dialog.Main_Time,
+                    HearTime = dialog.Heart_Time
+                });
         }
 
         private void 查询上位机信息ToolStripMenuItem_Click(object sender, EventArgs e)
