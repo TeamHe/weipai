@@ -1,4 +1,5 @@
-﻿using ResModel.gw;
+﻿using ResModel;
+using ResModel.gw;
 using System;
 using Tools;
 
@@ -7,11 +8,6 @@ namespace cma.service.gw_cmd
 
     public abstract class gw_cmd_base_ctrl : gw_cmd_base
     {
-        /// <summary>
-        /// 被测设备ID
-        /// </summary>
-        public string Component_ID { get; set; }
-
 
         public override gw_frame_type SendFrameType { get { return gw_frame_type.Control; } }
 
@@ -38,6 +34,12 @@ namespace cma.service.gw_cmd
         /// 数据区域长度
         /// </summary>
         public abstract int ValuesLength { get; }
+
+        public gw_cmd_base_ctrl() { }
+
+        public gw_cmd_base_ctrl(IPowerPole pole)
+            :base(pole) 
+        { }
 
         /// <summary>
         /// 数据区域解析

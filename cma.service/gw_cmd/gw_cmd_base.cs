@@ -47,6 +47,12 @@ namespace cma.service.gw_cmd
 
         public abstract int decode(byte[] data, int offset, out string msg);
 
+        public gw_cmd_base() { }
+
+        public gw_cmd_base(IPowerPole pole)
+        {
+            this.Pole = pole;
+        }
 
         /// <summary>
         /// 获取待发送数据包handle

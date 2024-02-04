@@ -1,6 +1,6 @@
-﻿using ResModel.gw;
+﻿using ResModel;
+using ResModel.gw;
 using System;
-using System.Data;
 
 namespace cma.service.gw_cmd
 {
@@ -25,6 +25,11 @@ namespace cma.service.gw_cmd
         /// 采样周期
         /// </summary>
         public gw_ctrl_period Period { get; set; }
+
+        public gw_cmd_ctrl_a3_period() { }
+
+        public gw_cmd_ctrl_a3_period(IPowerPole pole)
+            : base(pole) { }
 
         public void Query(gw_func_code type)
         {

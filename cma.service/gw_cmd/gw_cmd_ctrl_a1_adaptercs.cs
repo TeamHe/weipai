@@ -1,4 +1,5 @@
-﻿using ResModel.gw;
+﻿using ResModel;
+using ResModel.gw;
 using System;
 using System.Net;
 
@@ -18,6 +19,10 @@ namespace cma.service.gw_cmd
         /// </summary>
         public override int ValuesLength { get { return 32; } }
 
+        public gw_cmd_ctrl_a1_adaptercs() { }
+
+        public gw_cmd_ctrl_a1_adaptercs(IPowerPole pole) 
+            :base(pole) { }
 
         public void Update(gw_ctrl_adapter adapter)
         {

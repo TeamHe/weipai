@@ -3,9 +3,7 @@ using System;
 using System.Windows.Forms;
 using cma.service.gw_cmd;
 using ResModel.gw;
-using static ResModel.gw.gw_ctrl_adapter;
 using System.Net;
-using System.Threading.Tasks;
 
 namespace GridBackGround.Forms.Dialog
 {
@@ -18,10 +16,7 @@ namespace GridBackGround.Forms.Dialog
 
         private void 查询网络适配器ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            gw_cmd_ctrl_a1_adaptercs cmd = new gw_cmd_ctrl_a1_adaptercs()
-            {
-                Pole = this.pole,
-            };
+            gw_cmd_ctrl_a1_adaptercs cmd = new gw_cmd_ctrl_a1_adaptercs(this.pole);
             cmd.Query();
         }
         static gw_ctrl_adapter adapter = new gw_ctrl_adapter()
@@ -40,10 +35,7 @@ namespace GridBackGround.Forms.Dialog
             if (na.ShowDialog() != DialogResult.OK)
                 return;
 
-            gw_cmd_ctrl_a1_adaptercs cmd = new gw_cmd_ctrl_a1_adaptercs()
-            {
-                Pole = this.pole,
-            };
+            gw_cmd_ctrl_a1_adaptercs cmd = new gw_cmd_ctrl_a1_adaptercs(this.pole);
             cmd.Update(na.Adapter);
             adapter = na.Adapter;
         }
@@ -67,10 +59,7 @@ namespace GridBackGround.Forms.Dialog
             Dialog_Con_MianTime dialog = new Dialog_Con_MianTime();
             if (dialog.ShowDialog() != DialogResult.OK)
                 return;
-            gw_cmd_ctrl_a3_period cmd = new gw_cmd_ctrl_a3_period()
-            {
-                Pole = this.pole,
-            };
+            gw_cmd_ctrl_a3_period cmd = new gw_cmd_ctrl_a3_period(this.pole);
             if (dialog.Query)
                 cmd.Query((gw_func_code)dialog.Flag);
             else
@@ -85,10 +74,7 @@ namespace GridBackGround.Forms.Dialog
 
         private void 查询上位机信息ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            gw_cmd_ctrl_a4_center cmd = new gw_cmd_ctrl_a4_center()
-            {
-                Pole = this.pole
-            };
+            gw_cmd_ctrl_a4_center cmd = new gw_cmd_ctrl_a4_center(this.pole);
             cmd.Query();
         }
 
@@ -104,10 +90,7 @@ namespace GridBackGround.Forms.Dialog
             }
             if (dialog.ShowDialog() != DialogResult.OK)
                 return;
-            gw_cmd_ctrl_a4_center cmd = new gw_cmd_ctrl_a4_center()
-            {
-                Pole = this.pole
-            };
+            gw_cmd_ctrl_a4_center cmd = new gw_cmd_ctrl_a4_center(this.pole);
 
             gw_ctrl_center = new gw_ctrl_center()
             {
