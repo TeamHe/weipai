@@ -50,6 +50,7 @@
     <Compile Include="gw\gw_ctrl_adapter.cs" />
     <Compile Include="gw\gw_ctrl_base.cs" />
     <Compile Include="gw\gw_ctrl_center.cs" />
+    <Compile Include="gw\gw_ctrl_id.cs" />
     <Compile Include="gw\gw_ctrl_period.cs" />
     <Compile Include="PowerPole\Error_Code.cs" />
     <Compile Include="gw\gw_data_ice.cs" />

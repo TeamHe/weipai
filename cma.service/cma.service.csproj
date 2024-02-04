@@ -50,6 +50,7 @@
     <Compile Include="gw_cmd\gw_cmd_ctrl_a1_adaptercs.cs" />
     <Compile Include="gw_cmd\gw_cmd_ctrl_a3_period.cs" />
     <Compile Include="gw_cmd\gw_cmd_ctrl_a4_center.cs" />
+    <Compile Include="gw_cmd\gw_cmd_ctrl_a5_id.cs" />
     <Compile Include="gw_cmd\gw_cmd_handle.cs" />
     <Compile Include="PowerPole\DisPacket.cs" />
     <Compile Include="PowerPole\Equs.cs" />

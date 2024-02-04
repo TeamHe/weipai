@@ -103,21 +103,34 @@ namespace GridBackGround.Forms.Dialog
 
         private void 查询装置IDToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Comand_ID.Query(this.pole.CMD_ID);
+            gw_cmd_ctrl_a5_id cmd = new gw_cmd_ctrl_a5_id(this.pole);
+            cmd.Query();
         }
+
+        gw_ctrl_id ctrl_id = null;
 
         private void 设定装置IDToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Dialog_Con_ID conID = new Dialog_Con_ID()
+            Dialog_Con_ID dialog = new Dialog_Con_ID();
+         
+            if(ctrl_id != null)
             {
-                Original_ID = Comand_ID.Original_ID,
-                NEW_CMD_ID = this.pole.CMD_ID,
-                Component_ID = Comand_ID.Component_ID,
-            };
-            if (conID.ShowDialog() != DialogResult.OK)
+                dialog.Original_ID = ctrl_id.OriginalID;
+                dialog.NEW_CMD_ID = ctrl_id.NEW_CMD_ID;
+                dialog.Component_ID = ctrl_id.ComponentID;
+            }
+            if (dialog.ShowDialog() != DialogResult.OK)
                 return;
-            Comand_ID.Set(this.pole.CMD_ID, conID.SetFlag,
-                conID.Component_ID, conID.Original_ID, conID.NEW_CMD_ID);
+            gw_ctrl_id id = new gw_ctrl_id()
+            {
+                Flag = dialog.SetFlag,
+                ComponentID = dialog.Component_ID,
+                OriginalID = dialog.Original_ID,
+                NEW_CMD_ID = dialog.NEW_CMD_ID,
+            };
+            gw_cmd_ctrl_a5_id cmd = new gw_cmd_ctrl_a5_id(this.pole);
+            cmd.Update(id);
+            ctrl_id = id;
         }
         private void 常规复位ToolStripMenuItem_Click(object sender, EventArgs e)
         {
