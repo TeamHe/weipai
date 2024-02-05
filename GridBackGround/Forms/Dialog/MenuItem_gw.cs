@@ -134,12 +134,14 @@ namespace GridBackGround.Forms.Dialog
         }
         private void 常规复位ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Comand_Reset.Reset(this.pole.CMD_ID, 0x00);
+            gw_cmd_ctrl_a6_reset cmd = new gw_cmd_ctrl_a6_reset(this.pole);
+            cmd.Reset(gw_ctrl_reset.ResetMode.Normal);
         }
 
         private void 复位至调试模式ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Comand_Reset.Reset(this.pole.CMD_ID, 0x01);
+            gw_cmd_ctrl_a6_reset cmd = new gw_cmd_ctrl_a6_reset(this.pole);
+            cmd.Reset(gw_ctrl_reset.ResetMode.Debug);
         }
 
         private void 查询模型参数ToolStripMenuItem_Click(object sender, EventArgs e)
