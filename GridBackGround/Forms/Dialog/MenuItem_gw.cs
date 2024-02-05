@@ -41,17 +41,27 @@ namespace GridBackGround.Forms.Dialog
         }
         private void 历史数据ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Dialog_Con_HisData dch = new Dialog_Con_HisData();
+            Dialog_Con_HisData dch = new Dialog_Con_HisData()
+            {
+                StartTime = DateTime.Now.AddDays(-1),
+                EndTime = DateTime.Now,
+            };
             if (dch.ShowDialog() != DialogResult.OK)
                 return;
             //当前数据
-            if (dch.CurrentData)                            //请求当前数据
-                Comand_History.Current(this.pole.CMD_ID,
-                    dch.Data_Type);
-            else
-                //请求历史数据
-                Comand_History.History(this.pole.CMD_ID,
-                    dch.Data_Type, dch.StartTime, dch.EndTime);
+            gw_ctrl_history history = new gw_ctrl_history()
+            {
+                Type = (gw_func_code)dch.Data_Type,
+                Start = dch.StartTime,
+                End = dch.EndTime,
+            };
+            if (dch.CurrentData)
+            {
+                history.Start = DateTime.Now;
+                history.End = DateTime.Now;
+            }
+            gw_cmd_ctrl_a2_history cmd = new gw_cmd_ctrl_a2_history(this.pole);
+            cmd.Query(history);
         }
 
         private void 采样参数ToolStripMenuItem_Click(object sender, EventArgs e)

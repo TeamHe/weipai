@@ -39,10 +39,22 @@ namespace GridBackGround.Forms
         
 
         #region Public Variable
-        public byte Data_Type { get; private set; }
-        public DateTime StartTime { get; private set; }
-        public DateTime EndTime { get; private set; }
-        public bool CurrentData { get; private set; }
+        public byte Data_Type { get;  set; }
+        public DateTime StartTime 
+        { 
+            get { return this.dateTimePicker_StartTime.Value; }  
+            set { this.dateTimePicker_StartTime.Value = value; } 
+        }
+        public DateTime EndTime 
+        {
+            get { return this.dateTimePicker_EndTime.Value; }
+            set { this.dateTimePicker_EndTime.Value = value; }
+        }
+        public bool CurrentData 
+        {
+            get { return this.checkBox1.Checked; }
+            set { this.checkBox1.Checked = value; } 
+        }
         #endregion
         
         private void button_OK_Click(object sender, EventArgs e)
@@ -53,8 +65,6 @@ namespace GridBackGround.Forms
             #endregion
             if (!CurrentData)
             {
-                StartTime = this.dateTimePicker_StartTime.Value;        //开始时间
-                EndTime = this.dateTimePicker_EndTime.Value;            //结束时间
                 if (StartTime > EndTime)
                 {
                     MessageBox.Show("起始时间应该小于结束时间");
@@ -78,13 +88,11 @@ namespace GridBackGround.Forms
             {
                 dateTimePicker_StartTime.Enabled = false;
                 dateTimePicker_EndTime.Enabled = false;
-                CurrentData = true;
             }
             else
             {
                 dateTimePicker_StartTime.Enabled = true;
                 dateTimePicker_EndTime.Enabled = true;
-                CurrentData = false;
             }
         }
 

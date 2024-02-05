@@ -129,22 +129,22 @@
             this.dateTimePicker_EndTime.CustomFormat = " yyyy-MM-dd HH:mm";
             this.dateTimePicker_EndTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker_EndTime.Location = new System.Drawing.Point(93, 83);
-            this.dateTimePicker_EndTime.MaxDate = new System.DateTime(2016, 12, 31, 0, 0, 0, 0);
             this.dateTimePicker_EndTime.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker_EndTime.Name = "dateTimePicker_EndTime";
             this.dateTimePicker_EndTime.Size = new System.Drawing.Size(162, 21);
             this.dateTimePicker_EndTime.TabIndex = 3;
+            this.dateTimePicker_EndTime.Value = new System.DateTime(2016, 12, 31, 0, 0, 0, 0);
             // 
             // dateTimePicker_StartTime
             // 
             this.dateTimePicker_StartTime.CustomFormat = " yyyy-MM-dd HH:mm";
             this.dateTimePicker_StartTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker_StartTime.Location = new System.Drawing.Point(93, 34);
-            this.dateTimePicker_StartTime.MaxDate = new System.DateTime(2016, 12, 31, 0, 0, 0, 0);
             this.dateTimePicker_StartTime.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker_StartTime.Name = "dateTimePicker_StartTime";
             this.dateTimePicker_StartTime.Size = new System.Drawing.Size(162, 21);
             this.dateTimePicker_StartTime.TabIndex = 2;
+            this.dateTimePicker_StartTime.Value = new System.DateTime(2016, 12, 31, 0, 0, 0, 0);
             // 
             // label2
             // 
