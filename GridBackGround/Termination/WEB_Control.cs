@@ -5,7 +5,7 @@ using Sodao.FastSocket.SocketBase;
 using Sodao.FastSocket.Server.Command;
 using System.Timers;
 using ResModel.EQU;
-using cma.service.PowerPole;
+using cma.service;
 
 namespace GridBackGround.Termination
 {

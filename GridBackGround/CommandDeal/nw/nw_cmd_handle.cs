@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using ResModel.PowerPole;
 using ResModel.nw;
-using cma.service.PowerPole;
+using cma.service;
 
 namespace GridBackGround.CommandDeal.nw
 {

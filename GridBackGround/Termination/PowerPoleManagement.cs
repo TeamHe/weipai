@@ -3,7 +3,7 @@ using Sodao.FastSocket.SocketBase;
 using Sodao.FastSocket.Server;
 using ResModel;
 using System.Collections;
-using cma.service.PowerPole;
+using cma.service;
 
 namespace GridBackGround.Termination
 {

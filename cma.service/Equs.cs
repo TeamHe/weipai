@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using ResModel.EQU;
 
-namespace cma.service.PowerPole
+namespace cma.service
 {
     public class Equs
     {

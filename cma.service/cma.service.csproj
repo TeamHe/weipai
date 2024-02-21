@@ -54,9 +54,9 @@
     <Compile Include="gw_cmd\gw_cmd_ctrl_a5_id.cs" />
     <Compile Include="gw_cmd\gw_cmd_ctrl_a6_reset.cs" />
     <Compile Include="gw_cmd\gw_cmd_handle.cs" />
-    <Compile Include="PowerPole\DisPacket.cs" />
-    <Compile Include="PowerPole\Equs.cs" />
-    <Compile Include="PowerPole\PowerPole.cs" />
+    <Compile Include="DisPacket.cs" />
+    <Compile Include="Equs.cs" />
+    <Compile Include="PowerPole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

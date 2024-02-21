@@ -4,7 +4,7 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using cma.service.PowerPole;
+using cma.service;
 using GridBackGround.Termination;
 
 namespace GridBackGround

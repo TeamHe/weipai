@@ -2,7 +2,7 @@
 using System.Net;
 using Newtonsoft.Json.Linq;
 using ResModel.PowerPole;
-using cma.service.PowerPole;
+using cma.service;
 using GridBackGround.Termination;
 
 namespace GridBackGround.HTTP.zlwp

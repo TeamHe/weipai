@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using ResModel.PowerPole;
 using ResModel.Image;
-using cma.service.PowerPole;
+using cma.service;
 
 namespace GridBackGround.CommandDeal
 {

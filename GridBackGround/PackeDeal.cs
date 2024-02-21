@@ -8,7 +8,7 @@ using GridBackGround.Termination;
 using ResModel;
 using ResModel.PowerPole;
 using cma.service.gw_cmd;
-using cma.service.PowerPole;
+using cma.service;
 
 namespace GridBackGround
 {

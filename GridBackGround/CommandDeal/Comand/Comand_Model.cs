@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using ResModel.PowerPole;
 using ResModel.gw;
-using cma.service.PowerPole;
+using cma.service;
 
 namespace GridBackGround.CommandDeal
 {

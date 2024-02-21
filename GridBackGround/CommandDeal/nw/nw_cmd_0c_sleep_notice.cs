@@ -1,4 +1,4 @@
-﻿using cma.service.PowerPole;
+﻿using cma.service;
 using System;
 using ResModel.nw;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using ResModel.PowerPole;
-using cma.service.PowerPole;
+using cma.service;
 using System.Diagnostics;
 using Tools;
 using DB_Operation.RealData;

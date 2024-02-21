@@ -1,7 +1,7 @@
-﻿using cma.service.PowerPole;
-using ResModel;
+﻿using ResModel;
 using System;
 using ResModel.nw;
+using cma.service;
 
 namespace GridBackGround.CommandDeal.nw
 {

@@ -5,7 +5,7 @@ using DB_Operation.EQUManage;
 using ResModel;
 using ResModel.PowerPole;
 using DB_Operation;
-using cma.service.PowerPole;
+using cma.service;
 
 namespace GridBackGround.CommandDeal
 {

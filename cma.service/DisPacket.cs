@@ -6,7 +6,7 @@ using ResModel;
 using ResModel.nw;
 using ResModel.PowerPole;
 
-namespace cma.service.PowerPole
+namespace cma.service
 {
     public class PackageMessageEventArgs:EventArgs
     {

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Timers;
 using ResModel.PowerPole;
-using cma.service.PowerPole;
+using cma.service;
 
 namespace GridBackGround.Termination
 {

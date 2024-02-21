@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using ResModel.nw;
 using ResModel;
-using cma.service.PowerPole;
+using cma.service;
 
 namespace GridBackGround.Termination
 {

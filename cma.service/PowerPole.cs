@@ -11,7 +11,7 @@ using ResModel;
 using ResModel.PowerPole;
 using System.ComponentModel;
 
-namespace cma.service.PowerPole
+namespace cma.service
 {
     public enum PowerPoleFlag
     {

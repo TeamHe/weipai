@@ -4,7 +4,7 @@ using GridBackGround.Termination;
 using GridBackGround.Forms.Dialogs_nw;
 using ResModel;
 using GridBackGround.Forms.Tab;
-using cma.service.PowerPole;
+using cma.service;
 using GridBackGround.Forms.Dialog;
 
 namespace GridBackGround

@@ -7,7 +7,7 @@ using DB_Operation.EQUManage;
 using ResModel;
 using System.Text;
 using Tools;
-using cma.service.PowerPole;
+using cma.service;
 
 namespace GridBackGround.Forms.Tab
 {
