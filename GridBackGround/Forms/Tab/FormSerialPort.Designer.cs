@@ -498,14 +498,12 @@
             this.查询网络适配器ToolStripMenuItem.Name = "查询网络适配器ToolStripMenuItem";
             this.查询网络适配器ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.查询网络适配器ToolStripMenuItem.Text = "查询";
-            this.查询网络适配器ToolStripMenuItem.Click += new System.EventHandler(this.查询网络适配器ToolStripMenuItem_Click);
             // 
             // 设置网络适配器ToolStripMenuItem
             // 
             this.设置网络适配器ToolStripMenuItem.Name = "设置网络适配器ToolStripMenuItem";
             this.设置网络适配器ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.设置网络适配器ToolStripMenuItem.Text = "设置";
-            this.设置网络适配器ToolStripMenuItem.Click += new System.EventHandler(this.设置网络适配器ToolStripMenuItem_Click);
             // 
             // 请求历史数据ToolStripMenuItem
             // 
@@ -515,7 +513,6 @@
             this.请求历史数据ToolStripMenuItem.Name = "请求历史数据ToolStripMenuItem";
             this.请求历史数据ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.请求历史数据ToolStripMenuItem.Text = "请求历史数据";
-            this.请求历史数据ToolStripMenuItem.Click += new System.EventHandler(this.历史数据ToolStripMenuItem_Click);
             // 
             // 当前数据ToolStripMenuItem
             // 
@@ -530,7 +527,6 @@
             this.历史数据ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.历史数据ToolStripMenuItem.Text = "历史数据";
             this.历史数据ToolStripMenuItem.Visible = false;
-            this.历史数据ToolStripMenuItem.Click += new System.EventHandler(this.历史数据ToolStripMenuItem_Click);
             // 
             // 采样参数查询设定ToolStripMenuItem
             // 
@@ -540,7 +536,6 @@
             this.采样参数查询设定ToolStripMenuItem.Name = "采样参数查询设定ToolStripMenuItem";
             this.采样参数查询设定ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.采样参数查询设定ToolStripMenuItem.Text = "采样参数";
-            this.采样参数查询设定ToolStripMenuItem.Click += new System.EventHandler(this.设定采样参数ToolStripMenuItem_Click);
             // 
             // 查询采样参数ToolStripMenuItem
             // 
@@ -555,7 +550,6 @@
             this.设定采样参数ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.设定采样参数ToolStripMenuItem.Text = "设定";
             this.设定采样参数ToolStripMenuItem.Visible = false;
-            this.设定采样参数ToolStripMenuItem.Click += new System.EventHandler(this.设定采样参数ToolStripMenuItem_Click);
             // 
             // 上位机信息查询设定ToolStripMenuItem
             // 
@@ -571,14 +565,12 @@
             this.查询上位机信息ToolStripMenuItem1.Name = "查询上位机信息ToolStripMenuItem1";
             this.查询上位机信息ToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
             this.查询上位机信息ToolStripMenuItem1.Text = "查询";
-            this.查询上位机信息ToolStripMenuItem1.Click += new System.EventHandler(this.查询上位机信息ToolStripMenuItem_Click);
             // 
             // 设定上位机信息ToolStripMenuItem1
             // 
             this.设定上位机信息ToolStripMenuItem1.Name = "设定上位机信息ToolStripMenuItem1";
             this.设定上位机信息ToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
             this.设定上位机信息ToolStripMenuItem1.Text = "设定";
-            this.设定上位机信息ToolStripMenuItem1.Click += new System.EventHandler(this.设定上位机信息ToolStripMenuItem_Click);
             // 
             // 装置IDToolStripMenuItem
             // 
@@ -594,14 +586,12 @@
             this.查询装置IDToolStripMenuItem.Name = "查询装置IDToolStripMenuItem";
             this.查询装置IDToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.查询装置IDToolStripMenuItem.Text = "查询";
-            this.查询装置IDToolStripMenuItem.Click += new System.EventHandler(this.查询装置IDToolStripMenuItem_Click);
             // 
             // 设定装置IDToolStripMenuItem
             // 
             this.设定装置IDToolStripMenuItem.Name = "设定装置IDToolStripMenuItem";
             this.设定装置IDToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.设定装置IDToolStripMenuItem.Text = "设定";
-            this.设定装置IDToolStripMenuItem.Click += new System.EventHandler(this.设定装置IDToolStripMenuItem_Click);
             // 
             // 装置复位ToolStripMenuItem
             // 
@@ -617,14 +607,12 @@
             this.常规复位ToolStripMenuItem.Name = "常规复位ToolStripMenuItem";
             this.常规复位ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.常规复位ToolStripMenuItem.Text = "常规复位";
-            this.常规复位ToolStripMenuItem.Click += new System.EventHandler(this.常规复位ToolStripMenuItem_Click);
             // 
             // 复位至调试模式ToolStripMenuItem
             // 
             this.复位至调试模式ToolStripMenuItem.Name = "复位至调试模式ToolStripMenuItem";
             this.复位至调试模式ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.复位至调试模式ToolStripMenuItem.Text = "复位至调试模式";
-            this.复位至调试模式ToolStripMenuItem.Click += new System.EventHandler(this.复位至调试模式ToolStripMenuItem_Click);
             // 
             // 模型参数ToolStripMenuItem
             // 

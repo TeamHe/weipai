@@ -1,8 +1,4 @@
 ﻿using ResModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace GridBackGround.PacketAnaLysis
 {
@@ -26,24 +22,6 @@ namespace GridBackGround.PacketAnaLysis
             bool dealState = false;
             switch (packet_Type)
             {
-                case PacketType_Control.NIA:
-                    CommandDeal.Comand_NA.Response(pole, frame_No, data);
-                    break;
-                 case PacketType_Control.HisData:    //历史数据请求0xa2
-                    CommandDeal.Comand_History.Response(pole, frame_No, data);
-                    break;
-                 case PacketType_Control.MainTime:    //采样周期0xa3
-                    CommandDeal.Comand_SamplePeriod.Response(pole, frame_No, data);
-                    break;
-                case PacketType_Control.HostComputer:   //上位机信息0xa4
-                    CommandDeal.Comand_IP.Response(pole, frame_No, data);
-                    break;
-                case PacketType_Control.ID:          //ID 0xa5
-                    CommandDeal.Comand_ID.Response(pole, frame_No, data);
-                    break;
-                case PacketType_Control.Reset:             //重启0xa6
-                    CommandDeal.Comand_Reset.ResetResponse(pole, frame_No, data);
-                    break;
                 case PacketType_Control.Model://模型参数0xa7
                     CommandDeal.Comand_Model.Response(pole, frame_No, data);
                     break;

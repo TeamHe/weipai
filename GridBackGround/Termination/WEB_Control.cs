@@ -309,24 +309,6 @@ namespace GridBackGround.Termination
             {
 
                 //网络适配器
-                case EQU_Control.NIA:
-                    CommandDeal.Comand_NA.Ayanlise(cmdinfo.CMD_ID, cmdinfo.Data);
-                    break;
-                case EQU_Control.HisData://历史数据
-                    CommandDeal.Comand_History.Ayanlise(cmdinfo.CMD_ID, cmdinfo.Data);
-                    break;
-                case EQU_Control.MainTime://采样参数
-                    CommandDeal.Comand_SamplePeriod.Ayanlise(cmdinfo.CMD_ID, cmdinfo.Data);
-                    break;
-                case EQU_Control.HostComputer://上位机
-                    CommandDeal.Comand_IP.Ayanlise(cmdinfo.CMD_ID, cmdinfo.Data);
-                    break;
-                case EQU_Control.ID://ID
-                    CommandDeal.Comand_ID.Ayanlise(cmdinfo.CMD_ID, cmdinfo.Data);
-                    break;
-                case EQU_Control.Reset://复位
-                    CommandDeal.Comand_Reset.Ayanlise(cmdinfo.CMD_ID, cmdinfo.Data);
-                    break;
                 case EQU_Control.Model://模型参数
                     CommandDeal.Comand_Model.Ayanlise(cmdinfo.CMD_ID, cmdinfo.Data);
                     break;
