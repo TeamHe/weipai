@@ -10,7 +10,7 @@ using DB_Operation.EQUManage;
 using ResModel;
 using ResModel.PowerPole;
 using System.ComponentModel;
-using ResModel.Image;
+using cma.service.PowerPole;
 
 namespace GridBackGround.Termination
 {
@@ -210,9 +210,45 @@ namespace GridBackGround.Termination
             catch { }
         }
 
-        public bool SendSocket(IPowerPole pole, byte[] data, out string msg)
+        public bool SendSocket(byte[] data, out string msg, out int errCode)
         {
-            return PackeDeal.SendSocket(pole, data, out msg);
+            msg = string.Empty;
+            errCode = 0;
+            if (this.udpSession != null)
+            {
+                try
+                {
+                    this.udpSession.SendAsync(data);
+                    DisPacket.NewPackageMessage(this, RSType.Send, SrcType.NW_UDP,
+                        this.IP != null ? this.IP.ToString() : "unknown", 0, data);
+                    return true;
+                }
+                catch
+                {
+                    errCode = 12;
+                    return false;
+                }
+            }
+            if (this.Connection != null)
+            {
+                try
+                {
+                    this.Connection.BeginSend(new Packet(data));
+                    DisPacket.NewPackageMessage(this, RSType.Send, SrcType.GW_TCP,
+                        this.IP != null ? this.IP.ToString() : "unknown", 0, data);
+                    return true;
+                }
+                catch
+                {
+                    msg = "TCP数据发送失败";
+                    errCode = 12;
+                    return false;
+                }
+            }
+            msg = "设备离线";
+            errCode = 14;
+            return false;
+
         }
         #endregion
 
@@ -484,6 +520,5 @@ namespace GridBackGround.Termination
             else
                 this.properties.Add(key, value);
         }
-
     }
 }

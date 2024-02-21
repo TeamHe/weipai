@@ -2,7 +2,6 @@
 using ResModel;
 using System;
 using Sodao.FastSocket.Server.Command;
-using ResModel.gw;
 using cma.service.PowerPole;
 
 namespace cma.service.gw_cmd
@@ -92,7 +91,7 @@ namespace cma.service.gw_cmd
                     msg = "数据包构建失败:" + out_msg;
                     return false;
                 }
-                if (!this.Pole.SendSocket(this.Pole, cmd.encode(), out msg))
+                if (!this.Pole.SendSocket(cmd.encode(), out msg,out int code))
                 {
                     msg = "数据包发送失败:" + out_msg;
                     return false;

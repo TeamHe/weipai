@@ -325,7 +325,7 @@ namespace ResModel.nw
                     msg = "数据包构建失败:" + out_msg;
                     return false;
                 }
-                if(!this.Pole.SendSocket(this.Pole, cmd.Pakcet, out msg))
+                if(!this.Pole.SendSocket(cmd.Pakcet, out msg, out int code))
                 {
                     msg = "数据包发送失败:" + out_msg;
                     return false;

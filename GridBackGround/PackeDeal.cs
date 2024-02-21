@@ -110,51 +110,13 @@ namespace GridBackGround
 
          public static bool SendSocket(IPowerPole powerPole, byte[] data, out string errorMsg, out int errCode)
          {
-            errorMsg = "";
-            string disData = "发送:";
-            errCode = 0;
             if (powerPole == null)
             {
                 errorMsg = "无效的设备handle";
                 errCode = 11;
                 return false;
             }
-
-            if (powerPole.udpSession != null)
-            {
-                try
-                {
-                    powerPole.udpSession.SendAsync(data);
-                    OnSend = true;
-                    DisPacket.NewPackageMessage(powerPole, RSType.Send, SrcType.NW_UDP,
-                        powerPole.IP!=null? powerPole.IP.ToString():"unknown", 0, data);
-                    return true;
-                }
-                catch
-                {
-                    errCode = 12;
-                    return false;
-                }
-            }
-            if (powerPole.Connection != null)
-            {
-                try
-                {
-                    powerPole.Connection.BeginSend(new Packet(data));
-                    DisPacket.NewPackageMessage(powerPole, RSType.Send, SrcType.GW_TCP,
-                        powerPole.IP != null ? powerPole.IP.ToString() : "unknown", 0, data);
-                    return true;
-                }
-                catch
-                {
-                    errorMsg = "TCP数据发送失败";
-                    errCode = 12;
-                    return false;
-                }
-            }
-            errorMsg = "设备离线";
-            errCode = 14;
-            return false;
+            return powerPole.SendSocket(data,out errorMsg,out errCode);
          }
 
         public static bool SendSocket(IPowerPole powerPole, byte[] data, out string errorMsg)
