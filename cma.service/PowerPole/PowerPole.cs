@@ -10,9 +10,8 @@ using DB_Operation.EQUManage;
 using ResModel;
 using ResModel.PowerPole;
 using System.ComponentModel;
-using cma.service.PowerPole;
 
-namespace GridBackGround.Termination
+namespace cma.service.PowerPole
 {
     public enum PowerPoleFlag
     {

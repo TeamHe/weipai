@@ -1,13 +1,11 @@
 ﻿using ResModel;
 using ResModel.EQU;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using cma.service.PowerPole;
+using GridBackGround.Termination;
 
 namespace GridBackGround
 {
@@ -27,8 +25,8 @@ namespace GridBackGround
             //不显示装置名称
             this.listView1.Columns[0].Width = 60;
             //终端状态变化事件
-            Termination.PowerPoleManage.OnStateChange += 
-                new Termination.OnLineStateChange(OnLineStateChange);
+            PowerPoleManage.OnStateChange += 
+                new OnLineStateChange(OnLineStateChange);
 
 
             this.listView1.Columns[3].Width = 0;
@@ -38,7 +36,7 @@ namespace GridBackGround
         /// 设备在线状态更改
         /// </summary>
         /// <param name="powerPole"></param>
-        protected void OnLineStateChange(Termination.PowerPole powerPole)
+        protected void OnLineStateChange(PowerPole powerPole)
         {
             NodeChange(powerPole);
             powerPole = null;

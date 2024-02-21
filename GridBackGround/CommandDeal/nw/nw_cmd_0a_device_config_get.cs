@@ -1,4 +1,4 @@
-﻿using GridBackGround.Termination;
+﻿using cma.service.PowerPole;
 using ResModel;
 using System;
 using ResModel.nw;

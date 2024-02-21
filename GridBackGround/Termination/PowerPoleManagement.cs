@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Sodao.FastSocket.SocketBase;
 using Sodao.FastSocket.Server;
 using ResModel;
 using System.Collections;
+using cma.service.PowerPole;
 
 namespace GridBackGround.Termination
 {
-    public delegate void OnLineStateChange(Termination.PowerPole powerPole);
+    public delegate void OnLineStateChange(PowerPole powerPole);
     public static class PowerPoleManage
     {
         public static event OnLineStateChange OnStateChange;

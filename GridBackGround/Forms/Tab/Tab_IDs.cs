@@ -7,6 +7,7 @@ using DB_Operation.EQUManage;
 using ResModel;
 using System.Text;
 using Tools;
+using cma.service.PowerPole;
 
 namespace GridBackGround.Forms.Tab
 {
@@ -111,7 +112,7 @@ namespace GridBackGround.Forms.Tab
         /// 设备在线状态更改
         /// </summary>
         /// <param name="powerPole"></param>
-        protected void OnLineStateChange(Termination.PowerPole powerPole)
+        protected void OnLineStateChange(PowerPole powerPole)
         {
             if (powerPole != null)
             {

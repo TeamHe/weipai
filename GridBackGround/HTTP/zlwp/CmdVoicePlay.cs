@@ -2,6 +2,8 @@
 using System.Net;
 using Newtonsoft.Json.Linq;
 using ResModel.PowerPole;
+using cma.service.PowerPole;
+using GridBackGround.Termination;
 
 namespace GridBackGround.HTTP.zlwp
 {
@@ -57,7 +59,7 @@ namespace GridBackGround.HTTP.zlwp
                 }
 
 
-                Termination.PowerPole pole = Termination.PowerPoleManage.Find(cmdid) as Termination.PowerPole;
+                PowerPole pole = PowerPoleManage.Find(cmdid) as PowerPole;
                 if (pole == null || pole.is_online() == false)
                 {
                     Zlwp.SendError(this.Context, Error_Code.DeviceOffLine);

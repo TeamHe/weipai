@@ -501,7 +501,6 @@
       <DependentUpon>Tab_Packet.cs</DependentUpon>
     </Compile>
     <Compile Include="PacketAnaLysis\PackDivid_FrameType.cs" />
-    <Compile Include="Termination\PowerPole.cs" />
     <Compile Include="Communicat\EConnectType.cs" />
     <Compile Include="Communicat\TCPSever.cs" />
     <Compile Include="Forms\Tab\MainForm.cs">
