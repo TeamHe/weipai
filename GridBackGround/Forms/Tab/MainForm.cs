@@ -73,11 +73,11 @@ namespace GridBackGround
         private void MainForm_Load(object sender, EventArgs e)
         {
             Console.WriteLine(DateTime.Now.ToString()+"系统正在初始化");
+            var name = System.Reflection.Assembly.GetExecutingAssembly().GetName();
+            this.Text = name.Name + "(V" + name.Version + ")";
+            this.notifyIcon1.Text = name.Name + "(V" + name.Version + ")";
             this.Icon = new System.Drawing.Icon("Res\\logo.ico");
             this.notifyIcon1.Icon = new System.Drawing.Icon("Res\\logo.ico");
-            var name = System.Reflection.Assembly.GetExecutingAssembly().GetName();
-            this.Text = name.Name;
-
             //菜单栏初始化
             menu_init();
 
