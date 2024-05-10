@@ -28,6 +28,11 @@ namespace DB_Operation.RealData
              "@pull3",
              "@yaw_angle3",
              "@del_angle3",
+             "@cid",
+             "@speed",
+             "@dir",
+             "@temp",
+             "@hum",
         };
         private string GetSaveSql()
         {
@@ -49,7 +54,12 @@ namespace DB_Operation.RealData
             builder.Append("del_angle2, ");
             builder.Append("pull3, ");
             builder.Append("yaw_angle3,");
-            builder.Append("del_angle3");
+            builder.Append("del_angle3,");
+            builder.Append("cid, ");
+            builder.Append("speed, ");
+            builder.Append("dir, ");
+            builder.Append("temp,");
+            builder.Append("hum");
 
             builder.Append(")Values(");
 
@@ -94,28 +104,40 @@ namespace DB_Operation.RealData
             if (ice == null)
                 throw new ArgumentNullException(nameof(ice));
 
-            object[] objs = new object[15];
-            objs[0] = ice.DataTime;
-            objs[1] = this.Pole.Pole_id;
-            objs[2] = DateTime.Now;
-            objs[3] = ice.Equal_IceThicknes ;
-            objs[4] = ice.Tension ;
-            objs[5] = ice.Tension_Difference ;
-            int no = 0;
+            object[] objs = new object[20];
+            int no = 0,cnum=0;
+            objs[no++] = ice.DataTime;
+            objs[no++] = this.Pole.Pole_id;
+            objs[no++] = DateTime.Now;
+            objs[no++] = ice.Equal_IceThicknes ;
+            objs[no++] = ice.Tension ;
+            objs[no++] = ice.Tension_Difference ;
             foreach(gw_data_ice_pull pull in ice.Pulls)
             {
-                objs[no * 3 + 6] = pull.Original_Tension ;
-                objs[no * 3 + 7] = pull.Windage_Yaw_Angle ;
-                objs[no * 3 + 8] = pull.Deflection_Angle ;
-                no++;
+                objs[no++] = pull.Original_Tension ;
+                objs[no++] = pull.Windage_Yaw_Angle ;
+                objs[no++] = pull.Deflection_Angle ;
+                cnum++;
+                if(cnum >=3 ) { break; }
             }
+            no = 15;
+            objs[no++] = ice.cno;
+            objs[no++] = ice.Speed ;
+            objs[no++] = ice.Direction ;
+            objs[no++] = ice.Temp;
+            objs[no++] = ice.Humidity;
             return base.DataSave(this.GetSaveSql(), fileds, objs);
         }
         public DataTable DataGet(string cmdid, DateTime start, DateTime end)
         {
             Dictionary<string, string> dics = new Dictionary<string, string>
             {
+                {"cid",             "编号" },
                 {"time",            "时间"},
+                {"speed",           "风速"},
+                {"dir",             "风向"},
+                {"temp",            "气温"},
+                {"hum",             "湿度"},
                 {"ice_thickness",   "等值覆冰厚度"},
                 {"tension",         "综合悬挂载荷"},
                 {"tension_diff",    "不均衡张力差"},

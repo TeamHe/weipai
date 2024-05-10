@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Web.Configuration;
 
 namespace ResModel.gw
 {
@@ -15,6 +11,11 @@ namespace ResModel.gw
         /// 被测设备ID
         /// </summary>
         public string Component_ID { get; set; }
+
+        /// <summary>
+        /// 被测设备序号
+        /// </summary>
+        public int cno;
 
         public int UnitNum { get; set;}
 

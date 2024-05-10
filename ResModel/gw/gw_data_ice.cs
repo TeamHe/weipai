@@ -46,6 +46,26 @@ namespace ResModel.gw
         /// </summary>
         public float Tension_Difference { get; set; }
 
+        /// <summary>
+        /// 温度
+        /// </summary>
+        public float Temp { get; set; }
+
+        /// <summary>
+        /// 湿度
+        /// </summary>
+        public float Humidity {  get; set; }
+
+        /// <summary>
+        /// 瞬时风速
+        /// </summary>
+        public float Speed { get; set; }
+
+        /// <summary>
+        /// 瞬时风向
+        /// </summary>
+        public float Direction { get; set; }
+
         public List<gw_data_ice_pull> Pulls { get; set; }
 
         public override int Decode(byte[] data, int offset, out string msg)
@@ -89,6 +109,21 @@ namespace ResModel.gw
 
                 this.Pulls.Add(pull);
             }
+            if(data.Length - offset < 12)
+                throw new Exception("数据内容长度错误");
+ 
+            int ivalue;
+            offset += gw_coding.GetSingle(data, offset, out fvalue);
+            this.Speed = fvalue;
+
+            offset += gw_coding.GetU16(data, offset, out ivalue);
+            this.Direction = ivalue;
+
+            offset += gw_coding.GetSingle(data, offset, out fvalue);
+            this.Temp = fvalue;
+
+            offset += gw_coding.GetU16(data, offset, out ivalue);
+            this.Humidity = ivalue;
             return offset - start;
         }
         public override byte[] Encode(out string msg)
@@ -122,6 +157,10 @@ namespace ResModel.gw
                 builder.AppendFormat("拉力传感器{0}: 原始拉力值{1:f1}N 风偏角:{2:f2}° 偏斜角:{3:f2}° ",
                     no++,pull.Original_Tension, pull.Windage_Yaw_Angle, pull.Deflection_Angle);
             }
+            builder.AppendFormat("风速:{0:f1}m/s ",this.Speed);
+            builder.AppendFormat("风向:{0}° ", this.Direction);
+            builder.AppendFormat("气温:{0:f1}℃ ", this.Temp);
+            builder.AppendFormat("湿度:{0}%RH ", this.Humidity);
             return base.ToString() + builder.ToString();
         }
     }

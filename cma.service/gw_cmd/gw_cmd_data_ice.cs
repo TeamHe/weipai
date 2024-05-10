@@ -4,12 +4,15 @@ using ResModel.gw;
 
 namespace cma.service.gw_cmd
 {
-    public class gw_cmd_07_ice : gw_cmd_base_data
+    /// <summary>
+    /// 覆冰监测数据报处理
+    /// </summary>
+    public class gw_cmd_data_ice : gw_cmd_base_data
     {
         /// <summary>
         /// 报文类型
         /// </summary>
-        public override int PType { get { return 0x07; } }
+        public override int PType { get { return 0x22; } }
 
         public override string Name { get { return "覆冰数据报"; } }
 
@@ -18,7 +21,7 @@ namespace cma.service.gw_cmd
         public gw_data_ice Value { get; set; }
 
 
-        public gw_cmd_07_ice() { }
+        public gw_cmd_data_ice() { }
 
         public override bool SaveData()
         {

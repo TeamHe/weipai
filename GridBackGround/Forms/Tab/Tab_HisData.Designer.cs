@@ -29,11 +29,6 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -46,6 +41,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -59,6 +59,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl_weather = new System.Windows.Forms.TabControl();
             this.tabPage_ice = new System.Windows.Forms.TabPage();
@@ -94,7 +99,12 @@
             this.dateTimePicker_StartTime = new System.Windows.Forms.DateTimePicker();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.Column_cno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_speed = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_direction = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_pull_temp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column_pull_hum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_unit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_mp_p = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_maxp_adec = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -168,7 +178,12 @@
             this.dataGridView_ice.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView_ice.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_ice.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column_cno,
             this.Column_time,
+            this.Column_speed,
+            this.Column_direction,
+            this.Column_pull_temp,
+            this.Column_pull_hum,
             this.Column_unit,
             this.Column_mp_p,
             this.Column_maxp_adec,
@@ -207,14 +222,14 @@
             this.dataGridView_weather.AllowUserToAddRows = false;
             this.dataGridView_weather.AllowUserToDeleteRows = false;
             this.dataGridView_weather.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_weather.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_weather.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
             this.dataGridView_weather.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_weather.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column_time_weather,
@@ -242,10 +257,10 @@
             // 
             this.Column_time_weather.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Column_time_weather.DataPropertyName = "时间";
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle16.Format = "G";
-            dataGridViewCellStyle16.NullValue = null;
-            this.Column_time_weather.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle21.Format = "G";
+            dataGridViewCellStyle21.NullValue = null;
+            this.Column_time_weather.DefaultCellStyle = dataGridViewCellStyle21;
             this.Column_time_weather.FillWeight = 864.9748F;
             this.Column_time_weather.Frozen = true;
             this.Column_time_weather.HeaderText = "时间";
@@ -256,8 +271,8 @@
             // Column_speed_avg
             // 
             this.Column_speed_avg.DataPropertyName = "10分钟平均风速";
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column_speed_avg.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_speed_avg.DefaultCellStyle = dataGridViewCellStyle22;
             this.Column_speed_avg.FillWeight = 30.45684F;
             this.Column_speed_avg.HeaderText = "平均风速";
             this.Column_speed_avg.Name = "Column_speed_avg";
@@ -266,8 +281,8 @@
             // Column_dir_avg
             // 
             this.Column_dir_avg.DataPropertyName = "10分钟平均风向";
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column_dir_avg.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_dir_avg.DefaultCellStyle = dataGridViewCellStyle23;
             this.Column_dir_avg.FillWeight = 30.45684F;
             this.Column_dir_avg.HeaderText = "平均风向";
             this.Column_dir_avg.Name = "Column_dir_avg";
@@ -276,8 +291,8 @@
             // Column_speed_max
             // 
             this.Column_speed_max.DataPropertyName = "最大风速";
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column_speed_max.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_speed_max.DefaultCellStyle = dataGridViewCellStyle24;
             this.Column_speed_max.FillWeight = 30.45684F;
             this.Column_speed_max.HeaderText = "最大风速";
             this.Column_speed_max.Name = "Column_speed_max";
@@ -286,8 +301,8 @@
             // Column_speed_ext
             // 
             this.Column_speed_ext.DataPropertyName = "极大风速";
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column_speed_ext.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_speed_ext.DefaultCellStyle = dataGridViewCellStyle25;
             this.Column_speed_ext.FillWeight = 30.45684F;
             this.Column_speed_ext.HeaderText = "极大风速";
             this.Column_speed_ext.Name = "Column_speed_ext";
@@ -296,8 +311,8 @@
             // Column_speed_std
             // 
             this.Column_speed_std.DataPropertyName = "标准风速";
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column_speed_std.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_speed_std.DefaultCellStyle = dataGridViewCellStyle26;
             this.Column_speed_std.FillWeight = 30.45684F;
             this.Column_speed_std.HeaderText = "标准风速";
             this.Column_speed_std.Name = "Column_speed_std";
@@ -306,8 +321,8 @@
             // Column_press
             // 
             this.Column_press.DataPropertyName = "气压";
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column_press.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_press.DefaultCellStyle = dataGridViewCellStyle27;
             this.Column_press.FillWeight = 30.45684F;
             this.Column_press.HeaderText = "气压";
             this.Column_press.Name = "Column_press";
@@ -316,8 +331,8 @@
             // Column_rain
             // 
             this.Column_rain.DataPropertyName = "降雨量";
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column_rain.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_rain.DefaultCellStyle = dataGridViewCellStyle28;
             this.Column_rain.FillWeight = 30.45684F;
             this.Column_rain.HeaderText = "降雨量";
             this.Column_rain.Name = "Column_rain";
@@ -326,8 +341,8 @@
             // Column_rain_intensity
             // 
             this.Column_rain_intensity.DataPropertyName = "降雨强度";
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column_rain_intensity.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_rain_intensity.DefaultCellStyle = dataGridViewCellStyle29;
             this.Column_rain_intensity.FillWeight = 30.45684F;
             this.Column_rain_intensity.HeaderText = "降雨强度";
             this.Column_rain_intensity.Name = "Column_rain_intensity";
@@ -336,8 +351,8 @@
             // Column_sun
             // 
             this.Column_sun.DataPropertyName = "光辐射强度";
-            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column_sun.DefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_sun.DefaultCellStyle = dataGridViewCellStyle30;
             this.Column_sun.FillWeight = 30.45684F;
             this.Column_sun.HeaderText = "光辐射强度";
             this.Column_sun.Name = "Column_sun";
@@ -346,8 +361,8 @@
             // Column_temp
             // 
             this.Column_temp.DataPropertyName = "温度";
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column_temp.DefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_temp.DefaultCellStyle = dataGridViewCellStyle31;
             this.Column_temp.FillWeight = 30.45684F;
             this.Column_temp.HeaderText = "气温";
             this.Column_temp.Name = "Column_temp";
@@ -356,8 +371,8 @@
             // Column_humidity
             // 
             this.Column_humidity.DataPropertyName = "湿度";
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column_humidity.DefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_humidity.DefaultCellStyle = dataGridViewCellStyle32;
             this.Column_humidity.FillWeight = 30.45684F;
             this.Column_humidity.HeaderText = "湿度";
             this.Column_humidity.Name = "Column_humidity";
@@ -379,14 +394,14 @@
             this.dataGridView_image.AllowUserToDeleteRows = false;
             this.dataGridView_image.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView_image.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle28.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_image.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle33.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle33.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle33.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle33.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle33.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_image.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle33;
             this.dataGridView_image.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_image.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column_datetime,
@@ -406,10 +421,10 @@
             // 
             this.Column_datetime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Column_datetime.DataPropertyName = "时间";
-            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle29.Format = "G";
-            dataGridViewCellStyle29.NullValue = null;
-            this.Column_datetime.DefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle34.Format = "G";
+            dataGridViewCellStyle34.NullValue = null;
+            this.Column_datetime.DefaultCellStyle = dataGridViewCellStyle34;
             this.Column_datetime.Frozen = true;
             this.Column_datetime.HeaderText = "时间";
             this.Column_datetime.Name = "Column_datetime";
@@ -419,8 +434,8 @@
             // Column_channel_no
             // 
             this.Column_channel_no.DataPropertyName = "通道";
-            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column_channel_no.DefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_channel_no.DefaultCellStyle = dataGridViewCellStyle35;
             this.Column_channel_no.HeaderText = "通道号";
             this.Column_channel_no.Name = "Column_channel_no";
             this.Column_channel_no.ReadOnly = true;
@@ -428,8 +443,8 @@
             // Column_preset
             // 
             this.Column_preset.DataPropertyName = "预置位";
-            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column_preset.DefaultCellStyle = dataGridViewCellStyle31;
+            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_preset.DefaultCellStyle = dataGridViewCellStyle36;
             this.Column_preset.HeaderText = "预置位号";
             this.Column_preset.Name = "Column_preset";
             this.Column_preset.ReadOnly = true;
@@ -551,25 +566,71 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(131, 17);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
+            // Column_cno
+            // 
+            this.Column_cno.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Column_cno.DataPropertyName = "编号";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_cno.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Column_cno.HeaderText = "被测设备";
+            this.Column_cno.Name = "Column_cno";
+            this.Column_cno.ReadOnly = true;
+            this.Column_cno.Width = 50;
+            // 
             // Column_time
             // 
             this.Column_time.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Column_time.DataPropertyName = "时间";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.Format = "G";
-            dataGridViewCellStyle2.NullValue = null;
-            this.Column_time.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Column_time.Frozen = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Format = "G";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Column_time.DefaultCellStyle = dataGridViewCellStyle3;
             this.Column_time.HeaderText = "时间";
             this.Column_time.Name = "Column_time";
             this.Column_time.ReadOnly = true;
             this.Column_time.Width = 183;
             // 
+            // Column_speed
+            // 
+            this.Column_speed.DataPropertyName = "风速";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_speed.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Column_speed.HeaderText = "风速";
+            this.Column_speed.Name = "Column_speed";
+            this.Column_speed.ReadOnly = true;
+            // 
+            // Column_direction
+            // 
+            this.Column_direction.DataPropertyName = "风向";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_direction.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Column_direction.HeaderText = "风向";
+            this.Column_direction.Name = "Column_direction";
+            this.Column_direction.ReadOnly = true;
+            // 
+            // Column_pull_temp
+            // 
+            this.Column_pull_temp.DataPropertyName = "气温";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_pull_temp.DefaultCellStyle = dataGridViewCellStyle6;
+            this.Column_pull_temp.HeaderText = "气温";
+            this.Column_pull_temp.Name = "Column_pull_temp";
+            this.Column_pull_temp.ReadOnly = true;
+            // 
+            // Column_pull_hum
+            // 
+            this.Column_pull_hum.DataPropertyName = "湿度";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_pull_hum.DefaultCellStyle = dataGridViewCellStyle7;
+            this.Column_pull_hum.HeaderText = "湿度";
+            this.Column_pull_hum.Name = "Column_pull_hum";
+            this.Column_pull_hum.ReadOnly = true;
+            // 
             // Column_unit
             // 
             this.Column_unit.DataPropertyName = "等值覆冰厚度";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column_unit.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_unit.DefaultCellStyle = dataGridViewCellStyle8;
             this.Column_unit.HeaderText = "等值覆冰厚度";
             this.Column_unit.Name = "Column_unit";
             this.Column_unit.ReadOnly = true;
@@ -577,8 +638,8 @@
             // Column_mp_p
             // 
             this.Column_mp_p.DataPropertyName = "综合悬挂载荷";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column_mp_p.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_mp_p.DefaultCellStyle = dataGridViewCellStyle9;
             this.Column_mp_p.HeaderText = "综合悬挂载荷";
             this.Column_mp_p.Name = "Column_mp_p";
             this.Column_mp_p.ReadOnly = true;
@@ -586,8 +647,8 @@
             // Column_maxp_adec
             // 
             this.Column_maxp_adec.DataPropertyName = "不均衡张力差";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column_maxp_adec.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_maxp_adec.DefaultCellStyle = dataGridViewCellStyle10;
             this.Column_maxp_adec.HeaderText = "不均衡张力差";
             this.Column_maxp_adec.Name = "Column_maxp_adec";
             this.Column_maxp_adec.ReadOnly = true;
@@ -595,8 +656,8 @@
             // Column_angleInc_max_pull
             // 
             this.Column_angleInc_max_pull.DataPropertyName = "拉力1";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column_angleInc_max_pull.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_angleInc_max_pull.DefaultCellStyle = dataGridViewCellStyle11;
             this.Column_angleInc_max_pull.HeaderText = "拉力1";
             this.Column_angleInc_max_pull.Name = "Column_angleInc_max_pull";
             this.Column_angleInc_max_pull.ReadOnly = true;
@@ -604,8 +665,8 @@
             // Column_pull_min_pull
             // 
             this.Column_pull_min_pull.DataPropertyName = "风偏角1";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column_pull_min_pull.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_pull_min_pull.DefaultCellStyle = dataGridViewCellStyle12;
             this.Column_pull_min_pull.HeaderText = "风偏角1";
             this.Column_pull_min_pull.Name = "Column_pull_min_pull";
             this.Column_pull_min_pull.ReadOnly = true;
@@ -613,8 +674,8 @@
             // Column_angleDec_min_pull
             // 
             this.Column_angleDec_min_pull.DataPropertyName = "偏斜角1";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column_angleDec_min_pull.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_angleDec_min_pull.DefaultCellStyle = dataGridViewCellStyle13;
             this.Column_angleDec_min_pull.HeaderText = "偏斜角1";
             this.Column_angleDec_min_pull.Name = "Column_angleDec_min_pull";
             this.Column_angleDec_min_pull.ReadOnly = true;
@@ -622,8 +683,8 @@
             // Column_angleInc_min_pull
             // 
             this.Column_angleInc_min_pull.DataPropertyName = "拉力2";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column_angleInc_min_pull.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_angleInc_min_pull.DefaultCellStyle = dataGridViewCellStyle14;
             this.Column_angleInc_min_pull.HeaderText = "拉力2";
             this.Column_angleInc_min_pull.Name = "Column_angleInc_min_pull";
             this.Column_angleInc_min_pull.ReadOnly = true;
@@ -631,8 +692,8 @@
             // Column_pull_max_angle
             // 
             this.Column_pull_max_angle.DataPropertyName = "风偏角2";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column_pull_max_angle.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_pull_max_angle.DefaultCellStyle = dataGridViewCellStyle15;
             this.Column_pull_max_angle.HeaderText = "风偏角2";
             this.Column_pull_max_angle.Name = "Column_pull_max_angle";
             this.Column_pull_max_angle.ReadOnly = true;
@@ -640,8 +701,8 @@
             // Column_angleDec_max_angle
             // 
             this.Column_angleDec_max_angle.DataPropertyName = "偏斜角2";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column_angleDec_max_angle.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_angleDec_max_angle.DefaultCellStyle = dataGridViewCellStyle16;
             this.Column_angleDec_max_angle.HeaderText = "偏斜角2";
             this.Column_angleDec_max_angle.Name = "Column_angleDec_max_angle";
             this.Column_angleDec_max_angle.ReadOnly = true;
@@ -649,8 +710,8 @@
             // Column_angleInc_max_angle
             // 
             this.Column_angleInc_max_angle.DataPropertyName = "拉力3";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column_angleInc_max_angle.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_angleInc_max_angle.DefaultCellStyle = dataGridViewCellStyle17;
             this.Column_angleInc_max_angle.HeaderText = "拉力3";
             this.Column_angleInc_max_angle.Name = "Column_angleInc_max_angle";
             this.Column_angleInc_max_angle.ReadOnly = true;
@@ -658,8 +719,8 @@
             // Column_pull_min_angle
             // 
             this.Column_pull_min_angle.DataPropertyName = "风偏角3";
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column_pull_min_angle.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_pull_min_angle.DefaultCellStyle = dataGridViewCellStyle18;
             this.Column_pull_min_angle.HeaderText = "风偏角3";
             this.Column_pull_min_angle.Name = "Column_pull_min_angle";
             this.Column_pull_min_angle.ReadOnly = true;
@@ -667,8 +728,8 @@
             // Column_angleDec_min_angle
             // 
             this.Column_angleDec_min_angle.DataPropertyName = "偏斜角3";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column_angleDec_min_angle.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column_angleDec_min_angle.DefaultCellStyle = dataGridViewCellStyle19;
             this.Column_angleDec_min_angle.HeaderText = "偏斜角3";
             this.Column_angleDec_min_angle.Name = "Column_angleDec_min_angle";
             this.Column_angleDec_min_angle.ReadOnly = true;
@@ -738,7 +799,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_sun;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_temp;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_humidity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column_cno;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_time;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column_speed;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column_direction;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column_pull_temp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column_pull_hum;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_unit;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_mp_p;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_maxp_adec;
