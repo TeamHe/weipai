@@ -14,6 +14,18 @@ namespace GridBackGround.Forms.Dialog
         {
         }
 
+        private void 装置时间_query_click(object sender, EventArgs e)
+        {
+            gw_cmd_ctrl_time cmd = new gw_cmd_ctrl_time(this.pole);
+            cmd.Query();
+        }
+
+        private void 装置时间_update_click(object sender, EventArgs e)
+        {
+            gw_cmd_ctrl_time cmd = new gw_cmd_ctrl_time(this.pole);
+            cmd.Update();
+        }
+
         private void 查询网络适配器ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             gw_cmd_ctrl_a1_adaptercs cmd = new gw_cmd_ctrl_a1_adaptercs(this.pole);
@@ -262,6 +274,10 @@ namespace GridBackGround.Forms.Dialog
         public void Menuitem_Flush()
         {
             ToolStripMenuItem menu_time;
+            menu_time = this.AddDropDownMenuItem("装置时间");
+            this.AddDropDownMenuItem(menu_time, "查询", this.装置时间_query_click);
+            this.AddDropDownMenuItem(menu_time, "设置", this.装置时间_update_click);
+
             menu_time = this.AddDropDownMenuItem("网络适配器");
             this.AddDropDownMenuItem(menu_time, "查询", this.查询网络适配器ToolStripMenuItem_Click);
             this.AddDropDownMenuItem(menu_time, "设置", this.设置网络适配器ToolStripMenuItem_Click);

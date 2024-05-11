@@ -65,7 +65,7 @@ namespace cma.service.gw_cmd
             this.Execute();
         }
 
-        private void Update()
+        public void Update()
         {
             this.RequestSetFlag = gw_ctrl.RequestSetFlag.Set;
             this.Execute();
