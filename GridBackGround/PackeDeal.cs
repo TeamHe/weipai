@@ -190,7 +190,7 @@ namespace GridBackGround
         public static bool RecDataDeal(CommandInfo_gw cmdInfo, EConnectType conType,IPowerPole pole)
         {
             int errorcode = cmdInfo.ErrorCode;
-            DisPacket.NewPackageMessage(pole, RSType.Send, SrcType.NW_UDP,
+            DisPacket.NewPackageMessage(pole, RSType.Recv, SrcType.NW_UDP,
                 pole.IP != null ? pole.IP.ToString() : "unknown", errorcode, cmdInfo.Packet);
             //显示报文
             if ((cmdInfo.ErrorCode == 0))// || (cmdInfo.Code == 3))
