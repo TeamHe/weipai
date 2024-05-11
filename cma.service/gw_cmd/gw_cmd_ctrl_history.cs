@@ -5,11 +5,11 @@ using ResModel.gw;
 
 namespace cma.service.gw_cmd
 {
-    public class gw_cmd_ctrl_a2_history : gw_cmd_base
+    public class gw_cmd_ctrl_history : gw_cmd_base
     {
         public override string Name { get { return "请求历史数据"; } }
 
-        public override int PType { get { return 0xa2; } }
+        public override int PType { get { return 0xa3; } }
 
         public override gw_frame_type SendFrameType { get { return gw_frame_type.Control; } }
 
@@ -25,9 +25,9 @@ namespace cma.service.gw_cmd
 
         public gw_ctrl_history History { get; set; }
 
-        public gw_cmd_ctrl_a2_history() { }
+        public gw_cmd_ctrl_history() { }
 
-        public gw_cmd_ctrl_a2_history(IPowerPole pole)
+        public gw_cmd_ctrl_history(IPowerPole pole)
             :base(pole) { }
 
         public void Query(gw_ctrl_history history)

@@ -3,7 +3,7 @@
 namespace ResModel.gw
 {
     /// <summary>
-    /// 南网功能代码枚举
+    /// 国网功能代码枚举
     /// </summary>
     public enum gw_func_code
     {
@@ -11,9 +11,6 @@ namespace ResModel.gw
         Weather = 0x01,
 
         [Description("覆冰数据")]
-        ICE=0x07,
-
-        [Description("图像监测")]
-        Picture = 0x84,
+        ICE=0x22,
     }
 }

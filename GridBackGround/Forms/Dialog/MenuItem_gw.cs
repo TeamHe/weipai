@@ -69,10 +69,10 @@ namespace GridBackGround.Forms.Dialog
             };
             if (dch.CurrentData)
             {
-                history.Start = DateTime.Now;
-                history.End = DateTime.Now;
+                history.Start = DateTime.MinValue;
+                history.End = DateTime.MinValue;
             }
-            gw_cmd_ctrl_a2_history cmd = new gw_cmd_ctrl_a2_history(this.pole);
+            gw_cmd_ctrl_history cmd = new gw_cmd_ctrl_history(this.pole);
             cmd.Query(history);
         }
 

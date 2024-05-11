@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using ResModel.gw;
+using System;
 using System.Windows.Forms;
+using Tools;
 
 namespace GridBackGround.Forms
 {
@@ -31,15 +27,19 @@ namespace GridBackGround.Forms
             this.AcceptButton = this.button_OK;
             this.CancelButton = this.button_Cancel;
 
+            ComboBoxItem.Init_items_enum(this.comboBox1, typeof(gw_func_code));
             this.comboBox1.SelectedIndex = 0;
             this.checkBox1.Checked = true;
             CurrentData = true;
+
+            this.EndTime = DateTime.Now;
+            this.StartTime = DateTime.Now.AddHours(-1);
         }
         #endregion
         
 
         #region Public Variable
-        public byte Data_Type { get;  set; }
+        public gw_func_code Data_Type { get;  set; }
         public DateTime StartTime 
         { 
             get { return this.dateTimePicker_StartTime.Value; }  
@@ -60,8 +60,8 @@ namespace GridBackGround.Forms
         private void button_OK_Click(object sender, EventArgs e)
         {
             #region 数据类型
-            byte data_type = (byte)((this.comboBox1.SelectedIndex + 1)&0xff);
-            Data_Type = data_type;
+            ComboBoxItem color = this.comboBox1.SelectedItem as ComboBoxItem;
+            Data_Type = (gw_func_code)color.Value;
             #endregion
             if (!CurrentData)
             {
@@ -76,7 +76,7 @@ namespace GridBackGround.Forms
                     return;
                 }
             }
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.DialogResult = DialogResult.OK;
             this.Dispose();
         }
 

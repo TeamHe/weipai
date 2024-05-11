@@ -18,7 +18,9 @@ namespace ResModel.gw
             sb.AppendFormat("数据类型:{0} ", EnumUtil.GetDescription(this.Type));
             if(this.Start != DateTime.MinValue)
                 sb.AppendFormat("起始时间:{0} ", this.Start);
-            if(this.End != DateTime.MinValue)
+            else
+                sb.Append("当前数据");
+            if (this.End != DateTime.MinValue)
                 sb.AppendFormat("结束时间:{0} ", this.End);
             return sb.ToString();
         }

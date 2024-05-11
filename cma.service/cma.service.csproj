@@ -49,7 +49,7 @@
     <Compile Include="gw_cmd\gw_cmd_base_ctrl.cs" />
     <Compile Include="gw_cmd\gw_cmd_base_data.cs" />
     <Compile Include="gw_cmd\gw_cmd_ctrl_adapter.cs" />
-    <Compile Include="gw_cmd\gw_cmd_ctrl_a2_history.cs" />
+    <Compile Include="gw_cmd\gw_cmd_ctrl_history.cs" />
     <Compile Include="gw_cmd\gw_cmd_ctrl_a3_period.cs" />
     <Compile Include="gw_cmd\gw_cmd_ctrl_a4_center.cs" />
     <Compile Include="gw_cmd\gw_cmd_ctrl_a5_id.cs" />
