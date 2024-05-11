@@ -17,8 +17,11 @@ namespace ResModel.gw
             [Description("GateWay")]
             GateWay = 2,
 
+            [Description("DNS")]
+            DNS = 3,
+
             [Description("PhoneNumber")]
-            PhoneNumber = 3,
+            PhoneNumber = 4,
         }
 
         /// <summary>
@@ -37,6 +40,11 @@ namespace ResModel.gw
         public IPAddress GateWay { get; set; }
 
         /// <summary>
+        /// DNS Server
+        /// </summary>
+        public IPAddress DNS { get; set; }
+
+        /// <summary>
         /// 手机串号
         /// </summary>
         public string PhoneNumber { get; set; }
@@ -52,6 +60,8 @@ namespace ResModel.gw
                 sb.AppendFormat("子网掩码:{0} ", this.Mask.ToString());
             if (flag || this.GetFlag((int)EFlag.GateWay))
                 sb.AppendFormat("网关:{0} ", this.GateWay.ToString());
+            if (flag || this.GetFlag((int)EFlag.DNS))
+                sb.AppendFormat("DNS:{0} ", this.DNS.ToString());
             if (flag || this.GetFlag((int)EFlag.PhoneNumber))
                 sb.AppendFormat("手机串号:{0} ", this.PhoneNumber);
             return sb.ToString();

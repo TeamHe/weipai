@@ -28,7 +28,7 @@ namespace GridBackGround.Forms.Dialog
 
         private void 查询网络适配器ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            gw_cmd_ctrl_a1_adaptercs cmd = new gw_cmd_ctrl_a1_adaptercs(this.pole);
+            gw_cmd_ctrl_adapter cmd = new gw_cmd_ctrl_adapter(this.pole);
             cmd.Query();
         }
         static gw_ctrl_adapter adapter = new gw_ctrl_adapter()
@@ -37,7 +37,7 @@ namespace GridBackGround.Forms.Dialog
             GateWay = IPAddress.Parse("192.168.1.1"),
             Mask = IPAddress.Parse("255.255.255.0"),
             IP = IPAddress.Parse("192.168.1.10"),
-            PhoneNumber = "12345678901234567890"
+            DNS = IPAddress.Parse("114.114.114.114"),
         };
 
         private void 设置网络适配器ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -47,7 +47,7 @@ namespace GridBackGround.Forms.Dialog
             if (na.ShowDialog() != DialogResult.OK)
                 return;
 
-            gw_cmd_ctrl_a1_adaptercs cmd = new gw_cmd_ctrl_a1_adaptercs(this.pole);
+            gw_cmd_ctrl_adapter cmd = new gw_cmd_ctrl_adapter(this.pole);
             cmd.Update(na.Adapter);
             adapter = na.Adapter;
         }

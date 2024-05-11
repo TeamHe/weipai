@@ -18,18 +18,18 @@ namespace GridBackGround.Forms
                 this.textBox_IP.Text = string.Empty;
                 this.textBox_SubNetMask.Text = string.Empty;
                 this.textBox_GateWay.Text = string.Empty;
-                this.textBox_IMEI.Text = string.Empty;
+                this.textBox_DNS.Text = string.Empty;
                 this.checkBox_IP.Checked = false;
                 this.checkBox_SubNetMask.Checked = false;
                 this.checkBox3_GateWay.Checked = false;
-                this.checkBox_IMEI.Checked = false;
+                this.checkBox_DNS.Checked = false;
 
                 if (this.adapter != null)
                 {
                     this.checkBox_IP.Checked = this.adapter.GetFlag((int)gw_ctrl_adapter.EFlag.IP);
                     this.checkBox_SubNetMask.Checked = this.adapter.GetFlag((int)gw_ctrl_adapter.EFlag.Mask);
                     this.checkBox3_GateWay.Checked = this.adapter.GetFlag((int)gw_ctrl_adapter.EFlag.GateWay);
-                    this.checkBox_IMEI.Checked = this.adapter.GetFlag((int)gw_ctrl_adapter.EFlag.PhoneNumber);
+                    this.checkBox_DNS.Checked = this.adapter.GetFlag((int)gw_ctrl_adapter.EFlag.DNS);
 
                     if(adapter.IP != null)
                         this.textBox_IP.Text = adapter.IP.ToString();
@@ -37,7 +37,9 @@ namespace GridBackGround.Forms
                         this.textBox_SubNetMask.Text = adapter.Mask.ToString();
                     if(adapter.GateWay != null)
                         this.textBox_GateWay.Text = adapter.GateWay.ToString();
-                    this.textBox_IMEI.Text = adapter.PhoneNumber;
+                    if (adapter.DNS != null)
+                        this.textBox_DNS.Text = adapter.DNS.ToString();
+
                 }
             } 
         }
@@ -59,10 +61,11 @@ namespace GridBackGround.Forms
 
             if (this.adapter == null)
                 this.adapter = new gw_ctrl_adapter();
+            this.adapter.Flag = 0;
             this.adapter.SetFlag((int)gw_ctrl_adapter.EFlag.IP,this.checkBox_IP.Checked);
             this.adapter.SetFlag((int)gw_ctrl_adapter.EFlag.Mask,this.checkBox_SubNetMask.Checked);
             this.adapter.SetFlag((int)gw_ctrl_adapter.EFlag.GateWay,this.checkBox3_GateWay.Checked);
-            this.adapter.SetFlag((int)gw_ctrl_adapter.EFlag.PhoneNumber,this.checkBox_IMEI.Checked);
+            this.adapter.SetFlag((int)gw_ctrl_adapter.EFlag.DNS,this.checkBox_DNS.Checked);
 
             if (this.checkBox_IP.Checked)
             {
@@ -94,28 +97,17 @@ namespace GridBackGround.Forms
                 this.adapter.GateWay = address;
             }
 
-            if (this.checkBox_IMEI.Checked)
+            if (this.checkBox_DNS.Checked)
             {
-                if (this.textBox_IMEI.Text.Length != 20)
+                if (!IPAddress.TryParse(this.textBox_GateWay.Text, out address))
                 {
-                    MessageBox.Show("请输入正确的手机串号长度为20"); return ;
+                    MessageBox.Show("请输入正确的DNS服务器");
+                    return;
                 }
-                this.adapter.PhoneNumber = this.textBox_IMEI.Text;
+                this.adapter.GateWay = address;
             }
             this.DialogResult = DialogResult.OK;
         }
 
-        private void textBox_IMEI_TextChanged(object sender, EventArgs e)
-        {
-            if(this.textBox_IMEI.TextLength != 20)
-                label1.ForeColor = Color.Red;
-            else
-                label1.ForeColor = Color.Green;
-
-            if (this.textBox_IMEI.TextLength > 0)
-                this.label1.Text = this.textBox_IMEI.TextLength.ToString();
-            else
-                this.label1.Text = "";
-        }
     }
 }

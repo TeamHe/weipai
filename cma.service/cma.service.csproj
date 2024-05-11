@@ -48,7 +48,7 @@
     <Compile Include="gw_cmd\gw_cmd_base.cs" />
     <Compile Include="gw_cmd\gw_cmd_base_ctrl.cs" />
     <Compile Include="gw_cmd\gw_cmd_base_data.cs" />
-    <Compile Include="gw_cmd\gw_cmd_ctrl_a1_adaptercs.cs" />
+    <Compile Include="gw_cmd\gw_cmd_ctrl_adapter.cs" />
     <Compile Include="gw_cmd\gw_cmd_ctrl_a2_history.cs" />
     <Compile Include="gw_cmd\gw_cmd_ctrl_a3_period.cs" />
     <Compile Include="gw_cmd\gw_cmd_ctrl_a4_center.cs" />
