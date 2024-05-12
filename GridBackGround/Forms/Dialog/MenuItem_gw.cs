@@ -81,17 +81,11 @@ namespace GridBackGround.Forms.Dialog
             Dialog_Con_MianTime dialog = new Dialog_Con_MianTime();
             if (dialog.ShowDialog() != DialogResult.OK)
                 return;
-            gw_cmd_ctrl_a3_period cmd = new gw_cmd_ctrl_a3_period(this.pole);
+            gw_cmd_ctrl_period cmd = new gw_cmd_ctrl_period(this.pole);
             if (dialog.Query)
-                cmd.Query((gw_func_code)dialog.Flag);
+                cmd.Query(dialog.Data_Type);
             else
-                cmd.Update(new gw_ctrl_period()
-                {
-                    Flag = dialog.Flag,
-                    MainType = (gw_func_code)dialog.Data_Type,
-                    MainTime = dialog.Main_Time,
-                    HearTime = dialog.Heart_Time
-                });
+                cmd.Update(dialog.Period);
         }
 
         private void 查询上位机信息ToolStripMenuItem_Click(object sender, EventArgs e)

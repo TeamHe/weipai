@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using ResModel.gw;
+using System;
 using System.Windows.Forms;
+using Tools;
 
 namespace GridBackGround.Forms
 {
     public partial class Dialog_Con_MianTime : Form
     {
+        private gw_ctrl_period period;
+
         public Dialog_Con_MianTime()
         {
             InitializeComponent();
@@ -21,12 +19,8 @@ namespace GridBackGround.Forms
         {
             this.AcceptButton = this.button1;
             this.CancelButton = this.button_Cancel;
-
-
+            ComboBoxItem.Init_items_enum(this.comboBox1, typeof(gw_func_code));
             this.comboBox1.SelectedIndex = 0;
-            Data_Type = 0;
-            Main_Time = 0;
-            Heart_Time = 0;
         }
 
 
@@ -34,111 +28,103 @@ namespace GridBackGround.Forms
         /// <summary>
         /// 设备类型
         /// </summary>
-        public byte Data_Type  
+        public gw_func_code Data_Type  
         {
-            get { return (byte)(this.comboBox1.SelectedIndex + 1); }
+            get
+            {
+                ComboBoxItem color = this.comboBox1.SelectedItem as ComboBoxItem;
+                return (gw_func_code)color.Value;
+            }
             set
             {
-                if (value >= 1 && value <= 10)
-                    this.comboBox1.SelectedIndex = value - 1;
-                else
-                    this.comboBox1.SelectedIndex = 0;
-                }
+                ComboBoxItem.Set_Value(this.comboBox1, (int)value);
+            }
         }
-        /// <summary>
-        /// 数据采集周期
-        /// </summary>
-        public int  Main_Time  { get; set; }
-        /// <summary>
-        /// 心跳周期
-        /// </summary>
-        public int  Heart_Time { get; set; }
-        /// <summary>
-        /// 配置标致位
-        /// </summary>
-        public int  Flag       { get; set; }
+ 
         //查询/设定
-        public bool Query      
+        public bool Query
         { 
             get; 
             set; 
+        }
+        public gw_ctrl_period Period
+        {
+            get { return period; }
+            set
+            {
+                this.period = value;
+                this.checkBox_MianTime.Checked = period.GetFlag((int)gw_ctrl_period.EFlag.MainTime);
+                this.checkBox_HeartBeat.Checked = period.GetFlag((int)gw_ctrl_period.EFlag.HearTime);
+                this.checkBox_samle_freq.Checked = period.GetFlag((int)gw_ctrl_period.EFlag.SampleFreq);
+                this.checkBox_samplecount.Checked = period.GetFlag((int)gw_ctrl_period.EFlag.SampleCount);
+
+                this.textBox_HeartTime.Text = period.HearTime.ToString();
+                this.textBox_MainTime.Text = period.MainTime.ToString();
+                this.textBox_sample_count.Text = period.SampleCount.ToString();
+                this.textBox_sample_freq.Text = period.SampleFreq.ToString();
+                this.Data_Type = period.MainType;
+            }
         }
         #endregion
 
         private void button_OK_Click(object sender, EventArgs e)
         {
-            byte data_type = 0;
-            int  main_time = 0;
-            int heart_time = 0;
-            int flag = 0;
+            int  num = 0;
             
-            #region 采样周期
-            if (checkBox_MianTime.Checked)    //设置标识位——采样周期
+            if(this.period == null)
+                this.period = new gw_ctrl_period();
+            this.period.MainType = this.Data_Type;
+            this.period.SetFlag((int)gw_ctrl_period.EFlag.HearTime, this.checkBox_HeartBeat.Checked);
+            this.period.SetFlag((int)gw_ctrl_period.EFlag.MainTime, this.checkBox_MianTime.Checked);
+            this.period.SetFlag((int)gw_ctrl_period.EFlag.SampleFreq, this.checkBox_samle_freq.Checked);
+            this.period.SetFlag((int)gw_ctrl_period.EFlag.SampleCount, this.checkBox_samplecount.Checked);
+
+            if (checkBox_MianTime.Checked)
             {
-                flag += 1;
-                try
-                {
-                    main_time = Int16.Parse(this.textBox_MainTime.Text);         //获得端口号
-                }
-                catch
+                if(!int.TryParse(this.textBox_MainTime.Text, out num) || num > 65535)
                 {
                     MessageBox.Show("请输入正确采样周期");
                     return;
                 }
-                if(main_time >65535)
-                {
-                    MessageBox.Show("请输入正确采样周期");
-                    return ;
-                }
+                this.period.MainTime = num;
             }
-            #endregion
-            
-            #region 心跳周期
-            if (checkBox_HeartBeat.Checked)  //设置标识位——心跳周期
+            if (checkBox_HeartBeat.Checked)
             {
-                flag += 2;
-                try
+                if (!int.TryParse(this.textBox_HeartTime.Text, out num) || num >= 256)
                 {
-                    heart_time =Int32.Parse(this.textBox_HeartTime.Text);   //获得IP地址
-                    if (heart_time > 512)
-                    {
-                        MessageBox.Show("请输入正确的心跳周期！");
-                        return;
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show("请输入正确的心跳周期！");
+                    MessageBox.Show("请输入正确的心跳周期");
                     return;
                 }
-                
+                this.period.HearTime = num;
             }
-	        #endregion
-            data_type = (byte)((this.comboBox1.SelectedIndex + 1) & 0xff);
-           
-            Main_Time = main_time;
-            Heart_Time = heart_time;
-            Data_Type = data_type;
-            Flag = flag;
+
+            if (this.checkBox_samle_freq.Checked) 
+            {
+                if (!int.TryParse(this.textBox_sample_freq.Text, out num) || num > 65535)
+                {
+                    MessageBox.Show("请输入正确的高速采样频率");
+                    return;
+                }
+                this.period.SampleFreq = num;
+            }
+            if (this.checkBox_samplecount.Checked)
+            {
+                if (!int.TryParse(this.textBox_sample_count.Text, out num) || num > 65535)
+                {
+                    MessageBox.Show("请输入正确的高速采样点数");
+                    return;
+                }
+                this.period.SampleCount = num;
+            }
 
             Query = false;
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.Dispose();
-        }
-
-        private void button_Cancel_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Dispose();
+            this.DialogResult = DialogResult.OK;
         }
 
         private void buttonQuary_Click(object sender, EventArgs e)
         {
-            byte data_type  = (byte)((this.comboBox1.SelectedIndex + 1) & 0xff);
             Query = true;
-            Data_Type = data_type;
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.Dispose();
+            this.DialogResult = DialogResult.OK;
         }
 
         private void textBox_Int_KeyPress(object sender, KeyPressEventArgs e)
@@ -146,8 +132,5 @@ namespace GridBackGround.Forms
             if ((!(e.KeyChar >= 0x30 && e.KeyChar <= 0x39)) && (e.KeyChar!= 0x08))
             { e.Handled = true; }
         }
-
-        
-       
     }
 }

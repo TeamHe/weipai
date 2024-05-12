@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.panel = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox_sample_freq = new System.Windows.Forms.TextBox();
+            this.checkBox_samle_freq = new System.Windows.Forms.CheckBox();
+            this.textBox_sample_count = new System.Windows.Forms.TextBox();
+            this.checkBox_samplecount = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -45,6 +50,11 @@
             // 
             // panel
             // 
+            this.panel.Controls.Add(this.label5);
+            this.panel.Controls.Add(this.textBox_sample_freq);
+            this.panel.Controls.Add(this.checkBox_samle_freq);
+            this.panel.Controls.Add(this.textBox_sample_count);
+            this.panel.Controls.Add(this.checkBox_samplecount);
             this.panel.Controls.Add(this.button1);
             this.panel.Controls.Add(this.label3);
             this.panel.Controls.Add(this.label2);
@@ -59,12 +69,59 @@
             this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel.Location = new System.Drawing.Point(0, 0);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(294, 173);
+            this.panel.Size = new System.Drawing.Size(313, 270);
             this.panel.TabIndex = 0;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(210, 164);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(17, 12);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "Hz";
+            // 
+            // textBox_sample_freq
+            // 
+            this.textBox_sample_freq.Location = new System.Drawing.Point(133, 160);
+            this.textBox_sample_freq.Name = "textBox_sample_freq";
+            this.textBox_sample_freq.Size = new System.Drawing.Size(69, 21);
+            this.textBox_sample_freq.TabIndex = 15;
+            this.textBox_sample_freq.Text = "2";
+            this.textBox_sample_freq.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Int_KeyPress);
+            // 
+            // checkBox_samle_freq
+            // 
+            this.checkBox_samle_freq.AutoSize = true;
+            this.checkBox_samle_freq.Location = new System.Drawing.Point(29, 162);
+            this.checkBox_samle_freq.Name = "checkBox_samle_freq";
+            this.checkBox_samle_freq.Size = new System.Drawing.Size(96, 16);
+            this.checkBox_samle_freq.TabIndex = 14;
+            this.checkBox_samle_freq.Text = "高速采样频率";
+            this.checkBox_samle_freq.UseVisualStyleBackColor = true;
+            // 
+            // textBox_sample_count
+            // 
+            this.textBox_sample_count.Location = new System.Drawing.Point(133, 128);
+            this.textBox_sample_count.Name = "textBox_sample_count";
+            this.textBox_sample_count.Size = new System.Drawing.Size(69, 21);
+            this.textBox_sample_count.TabIndex = 12;
+            this.textBox_sample_count.Text = "2";
+            this.textBox_sample_count.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Int_KeyPress);
+            // 
+            // checkBox_samplecount
+            // 
+            this.checkBox_samplecount.AutoSize = true;
+            this.checkBox_samplecount.Location = new System.Drawing.Point(29, 130);
+            this.checkBox_samplecount.Name = "checkBox_samplecount";
+            this.checkBox_samplecount.Size = new System.Drawing.Size(96, 16);
+            this.checkBox_samplecount.TabIndex = 11;
+            this.checkBox_samplecount.Text = "高速采样点数";
+            this.checkBox_samplecount.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 131);
+            this.button1.Location = new System.Drawing.Point(11, 206);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 10;
@@ -75,7 +132,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(191, 97);
+            this.label3.Location = new System.Drawing.Point(210, 97);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 12);
             this.label3.TabIndex = 9;
@@ -84,7 +141,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(190, 65);
+            this.label2.Location = new System.Drawing.Point(209, 65);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 12);
             this.label2.TabIndex = 8;
@@ -92,7 +149,7 @@
             // 
             // textBox_HeartTime
             // 
-            this.textBox_HeartTime.Location = new System.Drawing.Point(106, 93);
+            this.textBox_HeartTime.Location = new System.Drawing.Point(133, 93);
             this.textBox_HeartTime.Name = "textBox_HeartTime";
             this.textBox_HeartTime.Size = new System.Drawing.Size(69, 21);
             this.textBox_HeartTime.TabIndex = 7;
@@ -101,7 +158,7 @@
             // 
             // textBox_MainTime
             // 
-            this.textBox_MainTime.Location = new System.Drawing.Point(106, 57);
+            this.textBox_MainTime.Location = new System.Drawing.Point(133, 57);
             this.textBox_MainTime.Name = "textBox_MainTime";
             this.textBox_MainTime.Size = new System.Drawing.Size(69, 21);
             this.textBox_MainTime.TabIndex = 6;
@@ -132,17 +189,16 @@
             // 
             // button_Cancel
             // 
-            this.button_Cancel.Location = new System.Drawing.Point(193, 131);
+            this.button_Cancel.Location = new System.Drawing.Point(192, 206);
             this.button_Cancel.Name = "button_Cancel";
             this.button_Cancel.Size = new System.Drawing.Size(75, 23);
             this.button_Cancel.TabIndex = 3;
             this.button_Cancel.Text = "返回";
             this.button_Cancel.UseVisualStyleBackColor = true;
-            this.button_Cancel.Click += new System.EventHandler(this.button_Cancel_Click);
             // 
             // button_OK
             // 
-            this.button_OK.Location = new System.Drawing.Point(100, 131);
+            this.button_OK.Location = new System.Drawing.Point(99, 206);
             this.button_OK.Name = "button_OK";
             this.button_OK.Size = new System.Drawing.Size(75, 23);
             this.button_OK.TabIndex = 2;
@@ -161,26 +217,8 @@
             // 
             // comboBox1
             // 
-            this.comboBox1.AutoCompleteCustomSource.AddRange(new string[] {
-            "基本数据类型",
-            "导地线微风振动特征量",
-            "导地线微风振动波形信号",
-            "导地线舞动特征量",
-            "导地线舞动轨迹"});
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "气象环境",
-            "杆塔倾斜",
-            "导地线微风振动特征量",
-            "导地线微风振动波形信号",
-            "导线弧垂",
-            "导线温度",
-            "覆冰及不均衡张力差",
-            "导线风偏",
-            "导地线舞动特征量",
-            "导地线舞动轨迹",
-            "现场污秽度"});
             this.comboBox1.Location = new System.Drawing.Point(88, 27);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 20);
@@ -190,7 +228,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(294, 173);
+            this.ClientSize = new System.Drawing.Size(313, 270);
             this.Controls.Add(this.panel);
             this.Name = "Dialog_Con_MianTime";
             this.Text = "状态监测装置采样周期设置";
@@ -215,5 +253,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBox_sample_freq;
+        private System.Windows.Forms.CheckBox checkBox_samle_freq;
+        private System.Windows.Forms.TextBox textBox_sample_count;
+        private System.Windows.Forms.CheckBox checkBox_samplecount;
     }
 }
