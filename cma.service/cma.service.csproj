@@ -57,6 +57,8 @@
     <Compile Include="gw_cmd\gw_cmd_handle.cs" />
     <Compile Include="DisPacket.cs" />
     <Compile Include="Equs.cs" />
+    <Compile Include="gw_cmd\gw_cmd_stat_base.cs" />
+    <Compile Include="gw_cmd\gw_cmd_stat_heart.cs" />
     <Compile Include="PowerPole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
