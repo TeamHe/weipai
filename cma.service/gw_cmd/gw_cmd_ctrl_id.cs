@@ -4,25 +4,25 @@ using System;
 
 namespace cma.service.gw_cmd
 {
-    public class gw_cmd_ctrl_a5_id : gw_cmd_base_ctrl
+    public class gw_cmd_ctrl_id : gw_cmd_base_ctrl
     {
         public override int ValuesLength {  get { return 51; } }
 
         public override string Name { get { return "装置ID"; } }
 
-        public override int PType { get { return 0xa5; } }
+        public override int PType { get { return 0xac; } }
 
         public gw_ctrl_id ID { get; set; }
 
-        public gw_cmd_ctrl_a5_id() { }
+        public gw_cmd_ctrl_id() { }
 
-        public gw_cmd_ctrl_a5_id(IPowerPole pole)
+        public gw_cmd_ctrl_id(IPowerPole pole)
             : base(pole) { }
 
         public void Update(gw_ctrl_id id)
         {
             if(id == null)
-                throw new ArgumentNullException("id");
+                 throw new ArgumentNullException("id");
             this.ID = id;
             base.Update(id);
         }

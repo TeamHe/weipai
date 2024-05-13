@@ -119,7 +119,7 @@ namespace GridBackGround.Forms.Dialog
 
         private void 查询装置IDToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            gw_cmd_ctrl_a5_id cmd = new gw_cmd_ctrl_a5_id(this.pole);
+            gw_cmd_ctrl_id cmd = new gw_cmd_ctrl_id(this.pole);
             cmd.Query();
         }
 
@@ -144,7 +144,7 @@ namespace GridBackGround.Forms.Dialog
                 OriginalID = dialog.Original_ID,
                 NEW_CMD_ID = dialog.NEW_CMD_ID,
             };
-            gw_cmd_ctrl_a5_id cmd = new gw_cmd_ctrl_a5_id(this.pole);
+            gw_cmd_ctrl_id cmd = new gw_cmd_ctrl_id(this.pole);
             cmd.Update(id);
             ctrl_id = id;
         }
