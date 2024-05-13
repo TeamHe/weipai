@@ -20,6 +20,19 @@ namespace ResModel.gw
             return 2;
         }
 
+        public static int GetU32(byte[] data, int offset, out UInt32 value)
+        {
+            value = BitConverter.ToUInt32(data, offset);
+            return 4;
+        }
+
+        public static int SetU32(byte[] data, int offset, UInt32 value)
+        {
+            byte[] tmp = BitConverter.GetBytes(value);
+            Buffer.BlockCopy(tmp, 0, data, offset, tmp.Length);
+            return 4;
+        }
+
         public static int GetSingle(byte[] data, int offset, out float value)
         {
             value = BitConverter.ToSingle(data, offset);
