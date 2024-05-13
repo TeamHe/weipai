@@ -5,12 +5,12 @@ using Tools;
 
 namespace cma.service.gw_cmd
 {
-    public class gw_cmd_ctrl_a6_reset : gw_cmd_base
+    public class gw_cmd_ctrl_reset : gw_cmd_base
     {
 
         public override string Name { get { return "装置复位"; } }
 
-        public override int PType {  get { return 0xa6; } }
+        public override int PType {  get { return 0xad; } }
 
         public override gw_frame_type SendFrameType { get { return gw_frame_type.Control; } }
 
@@ -23,9 +23,9 @@ namespace cma.service.gw_cmd
         ///// </summary>
         public gw_ctrl.Status Status { get; set; }
 
-        public gw_cmd_ctrl_a6_reset() { }
+        public gw_cmd_ctrl_reset() { }
 
-        public gw_cmd_ctrl_a6_reset(IPowerPole pole )
+        public gw_cmd_ctrl_reset(IPowerPole pole )
             :base( pole ) { }
 
         public void Reset(gw_ctrl_reset.ResetMode mode)
@@ -53,7 +53,7 @@ namespace cma.service.gw_cmd
                 throw new ArgumentNullException(nameof(this.CtrlReset));
             byte[] data = new byte[1];
             data[0] = (byte)this.CtrlReset.Mode;
-            msg = this.Name + this.CtrlReset.ToString();
+            msg = this.CtrlReset.ToString();
             return data;
         }
     }

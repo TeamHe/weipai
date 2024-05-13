@@ -53,7 +53,7 @@
     <Compile Include="gw_cmd\gw_cmd_ctrl_period.cs" />
     <Compile Include="gw_cmd\gw_cmd_ctrl_a4_center.cs" />
     <Compile Include="gw_cmd\gw_cmd_ctrl_a5_id.cs" />
-    <Compile Include="gw_cmd\gw_cmd_ctrl_a6_reset.cs" />
+    <Compile Include="gw_cmd\gw_cmd_ctrl_reset.cs" />
     <Compile Include="gw_cmd\gw_cmd_handle.cs" />
     <Compile Include="DisPacket.cs" />
     <Compile Include="Equs.cs" />

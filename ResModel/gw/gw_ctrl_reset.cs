@@ -10,6 +10,12 @@ namespace ResModel.gw
             [Description("常规复位")]
             Normal = 0,
 
+            [Description("升级模式")]
+            Update,
+
+            [Description("诊断模式")]
+            Diagnos,
+
             [Description("调试模式")]
             Debug,
         }

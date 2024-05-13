@@ -150,14 +150,26 @@ namespace GridBackGround.Forms.Dialog
         }
         private void 常规复位ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            gw_cmd_ctrl_a6_reset cmd = new gw_cmd_ctrl_a6_reset(this.pole);
+            gw_cmd_ctrl_reset cmd = new gw_cmd_ctrl_reset(this.pole);
             cmd.Reset(gw_ctrl_reset.ResetMode.Normal);
         }
 
-        private void 复位至调试模式ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void 调试模式ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            gw_cmd_ctrl_a6_reset cmd = new gw_cmd_ctrl_a6_reset(this.pole);
+            gw_cmd_ctrl_reset cmd = new gw_cmd_ctrl_reset(this.pole);
             cmd.Reset(gw_ctrl_reset.ResetMode.Debug);
+        }
+
+        private void 升级模式ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            gw_cmd_ctrl_reset cmd = new gw_cmd_ctrl_reset(this.pole);
+            cmd.Reset(gw_ctrl_reset.ResetMode.Update);
+        }
+
+        private void 诊断模式ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            gw_cmd_ctrl_reset cmd = new gw_cmd_ctrl_reset(this.pole);
+            cmd.Reset(gw_ctrl_reset.ResetMode.Diagnos);
         }
 
         private void 查询模型参数ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -290,7 +302,9 @@ namespace GridBackGround.Forms.Dialog
 
             menu_time = this.AddDropDownMenuItem("装置复位");
             this.AddDropDownMenuItem(menu_time, "常规复位", this.常规复位ToolStripMenuItem_Click);
-            this.AddDropDownMenuItem(menu_time, "复位至调试模式", this.复位至调试模式ToolStripMenuItem_Click);
+            this.AddDropDownMenuItem(menu_time, "调试模式", this.调试模式ToolStripMenuItem_Click);
+            this.AddDropDownMenuItem(menu_time, "升级模式", this.升级模式ToolStripMenuItem_Click);
+            this.AddDropDownMenuItem(menu_time, "诊断模式", this.诊断模式ToolStripMenuItem_Click);
 
             menu_time = this.AddDropDownMenuItem("模型参数");
             this.AddDropDownMenuItem(menu_time, "查询", this.查询模型参数ToolStripMenuItem_Click);
