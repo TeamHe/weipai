@@ -55,6 +55,7 @@
     <Compile Include="gw\gw_ctrl_period.cs" />
     <Compile Include="gw\gw_ctrl_reset.cs" />
     <Compile Include="gw\gw_stat_base_info.cs" />
+    <Compile Include="gw\gw_stat_error.cs" />
     <Compile Include="gw\gw_stat_work.cs" />
     <Compile Include="PowerPole\Error_Code.cs" />
     <Compile Include="gw\gw_data_ice.cs" />
