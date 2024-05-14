@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using ResModel.gw;
+using System;
+using System.Net;
 using System.Windows.Forms;
 
 namespace GridBackGround.Forms
@@ -31,37 +27,30 @@ namespace GridBackGround.Forms
         {
             this.AcceptButton = this.button_OK;
             this.CancelButton = this.button_Cancle;
-            this.button_Cancle.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            if (IP != null)
-            {
-                this.textBox_IP.Text = IP.ToString();
-                this.textBox_Port.Text = Port.ToString();
-            }
-            else
-            {
-                linkLabel_GetIP_LinkClicked(this,new LinkLabelLinkClickedEventArgs(new LinkLabel.Link()));
-            }
+            this.button_Cancle.DialogResult = DialogResult.Cancel;
         }
         #endregion
-        /// <summary>
-        
-        /// <summary>
-        /// 上位机端口
-        /// </summary>
-        public int Port { get; set; }
-        /// <summary>
-        /// 上位机IP
-        /// </summary>
-        public System.Net.IPAddress IP
+
+        public gw_ctrl_center center;
+
+        public gw_ctrl_center Center
         {
-            get;
-            set;
+            get{ return this.center; }
+            set
+            {
+                this.center = value;
+                if (center == null) return;
+
+                this.checkBox_domain.Checked = center.GetFlag((int)gw_ctrl_center.EFlag.Domain);
+                this.checkBox_IP.Checked = center.GetFlag((int)gw_ctrl_center.EFlag.IP);
+                this.checkBox_Port.Checked = center.GetFlag((int)gw_ctrl_center.EFlag.Port);
+
+                this.textBox_IP.Text = this.center.IP.ToString();
+                this.textBox_Port.Text = this.center.Port.ToString();
+                this.textBox_domain.Text = this.center.Domain.ToString();
+            }
         }
-        /// <summary>
-        /// 设定标识位
-        /// </summary>
-        public int SetFlag{get;private set;}
- 
+
         /// <summary>
         /// 设定
         /// </summary>
@@ -69,34 +58,49 @@ namespace GridBackGround.Forms
         /// <param name="e"></param>
         private void button_OK_Click(object sender, EventArgs e)
         {
-            int port = 0 ;
-            byte[] ipB = new byte[4];
-            System.Net.IPAddress ip= new System.Net.IPAddress(ipB);
-            int flag = 0;
-            if (checkBox_IP.Checked)    //设置标识位——IP
-            { 
-                flag += 1;
-                try
-                {
-                    ip = System.Net.IPAddress.Parse(textBox_IP.Text);   //获得IP地址
-                }
-                catch
+            if(this.center == null)
+                this.center = new gw_ctrl_center();
+            this.center.Flag = 0;
+            this.center.SetFlag((int)gw_ctrl_center.EFlag.Port, this.checkBox_Port.Checked);
+            this.center.SetFlag((int)gw_ctrl_center.EFlag.IP, this.checkBox_IP.Checked);
+            this.center.SetFlag((int)gw_ctrl_center.EFlag.Domain, this.checkBox_domain.Checked);
+
+            if(this.center.Flag == 0)
+            {
+                MessageBox.Show("您没有选中任何参数");
+                return;
+            }
+
+            if (this.checkBox_IP.Checked)
+            {
+                if(!IPAddress.TryParse(this.textBox_IP.Text,out IPAddress ip))
                 {
                     MessageBox.Show("请输入正确的IP地址！");
                     return;
+
                 }
+                this.center.IP = ip;
             }
-            if (checkBox_Port.Checked)  //设置标识位——端口号
+
+            if (this.checkBox_Port.Checked)
             {
-                flag += 2;
-                port = Int32.Parse(this.textBox_Port.Text);         //获得端口号
+                if (!int.TryParse(this.textBox_Port.Text, out int port) || port > 65535)
+                {
+                    MessageBox.Show("请输入正确的端口号");
+                    return;
+                }
+                this.center.Port = port;
             }
-
-            Port = port;
-            IP = ip;
-            SetFlag = flag;
-
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            if (this.checkBox_domain.Checked)
+            {
+                if(this.textBox_domain.TextLength > gw_ctrl_center.Domain_Max_Length)
+                {
+                    MessageBox.Show("域名最大长度为64,当前为" + this.textBox_domain.TextLength.ToString());
+                    return;
+                }
+                this.center.Domain = this.textBox_domain.Text;
+            }
+            this.DialogResult = DialogResult.OK;
         }
         
         /// <summary>

@@ -51,7 +51,7 @@
     <Compile Include="gw_cmd\gw_cmd_ctrl_adapter.cs" />
     <Compile Include="gw_cmd\gw_cmd_ctrl_history.cs" />
     <Compile Include="gw_cmd\gw_cmd_ctrl_period.cs" />
-    <Compile Include="gw_cmd\gw_cmd_ctrl_a4_center.cs" />
+    <Compile Include="gw_cmd\gw_cmd_ctrl_center.cs" />
     <Compile Include="gw_cmd\gw_cmd_ctrl_id.cs" />
     <Compile Include="gw_cmd\gw_cmd_ctrl_reset.cs" />
     <Compile Include="gw_cmd\gw_cmd_handle.cs" />

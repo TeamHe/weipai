@@ -33,6 +33,8 @@
             this.button_OK = new System.Windows.Forms.Button();
             this.button_Cancle = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBox_domain = new System.Windows.Forms.CheckBox();
+            this.textBox_domain = new System.Windows.Forms.TextBox();
             this.linkLabel_GetIP = new System.Windows.Forms.LinkLabel();
             this.checkBox_Port = new System.Windows.Forms.CheckBox();
             this.checkBox_IP = new System.Windows.Forms.CheckBox();
@@ -59,7 +61,7 @@
             // 
             // button_OK
             // 
-            this.button_OK.Location = new System.Drawing.Point(34, 127);
+            this.button_OK.Location = new System.Drawing.Point(32, 169);
             this.button_OK.Name = "button_OK";
             this.button_OK.Size = new System.Drawing.Size(75, 23);
             this.button_OK.TabIndex = 6;
@@ -69,7 +71,7 @@
             // 
             // button_Cancle
             // 
-            this.button_Cancle.Location = new System.Drawing.Point(149, 127);
+            this.button_Cancle.Location = new System.Drawing.Point(147, 169);
             this.button_Cancle.Name = "button_Cancle";
             this.button_Cancle.Size = new System.Drawing.Size(75, 23);
             this.button_Cancle.TabIndex = 7;
@@ -78,6 +80,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.checkBox_domain);
+            this.panel1.Controls.Add(this.textBox_domain);
             this.panel1.Controls.Add(this.linkLabel_GetIP);
             this.panel1.Controls.Add(this.checkBox_Port);
             this.panel1.Controls.Add(this.checkBox_IP);
@@ -88,8 +92,25 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(288, 182);
+            this.panel1.Size = new System.Drawing.Size(281, 215);
             this.panel1.TabIndex = 0;
+            // 
+            // checkBox_domain
+            // 
+            this.checkBox_domain.AutoSize = true;
+            this.checkBox_domain.Location = new System.Drawing.Point(10, 115);
+            this.checkBox_domain.Name = "checkBox_domain";
+            this.checkBox_domain.Size = new System.Drawing.Size(48, 16);
+            this.checkBox_domain.TabIndex = 14;
+            this.checkBox_domain.Text = "域名";
+            this.checkBox_domain.UseVisualStyleBackColor = true;
+            // 
+            // textBox_domain
+            // 
+            this.textBox_domain.Location = new System.Drawing.Point(78, 111);
+            this.textBox_domain.Name = "textBox_domain";
+            this.textBox_domain.Size = new System.Drawing.Size(124, 21);
+            this.textBox_domain.TabIndex = 13;
             // 
             // linkLabel_GetIP
             // 
@@ -130,7 +151,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(288, 182);
+            this.ClientSize = new System.Drawing.Size(281, 215);
             this.Controls.Add(this.panel1);
             this.Name = "Dialog_Con_IP";
             this.Text = "上位机信息查询/设置";
@@ -151,6 +172,7 @@
         private System.Windows.Forms.CheckBox checkBox_Port;
         private System.Windows.Forms.CheckBox checkBox_IP;
         private System.Windows.Forms.LinkLabel linkLabel_GetIP;
-
+        private System.Windows.Forms.CheckBox checkBox_domain;
+        private System.Windows.Forms.TextBox textBox_domain;
     }
 }

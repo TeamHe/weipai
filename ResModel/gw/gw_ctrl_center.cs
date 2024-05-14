@@ -13,11 +13,18 @@ namespace ResModel.gw
 
             [Description("端口号")]
             Port,
+
+            [Description("域名")]
+            Domain,
         }
+
+        public const int Domain_Max_Length = 64;
 
         public IPAddress IP { get; set; }
 
         public int Port { get; set; }
+
+        public string Domain { get; set; }
 
         public override string ToString(bool flag)
         {
@@ -26,6 +33,8 @@ namespace ResModel.gw
                 sb.AppendFormat("IP地址:{0} ",this.IP.ToString());
             if (flag || this.GetFlag((int)EFlag.Port))
                 sb.AppendFormat("端口号:{0} ", this.Port);
+            if (flag || this.GetFlag((int)EFlag.Domain))
+                sb.AppendFormat("域名:{0} ", this.Domain);
             return sb.ToString();
         }
     }
