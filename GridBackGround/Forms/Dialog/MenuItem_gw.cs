@@ -267,6 +267,25 @@ namespace GridBackGround.Forms.Dialog
             Comand_voice_update.Remove(this.pole.CMD_ID, du.VoiceType);
         }
 
+        private static gw_ctrl_revival revival = null;
+        /// <summary>
+        /// 装置唤醒按钮点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuitem_revival_click(object sender, EventArgs e)
+        {
+            Dialog_revival dialog = new Dialog_revival();
+            if(revival != null)
+            {
+                dialog.Revival = revival;
+            }
+            if(dialog.ShowDialog() != DialogResult.OK) return;
+            gw_cmd_ctrl_revival cmd = new gw_cmd_ctrl_revival(this.pole);
+            cmd.Update(dialog.Revival);
+            revival = cmd.Revival;
+        }
+
 
 
         public void Menuitem_Flush()
@@ -297,6 +316,8 @@ namespace GridBackGround.Forms.Dialog
             this.AddDropDownMenuItem(menu_time, "调试模式", this.调试模式ToolStripMenuItem_Click);
             this.AddDropDownMenuItem(menu_time, "升级模式", this.升级模式ToolStripMenuItem_Click);
             this.AddDropDownMenuItem(menu_time, "诊断模式", this.诊断模式ToolStripMenuItem_Click);
+
+            this.AddDropDownMenuItem("装置唤醒时间", this.menuitem_revival_click);
 
             menu_time = this.AddDropDownMenuItem("模型参数");
             this.AddDropDownMenuItem(menu_time, "查询", this.查询模型参数ToolStripMenuItem_Click);

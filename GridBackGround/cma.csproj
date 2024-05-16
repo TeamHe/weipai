@@ -226,6 +226,12 @@
     <Compile Include="Forms\Dialogs_nw\Dialog_nw_ip.Designer.cs">
       <DependentUpon>Dialog_nw_ip.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Dialog\Dialog_revival.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialog\Dialog_revival.Designer.cs">
+      <DependentUpon>Dialog_revival.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Dialog\Dialog_voice_delete.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -555,6 +561,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs_nw\Dialog_nw_ip.resx">
       <DependentUpon>Dialog_nw_ip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialog\Dialog_revival.resx">
+      <DependentUpon>Dialog_revival.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialog\Dialog_voice_delete.resx">
       <DependentUpon>Dialog_voice_delete.cs</DependentUpon>
