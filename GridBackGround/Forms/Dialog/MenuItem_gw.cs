@@ -286,7 +286,24 @@ namespace GridBackGround.Forms.Dialog
             revival = cmd.Revival;
         }
 
+        private void menuitem_baseinfo_base_click(object sender, EventArgs e)
+        {
+            gw_cmd_ctrl_baseinfo cmd = new gw_cmd_ctrl_baseinfo(this.pole);
+            cmd.Query(new gw_ctrl_baseinfo() { 
+                Type = gw_ctrl_baseinfo.InfoType.BaseInfo,
+                Para_Type = gw_para_type.Weather,
+            });
+        }
 
+        private void menuitem_baseinfo_status_click(object sender, EventArgs e)
+        {
+            gw_cmd_ctrl_baseinfo cmd = new gw_cmd_ctrl_baseinfo(this.pole);
+            cmd.Query(new gw_ctrl_baseinfo()
+            {
+                Type = gw_ctrl_baseinfo.InfoType.StatusInfo,
+                Para_Type = gw_para_type.Weather,
+            });
+        }
 
         public void Menuitem_Flush()
         {
@@ -318,6 +335,10 @@ namespace GridBackGround.Forms.Dialog
             this.AddDropDownMenuItem(menu_time, "诊断模式", this.诊断模式ToolStripMenuItem_Click);
 
             this.AddDropDownMenuItem("装置唤醒时间", this.menuitem_revival_click);
+
+            menu_time = this.AddDropDownMenuItem("信息上报");
+            this.AddDropDownMenuItem(menu_time, "基本信息", this.menuitem_baseinfo_base_click);
+            this.AddDropDownMenuItem(menu_time, "状态信息", this.menuitem_baseinfo_status_click);
 
             menu_time = this.AddDropDownMenuItem("模型参数");
             this.AddDropDownMenuItem(menu_time, "查询", this.查询模型参数ToolStripMenuItem_Click);
