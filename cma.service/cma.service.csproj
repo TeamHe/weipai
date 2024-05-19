@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gw_cmd\gw_cmd_01_weather.cs" />
+    <Compile Include="gw_cmd\gw_cmd_ctrl_alarm.cs" />
     <Compile Include="gw_cmd\gw_cmd_ctrl_baseinfo.cs" />
     <Compile Include="gw_cmd\gw_cmd_ctrl_revival.cs" />
     <Compile Include="gw_cmd\gw_cmd_ctrl_time.cs" />

@@ -305,6 +305,19 @@ namespace GridBackGround.Forms.Dialog
             });
         }
 
+        private void menuitem_alarm_click(object sender, EventArgs e)
+        {
+            Dialog_Con_alarm dialog = new Dialog_Con_alarm();
+            if (dialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            gw_cmd_ctrl_alarm cmd = new gw_cmd_ctrl_alarm(this.pole);
+            if (dialog.Query)
+                cmd.Query(dialog.Alarm);
+            else
+                cmd.Update(dialog.Alarm);
+        }
+
         public void Menuitem_Flush()
         {
             ToolStripMenuItem menu_time;
@@ -343,6 +356,8 @@ namespace GridBackGround.Forms.Dialog
             menu_time = this.AddDropDownMenuItem("模型参数");
             this.AddDropDownMenuItem(menu_time, "查询", this.查询模型参数ToolStripMenuItem_Click);
             this.AddDropDownMenuItem(menu_time, "设置", this.设置模型参数ToolStripMenuItem_Click);
+
+            menu_time = this.AddDropDownMenuItem("报警阈值", this.menuitem_alarm_click);
 
             this.ParentMenu.DropDownItems.Add(new ToolStripSeparator());
 

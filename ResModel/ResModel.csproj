@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gw\gw_ctrl_adapter.cs" />
+    <Compile Include="gw\gw_ctrl_alarm.cs" />
     <Compile Include="gw\gw_ctrl_base.cs" />
     <Compile Include="gw\gw_ctrl_baseinfo.cs" />
     <Compile Include="gw\gw_ctrl_center.cs" />
