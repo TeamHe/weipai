@@ -442,31 +442,6 @@ namespace GridBackGround
         //}
         #endregion
 
-        #region 装置配置
-
-        #region 模型参数
-        private void 查询模型参数ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())
-                return;
-            CommandDeal.Comand_Model.Query(CMD_ID);
-        }
-
-        private void 设置模型参数ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())
-                return;
-            Forms.Dialog_Con_Model model = new Forms.Dialog_Con_Model();
-            if (model.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-            {
-                CommandDeal.Comand_Model.Set(CMD_ID, model.modelData);
-            }
-        }
-        #endregion
-
-        #endregion
-
-
         #region 图像
 
         #region 图像采集参数

@@ -305,14 +305,6 @@ namespace GridBackGround.Termination
                 }
             }
             Web_DataSend.SendData(web);
-            switch ((EQU_Control)cmdinfo.Packet_Type)
-            {
-
-                //网络适配器
-                case EQU_Control.Model://模型参数
-                    CommandDeal.Comand_Model.Ayanlise(cmdinfo.CMD_ID, cmdinfo.Data);
-                    break;
-            }
         }
     }
 }

@@ -33,6 +33,21 @@ namespace ResModel.gw
             return 4;
         }
 
+        public static int GetS32(byte[] data, int offset, out Int32 value)
+        {
+            value = BitConverter.ToInt32(data, offset);
+            return 4;
+        }
+
+        public static int SetS32(byte[] data, int offset, Int32 value)
+        {
+            byte[] tmp = BitConverter.GetBytes(value);
+            Buffer.BlockCopy(tmp, 0, data, offset, tmp.Length);
+            return 4;
+        }
+
+
+
         public static int GetSingle(byte[] data, int offset, out float value)
         {
             value = BitConverter.ToSingle(data, offset);

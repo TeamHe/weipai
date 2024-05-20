@@ -628,14 +628,12 @@
             this.查询模型参数ToolStripMenuItem.Name = "查询模型参数ToolStripMenuItem";
             this.查询模型参数ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.查询模型参数ToolStripMenuItem.Text = "查询";
-            this.查询模型参数ToolStripMenuItem.Click += new System.EventHandler(this.查询模型参数ToolStripMenuItem_Click);
             // 
             // 设置模型参数ToolStripMenuItem
             // 
             this.设置模型参数ToolStripMenuItem.Name = "设置模型参数ToolStripMenuItem";
             this.设置模型参数ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.设置模型参数ToolStripMenuItem.Text = "设置";
-            this.设置模型参数ToolStripMenuItem.Click += new System.EventHandler(this.设置模型参数ToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 

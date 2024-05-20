@@ -415,7 +415,6 @@
     <Compile Include="PacketAnaLysis\PackDeal_PrivateCon.cs" />
     <Compile Include="PacketAnaLysis\PackDeal_Image.cs" />
     <Compile Include="PacketAnaLysis\PackDeal_Image_Control.cs" />
-    <Compile Include="CommandDeal\Comand\Comand_Model.cs" />
     <Compile Include="CommandDeal\Comand\Comand_RemotedUpDate.cs">
       <SubType>Code</SubType>
     </Compile>

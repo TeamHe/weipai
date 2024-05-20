@@ -22,9 +22,6 @@ namespace GridBackGround.PacketAnaLysis
             bool dealState = false;
             switch (packet_Type)
             {
-                case PacketType_Control.Model://模型参数0xa7
-                    CommandDeal.Comand_Model.Response(pole, frame_No, data);
-                    break;
                 case PacketType_Control.SoundLightAlarm:
                     CommandDeal.Command_sound_light_alarm.Response(pole, frame_No, data);
                     break;

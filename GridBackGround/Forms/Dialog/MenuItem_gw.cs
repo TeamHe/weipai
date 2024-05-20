@@ -166,15 +166,17 @@ namespace GridBackGround.Forms.Dialog
 
         private void 查询模型参数ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Comand_Model.Query(this.pole.CMD_ID);
+            gw_cmd_ctrl_model cmd = new gw_cmd_ctrl_model(this.pole);
+            cmd.Query();
         }
 
         private void 设置模型参数ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Dialog_Con_Model model = new Dialog_Con_Model();
-            if (model.ShowDialog() != DialogResult.OK)
+            Dialog_Con_Model dialog = new Dialog_Con_Model();
+            if (dialog.ShowDialog() != DialogResult.OK)
                 return;
-            Comand_Model.Set(this.pole.CMD_ID, model.modelData);
+            gw_cmd_ctrl_model cmd = new gw_cmd_ctrl_model(this.pole);
+            cmd.Update(dialog.Models);
         }
 
         private void 查询图像采集参数ToolStripMenuItem_Click(object sender, EventArgs e)

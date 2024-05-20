@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using ResModel.gw;
 
@@ -10,12 +9,15 @@ namespace GridBackGround.Forms
         #region 初始化
          private CheckBox[] checkBox;
         private TextBox[] textBox;
-        private int DataTye;
+        private gw_ctrl_model.EType DataTye;
         public Dialog_Con_Model()
         {
             InitializeComponent();
            
         }
+
+        public gw_ctrl_models Models { get; set; }
+
         /// <summary>
         /// 参数模型配置窗体加载
         /// </summary>
@@ -25,7 +27,7 @@ namespace GridBackGround.Forms
         {
             this.CenterToParent();
             InitWindow();
-            modelData = new List<IModelData>();
+            this.Models = new gw_ctrl_models();
             this.AcceptButton = button_OK;
             this.CancelButton = this.button_Cancel;
             this.button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -79,8 +81,6 @@ namespace GridBackGround.Forms
         }
         #endregion
 
-        public List<IModelData> modelData { get; private set; }
-
         /// <summary>
         /// 确定按钮
         /// </summary>
@@ -88,31 +88,31 @@ namespace GridBackGround.Forms
         /// <param name="e"></param>
         private void button_OK_Click(object sender, EventArgs e)
         {
-            modelData.Clear();
+            this.Models.Models.Clear();
+            //modelData.Clear();
             for (int i = 0; i < 20; i++)
             {
-                if (checkBox[i].Checked)
-                { 
-                    string name = "PARA" + (i + 1).ToString("00");
-                    try
+                if (!checkBox[i].Checked)
+                    continue;
+                try
+                {
+                    float value = Convert.ToSingle(this.textBox[i].Text);
+                    var model = new gw_ctrl_model()
                     {
-                        float value = Convert.ToSingle(this.textBox[i].Text);
-                        var model = new gw_ModelData(name, value, DataTye);
-                        modelData.Add(model);
-                    }
-                    catch
-                    {
-                        MessageBox.Show("请输入参数" + (i + 1).ToString() + "正确的配置参数");
-                        return;
-                    }
-                    
+                        Key = string.Format("PARA{0:D2}", i + 1),
+                        Value = value,
+                        Type = this.DataTye,
+                    };
+                    Models.Models.Add(model);
+                }
+                catch
+                {
+                    MessageBox.Show("请输入参数" + (i + 1).ToString() + "正确的配置参数");
+                    return;
                 }
             }
-            
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.Dispose();
 
-
+            this.DialogResult = DialogResult.OK;
         }
 
         private void textBox_Float_KeyPress(object sender, KeyPressEventArgs e)
@@ -130,11 +130,11 @@ namespace GridBackGround.Forms
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButton1.Checked)
-                DataTye = 0x00;
+                DataTye = gw_ctrl_model.EType.U32;
             if (radioButton2.Checked)
-                DataTye = 0x01;
+                DataTye = gw_ctrl_model.EType.S32 ;
             if (radioButton3.Checked)
-                DataTye = 0x02;
+                DataTye = gw_ctrl_model.EType.Single ;
         }
     }
 }

@@ -64,6 +64,7 @@
     <Compile Include="gw_cmd\gw_cmd_stat_heart.cs" />
     <Compile Include="gw_cmd\gw_cmd_stat_info.cs" />
     <Compile Include="gw_cmd\gw_cmd_stat_work.cs" />
+    <Compile Include="gw_cmd\gw_cmd_ctrl_model.cs" />
     <Compile Include="gw_cmd\gw_stat_error.cs" />
     <Compile Include="PowerPole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
