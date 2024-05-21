@@ -293,7 +293,7 @@ namespace GridBackGround.Forms.Dialog
             gw_cmd_ctrl_baseinfo cmd = new gw_cmd_ctrl_baseinfo(this.pole);
             cmd.Query(new gw_ctrl_baseinfo() { 
                 Type = gw_ctrl_baseinfo.InfoType.BaseInfo,
-                Para_Type = gw_para_type.Weather,
+                ParaType = gw_para_type.Weather,
             });
         }
 
@@ -303,7 +303,7 @@ namespace GridBackGround.Forms.Dialog
             cmd.Query(new gw_ctrl_baseinfo()
             {
                 Type = gw_ctrl_baseinfo.InfoType.StatusInfo,
-                Para_Type = gw_para_type.Weather,
+                ParaType = gw_para_type.Weather,
             });
         }
 

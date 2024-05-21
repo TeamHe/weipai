@@ -1,7 +1,6 @@
 ﻿using ResModel;
 using ResModel.gw;
 using System;
-using Tools;
 
 namespace cma.service.gw_cmd
 {
@@ -10,6 +9,10 @@ namespace cma.service.gw_cmd
     /// </summary>
     public class gw_cmd_ctrl_time : gw_cmd_base_ctrl
     {
+        protected override bool WithReqSetFlag {  get { return true; } }
+
+        protected override bool WithRspStatus { get { return true; } }
+
         public override int ValuesLength { get { return 0x04; } }
 
         public override string Name { get { return "装置时间"; } }
@@ -30,47 +33,24 @@ namespace cma.service.gw_cmd
 
         public override int DecodeData(byte[] data, int offset, out string msg)
         {
-            DateTime time = DateTime.MinValue;
-            if (data.Length - offset < 4)
+            int start = offset;
+            if (data.Length - offset < this.ValuesLength)
                 throw new Exception("数据缓冲区长度太小");
 
-            offset += gw_coding.GetTime(data, offset, out time);
+            offset += gw_coding.GetTime(data, offset, out DateTime time);
             this.Time = time;
             msg = string.Format("装置时间:{0}", this.Time);
-            return this.ValuesLength;
+            return offset -start;
         }
 
         public override int EncodeData(byte[] data, int offset, out string msg)
         {
+            int start = offset;
             msg = string.Empty;
             if(this.RequestSetFlag == gw_ctrl.ESetFlag.Set)
                 msg = string.Format("当前时间: {0}", this.Time);
             offset += gw_coding.SetTime(data, offset, this.Time);
-            return this.ValuesLength;
-        }
-
-        public override byte[] encode(out string msg)
-        {
-            byte[] data = new byte[1 + this.ValuesLength];
-            int offset = 0;
-            data[offset++] = (byte)this.RequestSetFlag;
-
-            this.EncodeData(data, offset, out string str);
-            msg = EnumUtil.GetDescription(this.RequestSetFlag) +
-                 this.Name + ". " + str;
-            return data;
-        }
-
-        public override int decode(byte[] data, int offset, out string msg)
-        {
-            if (data.Length - offset < 1)
-                throw new Exception("数据缓冲区长度太小");
-            this.Status = (gw_ctrl.ESetStatus)data[offset++];
-
-            int ret = this.DecodeData(data, offset, out string str);
-            msg = EnumUtil.GetDescription(this.Status) +
-                  ". " + str;
-            return ret;
+            return offset - start;
         }
     }
 }

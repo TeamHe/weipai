@@ -13,7 +13,7 @@ namespace ResModel.gw
         public float Value { get; set; }
     }
 
-    public class gw_ctrl_alarm
+    public class gw_ctrl_alarm : gw_ctrl
     {
         /// <summary>
         /// 报警参数
@@ -25,15 +25,9 @@ namespace ResModel.gw
             this.Values = new List<gw_ctrl_alarm_value>();
         }
 
-        /// <summary>
-        /// 配置参数类型
-        /// </summary>
-        public gw_para_type Type { get; set; }
-
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("参数类型:{0} ",this.Type.GetDescription());
             sb.AppendFormat("报警阈值:");
             foreach (var val in Values)
             {

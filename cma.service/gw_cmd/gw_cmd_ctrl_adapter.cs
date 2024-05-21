@@ -7,6 +7,16 @@ namespace cma.service.gw_cmd
 {
     public class gw_cmd_ctrl_adapter : gw_cmd_base_ctrl
     {
+        protected override bool WithReqSetFlag { get { return true; } }
+
+        protected override bool WithReqFlag { get { return true; } }
+
+        protected override bool WithRspStatus { get { return true; } }
+
+        protected override bool WithRspSetFlag { get { return true; } }
+
+        protected override bool WithRspFlag { get { return true; } }
+
         public override string Name { get { return "网络适配器"; } }
 
         public override int PType { get { return 0xa2; } }
@@ -37,6 +47,8 @@ namespace cma.service.gw_cmd
             if (this.Adapter == null)
                 this.Adapter = new gw_ctrl_adapter();
             FlushRespStatus(this.Adapter);
+            if (data.Length - offset < this.ValuesLength)
+                throw new Exception("数据缓冲区长度太小");
 
             IPAddress address;
             offset += gw_coding.GetIPAddress(data, offset, out address);
@@ -69,7 +81,6 @@ namespace cma.service.gw_cmd
                 offset += gw_coding.SetString(data, offset, 20, Adapter.PhoneNumber);
                 if (this.RequestSetFlag == gw_ctrl.ESetFlag.Set)
                     msg = this.Adapter.ToString(false);
-
             }
             return this.ValuesLength;
         }

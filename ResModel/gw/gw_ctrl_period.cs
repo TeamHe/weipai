@@ -49,7 +49,6 @@ namespace ResModel.gw
         public override string ToString(bool flag)
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("参数类型:{0} ", this.ParaType.GetDescription());
             if (flag || this.GetFlag((int)EFlag.MainTime))
                 sb.AppendFormat("采样周期:{0}min ", this.MainTime);
             if (flag || this.GetFlag((int)EFlag.SampleCount))

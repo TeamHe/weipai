@@ -7,6 +7,14 @@ namespace cma.service.gw_cmd
 {
     public class gw_cmd_ctrl_center : gw_cmd_base_ctrl
     {
+        protected override bool WithReqSetFlag { get { return true; } }
+
+        protected override bool WithReqFlag { get { return true; } }
+
+        protected override bool WithRspStatus { get { return true; } }
+
+        protected override bool WithRspFlag {  get { return true; } }
+
         public override string Name { get { return "上位机信息"; } }
 
         public override int PType { get { return 0xa7; } }

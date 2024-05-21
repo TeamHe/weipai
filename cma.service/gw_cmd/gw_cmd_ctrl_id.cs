@@ -6,6 +6,14 @@ namespace cma.service.gw_cmd
 {
     public class gw_cmd_ctrl_id : gw_cmd_base_ctrl
     {
+        protected override bool WithReqSetFlag {  get { return true; } }
+
+        protected override bool WithReqFlag {  get { return true; } }
+
+        protected override bool WithRspStatus {  get { return true; } }
+
+        protected override bool WithRspFlag { get { return true; } }
+
         public override int ValuesLength {  get { return 51; } }
 
         public override string Name { get { return "装置ID"; } }

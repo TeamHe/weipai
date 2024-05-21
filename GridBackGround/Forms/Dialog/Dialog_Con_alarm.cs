@@ -69,7 +69,7 @@ namespace GridBackGround.Forms.Dialog
             if(this.Alarm == null)
                 this.Alarm = new gw_ctrl_alarm();
             Alarm.Values.Clear();
-            Alarm.Type = this.Type;
+            Alarm.ParaType = this.Type;
 
             this.Query = true;
             this.DialogResult = DialogResult.OK;
@@ -81,7 +81,7 @@ namespace GridBackGround.Forms.Dialog
                 this.Alarm = new gw_ctrl_alarm();
 
             Alarm.Values.Clear();
-            Alarm.Type = this.Type;
+            Alarm.ParaType = this.Type;
 
             foreach(UC_con_alarm alarm in alarm_values)
             {

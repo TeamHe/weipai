@@ -7,6 +7,14 @@ namespace cma.service.gw_cmd
 {
     public class gw_cmd_ctrl_alarm : gw_cmd_base_ctrl
     {
+        protected override bool WithReqSetFlag {  get { return true; } }
+
+        protected override bool WithReqType {  get { return true; } }
+
+        protected override bool WithRspStatus {  get { return true; } }
+
+        protected override bool WithRspType {  get { return true; } }
+
         public gw_ctrl_alarm Alarm {  get; set; }
 
         public override int ValuesLength
@@ -14,10 +22,10 @@ namespace cma.service.gw_cmd
             get
             {
                 if (Alarm == null || Alarm.Values == null)
-                    return 2;
+                    return 1;
                 else
                 {
-                    return 2+ 10*Alarm.Values.Count;
+                    return 1+ 10*Alarm.Values.Count;
                 }
             }
         }
@@ -33,13 +41,13 @@ namespace cma.service.gw_cmd
         public void Update(gw_ctrl_alarm alarm)
         {
             this.Alarm = alarm;
-            base.Update();
+            base.Update(alarm.ParaType);
         }
 
         public void Query(gw_ctrl_alarm alarm)
         {
             this.Alarm = alarm;
-            base.Query();
+            base.Query(alarm.ParaType);
         }
 
         public override int DecodeData(byte[] data, int offset, out string msg)
@@ -47,9 +55,9 @@ namespace cma.service.gw_cmd
             int start = offset;
             if(this.Alarm == null)
                 this.Alarm = new gw_ctrl_alarm();
-            if (data.Length - offset <2)
+            FlushRespStatus(Alarm);
+            if (data.Length - offset < 1)
                 throw new Exception("数据缓冲区长度太小");
-            Alarm.Type = (gw_para_type)data[offset++];
             int num = data[offset++];
             if(data.Length-offset < num*10)
                 throw new Exception("数据缓冲区长度太小");
@@ -70,12 +78,11 @@ namespace cma.service.gw_cmd
 
         public override int EncodeData(byte[] data, int offset, out string msg)
         {
+            int start = offset;
+            msg = string.Empty;
             if(this.Alarm == null) 
                 throw new ArgumentNullException(nameof(this.Alarm));
-            msg = string.Empty;
-            int start = offset;
 
-            data[offset++] = (byte)Alarm.Type;
             data[offset++] = (byte)Alarm.Values.Count;
             if (Alarm.Values != null && Alarm.Values.Count > 0)
             {
@@ -84,30 +91,9 @@ namespace cma.service.gw_cmd
                     offset += gw_coding.SetString(data, offset, 6, val.Key);
                     offset += gw_coding.SetSingle(data, offset, val.Value);
                 }
+                msg = Alarm.ToString();
             }
-            msg = Alarm.ToString();
             return offset - start;
-        }
-
-        public override int decode(byte[] data, int offset, out string msg)
-        {
-            if (data.Length - offset < 1)
-                throw new Exception("数据缓冲区长度太小");
-
-            this.Status = (gw_ctrl.ESetStatus)data[offset++];
-            int ret = this.DecodeData(data, offset, out string str);
-            msg = EnumUtil.GetDescription(this.Status) + ". " + str;
-            return ret;
-        }
-
-        public override byte[] encode(out string msg)
-        {
-            int offset = 0;
-            byte[] data = new byte[1 + this.ValuesLength];
-            data[offset++] = (byte)this.RequestSetFlag;
-            this.EncodeData(data, offset, out string str);
-            msg = EnumUtil.GetDescription(this.RequestSetFlag) + this.Name + ". " + str;
-            return data;
         }
     }
 }

@@ -7,6 +7,12 @@ namespace cma.service.gw_cmd
 {
     public class gw_cmd_ctrl_model : gw_cmd_base_ctrl
     {
+        protected override bool WithReqSetFlag {  get { return true; } }
+
+        protected override bool WithRspStatus {  get { return true; } }
+
+        protected override bool WithRspSetFlag {  get { return true; } }
+
         public override int ValuesLength { 
             get
             {
@@ -89,11 +95,9 @@ namespace cma.service.gw_cmd
                             break;
                         case gw_ctrl_model.EType.U32:
                             offset += gw_coding.SetU32(data, offset, (UInt32)model.Value);
-
                             break;
                         case gw_ctrl_model.EType.Single:
                             offset += gw_coding.SetSingle(data, offset, (float)model.Value);
-
                             break;
                     }
                 }
@@ -101,35 +105,6 @@ namespace cma.service.gw_cmd
                     msg = Models.ToString();
             }
             return offset - start;
-
-        }
-
-        public override byte[] encode(out string msg)
-        {
-            byte[] data = new byte[1 + this.ValuesLength];
-            int offset = 0;
-            data[offset++] = (byte)this.RequestSetFlag;
-
-            this.EncodeData(data, offset, out string str);
-            msg = EnumUtil.GetDescription(this.RequestSetFlag) +
-                 this.Name + ". " + str;
-            return data;
-
-        }
-
-        public override int decode(byte[] data, int offset, out string msg)
-        {
-            if (data.Length - offset < 2)
-                throw new Exception("数据缓冲区长度太小");
-            this.Status = (gw_ctrl.ESetStatus)data[offset++];
-            this.RequestSetFlag = (gw_ctrl.ESetFlag)data[offset++];
-
-            int ret = this.DecodeData(data, offset, out string str);
-            msg = EnumUtil.GetDescription(this.RequestSetFlag) +
-                  this.Name +
-                  EnumUtil.GetDescription(this.Status) +
-                  ". " + str;
-            return ret;
         }
     }
 }

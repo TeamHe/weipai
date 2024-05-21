@@ -6,8 +6,6 @@ namespace ResModel.gw
 {
     public class gw_ctrl_baseinfo:gw_ctrl
     {
-        public gw_para_type Para_Type { get; set; }
-
         public enum InfoType {
 
             [Description("基本信息")]
@@ -22,7 +20,6 @@ namespace ResModel.gw
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("参数类型:{0} ", this.Para_Type.GetDescription());
             sb.AppendFormat("信息类型:{0} ", this.Type.GetDescription());
             return sb.ToString();
         }

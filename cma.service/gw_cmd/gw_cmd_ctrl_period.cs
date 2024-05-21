@@ -7,6 +7,18 @@ namespace cma.service.gw_cmd
 {
     public class gw_cmd_ctrl_period : gw_cmd_base_ctrl
     {
+        protected override bool WithReqSetFlag {  get { return true; } }
+
+        protected override bool WithReqType {  get { return true; } }
+
+        protected override bool WithReqFlag {  get { return true; } }
+
+        protected override bool WithRspStatus { get { return true; } }
+
+        protected override bool WithRspType {  get { return true; } }
+
+        protected override bool WithRspFlag {  get { return true; } }
+
         /// <summary>
         /// 报文名称
         /// </summary>
@@ -32,27 +44,20 @@ namespace cma.service.gw_cmd
         public gw_cmd_ctrl_period(IPowerPole pole)
             : base(pole) { }
 
-        public void Query(gw_func_code type)
-        {
-            this.Period = new gw_ctrl_period()
-            {
-                MainType = type,
-            };
-            base.Query();
-        }
-
 
         public void Update(gw_ctrl_period period)
         {
             if (period == null)
                 throw new ArgumentNullException(nameof(period));
             this.Period = period;
-            this.Update(period);
+            base.Update(period);
         }
 
         public override int DecodeData(byte[] data, int offset, out string msg)
         {
             int val = 0;
+            if (data.Length - offset < this.ValuesLength)
+                throw new Exception("数据缓冲区长度太小");
             if(this.Period == null)
                 this.Period = new gw_ctrl_period();
             FlushRespStatus(this.Period);
@@ -67,54 +72,27 @@ namespace cma.service.gw_cmd
             this.Period.SampleFreq = val;
 
             this.Period.HearTime = (int)data[offset++];
-            msg = Period.ToString(this.RequestSetFlag == gw_ctrl.ESetFlag.Query);
+            msg = Period.ToString(false);
             return this.ValuesLength;
         }
 
         public override int EncodeData(byte[] data, int offset, out string msg)
         {
-            if (this.Period == null)
-                throw new ArgumentNullException(nameof(this.Period));
-            offset += gw_coding.SetU16(data, offset, this.Period.MainTime);
-            offset += gw_coding.SetU16(data, offset, this.Period.SampleCount);
-            offset += gw_coding.SetU16(data, offset, this.Period.SampleFreq);
-            data[offset++] = (byte)this.Period.HearTime;
-            msg = this.Period.ToString(false);
-            return this.ValuesLength;
+            int start = offset;
+            msg = string.Empty;
+            if (this.Period != null)
+            {
+                offset += gw_coding.SetU16(data, offset, this.Period.MainTime);
+                offset += gw_coding.SetU16(data, offset, this.Period.SampleCount);
+                offset += gw_coding.SetU16(data, offset, this.Period.SampleFreq);
+                data[offset++] = (byte)this.Period.HearTime;
+                msg = this.Period.ToString(false);
+
+            }
+            else
+                offset += ValuesLength;
+
+            return offset - start;
         }
-
-        public override int decode(byte[] data, int offset, out string msg)
-        {
-            if (data.Length - offset < 3)
-                throw new Exception("数据缓冲区长度太小");
-            if (this.Period == null)
-                this.Period = new gw_ctrl_period();
-
-            this.Status = (gw_ctrl.ESetStatus)data[offset++];
-            this.Period.MainType = (gw_func_code)data[offset++];
-            this.Flag = (int)data[offset++];
-
-            int ret = this.DecodeData(data, offset, out string str);
-            msg = EnumUtil.GetDescription(this.Status) +
-                  ". " + str;
-            return ret;
-        }
-
-        public override byte[] encode(out string msg)
-        {
-            if (this.Period == null)
-                throw new ArgumentNullException(nameof(this.Period));
-            byte[] data = new byte[3 + this.ValuesLength];
-            int offset = 0;
-            data[offset++] = (byte)this.RequestSetFlag;
-            data[offset++] = (byte)this.Period.MainType;
-            data[offset++] = (byte)this.Flag;
-
-            this.EncodeData(data, offset, out string str);
-            msg = EnumUtil.GetDescription(this.RequestSetFlag) +
-                 this.Name + ". " + str;
-            return data;
-        }
-
     }
 }

@@ -1,6 +1,7 @@
 ﻿using ResModel;
 using ResModel.gw;
 using System;
+using System.Text;
 using Tools;
 
 namespace cma.service.gw_cmd
@@ -13,12 +14,26 @@ namespace cma.service.gw_cmd
 
         public override gw_frame_type RecvFrameType { get { return gw_frame_type.ResControl; } }
 
+        protected virtual bool WithReqSetFlag { get { return false; } }
+
+        protected virtual bool WithReqFlag { get { return false; } }
+
+        protected virtual bool WithReqType { get { return false; } }
+
+        protected virtual bool WithRspStatus { get { return false; } }
+
+        protected virtual bool WithRspType { get { return false; } }
+
+        protected virtual bool WithRspFlag { get { return false; } }
+
+        protected virtual bool WithRspSetFlag { get { return false; } }
 
         /// <summary>
         /// 参数配置类型标识: 查询，设置
         /// </summary>
         public gw_ctrl.ESetFlag RequestSetFlag { get; set; }
 
+        public gw_para_type ParaType { get; set; }
 
         /// <summary>
         /// 查询/设置 结果: 成功，失败
@@ -65,6 +80,12 @@ namespace cma.service.gw_cmd
             this.Execute();
         }
 
+        public void Query(gw_para_type type)
+        {
+            this.ParaType = type;
+            this.Query();
+        }
+
         public void Update()
         {
             this.RequestSetFlag = gw_ctrl.ESetFlag.Set;
@@ -77,40 +98,85 @@ namespace cma.service.gw_cmd
             this.Update();
         }
 
+        public void Update(gw_para_type paraType)
+        {
+            this.ParaType = paraType;
+            this.Update();
+        }
+
+        public void Update(gw_para_type paraType, int flag)
+        {
+            this.Flag = flag;
+            this.ParaType = paraType;
+            this.Update();
+        }
+
         public virtual void Update(gw_ctrl ctrl)
         {
-            if(ctrl != null)
-                this.Flag = ctrl.Flag;
-            this.Update();
+            if (ctrl != null)
+                this.Update(ctrl.ParaType, ctrl.Flag);
+            else
+                this.Update();
         }
 
         public override int decode(byte[] data, int offset, out string msg)
         {
-            if (data.Length - offset < 3)
+            int num = 0,start = offset;
+            if (WithRspStatus) num++;
+            if (WithRspSetFlag) num++;
+            if (WithReqType) num++;
+            if (WithRspFlag) num++;
+            if (data.Length - offset < num)
                 throw new Exception("数据缓冲区长度太小");
-            this.RequestSetFlag = (gw_ctrl.ESetFlag)data[offset++];
-            this.Status = (gw_ctrl.ESetStatus)data[offset++];
-            this.Status = (gw_ctrl.ESetStatus)data[offset++];
-            this.Flag = (int)data[offset++];
 
-            int ret = this.DecodeData(data, offset, out string str);
-            msg = EnumUtil.GetDescription(this.RequestSetFlag) +
-                  this.Name +
-                  EnumUtil.GetDescription(this.Status) + 
-                  ". " + str;
-            return ret;
+            if (WithRspStatus)
+                this.Status = (gw_ctrl.ESetStatus)data[offset++];
+            if(WithRspSetFlag)
+                this.RequestSetFlag = (gw_ctrl.ESetFlag)data[offset++];
+            if(WithRspType)
+                this.ParaType = (gw_para_type)data[offset++];
+            if (WithRspFlag)
+                this.Flag = (int)data[offset++];
+
+            offset += this.DecodeData(data, offset, out string str);
+            StringBuilder sb = new StringBuilder();
+            if (this.WithRspSetFlag)
+                sb.AppendFormat("{0}{1}",this.RequestSetFlag.GetDescription(),this.Name);
+            if(this.WithRspStatus)
+                sb.AppendFormat("{0}. ",this.Status.GetDescription());
+            if(this.WithRspType)
+                sb.AppendFormat("参数类型:{0} ",this.ParaType.GetDescription());
+            sb.Append(str);
+            msg = sb.ToString();
+            return offset - start;
         }
 
         public override byte[] encode(out string msg)
         {
-            byte[] data = new byte[2+this.ValuesLength];
+            int no = 0;
+            if (this.WithReqSetFlag)
+                no++;
+            if (this.WithReqFlag)
+                no++;
+            if (this.WithReqType)
+                no++;
+            byte[] data = new byte[no + this.ValuesLength];
             int offset = 0;
-            data[offset++] = (byte)this.RequestSetFlag;
-            data[offset++] = (byte)this.Flag;
+            if (this.WithReqSetFlag)
+                data[offset++] = (byte)this.RequestSetFlag;
+            if (this.WithReqType)
+                data[offset++] = (byte)this.ParaType;
+            if (this.WithReqFlag)
+                data[offset++] = (byte)this.Flag;
 
             this.EncodeData(data,offset, out string str);
-            msg = EnumUtil.GetDescription(this.RequestSetFlag) +
-                 this.Name + ". " + str;
+            StringBuilder sb = new StringBuilder();
+            if (this.WithReqSetFlag)
+                sb.AppendFormat("{0}{1}. ", this.RequestSetFlag.GetDescription(), this.Name);
+            if (this.WithReqType)
+                sb.AppendFormat("参数类型:{0} ", this.ParaType.GetDescription());
+            sb.Append(str);
+            msg = sb.ToString();
             return data;
         }
 
@@ -121,6 +187,7 @@ namespace cma.service.gw_cmd
             ctrl.Flag = this.Flag;
             ctrl.RSFalg = this.RequestSetFlag;
             ctrl.Result = this.Status;
+            ctrl.ParaType = this.ParaType;
         }
     }
 }

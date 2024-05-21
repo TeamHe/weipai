@@ -7,9 +7,17 @@ namespace cma.service.gw_cmd
 {
     public class gw_cmd_ctrl_baseinfo : gw_cmd_base_ctrl
     {
+        protected override bool WithReqSetFlag {  get { return true; } }
+
+        protected override bool WithReqType {  get { return true; } }
+
+        protected override bool WithRspStatus {  get { return true; } }
+
+        protected override bool WithRspType {  get { return true; } }
+
         public override int ValuesLength {  get { return 1; } }
 
-        public override string Name { get { return "基本信息上报"; } }
+        public override string Name { get { return "基本信息"; } }
 
         public override int PType {  get { return 0xa8; } }
 
@@ -24,47 +32,31 @@ namespace cma.service.gw_cmd
 
         public void Query(gw_ctrl_baseinfo info)
         {
+            if(info == null)
+                throw new ArgumentNullException("info");
             this.BaseInfo = info;
-            base.Query();
+            base.Query(info.ParaType);
         }
 
         public override int DecodeData(byte[] data, int offset, out string msg)
         {
-            throw new NotImplementedException();
+            int start = offset;
+            if (this.BaseInfo == null)
+                this.BaseInfo = new gw_ctrl_baseinfo();
+            FlushRespStatus(BaseInfo);
+            if (data.Length - offset < 1)
+                throw new Exception("数据缓冲区长度太小");
+            this.BaseInfo.Type = (gw_ctrl_baseinfo.InfoType)data[offset++];
+            msg = BaseInfo.ToString();
+            return offset - start;
         }
 
         public override int EncodeData(byte[] data, int offset, out string msg)
         {
-            throw new NotImplementedException();
-        }
-
-        public override int decode(byte[] data, int offset, out string msg)
-        {
             int start = offset;
-            if(this.BaseInfo == null)
-                this.BaseInfo = new gw_ctrl_baseinfo();
-            if (data.Length - offset < 3)
-                throw new Exception("数据缓冲区长度太小");
-
-            this.Status = (gw_ctrl.ESetStatus)data[offset++];
-            this.BaseInfo.Para_Type = (gw_para_type)data[offset++];
-            this.BaseInfo.Type = (gw_ctrl_baseinfo.InfoType)data[offset++];
-
-            msg = EnumUtil.GetDescription(this.Status) +
-                  ". " + this.BaseInfo.ToString();
-            return offset-start;
-        }
-
-        public override byte[] encode(out string msg)
-        {
-            byte[] data = new byte[3];
-            int offset = 0;
-            data[offset++] = (byte)this.RequestSetFlag;
-            data[offset++] = (byte)this.BaseInfo.Para_Type;
             data[offset++] = (byte)this.BaseInfo.Type;
-
-            msg = this.Name + ". " + this.BaseInfo.ToString();
-            return data;
+            msg = BaseInfo.ToString();
+            return offset - start;
         }
     }
 }
