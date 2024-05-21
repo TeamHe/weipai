@@ -47,7 +47,7 @@ namespace cma.service.gw_cmd
             if (period == null)
                 throw new ArgumentNullException(nameof(period));
             this.Period = period;
-            this.Update((gw_ctrl)period);
+            this.Update(period);
         }
 
         public override int DecodeData(byte[] data, int offset, out string msg)

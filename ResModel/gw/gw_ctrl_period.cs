@@ -21,10 +21,6 @@ namespace ResModel.gw
             HearTime ,
         }
 
-        /// <summary>
-        /// 采样类型
-        /// </summary>
-        public gw_func_code MainType { get; set; }
 
         /// <summary>
         /// 采样周期
@@ -53,7 +49,7 @@ namespace ResModel.gw
         public override string ToString(bool flag)
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("采样类型:{0} ", EnumUtil.GetDescription(this.MainType));
+            sb.AppendFormat("参数类型:{0} ", this.ParaType.GetDescription());
             if (flag || this.GetFlag((int)EFlag.MainTime))
                 sb.AppendFormat("采样周期:{0}min ", this.MainTime);
             if (flag || this.GetFlag((int)EFlag.SampleCount))

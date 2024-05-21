@@ -31,6 +31,8 @@ namespace ResModel.gw
 
         public int Flag { get; set; }
 
+        public gw_para_type ParaType { get; set; }
+
         public int SetFlag(int flag, int offset)
         {
             return flag | (0x01 << offset);

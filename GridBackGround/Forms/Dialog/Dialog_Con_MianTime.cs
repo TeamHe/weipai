@@ -19,7 +19,7 @@ namespace GridBackGround.Forms
         {
             this.AcceptButton = this.button1;
             this.CancelButton = this.button_Cancel;
-            ComboBoxItem.Init_items_enum(this.comboBox1, typeof(gw_func_code));
+            ComboBoxItem.Init_items_enum(this.comboBox1, typeof(gw_para_type));
             this.comboBox1.SelectedIndex = 0;
         }
 
@@ -28,12 +28,12 @@ namespace GridBackGround.Forms
         /// <summary>
         /// 设备类型
         /// </summary>
-        public gw_func_code Data_Type  
+        public gw_para_type Data_Type  
         {
             get
             {
                 ComboBoxItem color = this.comboBox1.SelectedItem as ComboBoxItem;
-                return (gw_func_code)color.Value;
+                return (gw_para_type)color.Value;
             }
             set
             {
@@ -62,7 +62,7 @@ namespace GridBackGround.Forms
                 this.textBox_MainTime.Text = period.MainTime.ToString();
                 this.textBox_sample_count.Text = period.SampleCount.ToString();
                 this.textBox_sample_freq.Text = period.SampleFreq.ToString();
-                this.Data_Type = period.MainType;
+                this.Data_Type = period.ParaType;
             }
         }
         #endregion
@@ -73,7 +73,7 @@ namespace GridBackGround.Forms
             
             if(this.period == null)
                 this.period = new gw_ctrl_period();
-            this.period.MainType = this.Data_Type;
+            this.period.ParaType = this.Data_Type;
             this.period.SetFlag((int)gw_ctrl_period.EFlag.HearTime, this.checkBox_HeartBeat.Checked);
             this.period.SetFlag((int)gw_ctrl_period.EFlag.MainTime, this.checkBox_MianTime.Checked);
             this.period.SetFlag((int)gw_ctrl_period.EFlag.SampleFreq, this.checkBox_samle_freq.Checked);
