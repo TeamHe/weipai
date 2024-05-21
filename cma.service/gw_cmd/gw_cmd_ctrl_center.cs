@@ -47,7 +47,7 @@ namespace cma.service.gw_cmd
             offset += gw_coding.GetString(data, offset, 64, out string str);
             this.Center.Domain = str;
 
-            msg = this.Center.ToString(this.RequestSetFlag == gw_ctrl.RequestSetFlag.Query);
+            msg = this.Center.ToString(this.RequestSetFlag == gw_ctrl.ESetFlag.Query);
             return offset - start;
         }
 

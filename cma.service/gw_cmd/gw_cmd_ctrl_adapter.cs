@@ -54,7 +54,7 @@ namespace cma.service.gw_cmd
             offset += gw_coding.GetString(data, offset, 20, out string str);
             Adapter.PhoneNumber = str;
 
-            msg = Adapter.ToString(this.RequestSetFlag == gw_ctrl.RequestSetFlag.Query);
+            msg = Adapter.ToString(this.RequestSetFlag == gw_ctrl.ESetFlag.Query);
             return 0;
         }
 
@@ -67,7 +67,7 @@ namespace cma.service.gw_cmd
                 offset += gw_coding.SetIPAddress(data, offset, Adapter.GateWay);
                 offset += gw_coding.SetIPAddress(data, offset, Adapter.DNS);
                 offset += gw_coding.SetString(data, offset, 20, Adapter.PhoneNumber);
-                if (this.RequestSetFlag == gw_ctrl.RequestSetFlag.Set)
+                if (this.RequestSetFlag == gw_ctrl.ESetFlag.Set)
                     msg = this.Adapter.ToString(false);
 
             }

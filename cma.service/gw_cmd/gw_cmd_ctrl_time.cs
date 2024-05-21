@@ -43,7 +43,7 @@ namespace cma.service.gw_cmd
         public override int EncodeData(byte[] data, int offset, out string msg)
         {
             msg = string.Empty;
-            if(this.RequestSetFlag == gw_ctrl.RequestSetFlag.Set)
+            if(this.RequestSetFlag == gw_ctrl.ESetFlag.Set)
                 msg = string.Format("当前时间: {0}", this.Time);
             offset += gw_coding.SetTime(data, offset, this.Time);
             return this.ValuesLength;
@@ -65,7 +65,7 @@ namespace cma.service.gw_cmd
         {
             if (data.Length - offset < 1)
                 throw new Exception("数据缓冲区长度太小");
-            this.Status = (gw_ctrl.Status)data[offset++];
+            this.Status = (gw_ctrl.ESetStatus)data[offset++];
 
             int ret = this.DecodeData(data, offset, out string str);
             msg = EnumUtil.GetDescription(this.Status) +

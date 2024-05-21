@@ -46,7 +46,7 @@ namespace cma.service.gw_cmd
             if (data.Length - offset < 3)
                 throw new Exception("数据缓冲区长度太小");
 
-            this.Status = (gw_ctrl.Status)data[offset++];
+            this.Status = (gw_ctrl.ESetStatus)data[offset++];
             this.BaseInfo.Para_Type = (gw_para_type)data[offset++];
             this.BaseInfo.Type = (gw_ctrl_baseinfo.InfoType)data[offset++];
 

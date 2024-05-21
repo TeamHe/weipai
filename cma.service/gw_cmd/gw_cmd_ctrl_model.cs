@@ -121,8 +121,8 @@ namespace cma.service.gw_cmd
         {
             if (data.Length - offset < 2)
                 throw new Exception("数据缓冲区长度太小");
-            this.Status = (gw_ctrl.Status)data[offset++];
-            this.RequestSetFlag = (gw_ctrl.RequestSetFlag)data[offset++];
+            this.Status = (gw_ctrl.ESetStatus)data[offset++];
+            this.RequestSetFlag = (gw_ctrl.ESetFlag)data[offset++];
 
             int ret = this.DecodeData(data, offset, out string str);
             msg = EnumUtil.GetDescription(this.RequestSetFlag) +

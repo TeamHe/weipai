@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace ResModel.gw
 {
@@ -7,7 +6,7 @@ namespace ResModel.gw
 
     public class gw_ctrl
     {
-        public enum RequestSetFlag
+        public enum ESetFlag
         {
             [Description("查询")]
             Query = 0x00,
@@ -16,7 +15,7 @@ namespace ResModel.gw
             Set = 0x01,
         }
 
-        public enum Status
+        public enum ESetStatus
         {
             [Description("成功")]
             Success = 0xff,
@@ -25,9 +24,9 @@ namespace ResModel.gw
             Failed = 0x00,
         }
 
-        public RequestSetFlag RSFalg { get; set; }
+        public ESetFlag RSFalg { get; set; }
 
-        public Status Result { get; set; }
+        public ESetStatus Result { get; set; }
 
 
         public int Flag { get; set; }

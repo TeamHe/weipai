@@ -57,7 +57,7 @@ namespace cma.service.gw_cmd
             msg = string.Empty;
             byte[] data = new byte[2 ];
             int offset = 0;
-            data[offset++] = (byte)gw_ctrl.Status.Success;  //数据发送状态: 成功
+            data[offset++] = (byte)gw_ctrl.ESetStatus.Success;  //数据发送状态: 成功
             data[offset++] = 0x00; //注册成功
             return data;
         }

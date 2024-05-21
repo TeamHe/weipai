@@ -24,7 +24,7 @@ namespace cma.service.gw_cmd
             int start  = offset;
             if(data.Length - offset <1)
                 throw new Exception("数据缓冲区长度太小");
-            this.Status = (gw_ctrl.Status)data[offset++];
+            this.Status = (gw_ctrl.ESetStatus)data[offset++];
             msg = "设置"  + this.Status.GetDescription();
             return offset - start;
         }

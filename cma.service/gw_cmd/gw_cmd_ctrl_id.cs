@@ -42,7 +42,7 @@ namespace cma.service.gw_cmd
             offset += gw_coding.GetString(data, offset, 17, out str);
             ID.NEW_CMD_ID = str;
 
-            msg = this.ID.ToString(this.RequestSetFlag == gw_ctrl.RequestSetFlag.Query);
+            msg = this.ID.ToString(this.RequestSetFlag == gw_ctrl.ESetFlag.Query);
 
             return this.ValuesLength;
         }

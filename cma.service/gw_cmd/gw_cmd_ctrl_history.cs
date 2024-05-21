@@ -20,7 +20,7 @@ namespace cma.service.gw_cmd
         /// <summary>
         /// 查询/设置 结果: 成功，失败
         /// </summary>
-        public gw_ctrl.Status Status { get; set; }
+        public gw_ctrl.ESetStatus Status { get; set; }
 
 
         public gw_ctrl_history History { get; set; }
@@ -44,7 +44,7 @@ namespace cma.service.gw_cmd
                 throw new Exception("数据缓冲区长度太小");
             if (this.History == null)
                 History = new gw_ctrl_history();
-            this.Status = (gw_ctrl.Status)data[offset++];
+            this.Status = (gw_ctrl.ESetStatus)data[offset++];
             History.Result = this.Status;
             History.Type = (gw_func_code)data[offset++];
             msg = string.Format("请求历史数据{1} 数据类型:{0}",

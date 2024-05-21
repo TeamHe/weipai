@@ -17,13 +17,13 @@ namespace cma.service.gw_cmd
         /// <summary>
         /// 参数配置类型标识: 查询，设置
         /// </summary>
-        public gw_ctrl.RequestSetFlag RequestSetFlag { get; set; }
+        public gw_ctrl.ESetFlag RequestSetFlag { get; set; }
 
 
         /// <summary>
         /// 查询/设置 结果: 成功，失败
         /// </summary>
-        public gw_ctrl.Status Status { get; set; }
+        public gw_ctrl.ESetStatus Status { get; set; }
 
         /// <summary>
         /// 设置标识位(每一个参数一个Bit)
@@ -61,13 +61,13 @@ namespace cma.service.gw_cmd
 
         public virtual void Query()
         {
-            this.RequestSetFlag = gw_ctrl.RequestSetFlag.Query;
+            this.RequestSetFlag = gw_ctrl.ESetFlag.Query;
             this.Execute();
         }
 
         public void Update()
         {
-            this.RequestSetFlag = gw_ctrl.RequestSetFlag.Set;
+            this.RequestSetFlag = gw_ctrl.ESetFlag.Set;
             this.Execute();
         }
 
@@ -88,8 +88,9 @@ namespace cma.service.gw_cmd
         {
             if (data.Length - offset < 3)
                 throw new Exception("数据缓冲区长度太小");
-            this.RequestSetFlag = (gw_ctrl.RequestSetFlag)data[offset++];
-            this.Status = (gw_ctrl.Status)data[offset++];
+            this.RequestSetFlag = (gw_ctrl.ESetFlag)data[offset++];
+            this.Status = (gw_ctrl.ESetStatus)data[offset++];
+            this.Status = (gw_ctrl.ESetStatus)data[offset++];
             this.Flag = (int)data[offset++];
 
             int ret = this.DecodeData(data, offset, out string str);

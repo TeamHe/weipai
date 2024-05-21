@@ -21,7 +21,7 @@ namespace cma.service.gw_cmd
         ///// <summary>
         ///// 结果: 成功，失败
         ///// </summary>
-        public gw_ctrl.Status Status { get; set; }
+        public gw_ctrl.ESetStatus Status { get; set; }
 
         public gw_cmd_ctrl_reset() { }
 
@@ -41,7 +41,7 @@ namespace cma.service.gw_cmd
         {
             if (data.Length - offset < 1)
                 throw new Exception("数据缓冲区长度太小");
-            this.Status = (gw_ctrl.Status)data[offset++];
+            this.Status = (gw_ctrl.ESetStatus)data[offset++];
 
             msg = this.Name + EnumUtil.GetDescription(this.Status);
             return 1;

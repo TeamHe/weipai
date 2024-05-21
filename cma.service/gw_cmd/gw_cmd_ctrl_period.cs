@@ -67,7 +67,7 @@ namespace cma.service.gw_cmd
             this.Period.SampleFreq = val;
 
             this.Period.HearTime = (int)data[offset++];
-            msg = Period.ToString(this.RequestSetFlag == gw_ctrl.RequestSetFlag.Query);
+            msg = Period.ToString(this.RequestSetFlag == gw_ctrl.ESetFlag.Query);
             return this.ValuesLength;
         }
 
@@ -90,7 +90,7 @@ namespace cma.service.gw_cmd
             if (this.Period == null)
                 this.Period = new gw_ctrl_period();
 
-            this.Status = (gw_ctrl.Status)data[offset++];
+            this.Status = (gw_ctrl.ESetStatus)data[offset++];
             this.Period.MainType = (gw_func_code)data[offset++];
             this.Flag = (int)data[offset++];
 
