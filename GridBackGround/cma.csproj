@@ -146,7 +146,6 @@
     <Compile Include="CommandDeal\nw\nw_cmd_e1_cmd_id.cs" />
     <Compile Include="CommandDeal\nw\nw_progress_update.cs" />
     <Compile Include="CommandDeal\Private\UserPhone.cs" />
-    <Compile Include="CommandDeal\WorkState_Error.cs" />
     <Compile Include="Config\Common\Messagebox_Textbox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -427,7 +426,6 @@
     <Compile Include="CommandDeal\Data\Data_ZD_Form.cs" />
     <Compile Include="CommandDeal\Data\Data_FP.cs" />
     <Compile Include="CommandDeal\FrameNO.cs" />
-    <Compile Include="CommandDeal\WorkState_Heart.cs" />
     <Compile Include="CommandDeal\Data\Data_Line_Temperature.cs" />
     <Compile Include="Communicat\TCPSeverWeb.cs" />
     <Compile Include="Forms\AboutBox1.cs">
@@ -501,7 +499,6 @@
     <Compile Include="PacketAnaLysis\BuildPacket.cs" />
     <Compile Include="PacketAnaLysis\PackDeal_Data.cs" />
     <Compile Include="PacketAnaLysis\PackDeal_Control.cs" />
-    <Compile Include="PacketAnaLysis\PackDeal_WorkState.cs" />
     <Compile Include="PacketAnaLysis\TypeFrame.cs" />
     <Compile Include="PacketAnaLysis\TypePacket.cs" />
     <Compile Include="SerialPort.cs" />
