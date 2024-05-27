@@ -1,7 +1,11 @@
 ﻿using ResModel.gw;
 using System;
 using System.Net;
+using System.Text.RegularExpressions;
+using System.Text;
 using System.Windows.Forms;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GridBackGround.Forms
 {
@@ -108,10 +112,9 @@ namespace GridBackGround.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void linkLabel_GetIP_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private async void linkLabel_GetIP_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            string str = PublicIP.MyPublicIP();
-            this.textBox_IP.Text = str;
+            this.textBox_IP.Text = await new PublicIP().MyPublicIP();
         }
        
         /// <summary>
@@ -146,23 +149,86 @@ namespace GridBackGround.Forms
         }
         class PublicIP
         {
-            public static string MyPublicIP()
+
+            /// <summary>
+            /// 获取页面html
+            /// </summary>
+            /// <param name="url">请求的地址</param>
+            /// <param name="encoding">编码方式</param>
+            /// <returns></returns>
+            public static string HttpGetPageHtml(string url, string encoding)
+            {
+                string pageHtml = string.Empty;
+                try
+                {
+                    using (WebClient MyWebClient = new WebClient())
+                    {
+                        Encoding encode = Encoding.GetEncoding(encoding);
+                        MyWebClient.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.84 Safari/537.36");
+                        MyWebClient.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于向Internet资源的请求进行身份验证的网络凭据
+                        Byte[] pageData = MyWebClient.DownloadData(url); //从指定网站下载数据
+                        pageHtml = encode.GetString(pageData);
+                    }
+                }
+                catch (Exception e)
+                {
+
+                }
+                return pageHtml;
+            }
+            /// <summary>
+            /// 从html中通过正则找到ip信息(只支持ipv4地址)
+            /// </summary>
+            /// <param name="pageHtml"></param>
+            /// <returns></returns>
+            public static string GetIPFromHtml(String pageHtml)
+            {
+                //验证ipv4地址
+                string reg = @"(?:(?:(25[0-5])|(2[0-4]\d)|((1\d{2})|([1-9]?\d)))\.){3}(?:(25[0-5])|(2[0-4]\d)|((1\d{2})|([1-9]?\d)))";
+                string ip = "";
+                Match m = Regex.Match(pageHtml, reg);
+                if (m.Success)
+                {
+                    ip = m.Value;
+                }
+                return ip;
+            }
+
+            public string GetIPFromUrl(string url)
             {
                 try
                 {
-                    using (System.Net.WebClient wc = new System.Net.WebClient())
-                    {
-                        string html = wc.DownloadString("http://ip.qq.com");
-                        System.Text.RegularExpressions.Match m = System.Text.RegularExpressions.Regex.Match(html, "<span class=\"red\">([^<]+)</span>");
-                        if (m.Success) return m.Groups[1].Value;
-
-                        return "0.0.0.0";
-                    }
+                    var html = HttpGetPageHtml(url, "utf-8");
+                    return GetIPFromHtml(html);
                 }
                 catch
                 {
-                    return "0.0.0.0";
+                    return string.Empty;
                 }
+            }
+            public string IP { get; set; }
+
+            public async Task<string> MyPublicIP()
+            {
+                List<string> urls = new List<string>();
+                urls.Add("https://tool.lu/ip/");
+                urls.Add("http://www.ip111.cn/");
+                urls.Add("http://www.882667.com/");
+
+                Task task = Task.Run(() =>
+                {
+
+
+                    foreach (var url in urls)
+                    {
+                        this.IP = GetIPFromUrl(url);
+                        if (this.IP.Length > 0)
+                            return;
+                    }
+                    this.IP = "0.0.0.0";
+                });
+                await task;
+                return this.IP;
             }
         }
     }
