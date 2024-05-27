@@ -99,12 +99,12 @@ namespace GridBackGround.Forms
 
             if (this.checkBox_DNS.Checked)
             {
-                if (!IPAddress.TryParse(this.textBox_GateWay.Text, out address))
+                if (!IPAddress.TryParse(this.textBox_DNS.Text, out address))
                 {
                     MessageBox.Show("请输入正确的DNS服务器");
                     return;
                 }
-                this.adapter.GateWay = address;
+                this.adapter.DNS = address;
             }
             this.DialogResult = DialogResult.OK;
         }
