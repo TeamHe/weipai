@@ -109,36 +109,26 @@ namespace GridBackGround.Forms.Dialog
             cmd.Update(dialog.Center);
         }
 
+        private gw_ctrl_id ctrl_id = null;
+
         private void 查询装置IDToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            gw_cmd_ctrl_id cmd = new gw_cmd_ctrl_id(this.pole);
-            cmd.Query();
-        }
-
-        gw_ctrl_id ctrl_id = null;
-
-        private void 设定装置IDToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Dialog_Con_ID dialog = new Dialog_Con_ID();
-         
-            if(ctrl_id != null)
+            Dialog_Con_ID dialog = new Dialog_Con_ID()
             {
-                dialog.Original_ID = ctrl_id.OriginalID;
-                dialog.NEW_CMD_ID = ctrl_id.NEW_CMD_ID;
-                dialog.Component_ID = ctrl_id.ComponentID;
-            }
+                ID = ctrl_id,
+            };
             if (dialog.ShowDialog() != DialogResult.OK)
                 return;
-            gw_ctrl_id id = new gw_ctrl_id()
-            {
-                Flag = dialog.SetFlag,
-                ComponentID = dialog.Component_ID,
-                OriginalID = dialog.Original_ID,
-                NEW_CMD_ID = dialog.NEW_CMD_ID,
-            };
+            ctrl_id = dialog.ID;
+
             gw_cmd_ctrl_id cmd = new gw_cmd_ctrl_id(this.pole);
-            cmd.Update(id);
-            ctrl_id = id;
+            if (dialog.Query)
+            {
+                cmd.Flag = dialog.Flag;
+                cmd.Query();
+            }
+            else 
+                cmd.Update(dialog.ID);
         }
         private void 常规复位ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -231,11 +221,16 @@ namespace GridBackGround.Forms.Dialog
             Dialog_Update du = new Dialog_Update();
             if (du.ShowDialog() != DialogResult.OK) 
                 return;
-            Comand_RemotedUpDate.RunRemotedUpDate(
-                du.Factory_Name, du.Model,
-                du.Hard_Version, du.Soft_Version,
-                du.UpdateTime, du.FileName,
-                this.pole.CMD_ID);
+            gw_progress_update upd = new gw_progress_update()
+            {
+                Info = new ResModel.gw_nw.gn_update_info
+                {
+                    FilePath = du.FileName,
+                    MaxPacLength = du.PacLength,
+                },
+                Time = du.UpdateTime,
+            };
+            upd.StartUpdate();
         }
         private void 工作模式切换ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -339,9 +334,7 @@ namespace GridBackGround.Forms.Dialog
             this.AddDropDownMenuItem(menu_time, "查询", this.查询上位机信息ToolStripMenuItem_Click);
             this.AddDropDownMenuItem(menu_time, "设置", this.设定上位机信息ToolStripMenuItem_Click);
 
-            menu_time = this.AddDropDownMenuItem("装置ID");
-            this.AddDropDownMenuItem(menu_time, "查询", this.查询装置IDToolStripMenuItem_Click);
-            this.AddDropDownMenuItem(menu_time, "设置", this.设定装置IDToolStripMenuItem_Click);
+            menu_time = this.AddDropDownMenuItem("装置ID", 查询装置IDToolStripMenuItem_Click);
 
             menu_time = this.AddDropDownMenuItem("装置复位");
             this.AddDropDownMenuItem(menu_time, "常规复位", this.常规复位ToolStripMenuItem_Click);

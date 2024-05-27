@@ -71,6 +71,16 @@ namespace ResModel.gw
             return flag & ~(0x01 << offset);
         }
 
+        public int ClearFlags(int flag, int mask)
+        {
+            return flag & ~(mask);
+        }
+
+        public void ClearFlags(int mask)
+        {
+            this.Flag = ClearFlags(this.Flag, mask);
+        }
+
         public void ClearFlag(int offset)
         {
             this.Flag = ClearFlag(this.Flag, offset);

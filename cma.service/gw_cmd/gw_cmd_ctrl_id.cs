@@ -41,14 +41,26 @@ namespace cma.service.gw_cmd
             this.FlushRespStatus(this.ID);
 
             string str;
+            if ((this.Flag & 0x08) > 0)
+                ID.NO = 1;
+            else if ((this.Flag & 0x10) > 0)
+                ID.NO = 2;
+            else if ((this.Flag & 0x20) > 0)
+                ID.NO = 3;
+            else if ((this.Flag & 0x40) > 0)
+                ID.NO = 4;
+            else if ((this.Flag & 0x80) > 0)
+                ID.NO = 5;
+
+            offset += gw_coding.GetString(data, offset, 17, out str);
+            ID.NEW_CMD_ID = str;
+
             offset += gw_coding.GetString(data, offset, 17, out str);
             ID.ComponentID = str;
 
             offset += gw_coding.GetString(data, offset, 17, out str);
             ID.OriginalID = str;
 
-            offset += gw_coding.GetString(data, offset, 17, out str);
-            ID.NEW_CMD_ID = str;
 
             msg = this.ID.ToString(this.RequestSetFlag == gw_ctrl.ESetFlag.Query);
 
@@ -60,9 +72,9 @@ namespace cma.service.gw_cmd
             msg = string.Empty;
             if(this.ID != null)
             {
+                offset += gw_coding.SetString(data, offset, 17, ID.NEW_CMD_ID);
                 offset += gw_coding.SetString(data, offset, 17, ID.ComponentID);
                 offset += gw_coding.SetString(data, offset, 17, ID.OriginalID);
-                offset += gw_coding.SetString(data, offset, 17, ID.NEW_CMD_ID);
                 msg = this.ID.ToString(false);
             }
             return this.ValuesLength;
