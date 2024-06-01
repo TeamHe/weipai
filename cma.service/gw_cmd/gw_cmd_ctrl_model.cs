@@ -1,7 +1,6 @@
 ﻿using ResModel;
 using ResModel.gw;
 using System;
-using Tools;
 
 namespace cma.service.gw_cmd
 {
@@ -63,7 +62,7 @@ namespace cma.service.gw_cmd
                         offset += gw_coding.GetU32(data, offset, out UInt32 uval);
                         model.Value = uval;
                         break;
-                    case gw_ctrl_model.EType.Single:
+                    case gw_ctrl_model.EType.F32:
                         offset += gw_coding.GetSingle(data, offset, out float fval);
                         model.Value = fval;
                         break;
@@ -96,7 +95,7 @@ namespace cma.service.gw_cmd
                         case gw_ctrl_model.EType.U32:
                             offset += gw_coding.SetU32(data, offset, (UInt32)model.Value);
                             break;
-                        case gw_ctrl_model.EType.Single:
+                        case gw_ctrl_model.EType.F32:
                             offset += gw_coding.SetSingle(data, offset, (float)model.Value);
                             break;
                     }

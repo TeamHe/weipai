@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Text;
 
 namespace ResModel.gw
@@ -10,14 +9,11 @@ namespace ResModel.gw
     {
         public enum EType
         {
-            [Description("无符号整数")]
             U32 = 0,
 
-            [Description("有符号整数")]
             S32 = 1,
 
-            [Description("单精度浮点数")]
-            Single = 2,
+            F32 = 2,
         }
 
         public string Name {  get; set; }
@@ -34,7 +30,7 @@ namespace ResModel.gw
             sb.Append(string.IsNullOrEmpty(this.Name) ? this.Key : this.Name);
             switch (this.Type)
             {
-                case EType.Single:
+                case EType.F32:
                     sb.AppendFormat(":{0}", (float)this.Value);
                     break;
                 case EType.S32:

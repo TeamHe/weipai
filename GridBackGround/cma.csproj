@@ -280,6 +280,12 @@
     <Compile Include="Forms\Dialog\UC_con_alarm.Designer.cs">
       <DependentUpon>UC_con_alarm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Dialog\UC_con_model.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialog\UC_con_model.Designer.cs">
+      <DependentUpon>UC_con_model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\EquMan\Dialog_TowerMan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -596,6 +602,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialog\UC_con_alarm.resx">
       <DependentUpon>UC_con_alarm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialog\UC_con_model.resx">
+      <DependentUpon>UC_con_model.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EquMan\Dialog_TowerMan.resx">
       <DependentUpon>Dialog_TowerMan.cs</DependentUpon>
