@@ -221,7 +221,7 @@ namespace GridBackGround.Forms.Dialog
             Dialog_Update du = new Dialog_Update();
             if (du.ShowDialog() != DialogResult.OK) 
                 return;
-            gw_progress_update upd = new gw_progress_update()
+            gw_progress_update upd = new gw_progress_update(this.pole)
             {
                 Info = new ResModel.gw_nw.gn_update_info
                 {
@@ -353,6 +353,7 @@ namespace GridBackGround.Forms.Dialog
             this.AddDropDownMenuItem(menu_time, "设置", this.设置模型参数ToolStripMenuItem_Click);
 
             menu_time = this.AddDropDownMenuItem("报警阈值", this.menuitem_alarm_click);
+            menu_time = this.AddDropDownMenuItem("远程升级", 远程升级装置程序ToolStripMenuItem_Click);
 
             this.ParentMenu.DropDownItems.Add(new ToolStripSeparator());
 
@@ -366,8 +367,6 @@ namespace GridBackGround.Forms.Dialog
 
             this.ParentMenu.DropDownItems.Add(new ToolStripSeparator());
 
-            menu_time = this.AddDropDownMenuItem("远程升级装置程序", 远程升级装置程序ToolStripMenuItem_Click);
-            menu_time = this.AddDropDownMenuItem("正式运行升级程序");
             menu_time.Visible = false;
             menu_time = this.AddDropDownMenuItem("切换装置运行程序", 工作模式切换ToolStripMenuItem_Click);
 

@@ -46,7 +46,18 @@ namespace ResModel.gw
             return 4;
         }
 
+        public static int SetBytes(byte[] data, int offset, int len, byte[] src)
+        {
+            Buffer.BlockCopy(src, 0, data, offset, len);
+            return len;
+        }
 
+        public static int GetBytes(byte[] data, int offset, int len, out byte[] bytes)
+        {
+            bytes = new byte[len];
+            Buffer.BlockCopy(data, offset, bytes, 0, len);
+            return len;
+        }
 
         public static int GetSingle(byte[] data, int offset, out float value)
         {

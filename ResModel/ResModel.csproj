@@ -58,6 +58,7 @@
     <Compile Include="gw\gw_ctrl_period.cs" />
     <Compile Include="gw\gw_ctrl_reset.cs" />
     <Compile Include="gw\gw_ctrl_revival.cs" />
+    <Compile Include="gw\gw_ctrl_update.cs" />
     <Compile Include="gw\gw_stat_base_info.cs" />
     <Compile Include="gw\gw_stat_error.cs" />
     <Compile Include="gw\gw_stat_work.cs" />

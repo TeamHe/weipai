@@ -47,6 +47,7 @@
     <Compile Include="gw_cmd\gw_cmd_ctrl_baseinfo.cs" />
     <Compile Include="gw_cmd\gw_cmd_ctrl_revival.cs" />
     <Compile Include="gw_cmd\gw_cmd_ctrl_time.cs" />
+    <Compile Include="gw_cmd\gw_cmd_ctrl_update.cs" />
     <Compile Include="gw_cmd\gw_cmd_data_ice.cs" />
     <Compile Include="gw_cmd\gw_cmd_base.cs" />
     <Compile Include="gw_cmd\gw_cmd_base_ctrl.cs" />
@@ -65,7 +66,7 @@
     <Compile Include="gw_cmd\gw_cmd_stat_info.cs" />
     <Compile Include="gw_cmd\gw_cmd_stat_work.cs" />
     <Compile Include="gw_cmd\gw_cmd_ctrl_model.cs" />
-    <Compile Include="gw_cmd\gw_stat_error.cs" />
+    <Compile Include="gw_cmd\gw_progress_update.cs" />
     <Compile Include="gw_cmd\gw_cmd_stat_error.cs" />
     <Compile Include="PowerPole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
