@@ -14,18 +14,39 @@ namespace cma.service.gw_cmd
 
         public override gw_frame_type RecvFrameType { get { return gw_frame_type.ResControl; } }
 
+        /// <summary>
+        /// 请求报文是否包含参数配置类型标识字段(查询，设置)
+        /// </summary>
         protected virtual bool WithReqSetFlag { get { return false; } }
 
+        /// <summary>
+        /// 请求是否包含标识位字段（请求或设置的参数项）
+        /// </summary>
         protected virtual bool WithReqFlag { get { return false; } }
 
+        /// <summary>
+        /// 请求是否包含参数类型字段
+        /// </summary>
         protected virtual bool WithReqType { get { return false; } }
 
+        /// <summary>
+        /// 响应包是否包含数据发送状态标识 (成功，失败)
+        /// </summary>
         protected virtual bool WithRspStatus { get { return false; } }
 
+        /// <summary>
+        /// 响应包是否包含参数类型字段
+        /// </summary>
         protected virtual bool WithRspType { get { return false; } }
 
+        /// <summary>
+        /// 响应包是否包含标识位字段
+        /// </summary>
         protected virtual bool WithRspFlag { get { return false; } }
 
+        /// <summary>
+        /// 响应包是否包含参数配置类型字段
+        /// </summary>
         protected virtual bool WithRspSetFlag { get { return false; } }
 
         /// <summary>
@@ -77,6 +98,8 @@ namespace cma.service.gw_cmd
         public virtual void Query()
         {
             this.RequestSetFlag = gw_ctrl.ESetFlag.Query;
+            if(this.WithReqFlag)
+                this.Flag = 0xff;
             this.Execute();
         }
 

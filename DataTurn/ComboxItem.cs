@@ -75,7 +75,21 @@ namespace Tools
             }
         }
 
+        public static void Set_Value(ComboBox comboBox, Enum value)
+        {
+            Set_Value(comboBox,Convert.ToInt32(value));
+        }
 
+        public static object GetValue(ComboBox comboBox)
+        {
+            if (comboBox == null) throw new ArgumentNullException("combox");
+            
+            if(comboBox.SelectedItem == null)
+                return null;
+
+            ComboBoxItem item = comboBox.SelectedItem as ComboBoxItem;
+            return item.Value;
+        }
 
     }
 }

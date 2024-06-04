@@ -140,8 +140,6 @@
             this.textBox_Contrast.Size = new System.Drawing.Size(100, 21);
             this.textBox_Contrast.TabIndex = 9;
             this.textBox_Contrast.Text = "50";
-            this.textBox_Contrast.TextChanged += new System.EventHandler(this.OnTextChaned);
-            this.textBox_Contrast.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Integer_KeyPress);
             // 
             // textBox_Saturation
             // 
@@ -150,8 +148,6 @@
             this.textBox_Saturation.Size = new System.Drawing.Size(100, 21);
             this.textBox_Saturation.TabIndex = 8;
             this.textBox_Saturation.Text = "50";
-            this.textBox_Saturation.TextChanged += new System.EventHandler(this.OnTextChaned);
-            this.textBox_Saturation.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Integer_KeyPress);
             // 
             // textBox_Luminance
             // 
@@ -160,8 +156,6 @@
             this.textBox_Luminance.Size = new System.Drawing.Size(100, 21);
             this.textBox_Luminance.TabIndex = 7;
             this.textBox_Luminance.Text = "50";
-            this.textBox_Luminance.TextChanged += new System.EventHandler(this.OnTextChaned);
-            this.textBox_Luminance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Integer_KeyPress);
             // 
             // comboBox_Resolution
             // 

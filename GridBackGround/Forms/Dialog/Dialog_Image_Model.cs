@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using ResModel.gw;
+using System;
 using System.Windows.Forms;
+using Tools;
 
 namespace GridBackGround.Forms
 {
@@ -14,13 +10,93 @@ namespace GridBackGround.Forms
     /// </summary>
     public partial class Dialog_Image_Model : Form
     {
-        #region 初始化
+        private gw_img_para para;
+
+        public gw_img_para Para
+        {
+            get { return para; }
+            set
+            {
+                this.para = value;
+                this.Color = para.Color;
+                this.Resolution = para.Resolution;
+                this.Contrast = para.Contrast;
+                this.Luminance = para.Luminance;
+                this.Saturation = para.Saturation;
+
+                this.checkBox_色彩选择.Checked = para.GetFlag(gw_img_para.EFlag.Color);
+                this.checkBox_图像分辨率.Checked = para.GetFlag(gw_img_para.EFlag.Resolution);
+                this.checkBox_亮度.Checked = para.GetFlag(gw_img_para.EFlag.Luminance);
+                this.checkBox_对比度.Checked = para.GetFlag(gw_img_para.EFlag.Contrast);
+                this.checkBox_饱和度.Checked = para.GetFlag(gw_img_para.EFlag.Saturation);
+            }
+        }
+
+        /// <summary>
+        /// 色彩选择
+        /// </summary>
+        private gw_img_para.EColor Color
+        {
+            get { return (gw_img_para.EColor)ComboBoxItem.GetValue(comboBox_Color_Select); }
+            set { ComboBoxItem.Set_Value(comboBox_Color_Select, value); }
+        }
+
+        private gw_img_para.EResolution Resolution
+        {
+            get { return (gw_img_para.EResolution)ComboBoxItem.GetValue(comboBox_Resolution); }
+            set { ComboBoxItem.Set_Value(comboBox_Resolution, value); }
+        }
+
+        private int Contrast
+        {
+            get
+            {
+                int val = int.Parse(this.textBox_Contrast.Text);
+                if (val < 0 && val > 100)
+                    throw new ArgumentOutOfRangeException();
+                return val;
+            }
+            set
+            {
+                this.textBox_Contrast.Text = value.ToString();
+            }
+        }
+
+        private int Saturation
+        {
+            get
+            {
+                int val = int.Parse(this.textBox_Saturation.Text);
+                if (val < 0 && val > 100)
+                    throw new ArgumentOutOfRangeException();
+                return val;
+            }
+            set
+            {
+                this.textBox_Saturation.Text = value.ToString();
+            }
+        }
+        private int Luminance
+        {
+            get
+            {
+                int val = int.Parse(this.textBox_Luminance.Text);
+                if (val < 0 && val > 100)
+                    throw new ArgumentOutOfRangeException();
+                return val;
+            }
+            set
+            {
+                this.textBox_Luminance.Text = value.ToString();
+            }
+        }
+
         public Dialog_Image_Model()
         {
             InitializeComponent();
             this.CenterToParent();
         }
-        
+
         /// <summary>
         /// 加载时处理
         /// </summary>
@@ -28,54 +104,29 @@ namespace GridBackGround.Forms
         /// <param name="e"></param>
         private void Dialog_Image_Para_Load(object sender, EventArgs e)
         {
-            this.comboBox_Color_Select.SelectedIndex = 1;   //彩色
-            this.comboBox_Resolution.SelectedIndex = 2;     //720P
             this.AcceptButton = this.button_OK;
             this.CancelButton = this.button_Cancel;
-            this.button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-        }
-        #endregion
-        
-        #region 公共变量
-        /// <summary>
-        /// 标识
-        /// </summary>
-        public int RequestFlag { get; set; }
-        /// <summary>
-        /// 色彩选择
-        /// </summary>
-        public int Color_Select
-        { 
-            get { return this.comboBox_Color_Select.SelectedIndex + 1; }
-            set { this.comboBox_Color_Select.SelectedIndex = value - 1; }
-        }
-        /// <summary>
-        /// 自定义图像分辨率
-        /// </summary>
-        public int Resolution
-        { 
-            get {
-                if (this.comboBox_Resolution.SelectedIndex == 5)
-                    return 3;
-                return this.comboBox_Resolution.SelectedIndex + 1; 
-            }
-            set { this.comboBox_Resolution.SelectedIndex = value - 1; }
-        }
-        /// <summary>
-        /// 亮度
-        /// </summary>
-        public UInt16 Luminance { get; set; }
-        /// <summary>
-        /// 对比度
-        /// </summary>
-        public UInt16 Contrast { get; set; }
-        /// <summary>
-        /// 饱和度
-        /// </summary>
-        public UInt16 Saturation { get; set; }
-        #endregion
+            this.button_Cancel.DialogResult = DialogResult.Cancel;
 
-        #region 私有函数
+            ComboBoxItem.Init_items_enum(this.comboBox_Color_Select, typeof(gw_img_para.EColor));
+            ComboBoxItem.Init_items_enum(this.comboBox_Resolution, typeof(gw_img_para.EResolution));
+
+            this.Color = gw_img_para.EColor.Colours;
+            this.Resolution = gw_img_para.EResolution.R1024_768;
+            this.Luminance = 50;
+            this.Saturation = 50;
+            this.Contrast = 50;
+
+            this.checkBox_色彩选择.Checked = true;
+            this.checkBox_图像分辨率.Checked = true;
+            this.checkBox_亮度.Checked = true;
+            this.checkBox_对比度.Checked = true;
+            this.checkBox_饱和度.Checked = true;
+        }
+
+
+
+
         /// <summary>
         /// 确定按钮
         /// </summary>
@@ -83,98 +134,51 @@ namespace GridBackGround.Forms
         /// <param name="e"></param>
         private void button_OK_Click(object sender, EventArgs e)
         {
-            RequestFlag = 0;
-            if (this.checkBox_色彩选择.Checked)
-            {
-                //色彩选择
-                RequestFlag += 1;
-            }
-            if (this.checkBox_图像分辨率.Checked)
-            {
-                //自定义图像分辨率
-                Resolution = this.comboBox_Resolution.SelectedIndex + 1;
-                RequestFlag += 2;
-            }
+            if(this.para == null)
+                this.para = new gw_img_para();
+            para.SetFlag(gw_img_para.EFlag.Color, this.checkBox_色彩选择.Checked);
+            para.SetFlag(gw_img_para.EFlag.Resolution, this.checkBox_图像分辨率.Checked);
+            para.SetFlag(gw_img_para.EFlag.Luminance,this.checkBox_亮度.Checked);
+            para.SetFlag(gw_img_para.EFlag.Contrast,this.checkBox_对比度.Checked) ;
+            para.SetFlag(gw_img_para.EFlag.Saturation,this.checkBox_饱和度.Checked);
+
+            if(this.checkBox_色彩选择.Checked)
+                para.Color = this.Color;
+            if(this.checkBox_图像分辨率.Checked)
+                para.Resolution = this.Resolution;
             if (this.checkBox_亮度.Checked)
-            {
                 try
                 {
-                    Luminance = UInt16.Parse(this.textBox_Luminance.Text);      //亮度
+                    para.Luminance = this.Luminance;
                 }
                 catch
                 {
-                    MessageBox.Show("请输入正确的数字");
+                    MessageBox.Show("请输入正确的亮度");
                     return;
                 }
-                if (Luminance > 100 || Luminance == 0)
-                {
-                    MessageBox.Show("亮度的取值范围为1～100。");
-                    return;
-                }
-                RequestFlag += 4;
-            }
-            //对比度
+
             if (this.checkBox_对比度.Checked)
-            {
                 try
                 {
-                    Contrast = UInt16.Parse(this.textBox_Contrast.Text);        //对比度
+                    para.Contrast = this.Contrast;
                 }
                 catch
                 {
-                    MessageBox.Show("请输入正确的数字");
+                    MessageBox.Show("请输入正确的对比度");
                     return;
                 }
-                if (Contrast > 100 || Contrast == 0)
-                {
-                    MessageBox.Show("对比度的取值范围为1～100。");
-                    return;
-                }
-                RequestFlag += 8;
-            }
+
             if (this.checkBox_饱和度.Checked)
-            {
                 try
                 {
-                    Saturation = UInt16.Parse(this.textBox_Saturation.Text);    //饱和度
+                    para.Saturation = this.Saturation;
                 }
                 catch
                 {
-                    MessageBox.Show("请输入正确的数字");
+                    MessageBox.Show("请输入正确的饱和度");
                     return;
                 }
-                if (Saturation > 100 || Saturation == 0)
-                {
-                    MessageBox.Show("饱和度的取值范围为1～100。");
-                    return;
-                }
-                RequestFlag += 16;
-            }
-
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.Dispose();
+            this.DialogResult = DialogResult.OK;
         }
-
-        private void Integer_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((!(e.KeyChar >= 0x30 && e.KeyChar <= 0x39)) && (e.KeyChar != 0x08))
-            { e.Handled = true; }
-        }
-
-        private void OnTextChaned(object sender,EventArgs e)
-        {
-            TextBox textbox = (TextBox)sender;
-            try
-            {
-                var value = int.Parse(textbox.Text);
-                if (value > 100)
-                    textbox.Text = "100";
-            }
-            catch 
-            {
-                MessageBox.Show("请输入正确的数字为1-100");
-            }
-        }
-        #endregion
     }
 }

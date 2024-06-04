@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
 namespace ResModel.gw
 {
@@ -38,6 +39,11 @@ namespace ResModel.gw
             return flag | (0x01 << offset);
         }
 
+        public void SetFlag(Enum flag)
+        {
+            this.SetFlag(Convert.ToInt32(flag));
+        }
+
         public void SetFlag(int offset)
         {
             this.Flag = this.SetFlag(this.Flag, offset);
@@ -51,6 +57,10 @@ namespace ResModel.gw
                 this.Flag = this.ClearFlag(this.Flag, offset);
         }
 
+        public void SetFlag(Enum e, bool flag)
+        {
+            SetFlag(Convert.ToInt32(e), flag);
+        }
 
 
         public bool GetFlag(int flag, int offset)
@@ -59,6 +69,11 @@ namespace ResModel.gw
                 return true;
             else
                 return false;
+        }
+
+        public bool GetFlag(Enum flag)
+        {
+            return GetFlag(Convert.ToInt32(flag));
         }
 
         public bool GetFlag(int offset)

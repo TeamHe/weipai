@@ -105,7 +105,6 @@
     <Compile Include="CommandDeal\Data\RealData_Wea.cs" />
     <Compile Include="CommandDeal\Image\Image_Photo_MAN.cs" />
     <Compile Include="CommandDeal\Image\Image_TimeTable.cs" />
-    <Compile Include="CommandDeal\Image\Image_Model.cs" />
     <Compile Include="CommandDeal\Image\Image_Photo_UP.cs" />
     <Compile Include="CommandDeal\Image\Image_Photo_Adjust.cs" />
     <Compile Include="CommandDeal\Image\Photo_man.cs" />

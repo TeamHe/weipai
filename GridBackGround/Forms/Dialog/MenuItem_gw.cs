@@ -171,17 +171,16 @@ namespace GridBackGround.Forms.Dialog
 
         private void 查询图像采集参数ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Image_Model.Query(this.pole.CMD_ID);
+            gw_cmd_img_para cmd = new gw_cmd_img_para(this.pole);
+            cmd.Query();
         }
         private void 设定图像采集参数ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Dialog_Image_Model dip = new Dialog_Image_Model();
-            if (dip.ShowDialog() != DialogResult.OK)
-                return; 
-            Image_Model.Set(this.pole.CMD_ID,
-                dip.RequestFlag, dip.Color_Select,
-                dip.Resolution, dip.Luminance,
-                dip.Contrast, dip.Saturation);
+            Dialog_Image_Model dialog = new Dialog_Image_Model();
+            if (dialog.ShowDialog() != DialogResult.OK)
+                return;
+            gw_cmd_img_para cmd = new gw_cmd_img_para(this.pole);
+            cmd.Update(dialog.Para);
         }
 
         private void 设定拍照时间表ToolStripMenuItem_Click(object sender, EventArgs e)

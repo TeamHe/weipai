@@ -654,14 +654,12 @@
             this.查询图像采集参数ToolStripMenuItem.Name = "查询图像采集参数ToolStripMenuItem";
             this.查询图像采集参数ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.查询图像采集参数ToolStripMenuItem.Text = "查询";
-            this.查询图像采集参数ToolStripMenuItem.Click += new System.EventHandler(this.查询图像采集参数ToolStripMenuItem_Click);
             // 
             // 设定图像采集参数ToolStripMenuItem
             // 
             this.设定图像采集参数ToolStripMenuItem.Name = "设定图像采集参数ToolStripMenuItem";
             this.设定图像采集参数ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.设定图像采集参数ToolStripMenuItem.Text = "设定";
-            this.设定图像采集参数ToolStripMenuItem.Click += new System.EventHandler(this.设定图像采集参数ToolStripMenuItem_Click);
             // 
             // 拍照时间表设置ToolStripMenuItem
             // 

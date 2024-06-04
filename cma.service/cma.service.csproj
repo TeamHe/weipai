@@ -66,6 +66,8 @@
     <Compile Include="gw_cmd\gw_cmd_stat_info.cs" />
     <Compile Include="gw_cmd\gw_cmd_stat_work.cs" />
     <Compile Include="gw_cmd\gw_cmd_ctrl_model.cs" />
+    <Compile Include="gw_cmd\gw_cmd_img_base.cs" />
+    <Compile Include="gw_cmd\gw_cmd_img_para.cs" />
     <Compile Include="gw_cmd\gw_progress_update.cs" />
     <Compile Include="gw_cmd\gw_cmd_stat_error.cs" />
     <Compile Include="PowerPole.cs" />

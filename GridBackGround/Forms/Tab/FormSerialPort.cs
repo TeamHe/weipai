@@ -444,31 +444,6 @@ namespace GridBackGround
 
         #region 图像
 
-        #region 图像采集参数
-        private void 查询图像采集参数ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())
-                return;
-            CommandDeal.Image_Model.Query(CMD_ID);
-        }
-        private void 设定图像采集参数ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())
-                return;
-            Forms.Dialog_Image_Model dip = new Forms.Dialog_Image_Model();
-            if (dip.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-            {
-                CommandDeal.Image_Model.Set(CMD_ID,
-                    dip.RequestFlag,
-                    dip.Color_Select,
-                    dip.Resolution,
-                    dip.Luminance,
-                    dip.Contrast,
-                    dip.Saturation);
-            }
-        }
-        #endregion
-
         #region 手动请求照片
         /// <summary>
         /// 手动请求照片
