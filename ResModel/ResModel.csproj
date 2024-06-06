@@ -59,6 +59,7 @@
     <Compile Include="gw\gw_ctrl_reset.cs" />
     <Compile Include="gw\gw_ctrl_revival.cs" />
     <Compile Include="gw\gw_ctrl_update.cs" />
+    <Compile Include="gw\gw_data_inclination.cs" />
     <Compile Include="gw\gw_img_para.cs" />
     <Compile Include="gw\gw_stat_base_info.cs" />
     <Compile Include="gw\gw_stat_error.cs" />
@@ -96,7 +97,6 @@
     <Compile Include="CollectData\Windage_Yaw.cs" />
     <Compile Include="CollectData\Conductor_Sag.cs" />
     <Compile Include="CollectData\Ice.cs" />
-    <Compile Include="CollectData\Inclination.cs" />
     <Compile Include="CollectData\Line_Temperature.cs" />
     <Compile Include="CollectData\Vibration_Character.cs" />
     <Compile Include="CollectData\Vibration_Form.cs" />

@@ -213,11 +213,21 @@ namespace GridBackGround
                 type = typeof(db_data_picture),
                 gridView = this.dataGridView_image,
             };
+            tabPage_inclination.Tag = new Tab_Page_Info() {
+                name = "杆塔倾斜数据",
+                type = typeof(db_data_gw_inclination),
+                gridView= this.dataGridView_inclination,
+            };
 
+            dataGridView_inclination.RowPostPaint += dataGridView_RowPostPaint;
+            this.Column_inclination_cid.Visible = false;
 
             this.tabPage_weather.Enter += TabPage_Enter;
             this.tabPage_image.Enter += TabPage_Enter;
             this.tabPage_ice.Enter += TabPage_Enter;
+            this.tabPage_inclination.Enter += TabPage_Enter;
+
+            this.TabPage_Enter(this.tabPage_weather,new EventArgs());
         }
 
         private void TabPage_Enter(object sender, EventArgs e)

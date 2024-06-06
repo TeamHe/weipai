@@ -58,6 +58,7 @@
     <Compile Include="gw_cmd\gw_cmd_ctrl_center.cs" />
     <Compile Include="gw_cmd\gw_cmd_ctrl_id.cs" />
     <Compile Include="gw_cmd\gw_cmd_ctrl_reset.cs" />
+    <Compile Include="gw_cmd\gw_cmd_data_inclination.cs" />
     <Compile Include="gw_cmd\gw_cmd_handle.cs" />
     <Compile Include="DisPacket.cs" />
     <Compile Include="Equs.cs" />

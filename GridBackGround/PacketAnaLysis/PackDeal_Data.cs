@@ -44,9 +44,6 @@ namespace GridBackGround.PacketAnaLysis
                     //case PacketType_Monitoring.Weather:
                     //    CommandDeal.Data_Weather.Deal(pole, frame_No, data);
                     //    break;
-                    case PacketType_Monitoring.Gradient_Tower:
-                        CommandDeal.Data_GTQX.Deal(pole, frame_No, data);
-                        break;
                     case PacketType_Monitoring.Vibration_Character:
                         CommandDeal.Data_ZD_Feature.Deal(pole, frame_No, data);
                         break;

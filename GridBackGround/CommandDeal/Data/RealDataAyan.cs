@@ -89,8 +89,6 @@ namespace GridBackGround.CommandDeal.Data
                 //微气象
                 case ICMP.Weather:
                     return new Weather(this.Name, this.ID, data);
-                case ICMP.Inclination:
-                    return new Inclinations(this.Name,this.ID,data);
                 case ICMP.Ice:
                     return new Ice(this.Name,this.ID,data);
             }
