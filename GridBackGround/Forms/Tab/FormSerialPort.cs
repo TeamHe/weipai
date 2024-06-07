@@ -462,25 +462,6 @@ namespace GridBackGround
         }
         #endregion
 
-        #region 拍照时间表
-        private void 设定拍照时间表ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())
-                return;
-            Forms.Dialog_Image_TimeTable dit = new Forms.Dialog_Image_TimeTable();
-            if (dit.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-            {
-                if (dit.Qurey_State)//查询
-                    CommandDeal.Image_TimeTable.Query(CMD_ID, dit.Channel_No);
-                else//设定
-                    CommandDeal.Image_TimeTable.Set(
-                        CMD_ID,
-                        dit.Channel_No,
-                        dit.TimeTable);
-            }
-        }
-        #endregion
-
         #region 摄像机远程调节
         private void 摄像机远程调节ToolStripMenuItem_Click(object sender, EventArgs e)
         {

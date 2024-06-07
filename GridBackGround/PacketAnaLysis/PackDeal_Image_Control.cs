@@ -30,10 +30,6 @@ namespace GridBackGround.PacketAnaLysis
             CommandDeal.Image_Photo_UP imgUP;
             switch (packet_Type)
             {
-                //时间表响应
-                case PacketType_Image.Photo_TimeTable:
-                    CommandDeal.Image_TimeTable.Response(pole, frame_No, data);
-                    break;
                     //手动拍照片
                 case PacketType_Image.Take_Photo:
                     CommandDeal.Image_Photo_MAN.Response(pole, frame_No, data);

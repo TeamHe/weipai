@@ -43,7 +43,7 @@ namespace GridBackGround.HTTP.zlwp
                 }
                 string mn = jObject["mn"].ToString();
                 int channel = (int)jObject["channel"];
-                List<IPhotoTime> list = new List<IPhotoTime>();
+                List<PhotoTime> list = new List<PhotoTime>();
                 JArray jArray = jObject["tables"] as JArray;
                 foreach(JObject jObject in jArray)
                 {

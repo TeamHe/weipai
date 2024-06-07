@@ -1,31 +1,9 @@
-﻿using System;
-
-namespace ResModel.Image
+﻿namespace ResModel.Image
 {
     /// <summary>
     /// 拍照时间表
     /// </summary>
-    public interface IPhotoTime
-    {
-        /// <summary>
-        /// 时
-        /// </summary>
-        int Hour { get; set; }
-        /// <summary>
-        /// 分
-        /// </summary>
-        int Minute { get; set; }
-        /// <summary>
-        /// 预置位号
-        /// </summary>
-        int Presetting_No { get; set; }
-        
-    }
-
-    /// <summary>
-    /// 拍照时间表
-    /// </summary>
-    public class PhotoTime : IPhotoTime
+    public class PhotoTime
     {
         /// <summary>
         /// 时
@@ -46,6 +24,8 @@ namespace ResModel.Image
             this.Minute = minute;
             this.Presetting_No = preset_No;
         }
+
+        public PhotoTime() { }
 
         public override string ToString()
         {

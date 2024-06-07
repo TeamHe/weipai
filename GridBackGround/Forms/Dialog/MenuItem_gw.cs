@@ -4,6 +4,8 @@ using System.Windows.Forms;
 using cma.service.gw_cmd;
 using ResModel.gw;
 using System.Net;
+using System.Collections.Generic;
+using ResModel.Image;
 
 namespace GridBackGround.Forms.Dialog
 {
@@ -183,17 +185,29 @@ namespace GridBackGround.Forms.Dialog
             cmd.Update(dialog.Para);
         }
 
+        private List<PhotoTime> photoTimes;
+        private bool PhotoTimeQuery = true;
+
         private void 设定拍照时间表ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Dialog_Image_TimeTable dit = new Dialog_Image_TimeTable();
-            dit.TimeTable = Image_TimeTable.TimeTable;
-            if (dit.ShowDialog() != DialogResult.OK)
+            Dialog_Image_TimeTable dialog = new Dialog_Image_TimeTable()
+            {
+                nw_flag = false,
+                Qurey_State = PhotoTimeQuery,
+                TimeTable = this.photoTimes,
+            };
+            if (dialog.ShowDialog() != DialogResult.OK)
                 return;
-            if (dit.Qurey_State)//查询
-                Image_TimeTable.Query(this.pole.CMD_ID, dit.Channel_No);
-            else//设定
-                Image_TimeTable.Set(this.pole.CMD_ID,
-                    dit.Channel_No, dit.TimeTable);
+
+            this.PhotoTimeQuery = dialog.Qurey_State;
+            gw_cmd_img_timetable cmd = new gw_cmd_img_timetable(this.pole);
+            if(dialog.Qurey_State)
+                cmd.Query(dialog.Channel_No);
+            else
+            {
+                this.photoTimes = dialog.TimeTable;
+                cmd.Update(dialog.Channel_No,dialog.TimeTable);
+            }
         }
 
         private void 手动请求照片ToolStripMenuItem_Click(object sender, EventArgs e)

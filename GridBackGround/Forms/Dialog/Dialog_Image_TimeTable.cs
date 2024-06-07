@@ -22,11 +22,11 @@ namespace GridBackGround.Forms
         {
             if (TimeTable == null)
             {
-                TimeTable = new List<IPhotoTime>();
+                TimeTable = new List<PhotoTime>();
             }
             else
             {
-                foreach (IPhotoTime ptt in TimeTable)
+                foreach (PhotoTime ptt in TimeTable)
                 {
                     ListViewItem lvi = new ListViewItem();
                     lvi.Text = ptt.Hour.ToString();
@@ -36,7 +36,7 @@ namespace GridBackGround.Forms
                 }
             }
            
-            button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            button_Cancel.DialogResult = DialogResult.Cancel;
         }
 
         #region 公共变量
@@ -45,11 +45,28 @@ namespace GridBackGround.Forms
         /// </summary>
         /// 
         public int Channel_No { get; set; }
-        public bool Qurey_State { get; set; }
+        private bool query = false;
+        public bool Qurey_State 
+        {
+            get { return query; }
+            set { 
+                this.query =  value;
+                if (this.query)
+                {
+                    this.radioButton1.Checked = true; 
+                    this.radioButton2.Checked = false;
+                }
+                else
+                {
+                    this.radioButton1.Checked = false;
+                    this.radioButton2.Checked = true;
+                }
+            }
+        }
         /// <summary>
         /// 时间表链表
         /// </summary>
-        public List<IPhotoTime> TimeTable { get; set; }
+        public List<PhotoTime> TimeTable { get; set; }
 
         private bool nw = false;
         public bool nw_flag
@@ -144,15 +161,16 @@ namespace GridBackGround.Forms
                     int hour = int.Parse(lvi.SubItems[0].Text);
                     int minute = int.Parse(lvi.SubItems[1].Text);
                     int preset_No = int.Parse(lvi.SubItems[2].Text);
-                    var tt = (IPhotoTime)new PhotoTime(hour, minute, preset_No);
-                    TimeTable.Add(tt);
+                    TimeTable.Add(new PhotoTime(hour, minute, preset_No));
                 }
             }
             else
             {
                 if(this.Qurey_State == false)
+                {
                     MessageBox.Show("您没有添加任何时间，请先添加时间");
-                return;
+                    return;
+                }
             }
 
             this.DialogResult = DialogResult.OK;

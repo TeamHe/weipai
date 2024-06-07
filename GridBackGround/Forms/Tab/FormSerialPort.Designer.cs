@@ -669,7 +669,6 @@
             this.拍照时间表设置ToolStripMenuItem.Name = "拍照时间表设置ToolStripMenuItem";
             this.拍照时间表设置ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.拍照时间表设置ToolStripMenuItem.Text = "拍照时间表";
-            this.拍照时间表设置ToolStripMenuItem.Click += new System.EventHandler(this.设定拍照时间表ToolStripMenuItem_Click);
             // 
             // 查询拍照时间表ToolStripMenuItem
             // 
@@ -684,7 +683,6 @@
             this.设定拍照时间表ToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
             this.设定拍照时间表ToolStripMenuItem1.Text = "设定";
             this.设定拍照时间表ToolStripMenuItem1.Visible = false;
-            this.设定拍照时间表ToolStripMenuItem1.Click += new System.EventHandler(this.设定拍照时间表ToolStripMenuItem_Click);
             // 
             // 手动请求照片ToolStripMenuItem
             // 
