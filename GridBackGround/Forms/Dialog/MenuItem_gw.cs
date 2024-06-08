@@ -221,11 +221,10 @@ namespace GridBackGround.Forms.Dialog
 
         private void 摄像机远程调节ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Dialog_Image_Adjust dia = new Dialog_Image_Adjust()
+            new Dialog_Image_Adjust()
             {
-                CMD_ID = this.pole.CMD_ID
-            };
-            dia.Show();
+                Pole = this.pole,
+            }.Show();
         }
 
         private void 远程升级装置程序ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -380,7 +379,6 @@ namespace GridBackGround.Forms.Dialog
 
             this.ParentMenu.DropDownItems.Add(new ToolStripSeparator());
 
-            menu_time.Visible = false;
             menu_time = this.AddDropDownMenuItem("切换装置运行程序", 工作模式切换ToolStripMenuItem_Click);
 
             menu_time = this.AddDropDownMenuItem("录音文件管理");

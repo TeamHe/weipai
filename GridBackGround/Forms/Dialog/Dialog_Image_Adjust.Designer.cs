@@ -29,16 +29,14 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.button_Open = new System.Windows.Forms.Button();
             this.buttonClose = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox_save = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.button_TurntoPreset = new System.Windows.Forms.Button();
             this.button_SaveAsPreset = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox_preset = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -54,16 +52,14 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.button_Open);
             this.panel1.Controls.Add(this.buttonClose);
-            this.panel1.Controls.Add(this.button9);
-            this.panel1.Controls.Add(this.textBox3);
+            this.panel1.Controls.Add(this.textBox_save);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.button_TurntoPreset);
             this.panel1.Controls.Add(this.button_SaveAsPreset);
-            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.textBox_preset);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
@@ -79,16 +75,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(284, 262);
             this.panel1.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(86, 227);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(87, 23);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "设置初始位置";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button_RemotOption_Click);
             // 
             // label5
             // 
@@ -119,24 +105,13 @@
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.button_RemotOption_Click);
             // 
-            // button9
+            // textBox_save
             // 
-            this.button9.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button9.Location = new System.Drawing.Point(184, 227);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 23);
-            this.button9.TabIndex = 15;
-            this.button9.Text = "关闭";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(69, 75);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 21);
-            this.textBox3.TabIndex = 14;
-            this.textBox3.Text = "1";
+            this.textBox_save.Location = new System.Drawing.Point(69, 75);
+            this.textBox_save.Name = "textBox_save";
+            this.textBox_save.Size = new System.Drawing.Size(100, 21);
+            this.textBox_save.TabIndex = 14;
+            this.textBox_save.Text = "1";
             // 
             // label4
             // 
@@ -155,7 +130,7 @@
             this.button_TurntoPreset.TabIndex = 12;
             this.button_TurntoPreset.Text = "转到预置位";
             this.button_TurntoPreset.UseVisualStyleBackColor = true;
-            this.button_TurntoPreset.Click += new System.EventHandler(this.button7_Click);
+            this.button_TurntoPreset.Click += new System.EventHandler(this.button_preset_Click);
             // 
             // button_SaveAsPreset
             // 
@@ -165,15 +140,15 @@
             this.button_SaveAsPreset.TabIndex = 11;
             this.button_SaveAsPreset.Text = "保存预置位";
             this.button_SaveAsPreset.UseVisualStyleBackColor = true;
-            this.button_SaveAsPreset.Click += new System.EventHandler(this.button7_Click);
+            this.button_SaveAsPreset.Click += new System.EventHandler(this.button_preset_Click);
             // 
-            // textBox2
+            // textBox_preset
             // 
-            this.textBox2.Location = new System.Drawing.Point(69, 38);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 21);
-            this.textBox2.TabIndex = 10;
-            this.textBox2.Text = "1";
+            this.textBox_preset.Location = new System.Drawing.Point(69, 38);
+            this.textBox_preset.Name = "textBox_preset";
+            this.textBox_preset.Size = new System.Drawing.Size(100, 21);
+            this.textBox_preset.TabIndex = 10;
+            this.textBox_preset.Text = "1";
             // 
             // textBox1
             // 
@@ -182,12 +157,12 @@
             this.textBox1.Size = new System.Drawing.Size(100, 21);
             this.textBox1.TabIndex = 9;
             this.textBox1.Text = "1";
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox_chno_TextChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(177, 179);
+            this.label3.Location = new System.Drawing.Point(183, 183);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 12);
             this.label3.TabIndex = 8;
@@ -213,7 +188,7 @@
             // 
             // button_Far
             // 
-            this.button_Far.Location = new System.Drawing.Point(143, 173);
+            this.button_Far.Location = new System.Drawing.Point(149, 177);
             this.button_Far.Name = "button_Far";
             this.button_Far.Size = new System.Drawing.Size(23, 23);
             this.button_Far.TabIndex = 5;
@@ -223,7 +198,7 @@
             // 
             // button_Near
             // 
-            this.button_Near.Location = new System.Drawing.Point(212, 173);
+            this.button_Near.Location = new System.Drawing.Point(218, 177);
             this.button_Near.Name = "button_Near";
             this.button_Near.Size = new System.Drawing.Size(23, 23);
             this.button_Near.TabIndex = 4;
@@ -295,19 +270,17 @@
         private System.Windows.Forms.Button button_Up;
         private System.Windows.Forms.Button button_Far;
         private System.Windows.Forms.Button button_Near;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox_save;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button_TurntoPreset;
         private System.Windows.Forms.Button button_SaveAsPreset;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox_preset;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button_Open;
         private System.Windows.Forms.Button buttonClose;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button1;
     }
 }

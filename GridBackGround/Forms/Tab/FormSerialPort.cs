@@ -442,22 +442,6 @@ namespace GridBackGround
         //}
         #endregion
 
-        #region 图像
-
-        #region 摄像机远程调节
-        private void 摄像机远程调节ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())
-                return;
-            Forms.Dialog_Image_Adjust dia = new Forms.Dialog_Image_Adjust();
-            dia.CMD_ID = CMD_ID;
-            dia.ShowDialog();
-        }
-        #endregion
-
-
-        #endregion
-
         //#region 远程升级
         //private void 远程升级装置程序ToolStripMenuItem_Click(object sender, EventArgs e)
         //{

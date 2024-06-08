@@ -696,7 +696,6 @@
             this.摄像机远程调节ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.摄像机远程调节ToolStripMenuItem.Text = "摄像机远程调节";
             this.摄像机远程调节ToolStripMenuItem.Visible = false;
-            this.摄像机远程调节ToolStripMenuItem.Click += new System.EventHandler(this.摄像机远程调节ToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
