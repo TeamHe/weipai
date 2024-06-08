@@ -444,24 +444,6 @@ namespace GridBackGround
 
         #region 图像
 
-        #region 手动请求照片
-        /// <summary>
-        /// 手动请求照片
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void 手动请求照片ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())
-                return;
-            Forms.Dialog_Image_Photo dip = new Forms.Dialog_Image_Photo();
-            if (dip.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-            {
-                CommandDeal.Image_Photo_MAN.Set(CMD_ID, dip.Channel_NO, dip.Presetting_No);
-            }
-        }
-        #endregion
-
         #region 摄像机远程调节
         private void 摄像机远程调节ToolStripMenuItem_Click(object sender, EventArgs e)
         {

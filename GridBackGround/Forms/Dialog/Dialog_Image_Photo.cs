@@ -1,11 +1,4 @@
-﻿using GridBackGround.CommandDeal.nw;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Windows.Forms;
 
 namespace GridBackGround.Forms
@@ -16,7 +9,7 @@ namespace GridBackGround.Forms
         {
             InitializeComponent();
             this.CenterToParent();
-            this.button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.button_Cancel.DialogResult = DialogResult.Cancel;
         }
 
         private bool nw_table = false;
@@ -38,7 +31,6 @@ namespace GridBackGround.Forms
                     this.label2.Visible = true;
                     this.textBox1.Visible = true;
                     this.Text = "手动请求照片";
-
                 }
             }
         }
@@ -74,15 +66,14 @@ namespace GridBackGround.Forms
                 return;
             }
 
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.Dispose();
+            this.DialogResult = DialogResult.OK;
         }
 
         private void Dialog_Image_Photo_Load(object sender, EventArgs e)
         {
             this.AcceptButton = this.button_OK;
             this.CancelButton = this.button_Cancel;
-            this.button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.button_Cancel.DialogResult = DialogResult.Cancel;
         }
     }
 }

@@ -62,6 +62,7 @@
     <Compile Include="gw_cmd\gw_cmd_handle.cs" />
     <Compile Include="DisPacket.cs" />
     <Compile Include="Equs.cs" />
+    <Compile Include="gw_cmd\gw_cmd_img_photo.cs" />
     <Compile Include="gw_cmd\gw_cmd_img_timetable.cs" />
     <Compile Include="gw_cmd\gw_cmd_stat_base.cs" />
     <Compile Include="gw_cmd\gw_cmd_stat_heart.cs" />

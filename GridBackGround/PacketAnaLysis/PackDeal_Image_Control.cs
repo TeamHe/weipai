@@ -1,8 +1,4 @@
 ﻿using ResModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace GridBackGround.PacketAnaLysis
 {
@@ -30,10 +26,6 @@ namespace GridBackGround.PacketAnaLysis
             CommandDeal.Image_Photo_UP imgUP;
             switch (packet_Type)
             {
-                    //手动拍照片
-                case PacketType_Image.Take_Photo:
-                    CommandDeal.Image_Photo_MAN.Response(pole, frame_No, data);
-                    break;
                     //开始标记
                 case PacketType_Image.Image_Data_Start:
                     imgUP = new CommandDeal.Image_Photo_UP();
@@ -55,6 +47,5 @@ namespace GridBackGround.PacketAnaLysis
             }
             return dealState;
         }
-        
     }
 }

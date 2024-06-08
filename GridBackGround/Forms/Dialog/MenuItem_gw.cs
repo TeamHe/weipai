@@ -212,11 +212,11 @@ namespace GridBackGround.Forms.Dialog
 
         private void 手动请求照片ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Dialog_Image_Photo dip = new Dialog_Image_Photo();
-            if (dip.ShowDialog() != DialogResult.OK)
+            Dialog_Image_Photo dialog = new Dialog_Image_Photo();
+            if (dialog.ShowDialog() != DialogResult.OK)
                 return;
-            Image_Photo_MAN.Set(this.pole.CMD_ID, 
-                dip.Channel_NO, dip.Presetting_No);
+            gw_cmd_img_photo cmd = new gw_cmd_img_photo(this.pole);
+            cmd.Photo(dialog.Channel_NO,dialog.Presetting_No);
         }
 
         private void 摄像机远程调节ToolStripMenuItem_Click(object sender, EventArgs e)

@@ -689,7 +689,6 @@
             this.手动请求照片ToolStripMenuItem.Name = "手动请求照片ToolStripMenuItem";
             this.手动请求照片ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.手动请求照片ToolStripMenuItem.Text = "手动请求照片";
-            this.手动请求照片ToolStripMenuItem.Click += new System.EventHandler(this.手动请求照片ToolStripMenuItem_Click);
             // 
             // 摄像机远程调节ToolStripMenuItem
             // 
