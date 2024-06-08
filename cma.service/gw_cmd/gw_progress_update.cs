@@ -69,7 +69,8 @@ namespace cma.service.gw_cmd
         {
             if (this.PacToSend == null)
                 this.PacToSend = new List<int>();
-            this.PacToSend.Add(pacno);
+            if(!this.PacToSend.Contains(pacno))
+                this.PacToSend.Add(pacno);
         }
 
         /// <summary>
