@@ -104,7 +104,6 @@
     <Compile Include="CollectData\Weather.cs" />
     <Compile Include="DataBase\Table_Weather.cs" />
     <Compile Include="EQU\Line.cs" />
-    <Compile Include="EQU\Pic_Op.cs" />
     <Compile Include="EQU\Tower.cs" />
     <Compile Include="IPowerPole.cs" />
     <Compile Include="nw\nw_data_22_pull_angle.cs" />

@@ -36,10 +36,6 @@ namespace GridBackGround.PacketAnaLysis
                     imgUP = new CommandDeal.Image_Photo_UP();
                     imgUP.Image_Data_End(pole, frame_No, data);
                     break;
-                    //摄像机远程调节响应
-                case PacketType_Image.Camera_Adjust:
-                    CommandDeal.Image_Photo_Adjust.Response(pole, frame_No, data);
-                    break;
                 default:
                     errorCode = 0x05;
                     break;
