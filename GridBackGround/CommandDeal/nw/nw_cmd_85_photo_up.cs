@@ -1,7 +1,6 @@
-﻿using GridBackGround.CommandDeal.Image;
-using System;
+﻿using System;
 using ResModel.nw;
-
+using cma.service.gw_nw_cmd;
 
 namespace GridBackGround.CommandDeal.nw
 {
@@ -31,6 +30,18 @@ namespace GridBackGround.CommandDeal.nw
         /// </summary>
         public byte[] PhotoData { get; set; }
 
+        private void deal(out string msg)
+        {
+            msg = string.Empty;
+            gn_progress_img img;
+            if ((img = gn_progress_img.GetImg(this.Pole, this.Channel_NO, this.PresetNo)) == null)
+            {
+                msg = "获取图片缓存失败";
+                return;
+            }
+            img.AddPac(this.PacNO, this.PhotoData);
+        }
+
         public override int Decode(out string msg)
         {
             if (Data == null || Data.Length < 4)
@@ -46,13 +57,9 @@ namespace GridBackGround.CommandDeal.nw
             this.PhotoData = new byte[this.Data.Length - 4];
             Buffer.BlockCopy(this.Data,4,this.PhotoData,0, this.Data.Length - 4);
 
-            ///TODO: 
-            ///     将图像数据添加到图像缓存
-            Photo_man photo = new Photo_man(this.Pole, Channel_NO, this.PresetNo);
-            photo.PictureData(this.PacNO, PhotoData,  out string msg_photo);
+            this.deal(out string info);
 
-            msg = string.Format("图像数据包上传: 通道号:{0} 预置位:{1} 包号:{2}",this.Channel_NO,this.PresetNo,this.PacNO);
-            msg += msg_photo;
+            msg = string.Format("图像数据包上传: 通道号:{0} 预置位:{1} 包号:{2} {3}",this.Channel_NO,this.PresetNo,this.PacNO, info);
             return 0;
 
         }

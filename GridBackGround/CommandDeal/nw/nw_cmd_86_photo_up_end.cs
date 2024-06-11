@@ -1,7 +1,7 @@
-﻿using GridBackGround.CommandDeal.Image;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using ResModel.nw;
+using cma.service.gw_nw_cmd;
 
 namespace GridBackGround.CommandDeal.nw
 {
@@ -21,6 +21,33 @@ namespace GridBackGround.CommandDeal.nw
         /// </summary>
         public int PresetNo { get; set; }
 
+        private void SendBubao(List<int> pacs)
+        {
+            nw_cmd_87_photo_up_bubao cmd = new nw_cmd_87_photo_up_bubao(Pole)
+            {
+                Channel_NO = this.Channel_NO,
+                PresetNo = this.PresetNo,
+                List_Pac = pacs,
+            };
+            cmd.Execute();
+        }
+
+        private void deal(out string msg)
+        {
+            msg = string.Empty;
+            gn_progress_img img;
+            if ((img = gn_progress_img.GetImg(this.Pole, this.Channel_NO, this.PresetNo)) == null)
+            {
+                msg = "获取图片缓存失败";
+                return;
+            }
+
+            List<int> pacs = img.GetRemainPacs();
+            this.SendBubao(pacs);
+            if (pacs == null || pacs.Count == 0)
+                img.Finish();
+        }
+
         public override int Decode(out string msg)
         {
             if (Data == null || Data.Length < 2)
@@ -31,22 +58,8 @@ namespace GridBackGround.CommandDeal.nw
             this.Channel_NO = Data[offset++];
             this.PresetNo = Data[offset++];
 
-            msg = string.Format("图像上传结束. 通道号:{0} 预置位号:{1}",this.Channel_NO,this.PresetNo);
-
-            Photo_man photo = new Photo_man(this.Pole, this.Channel_NO, this.PresetNo);
-            List<int> remains = photo.Picture_End(DateTime.MinValue, out string msg_end);
-            nw_cmd_87_photo_up_bubao cmd = new nw_cmd_87_photo_up_bubao(Pole) 
-            { 
-                Channel_NO =this.Channel_NO, 
-                PresetNo =this.PresetNo,
-                List_Pac = remains,
-            };
-            cmd.Execute();
-
-            if(remains == null || remains.Count == 0)   
-            {
-                photo.Picture_Save();   //图片处理
-            }
+            this.deal(out string info);
+            msg = string.Format("图像上传结束. 通道号:{0} 预置位号:{1} {2}",this.Channel_NO,this.PresetNo,info);
             return 0;
         }
 

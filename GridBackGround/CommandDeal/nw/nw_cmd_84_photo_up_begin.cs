@@ -1,9 +1,7 @@
-﻿using GridBackGround.CommandDeal.Image;
-using ResModel;
-using ResModel.CollectData;
+﻿using ResModel;
 using System;
 using ResModel.nw;
-using DB_Operation;
+using cma.service.gw_nw_cmd;
 
 namespace GridBackGround.CommandDeal.nw
 {
@@ -37,6 +35,19 @@ namespace GridBackGround.CommandDeal.nw
 
         public nw_cmd_84_photo_up_begin(IPowerPole pole) : base(pole) { }
 
+        private bool deal(out string msg)
+        {
+            msg = string.Empty;
+            gn_progress_img img;
+            if ((img = gn_progress_img.GetImg(this.Pole, this.Channel_NO, this.PresetNo, true)) == null)
+            {
+                msg = "获取图片缓存失败";
+                return false;
+            }
+            img.Pnum = this.PacNum;
+            img.Time = this.photo_time;
+            return true;
+        }
 
         public override int Decode(out string msg)
         {
@@ -54,18 +65,12 @@ namespace GridBackGround.CommandDeal.nw
             this.PacNum = pnum;
 
             ///将图片添加到正在上传图片列表
-            Photo_man photo = new Photo_man(this.Pole, this.Channel_NO, this.PresetNo);
-            Picture picture = photo.Picture_StartUp(this.PacNum, out string start_msg);
-            
-            msg = string.Format("装置请求照片. 拍照时间:{0} 通道号:{1} 预置位号:{2} 总包数:{3}",
-                this.photo_time,this.Channel_NO,this.PresetNo,this.PacNum);
-
-            msg += start_msg;
-            if(picture != null)     //图片信息添加到缓存成功才会发送响应包
-            {
-                picture.Maintime = time;
+            if (this.deal(out string info))
                 this.SendCommand(out string send_msg);
-            }
+
+            msg = string.Format("装置请求照片. 拍照时间:{0} 通道号:{1} 预置位号:{2} 总包数:{3} {4}",
+                this.photo_time,this.Channel_NO,this.PresetNo,this.PacNum,info);
+
             return 0;
         }
 
