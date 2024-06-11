@@ -412,8 +412,6 @@
     <Compile Include="LogHelper.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_handle.cs" />
     <Compile Include="PacketAnaLysis\PackDeal_PrivateCon.cs" />
-    <Compile Include="PacketAnaLysis\PackDeal_Image.cs" />
-    <Compile Include="PacketAnaLysis\PackDeal_Image_Control.cs" />
     <Compile Include="CommandDeal\Data\Data_WD.cs" />
     <Compile Include="CommandDeal\Data\Data_WD_Form.cs" />
     <Compile Include="CommandDeal\Data\Data_Ice.cs" />

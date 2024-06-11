@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ResModel;
-using Sodao.FastSocket.Server.Command;
+﻿using ResModel;
 
 namespace GridBackGround.PacketAnaLysis
 {
@@ -42,24 +37,6 @@ namespace GridBackGround.PacketAnaLysis
                 //控制数据报
                 case TypeFrame.ResControl:
                     workState = PackDeal_Control.PacketDeivid(
-                        pole,
-                        packet_Type,
-                        frame_No,
-                        data,
-                        ref errorCode);
-                    break;
-                //远程图像数据报
-                case TypeFrame.Image:
-                    PackDeal_Image.PacketDeivid(
-                        pole,
-                        packet_Type,
-                        frame_No,
-                        data,
-                        ref errorCode);
-                    break;
-                 //图像控制响应报
-                case TypeFrame.ResControlImage:
-                    PackDeal_Image_Control.PacketDeivid(
                         pole,
                         packet_Type,
                         frame_No,
