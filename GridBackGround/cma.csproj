@@ -103,8 +103,6 @@
     <Compile Include="CommandDeal\Comand_ModeChange.cs" />
     <Compile Include="CommandDeal\Data\RealDataAyan.cs" />
     <Compile Include="CommandDeal\Data\RealData_Wea.cs" />
-    <Compile Include="CommandDeal\Image\Image_Photo_UP.cs" />
-    <Compile Include="CommandDeal\Image\Photo_man.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_03_device_config_set.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_09_weekup.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_0a_device_config_get.cs" />

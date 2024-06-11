@@ -23,19 +23,9 @@ namespace GridBackGround.PacketAnaLysis
             ref int errorCode)
         {
             bool dealState = false;
-            CommandDeal.Image_Photo_UP imgUP;
             switch (packet_Type)
             {
                     //开始标记
-                case PacketType_Image.Image_Data_Start:
-                    imgUP = new CommandDeal.Image_Photo_UP();
-                    imgUP.Ask_To_Up(pole, frame_No, data);
-                    break;
-                    //结束标记
-                case PacketType_Image.Image_Data_End:
-                    imgUP = new CommandDeal.Image_Photo_UP();
-                    imgUP.Image_Data_End(pole, frame_No, data);
-                    break;
                 default:
                     errorCode = 0x05;
                     break;
