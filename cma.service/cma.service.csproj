@@ -63,7 +63,11 @@
     <Compile Include="DisPacket.cs" />
     <Compile Include="Equs.cs" />
     <Compile Include="gw_cmd\gw_cmd_img_adjust.cs" />
+    <Compile Include="gw_cmd\gw_cmd_img_bubao.cs" />
+    <Compile Include="gw_cmd\gw_cmd_img_end.cs" />
     <Compile Include="gw_cmd\gw_cmd_img_photo.cs" />
+    <Compile Include="gw_cmd\gw_cmd_img_pic_data.cs" />
+    <Compile Include="gw_cmd\gw_cmd_img_pic_start.cs" />
     <Compile Include="gw_cmd\gw_cmd_img_timetable.cs" />
     <Compile Include="gw_cmd\gw_cmd_stat_base.cs" />
     <Compile Include="gw_cmd\gw_cmd_stat_heart.cs" />
@@ -72,6 +76,7 @@
     <Compile Include="gw_cmd\gw_cmd_ctrl_model.cs" />
     <Compile Include="gw_cmd\gw_cmd_img_base.cs" />
     <Compile Include="gw_cmd\gw_cmd_img_para.cs" />
+    <Compile Include="gw_nw_cmd\gn_progress_img.cs" />
     <Compile Include="gw_cmd\gw_progress_update.cs" />
     <Compile Include="gw_cmd\gw_cmd_stat_error.cs" />
     <Compile Include="PowerPole.cs" />

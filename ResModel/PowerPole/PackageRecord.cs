@@ -76,5 +76,7 @@ namespace ResModel.PowerPole
         rec = 1,
         [Description("发送")]
         send = 2,
+        [Description("消息")]
+        Info,
     }
 }
