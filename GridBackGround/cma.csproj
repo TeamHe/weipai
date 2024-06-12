@@ -101,7 +101,6 @@
     <Compile Include="CommandDeal\Comand\Comand_voice_update.cs" />
     <Compile Include="CommandDeal\Comand\Command_sound-light-alarm.cs" />
     <Compile Include="CommandDeal\Comand_ModeChange.cs" />
-    <Compile Include="CommandDeal\Data\RealDataAyan.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_03_device_config_set.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_09_weekup.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_0a_device_config_get.cs" />
