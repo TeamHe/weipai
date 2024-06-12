@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
 using SQLUtils;
 using ResModel.EQU;
-using ResModel.DataBase;
 using System.Data;
 
 namespace DB_Operation.EQUManage

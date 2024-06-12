@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 using SQLUtils;
 using System.Data;
 using ResModel.EQU;
-using ResModel.DataBase;
-using ResModel.CollectData;
 
 namespace DB_Operation.EQUManage
 {

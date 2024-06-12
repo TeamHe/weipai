@@ -90,12 +90,9 @@
     <Compile Include="nw\nw_update_info.cs" />
     <Compile Include="PowerPole\PackageRecord.cs" />
     <Compile Include="CollectData\CollectData.cs" />
-    <Compile Include="DataBase\Table_Ice.cs" />
-    <Compile Include="DataBase\Table_Inclination.cs" />
     <Compile Include="EQU\EQU.cs" />
     <Compile Include="EQU\UrlInterFace.cs" />
     <Compile Include="EQU\OptionType.cs" />
-    <Compile Include="DataBase\Table_Weather.cs" />
     <Compile Include="EQU\Line.cs" />
     <Compile Include="EQU\Tower.cs" />
     <Compile Include="IPowerPole.cs" />
