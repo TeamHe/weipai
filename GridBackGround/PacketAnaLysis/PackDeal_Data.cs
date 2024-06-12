@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ResModel;
-using ResModel.EQU;
-
+﻿using ResModel;
 
 namespace GridBackGround.PacketAnaLysis
 {
@@ -28,9 +22,6 @@ namespace GridBackGround.PacketAnaLysis
         {
             switch (packet_Type)
             {
-                //case PacketType_Monitoring.Weather:
-                //    CommandDeal.Data_Weather.Deal(pole, frame_No, data);
-                //    break;
                 case PacketType_Monitoring.Vibration_Character:
                     CommandDeal.Data_ZD_Feature.Deal(pole, frame_No, data);
                     break;
@@ -43,9 +34,6 @@ namespace GridBackGround.PacketAnaLysis
                 case PacketType_Monitoring.Conductor_Temperature:
                     CommandDeal.Data_Line_Temperature.Deal(pole, frame_No, data);
                     break;
-                case PacketType_Monitoring.Glaciation:
-                    CommandDeal.Data_Ice.Deal(pole, frame_No, data);
-                    break;
                 case PacketType_Monitoring.Conductor_Monsoon:
                     CommandDeal.Data_FP.Deal(pole, frame_No, data);
                     break;
@@ -55,7 +43,6 @@ namespace GridBackGround.PacketAnaLysis
                 case PacketType_Monitoring.Wave_Trajectory:
                     CommandDeal.Data_WD_Form.Deal(pole, frame_No, data);
                     break;
-
                 default:
                     errorCode = 0x05;
                     break;
