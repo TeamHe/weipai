@@ -401,9 +401,6 @@
     <Compile Include="HTTP\HttpListeners.cs" />
     <Compile Include="HTTP\HttpRequestManager.cs" />
     <Compile Include="HTTP\ReSendMessage.cs" />
-    <Compile Include="HTTP\zlwp\CmdGetLines.cs" />
-    <Compile Include="HTTP\zlwp\CmdGetPoles.cs" />
-    <Compile Include="HTTP\zlwp\CmdGetTowers.cs" />
     <Compile Include="HTTP\zlwp\CmdVoicePlay.cs" />
     <Compile Include="HTTP\zlwp\CmdPhotoing.cs" />
     <Compile Include="HTTP\zlwp\CmdPhotoTableSet.cs" />
