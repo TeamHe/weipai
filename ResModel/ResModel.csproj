@@ -95,8 +95,6 @@
     <Compile Include="EQU\EQU.cs" />
     <Compile Include="EQU\UrlInterFace.cs" />
     <Compile Include="EQU\OptionType.cs" />
-    <Compile Include="CollectData\Ice.cs" />
-    <Compile Include="CollectData\Weather.cs" />
     <Compile Include="DataBase\Table_Weather.cs" />
     <Compile Include="EQU\Line.cs" />
     <Compile Include="EQU\Tower.cs" />
