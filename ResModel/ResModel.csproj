@@ -95,14 +95,7 @@
     <Compile Include="EQU\EQU.cs" />
     <Compile Include="EQU\UrlInterFace.cs" />
     <Compile Include="EQU\OptionType.cs" />
-    <Compile Include="CollectData\Wave_Character.cs" />
-    <Compile Include="CollectData\Wave_Trajectorycs.cs" />
-    <Compile Include="CollectData\Windage_Yaw.cs" />
-    <Compile Include="CollectData\Conductor_Sag.cs" />
     <Compile Include="CollectData\Ice.cs" />
-    <Compile Include="CollectData\Line_Temperature.cs" />
-    <Compile Include="CollectData\Vibration_Character.cs" />
-    <Compile Include="CollectData\Vibration_Form.cs" />
     <Compile Include="CollectData\Weather.cs" />
     <Compile Include="DataBase\Table_Weather.cs" />
     <Compile Include="EQU\Line.cs" />
