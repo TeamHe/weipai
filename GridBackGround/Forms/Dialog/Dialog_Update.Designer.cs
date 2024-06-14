@@ -38,11 +38,13 @@
             this.textBox_File = new System.Windows.Forms.TextBox();
             this.label_FileName = new System.Windows.Forms.Label();
             this.label_UpdateTime = new System.Windows.Forms.Label();
+            this.checkBox_pno_start_with1 = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.checkBox_pno_start_with1);
             this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.dateTimePicker_UpdateTime);
@@ -55,7 +57,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(378, 162);
+            this.panel1.Size = new System.Drawing.Size(378, 194);
             this.panel1.TabIndex = 0;
             // 
             // comboBox1
@@ -88,7 +90,7 @@
             // 
             // button_Cancel
             // 
-            this.button_Cancel.Location = new System.Drawing.Point(186, 123);
+            this.button_Cancel.Location = new System.Drawing.Point(185, 159);
             this.button_Cancel.Name = "button_Cancel";
             this.button_Cancel.Size = new System.Drawing.Size(75, 23);
             this.button_Cancel.TabIndex = 11;
@@ -97,7 +99,7 @@
             // 
             // button_OK
             // 
-            this.button_OK.Location = new System.Drawing.Point(50, 123);
+            this.button_OK.Location = new System.Drawing.Point(49, 159);
             this.button_OK.Name = "button_OK";
             this.button_OK.Size = new System.Drawing.Size(75, 23);
             this.button_OK.TabIndex = 1;
@@ -140,11 +142,21 @@
             this.label_UpdateTime.TabIndex = 2;
             this.label_UpdateTime.Text = "修改日期";
             // 
+            // checkBox_pno_start_with1
+            // 
+            this.checkBox_pno_start_with1.AutoSize = true;
+            this.checkBox_pno_start_with1.Location = new System.Drawing.Point(72, 125);
+            this.checkBox_pno_start_with1.Name = "checkBox_pno_start_with1";
+            this.checkBox_pno_start_with1.Size = new System.Drawing.Size(90, 16);
+            this.checkBox_pno_start_with1.TabIndex = 15;
+            this.checkBox_pno_start_with1.Text = "包号从1开始";
+            this.checkBox_pno_start_with1.UseVisualStyleBackColor = true;
+            // 
             // Dialog_Update
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(378, 162);
+            this.ClientSize = new System.Drawing.Size(378, 194);
             this.Controls.Add(this.panel1);
             this.Name = "Dialog_Update";
             this.Text = "远程升级";
@@ -167,5 +179,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker_UpdateTime;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.CheckBox checkBox_pno_start_with1;
     }
 }

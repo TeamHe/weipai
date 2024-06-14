@@ -25,6 +25,13 @@ namespace GridBackGround.Forms.Dialog
         }
 
         public int PacLength { get; set; }
+
+        public int StartPNO
+        {
+            get { return this.checkBox_pno_start_with1.Checked ? 1 : 0; }
+            set { this.checkBox_pno_start_with1.Checked = value > 0 ? true : false; }
+        }
+
         #endregion
         
         

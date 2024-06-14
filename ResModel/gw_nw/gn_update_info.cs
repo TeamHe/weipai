@@ -40,6 +40,8 @@ namespace ResModel.gw_nw
             }
         }
 
+        public int StartPNO { get; set; }
+
         public int MaxPacLength { get; set; }
 
         public FileStream stream { get; set; }
@@ -94,7 +96,7 @@ namespace ResModel.gw_nw
                 if (this.stream == null)
                     this.stream = File.OpenRead(this.FilePath);
 
-                long offset = pno * this.MaxPacLength;
+                long offset = (pno-StartPNO) * this.MaxPacLength;
                 stream.Seek(offset, SeekOrigin.Begin);
                 byte[] buffer = new byte[this.MaxPacLength];
                 int length = stream.Read(buffer, 0, buffer.Length);

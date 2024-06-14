@@ -239,6 +239,7 @@ namespace GridBackGround.Forms.Dialog
                 {
                     FilePath = du.FileName,
                     MaxPacLength = du.PacLength,
+                    StartPNO = du.StartPNO,
                 },
                 Time = du.UpdateTime,
             };

@@ -180,7 +180,7 @@ namespace cma.service.gw_cmd
             if (pnum <= 0)
                 throw new Exception("没有待发送数据包");
             for (int i = 0; i < pnum; i++)
-                this.AddToSendPackage(i);
+                this.AddToSendPackage(i + this.Info.StartPNO);
 
             this.pole.SetProperty("gw_progress_update", this);
             Start_DataPackage();
