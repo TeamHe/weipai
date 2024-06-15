@@ -98,7 +98,7 @@ namespace cma.service.gw_cmd
         public virtual void Query()
         {
             this.RequestSetFlag = gw_ctrl.ESetFlag.Query;
-            if(this.WithReqFlag)
+            if (this.WithReqFlag && this.Flag == 0x00)
                 this.Flag = 0xff;
             this.Execute();
         }
