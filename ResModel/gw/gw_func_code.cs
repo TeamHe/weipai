@@ -12,6 +12,9 @@ namespace ResModel.gw
 
         [Description("覆冰数据")]
         ICE=0x22,
+
+        [Description("杆塔倾斜数据")]
+        Inclination = 0xc,
     }
 
     /// <summary>
