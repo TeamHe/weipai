@@ -17,6 +17,8 @@ namespace ResModel.gw
 
         public float Angle_y { get; set;}
 
+        public int TopDistance {  get; set; }
+
         public override int Decode(byte[] data, int offset, out string msg)
         {
             float fval;
@@ -40,13 +42,18 @@ namespace ResModel.gw
 
             offset += gw_coding.GetSingle(data, offset, out fval);
             this.Angle_y = fval;
+            if(data.Length - offset >= 2)
+            {
+                offset += gw_coding.GetU16(data, offset, out int ival);
+                this.TopDistance = ival;
+            }
             return offset - start;
         }
 
         public override byte[] Encode(out string msg)
         {
             int offset = 0;
-            byte[] data = new byte[20];
+            byte[] data = new byte[22];
 
             msg = string.Empty;
             offset += gw_coding.SetSingle(data, offset, this.Inclination);
@@ -54,17 +61,20 @@ namespace ResModel.gw
             offset += gw_coding.SetSingle(data, offset, this.Inclination_y);
             offset += gw_coding.SetSingle(data, offset, this.Angle_x);
             offset += gw_coding.SetSingle(data, offset, this.Angle_y);
+            offset += gw_coding.SetU16(data, offset, this.TopDistance);
             return data;
         }
 
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("倾斜度:{0:f1} ", this.Inclination);
-            sb.AppendFormat("顺线倾斜度:{0:f1} ", this.Inclination_x);
-            sb.AppendFormat("横向倾斜度:{0:f1} ", this.Inclination_y);
-            sb.AppendFormat("顺线倾斜角:{0:f2} ", this.Angle_x);
-            sb.AppendFormat("横向倾斜角:{0:f2} ", this.Angle_y);
+            sb.AppendFormat("倾斜度:{0:f1}mm/m ", this.Inclination);
+            sb.AppendFormat("顺线倾斜度:{0:f1}mm/m ", this.Inclination_x);
+            sb.AppendFormat("横向倾斜度:{0:f1}mm/m ", this.Inclination_y);
+            sb.AppendFormat("顺线倾斜角:{0:f2}° ", this.Angle_x);
+            sb.AppendFormat("横向倾斜角:{0:f2}° ", this.Angle_y);
+            sb.AppendFormat("杆塔顶部位移:{0}mm ", this.TopDistance);
+
             return base.ToString() + sb.ToString();
         }
     }
