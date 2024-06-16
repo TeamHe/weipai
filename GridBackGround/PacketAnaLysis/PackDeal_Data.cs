@@ -22,9 +22,6 @@ namespace GridBackGround.PacketAnaLysis
         {
             switch (packet_Type)
             {
-                case PacketType_Monitoring.Vibration_Character:
-                    CommandDeal.Data_ZD_Feature.Deal(pole, frame_No, data);
-                    break;
                 case PacketType_Monitoring.Vibration_Form:
                     CommandDeal.Data_ZD_Form.Deal(pole, frame_No, data);
                     break;
