@@ -461,8 +461,6 @@
       <DependentUpon>Dialog_Con_Reset.cs</DependentUpon>
     </Compile>
     <Compile Include="PacketAnaLysis\BuildPacket.cs" />
-    <Compile Include="PacketAnaLysis\TypeFrame.cs" />
-    <Compile Include="PacketAnaLysis\TypePacket.cs" />
     <Compile Include="SerialPort.cs" />
     <Compile Include="Config\SettingsForm.cs" />
     <Compile Include="Config\SettingsForm.Designer.cs">
