@@ -24,16 +24,6 @@ namespace GridBackGround.PacketAnaLysis
             errorCode = 0;
             switch (frame_Type)
             {
-                //监测数据报
-                case TypeFrame.Monitoring:
-                    errorCode = 0;
-                    workState = PackDeal_Data.PacketDeivid(
-                        pole,
-                        packet_Type,
-                        frame_No,
-                        data,
-                        ref errorCode);
-                    break;
                 default:
                     errorCode = 0x04;
                     break;
