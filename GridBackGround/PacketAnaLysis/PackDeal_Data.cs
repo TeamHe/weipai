@@ -34,9 +34,6 @@ namespace GridBackGround.PacketAnaLysis
                 case PacketType_Monitoring.Conductor_Temperature:
                     CommandDeal.Data_Line_Temperature.Deal(pole, frame_No, data);
                     break;
-                case PacketType_Monitoring.Conductor_Monsoon:
-                    CommandDeal.Data_FP.Deal(pole, frame_No, data);
-                    break;
                 case PacketType_Monitoring.Wave_Character:
                     CommandDeal.Data_WD.Deal(pole, frame_No, data);
                     break;
