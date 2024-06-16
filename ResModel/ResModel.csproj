@@ -59,6 +59,7 @@
     <Compile Include="gw\gw_ctrl_reset.cs" />
     <Compile Include="gw\gw_ctrl_revival.cs" />
     <Compile Include="gw\gw_ctrl_update.cs" />
+    <Compile Include="gw\gw_ctrl_workmode.cs" />
     <Compile Include="gw\gw_data_inclination.cs" />
     <Compile Include="gw\gw_img_adjust.cs" />
     <Compile Include="gw\gw_img_para.cs" />

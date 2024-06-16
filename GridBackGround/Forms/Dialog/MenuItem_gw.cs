@@ -250,7 +250,11 @@ namespace GridBackGround.Forms.Dialog
             Form_Reset mode = new Form_Reset();
             if (mode.ShowDialog() != DialogResult.OK)
                 return;
-            Comand_ModeChange.Set(this.pole.CMD_ID, mode.Mode);
+            new gw_cmd_ctrl_workmode(this.pole).Update(
+                new gw_ctrl_workmode() { 
+                    Mode = (gw_ctrl_workmode.EMode)mode.Mode,
+                }
+            );
         }
         private void 播放录音ToolStripMenuItem_Click(object sender, EventArgs e)
         {
