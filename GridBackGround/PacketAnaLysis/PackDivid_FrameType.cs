@@ -34,14 +34,6 @@ namespace GridBackGround.PacketAnaLysis
                         data,
                         ref errorCode);
                     break;
-                case TypeFrame.PrivateRes:
-                    workState = PackDeal_PrivateCon.PacketDeivid(
-                        pole,
-                        packet_Type,
-                        frame_No,
-                        data,
-                        ref errorCode);
-                    break;
                 default:
                     errorCode = 0x04;
                     break;
