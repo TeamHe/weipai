@@ -261,8 +261,8 @@ namespace GridBackGround.Forms.Dialog
             Dialog_sound_light_alarm dialog = new Dialog_sound_light_alarm();
             if (dialog.ShowDialog() != DialogResult.OK)
                 return;
-            Command_sound_light_alarm.Option1(this.pole.CMD_ID, 
-                dialog.Play, dialog.FileNO, dialog.Interval);
+            //Command_sound_light_alarm.Option1(this.pole.CMD_ID, 
+            //    dialog.Play, dialog.FileNO, dialog.Interval);
         }
 
         private void 录音文件升级ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -387,6 +387,7 @@ namespace GridBackGround.Forms.Dialog
             menu_time = this.AddDropDownMenuItem("切换装置运行程序", 工作模式切换ToolStripMenuItem_Click);
 
             menu_time = this.AddDropDownMenuItem("录音文件管理");
+            menu_time.Visible = false;
             this.AddDropDownMenuItem(menu_time, "播放录音", 播放录音ToolStripMenuItem_Click);
             this.AddDropDownMenuItem(menu_time, "录音文件升级", 录音文件升级ToolStripMenuItem_Click);
             this.AddDropDownMenuItem(menu_time, "录音删除");

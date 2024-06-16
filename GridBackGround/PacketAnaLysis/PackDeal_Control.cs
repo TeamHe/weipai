@@ -22,9 +22,6 @@ namespace GridBackGround.PacketAnaLysis
             bool dealState = false;
             switch (packet_Type)
             {
-                case PacketType_Control.SoundLightAlarm:
-                    CommandDeal.Command_sound_light_alarm.Response(pole, frame_No, data);
-                    break;
                 default:
                     errorCode = 0x05;
                     break;
