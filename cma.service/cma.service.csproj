@@ -79,6 +79,7 @@
     <Compile Include="gw_cmd\gw_cmd_img_base.cs" />
     <Compile Include="gw_cmd\gw_cmd_img_para.cs" />
     <Compile Include="gw_cmd\gw_cmd_ctrl_workmode.cs" />
+    <Compile Include="gw_cmd\gw_cmd_ctrl_UserPhone.cs" />
     <Compile Include="gw_nw_cmd\gn_progress_img.cs" />
     <Compile Include="gw_cmd\gw_progress_update.cs" />
     <Compile Include="gw_cmd\gw_cmd_stat_error.cs" />

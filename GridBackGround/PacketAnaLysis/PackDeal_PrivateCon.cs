@@ -23,10 +23,6 @@ namespace GridBackGround.PacketAnaLysis
             switch (packet_Type)
             {
 
-                case PrivatControl.UserPhone:    //用户手机号
-                    CommandDeal.Private.UserPhone.Response(pole, frame_No, data);
-                    break;
-
                 default:
                     errorCode = 0x05;
                     break;

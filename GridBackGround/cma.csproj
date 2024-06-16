@@ -134,7 +134,6 @@
     <Compile Include="CommandDeal\nw\nw_cmd_ce_update_result.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_e1_cmd_id.cs" />
     <Compile Include="CommandDeal\nw\nw_progress_update.cs" />
-    <Compile Include="CommandDeal\Private\UserPhone.cs" />
     <Compile Include="Config\Common\Messagebox_Textbox.cs">
       <SubType>Form</SubType>
     </Compile>

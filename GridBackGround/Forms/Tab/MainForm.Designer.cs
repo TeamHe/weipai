@@ -174,7 +174,6 @@
             this.用户手机号ToolStripMenuItem.Name = "用户手机号ToolStripMenuItem";
             this.用户手机号ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.用户手机号ToolStripMenuItem.Text = "用户手机号";
-            this.用户手机号ToolStripMenuItem.Click += new System.EventHandler(this.用户手机号ToolStripMenuItem_Click);
             // 
             // 主站ToolStripMenuItem
             // 

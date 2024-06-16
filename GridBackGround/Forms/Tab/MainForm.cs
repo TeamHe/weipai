@@ -581,66 +581,6 @@ namespace GridBackGround
 
         }
 
-        #region 私有控制指令
-
-        private void 用户手机号ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.用户手机号ToolStripMenuItem.DropDownItems.Clear();
-
-            ToolStripMenuItem tsmi = new ToolStripMenuItem("查询");
-            tsmi.Tag = 0;
-            tsmi.Click += new EventHandler(UserPhoneControl);
-            tsmi.MouseEnter += new EventHandler(UserPhoneControl);
-            this.用户手机号ToolStripMenuItem.DropDownItems.Add(tsmi);
-
-            tsmi = new ToolStripMenuItem("设定");
-            tsmi.Tag = 1;
-            tsmi.Click += new EventHandler(UserPhoneControl);
-
-            this.用户手机号ToolStripMenuItem.DropDownItems.Add(tsmi);
-        }
-        /// <summary>
-        /// 逆变器使能配置菜单点击事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void UserPhoneControl(object sender, EventArgs e)
-        {
-            ToolStripMenuItem tsmi = (ToolStripMenuItem)sender;
-            if ((int)tsmi.Tag == 1)
-            {
-                if (!GetCMD_SelecState())
-                    return;
-                Forms.Dialog.Form_UserCon fuc = new Forms.Dialog.Form_UserCon();
-                fuc.UserNO = CommandDeal.Private.UserPhone.UsNO;
-                fuc.UserPhone = CommandDeal.Private.UserPhone.PhoneNO;
-                if (fuc.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
-                CommandDeal.Private.UserPhone.Set(CMD_ID, fuc.UserNO, fuc.UserPhone);
-            }
-            else
-            {
-                tsmi.DropDownItems.Clear();
-                for (int i = 0; i < 3; i++)
-                {
-                    ToolStripMenuItem subTsmi = new ToolStripMenuItem("用户" + i.ToString());
-                    subTsmi.Tag = i;
-                    subTsmi.Click += new EventHandler(UserPhoneQuary_Click);
-                    subTsmi.DoubleClick += new EventHandler(UserPhoneQuary_Click);
-                    tsmi.DropDownItems.Add(subTsmi);
-                }
-            }
-
-        }
-
-        void UserPhoneQuary_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())
-                return;
-            ToolStripMenuItem tsmi = (ToolStripMenuItem)sender;
-            CommandDeal.Private.UserPhone.Query(CMD_ID, (int)tsmi.Tag);
-        }
-        #endregion
-
         #region 图片清理
         private void 清理ToolStripMenuItem_Click(object sender, EventArgs e)
         {
