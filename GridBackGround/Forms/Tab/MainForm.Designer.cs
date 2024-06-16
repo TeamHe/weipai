@@ -208,7 +208,6 @@
             this.舞动曲线ToolStripMenuItem.Name = "舞动曲线ToolStripMenuItem";
             this.舞动曲线ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.舞动曲线ToolStripMenuItem.Text = "舞动曲线";
-            this.舞动曲线ToolStripMenuItem.Click += new System.EventHandler(this.舞动曲线ToolStripMenuItem_Click);
             // 
             // 设置ToolStripMenuItem
             // 

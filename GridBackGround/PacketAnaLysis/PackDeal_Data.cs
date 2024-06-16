@@ -22,9 +22,6 @@ namespace GridBackGround.PacketAnaLysis
         {
             switch (packet_Type)
             {
-                case PacketType_Monitoring.Wave_Trajectory:
-                    CommandDeal.Data_WD_Form.Deal(pole, frame_No, data);
-                    break;
                 default:
                     errorCode = 0x05;
                     break;

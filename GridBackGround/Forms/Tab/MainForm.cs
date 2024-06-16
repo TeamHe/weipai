@@ -390,15 +390,6 @@ namespace GridBackGround
 
         }
 
-        #region 曲线部分
-
-        private void 舞动曲线ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Forms.Dialog_FormWD df = new Forms.Dialog_FormWD();
-            df.Show();
-        }
-        #endregion
-
         #region 获得当前设备ID选中状态
          /// <summary>
         /// 判断当前设备选中状态

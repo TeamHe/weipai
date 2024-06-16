@@ -98,7 +98,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandDeal\Data\Data_ZD_Form.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_03_device_config_set.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_09_weekup.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_0a_device_config_get.cs" />
@@ -281,12 +280,6 @@
     <Compile Include="Forms\EquMan\Dialog_TowerMan.Designer.cs">
       <DependentUpon>Dialog_TowerMan.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Dialog\Dialog_FormWD.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Dialog\Dialog_FormWD.Designer.cs">
-      <DependentUpon>Dialog_FormWD.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Dialog\Dialog_Update_Line.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -397,7 +390,6 @@
     <Compile Include="HTTP\zlwp\Zlwp.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_handle.cs" />
-    <Compile Include="CommandDeal\Data\Data_WD_Form.cs" />
     <Compile Include="CommandDeal\FrameNO.cs" />
     <Compile Include="Communicat\TCPSeverWeb.cs" />
     <Compile Include="Forms\AboutBox1.cs">
@@ -573,9 +565,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EquMan\Dialog_TowerMan.resx">
       <DependentUpon>Dialog_TowerMan.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Dialog\Dialog_FormWD.resx">
-      <DependentUpon>Dialog_FormWD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialog\Dialog_Update_Line.resx">
       <DependentUpon>Dialog_Update_Line.cs</DependentUpon>
