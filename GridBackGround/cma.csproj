@@ -408,7 +408,6 @@
     <Compile Include="CommandDeal\Data\Data_ZD_Feature.cs" />
     <Compile Include="CommandDeal\Data\Data_ZD_Form.cs" />
     <Compile Include="CommandDeal\FrameNO.cs" />
-    <Compile Include="CommandDeal\Data\Data_Line_Temperature.cs" />
     <Compile Include="Communicat\TCPSeverWeb.cs" />
     <Compile Include="Forms\AboutBox1.cs">
       <SubType>Form</SubType>
