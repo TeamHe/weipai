@@ -202,7 +202,6 @@
             this.微风振动ToolStripMenuItem.Name = "微风振动ToolStripMenuItem";
             this.微风振动ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.微风振动ToolStripMenuItem.Text = "微风振动曲线";
-            this.微风振动ToolStripMenuItem.Click += new System.EventHandler(this.微风振动ToolStripMenuItem_Click);
             // 
             // 舞动曲线ToolStripMenuItem
             // 

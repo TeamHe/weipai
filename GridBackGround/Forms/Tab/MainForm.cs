@@ -391,16 +391,6 @@ namespace GridBackGround
         }
 
         #region 曲线部分
-        /// <summary>
-        /// 显示微风振动波形窗体显示
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void 微风振动ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Forms.Dialog_Form df = new Forms.Dialog_Form();
-            df.Show();
-        }
 
         private void 舞动曲线ToolStripMenuItem_Click(object sender, EventArgs e)
         {

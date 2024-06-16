@@ -456,16 +456,6 @@ namespace GridBackGround
         //#endregion
 
         /// <summary>
-        /// 显示微风振动波形窗体显示
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void 微风振动ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Forms.Dialog_Form df = new Forms.Dialog_Form();
-            df.Show();
-        }
-        /// <summary>
         /// 判断当前设备选中状态
         /// </summary>
         /// <returns></returns>
