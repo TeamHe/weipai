@@ -404,7 +404,6 @@
     <Compile Include="CommandDeal\nw\nw_cmd_handle.cs" />
     <Compile Include="CommandDeal\Data\Data_WD.cs" />
     <Compile Include="CommandDeal\Data\Data_WD_Form.cs" />
-    <Compile Include="CommandDeal\Data\Data_Sag.cs" />
     <Compile Include="CommandDeal\Data\Data_ZD_Feature.cs" />
     <Compile Include="CommandDeal\Data\Data_ZD_Form.cs" />
     <Compile Include="CommandDeal\FrameNO.cs" />

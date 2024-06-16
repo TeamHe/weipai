@@ -28,9 +28,6 @@ namespace GridBackGround.PacketAnaLysis
                 case PacketType_Monitoring.Vibration_Form:
                     CommandDeal.Data_ZD_Form.Deal(pole, frame_No, data);
                     break;
-                case PacketType_Monitoring.Conductor_Sag:
-                    CommandDeal.Data_Sag.Deal(pole, frame_No, data);
-                    break;
                 case PacketType_Monitoring.Wave_Character:
                     CommandDeal.Data_WD.Deal(pole, frame_No, data);
                     break;
