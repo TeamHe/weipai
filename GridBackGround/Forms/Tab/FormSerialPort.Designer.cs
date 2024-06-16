@@ -741,7 +741,6 @@
             this.工作模式切换ToolStripMenuItem.Name = "工作模式切换ToolStripMenuItem";
             this.工作模式切换ToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
             this.工作模式切换ToolStripMenuItem.Text = "工作模式切换";
-            this.工作模式切换ToolStripMenuItem.Click += new System.EventHandler(this.工作模式切换ToolStripMenuItem_Click);
             // 
             // FormSerialPort
             // 

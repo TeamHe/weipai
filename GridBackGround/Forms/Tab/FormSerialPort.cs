@@ -494,17 +494,6 @@ namespace GridBackGround
             serialPort.Close();
             this.buttonPort.Text = "打开串口";
         }
-        private void 工作模式切换ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!GetCMD_SelecState())
-                return;
-            Form_Reset mode = new Form_Reset();
-            if (mode.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                CommandDeal.Comand_ModeChange.Set(CMD_ID,
-                   mode.Mode);
-            }
-        }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
