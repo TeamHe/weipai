@@ -61,18 +61,6 @@ namespace GridBackGround.PacketAnaLysis
             switch (packet_Type)
             {
 
-                case PacketType_Voice.StartUpdate:    //开始下发数据包回复
-                    CommandDeal.Comand_voice_update.rsp_update_start(pole, frame_No, data);
-                    break;
-                case PacketType_Voice.UpdateComplement: //补报数据
-                    CommandDeal.Comand_voice_update.rsp_update_bubao(pole, frame_No, data);
-                    break;
-                case PacketType_Voice.UpdateSucess:     //语音下发成功回复
-                    CommandDeal.Comand_voice_update.rsp_update_finish(pole, frame_No, data);
-                    break;
-                case PacketType_Voice.Delete:
-                    CommandDeal.Comand_voice_update.rsp_delete(pole, frame_No, data);
-                    break;
                 default:
                     errorCode = 0x05;
                     break;

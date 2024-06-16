@@ -267,18 +267,18 @@ namespace GridBackGround.Forms.Dialog
 
         private void 录音文件升级ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Dialog_Update_voice du = new Dialog_Update_voice();
-            if (du.ShowDialog() != DialogResult.OK) 
-                return;
-            Comand_voice_update.StartUpdate(du.FileName, this.pole.CMD_ID);
+            //Dialog_Update_voice du = new Dialog_Update_voice();
+            //if (du.ShowDialog() != DialogResult.OK) 
+            //    return;
+            //Comand_voice_update.StartUpdate(du.FileName, this.pole.CMD_ID);
         }
 
         private void 录音删除ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Dialog_voice_delete du = new Dialog_voice_delete();
-            if (du.ShowDialog() != DialogResult.OK)
-                return;
-            Comand_voice_update.Remove(this.pole.CMD_ID, du.VoiceType);
+            //Dialog_voice_delete du = new Dialog_voice_delete();
+            //if (du.ShowDialog() != DialogResult.OK)
+            //    return;
+            //Comand_voice_update.Remove(this.pole.CMD_ID, du.VoiceType);
         }
 
         private static gw_ctrl_revival revival = null;

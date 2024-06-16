@@ -98,7 +98,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandDeal\Comand\Comand_voice_update.cs" />
     <Compile Include="CommandDeal\Comand\Command_sound-light-alarm.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_03_device_config_set.cs" />
     <Compile Include="CommandDeal\nw\nw_cmd_09_weekup.cs" />
