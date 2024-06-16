@@ -199,15 +199,6 @@ namespace GridBackGround
                 {
                     if (gw_cmd_handler.Deal(pole, cmdInfo))
                         return true;
-                    else
-                        PacketAnaLysis.PackDivid_FrameType.PackDivid(
-                            pole,
-                            cmdInfo.Frame_Type,
-                            cmdInfo.Packet_Type,
-                            cmdInfo.Frame_No,
-                            cmdInfo.Data,
-                            ref errorcode);
-
                 }
             }
 

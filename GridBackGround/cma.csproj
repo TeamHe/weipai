@@ -476,7 +476,6 @@
     <Compile Include="Forms\Tab\Tab_Packet.Designer.cs">
       <DependentUpon>Tab_Packet.cs</DependentUpon>
     </Compile>
-    <Compile Include="PacketAnaLysis\PackDivid_FrameType.cs" />
     <Compile Include="Communicat\EConnectType.cs" />
     <Compile Include="Communicat\TCPSever.cs" />
     <Compile Include="Forms\Tab\MainForm.cs">
