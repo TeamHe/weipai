@@ -34,15 +34,6 @@ namespace GridBackGround.PacketAnaLysis
                         data,
                         ref errorCode);
                     break;
-                //控制数据报
-                case TypeFrame.ResControl:
-                    workState = PackDeal_Control.PacketDeivid(
-                        pole,
-                        packet_Type,
-                        frame_No,
-                        data,
-                        ref errorCode);
-                    break;
                 case TypeFrame.PrivateRes:
                     workState = PackDeal_PrivateCon.PacketDeivid(
                         pole,
