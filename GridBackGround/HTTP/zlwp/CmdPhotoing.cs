@@ -45,7 +45,7 @@ namespace GridBackGround.HTTP.zlwp
                 int preseting = (int)jObject["preseting"];
 
             
-                PowerPole pole = Termination.PowerPoleManage.Find(cmdid) as PowerPole;
+                PowerPole pole = PowerPoleManage.GetInstance().Find(cmdid) as PowerPole;
                 if (pole == null || pole.is_online() == false)
                 {
                     Zlwp.SendError(this.Context, Error_Code.DeviceOffLine);

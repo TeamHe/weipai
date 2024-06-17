@@ -25,7 +25,7 @@ namespace GridBackGround
             //不显示装置名称
             this.listView1.Columns[0].Width = 60;
             //终端状态变化事件
-            PowerPoleManage.OnStateChange += 
+            PowerPoleManage.GetInstance().OnStateChange += 
                 new OnLineStateChange(OnLineStateChange);
 
 

@@ -92,7 +92,7 @@ namespace GridBackGround
                 //控件初始化
                 ControlsInit();
                 //终端管理初始化
-                Termination.PowerPoleManage.PowerPoleManageInit();
+                PowerPoleManage.GetInstance().PowerPoleManageInit();
                 //网络端口初始化
                 SocketInit();
                 //事件初始化
@@ -380,7 +380,7 @@ namespace GridBackGround
                 return null; 
             }
 
-            IPowerPole powerPole = PowerPoleManage.Find(this.CMD_ID);
+            IPowerPole powerPole = PowerPoleManage.GetInstance().Find(this.CMD_ID);
             if(powerPole == null)
             {
                 MessageBox.Show("设备离线");

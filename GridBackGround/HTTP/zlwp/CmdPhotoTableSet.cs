@@ -59,7 +59,7 @@ namespace GridBackGround.HTTP.zlwp
                     list.Add(time);
                 }
 
-                PowerPole pole = Termination.PowerPoleManage.Find(mn) as PowerPole;
+                PowerPole pole = PowerPoleManage.GetInstance().Find(mn) as PowerPole;
                 if (pole == null || pole.is_online() == false)
                 {
                     Zlwp.SendError(this.Context, Error_Code.DeviceOffLine);

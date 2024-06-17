@@ -1,10 +1,10 @@
 ﻿using Sodao.FastSocket.Server.Command;
 using Sodao.FastSocket.Server.Protocol;
 using Sodao.FastSocket.Server;
-using GridBackGround.Termination;
 using ResModel;
 using ResModel.nw;
 using ResModel.gw;
+using cma.service;
 
 namespace GridBackGround.Communicat
 {
@@ -36,7 +36,7 @@ namespace GridBackGround.Communicat
         {
             UdpSession session = e.Session;
             CommandInfo_nw cmdInfo = e.CmdInfo;
-            IPowerPole pole = PowerPoleManage.PowerPole(cmdInfo.CMD_ID, session);
+            IPowerPole pole = PowerPoleManage.GetInstance().PowerPole(cmdInfo.CMD_ID, session);
             PackeDeal.RecDataDeal(cmdInfo, EConnectType.UDP, pole);
         }
         #endregion
@@ -59,7 +59,7 @@ namespace GridBackGround.Communicat
         {
             UdpSession session = e.Session;
             CommandInfo_gw cmdInfo = e.CmdInfo;
-            IPowerPole pole = PowerPoleManage.PowerPole(cmdInfo.CMD_ID, session);
+            IPowerPole pole = PowerPoleManage.GetInstance().PowerPole(cmdInfo.CMD_ID, session);
             PackeDeal.RecDataDeal(cmdInfo, EConnectType.UDP, pole);
         }
 

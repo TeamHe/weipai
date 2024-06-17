@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using ResModel.nw;
 using ResModel;
-using cma.service;
 using cma.service.nw_cmd;
 
-namespace GridBackGround.Termination
+namespace cma.service
 {
     /// <summary>
     /// 监控设备通讯管理
@@ -25,11 +24,11 @@ namespace GridBackGround.Termination
         //      The first list is the com ready to send,
         //      And the second is the coms which are not ready
 
-        public PowerPoleComMan()
+        public PowerPoleComMan(PowerPoleManage manage)
         {
             this._pole_list = new Hashtable();
-            PowerPoleManage.OnPoleAdded += PowerPoleManage_PoleAdded;
-            PowerPoleManage.OnPoleRemoved += PowerPoleManage_PoleRemoved;
+            manage.OnPoleAdded += PowerPoleManage_PoleAdded;
+            manage.OnPoleRemoved += PowerPoleManage_PoleRemoved;
             nw_cmd_handle.OnPackageRecv += OnPackageRecv_nw;
         }
 
@@ -184,9 +183,9 @@ namespace GridBackGround.Termination
 
         private static PowerPoleComMan _manager;
 
-        public static void Init()
+        public static void Init(PowerPoleManage manage)
         {
-            _manager = new PowerPoleComMan();
+            _manager = new PowerPoleComMan(manage);
         }
 
         /// <summary>

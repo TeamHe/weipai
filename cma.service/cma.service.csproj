@@ -79,6 +79,9 @@
     <Compile Include="nw_cmd\nw_cmd_e1_cmd_id.cs" />
     <Compile Include="nw_cmd\nw_cmd_handle.cs" />
     <Compile Include="nw_cmd\nw_progress_update.cs" />
+    <Compile Include="PowerPoleCom.cs" />
+    <Compile Include="PowerPoleComMan.cs" />
+    <Compile Include="PowerPoleManage.cs" />
     <Compile Include="gw_cmd\gw_cmd_ctrl_sound_light-alarm.cs" />
     <Compile Include="gw_cmd\gw_cmd_voice_update.cs" />
     <Compile Include="gw_cmd\gw_cmd_01_weather.cs" />
@@ -121,6 +124,7 @@
     <Compile Include="gw_cmd\gw_progress_update.cs" />
     <Compile Include="gw_cmd\gw_cmd_stat_error.cs" />
     <Compile Include="PowerPole.cs" />
+    <Compile Include="PowerPoleStateMan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

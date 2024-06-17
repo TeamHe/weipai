@@ -4,7 +4,6 @@ using Sodao.FastSocket.SocketBase;
 using Sodao.FastSocket.Server.Command;
 using Sodao.FastSocket.Server;
 using GridBackGround.Communicat;
-using GridBackGround.Termination;
 using ResModel;
 using ResModel.PowerPole;
 using cma.service.gw_cmd;
@@ -126,7 +125,7 @@ namespace GridBackGround
 
         public static bool SendSocket(string CMD_ID, byte[] data, out string errorMsg, out int errCode)
         {
-             IPowerPole powerPole = PowerPoleManage.Find(CMD_ID);
+             IPowerPole powerPole = PowerPoleManage.GetInstance().Find(CMD_ID);
              if (powerPole == null)
              {
                  errorMsg = "未找到该设备";
@@ -159,7 +158,7 @@ namespace GridBackGround
             IPowerPole pole = null;
             if (cmdInfo.CMD_ID.Length == 17)
             {
-                pole = PowerPoleManage.PowerPole(cmdInfo.CMD_ID, session);
+                pole = PowerPoleManage.GetInstance().PowerPole(cmdInfo.CMD_ID, session);
                 
             }
             RecDataDeal(cmdInfo, EConnectType.UDP, pole);
@@ -176,7 +175,7 @@ namespace GridBackGround
             IPowerPole pole = null;
             if (cmdInfo.CMD_ID.Length == 17)
             {
-                pole = PowerPoleManage.PowerPole(cmdInfo.CMD_ID, connection);
+                pole = PowerPoleManage.GetInstance().PowerPole(cmdInfo.CMD_ID, connection);
             }
             RecDataDeal(cmdInfo, EConnectType.TCP, pole);
             return false;

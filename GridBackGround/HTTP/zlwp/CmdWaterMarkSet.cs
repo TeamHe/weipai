@@ -2,6 +2,7 @@
 using System.Net;
 using Newtonsoft.Json.Linq;
 using ResModel.PowerPole;
+using cma.service;
 
 namespace GridBackGround.HTTP.zlwp
 {
@@ -63,7 +64,7 @@ namespace GridBackGround.HTTP.zlwp
                 //保存到数据库
                 DB_Operation.EQUManage.DB_EQU.Up_Station(equ);
                 //刷新内存信息
-                Termination.PowerPoleManage.UpdatePoleStation(mn);
+               PowerPoleManage.GetInstance().UpdatePoleStation(mn);
                 Zlwp.SendError(this.Context, Error_Code.Success);
             }catch(Exception ex)
             {

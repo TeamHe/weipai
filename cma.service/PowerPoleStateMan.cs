@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Timers;
 using ResModel.PowerPole;
-using cma.service;
 using cma.service.nw_cmd;
 
-namespace GridBackGround.Termination
+namespace cma.service
 {
     public class PowerPoleStateMan
     {
@@ -14,7 +13,7 @@ namespace GridBackGround.Termination
 
         private Timer _timer;
 
-        public PowerPoleStateMan()
+        public PowerPoleStateMan(PowerPoleManage manage)
         {
             this._timer = new Timer()
             {
@@ -24,8 +23,8 @@ namespace GridBackGround.Termination
             };
             this._timer.Elapsed += _timer_Elapsed;
             this._poles = new Dictionary<PowerPole, PowerPoleState>();
-            PowerPoleManage.OnPoleAdded += PowerPoleManage_PoleAdded;
-            PowerPoleManage.OnPoleRemoved += PowerPoleManage_PoleRemoved;
+            manage.OnPoleAdded += PowerPoleManage_PoleAdded;
+            manage.OnPoleRemoved += PowerPoleManage_PoleRemoved;
         }
 
         /// <summary>
@@ -95,9 +94,9 @@ namespace GridBackGround.Termination
 
         private static PowerPoleStateMan _manager;
 
-        public static void Init()
+        public static void Init(PowerPoleManage manage)
         {
-            _manager = new PowerPoleStateMan();
+            _manager = new PowerPoleStateMan(manage);
         }
 
         /// <summary>

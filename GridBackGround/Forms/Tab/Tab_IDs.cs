@@ -78,8 +78,8 @@ namespace GridBackGround.Forms.Tab
             TreeViewUpdate();
 
             //终端状态变化事件
-            Termination.PowerPoleManage.OnStateChange +=
-                new Termination.OnLineStateChange(OnLineStateChange);
+            PowerPoleManage.GetInstance().OnStateChange +=
+                new OnLineStateChange(OnLineStateChange);
             treeView1.ShowNodeToolTips = true;
         }
 
@@ -315,7 +315,7 @@ namespace GridBackGround.Forms.Tab
             tree.Add_lines();
             tree_lines_image_flush(this.treenode_gw.Nodes);
             tree_lines_image_flush(this.treenode_nw.Nodes);
-            Termination.PowerPoleManage.UpdatePolesStation();
+            PowerPoleManage.GetInstance().UpdatePolesStation();
         }
 
         private void tree_lines_image_flush(TreeNodeCollection nodes)

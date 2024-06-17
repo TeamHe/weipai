@@ -3,7 +3,7 @@ using System.ComponentModel;
 using ResModel.nw;
 using ResModel;
 
-namespace GridBackGround.Termination
+namespace cma.service
 {
     public enum PowerPoleComResult
     {

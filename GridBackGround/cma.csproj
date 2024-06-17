@@ -445,12 +445,8 @@
     <Compile Include="Forms\Tab\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Termination\PowerPoleComMan.cs" />
-    <Compile Include="Termination\PowerPoleManagement.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Termination\PowerPoleCom.cs" />
-    <Compile Include="Termination\PowerPoleStateMan.cs" />
     <Compile Include="Termination\WEB_Control.cs" />
     <Compile Include="Work\PictureClean.cs" />
     <EmbeddedResource Include="Config\Common\Messagebox_Textbox.resx">
