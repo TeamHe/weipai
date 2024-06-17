@@ -1,8 +1,8 @@
-﻿using GridBackGround.CommandDeal.nw;
-using ResModel;
+﻿using ResModel;
 using System;
 using System.Windows.Forms;
 using ResModel.nw;
+using cma.service.nw_cmd;
 
 namespace GridBackGround.Forms.Dialogs_nw
 {

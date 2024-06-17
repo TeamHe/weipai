@@ -219,7 +219,7 @@ namespace GridBackGround
             DisPacket.NewPackageMessage(pole, RSType.Recv, SrcType.NW_UDP,
                    pole.IP != null ? pole.IP.ToString() : "unknown", 0, cmdInfo.Pakcet);
 
-            CommandDeal.nw.nw_cmd_handle.Deal(pole, cmdInfo);
+            cma.service.nw_cmd.nw_cmd_handle.Deal(pole, cmdInfo);
             cmdInfo = null;
             return false;
         }

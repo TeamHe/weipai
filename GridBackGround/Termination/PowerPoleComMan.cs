@@ -1,11 +1,11 @@
-﻿using GridBackGround.CommandDeal.nw;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ResModel.nw;
 using ResModel;
 using cma.service;
+using cma.service.nw_cmd;
 
 namespace GridBackGround.Termination
 {

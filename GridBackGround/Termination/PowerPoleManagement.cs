@@ -4,6 +4,7 @@ using Sodao.FastSocket.Server;
 using ResModel;
 using System.Collections;
 using cma.service;
+using cma.service.nw_cmd;
 
 namespace GridBackGround.Termination
 {
@@ -23,7 +24,7 @@ namespace GridBackGround.Termination
             PowerPoleList = new Hashtable();
             PowerPoleComMan.Init();
             PowerPoleStateMan.Init();
-            CommandDeal.nw.nw_cmd_handle.GetHandles();
+            nw_cmd_handle.GetHandles();
         }
 
         public static void UpdatePolesStation()

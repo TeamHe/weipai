@@ -1,9 +1,9 @@
-﻿using GridBackGround.CommandDeal.nw;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Timers;
 using ResModel.PowerPole;
 using cma.service;
+using cma.service.nw_cmd;
 
 namespace GridBackGround.Termination
 {
