@@ -1,5 +1,4 @@
-﻿using GridBackGround.CommandDeal;
-using System;
+﻿using System;
 using System.Windows.Forms;
 using cma.service.gw_cmd;
 using ResModel.gw;

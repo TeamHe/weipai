@@ -353,8 +353,6 @@
     <Compile Include="HTTP\zlwp\CmdWaterMarkSet.cs" />
     <Compile Include="HTTP\zlwp\Zlwp.cs" />
     <Compile Include="LogHelper.cs" />
-    <Compile Include="CommandDeal\FrameNO.cs" />
-    <Compile Include="Communicat\TCPSeverWeb.cs" />
     <Compile Include="Forms\AboutBox1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -423,7 +421,6 @@
     <Compile Include="Forms\Dialog\Dialog_Con_Reset.Designer.cs">
       <DependentUpon>Dialog_Con_Reset.cs</DependentUpon>
     </Compile>
-    <Compile Include="PacketAnaLysis\BuildPacket.cs" />
     <Compile Include="SerialPort.cs" />
     <Compile Include="Config\SettingsForm.cs" />
     <Compile Include="Config\SettingsForm.Designer.cs">
@@ -447,7 +444,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Termination\WEB_Control.cs" />
     <Compile Include="Work\PictureClean.cs" />
     <EmbeddedResource Include="Config\Common\Messagebox_Textbox.resx">
       <DependentUpon>Messagebox_Textbox.cs</DependentUpon>
