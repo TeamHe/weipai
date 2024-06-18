@@ -1,16 +1,17 @@
 ﻿using Sodao.FastSocket.Server.Command;
-using Sodao.FastSocket.Server.Protocol;
 using Sodao.FastSocket.Server;
 using ResModel;
 using ResModel.nw;
 using ResModel.gw;
 using cma.service;
+using cma.service.gw_cmd;
 
 namespace GridBackGround.Communicat
 {
     public class Service
     {
-        private static SocketServer<CommandInfo_gw> CMD_TCP;
+        //private static SocketServer<CommandInfo_gw> CMD_TCP;
+        private static gw_tcp_service gw_Tcp_Service = null;
         private static HTTP.HttpListeners httpListeners = null;
 
         private static gw_service_udp service_gw_udp = null;
@@ -78,21 +79,16 @@ namespace GridBackGround.Communicat
                 state = false;
             }
 
-            //装置UDP连接
-                //装置TCP连接
-                CMD_TCP = new SocketServer<CommandInfo_gw>(new TCPSeverCMD(),
-                    new Protocol_tcp_gw(),
-                    8192,
-                    8192,
-                    102400,
-                    20000);
-                CMD_TCP.AddListener("binary", new System.Net.IPEndPoint
-                    (System.Net.IPAddress.Any, Config.SettingsForm.Default.gw_port));
-                if (!CMD_TCP.Start())
-                {
-                    msg += "TCP端口：" + Config.SettingsForm.Default.gw_port.ToString() + "被占用\n";
-                    state = false;
-                }
+            try
+            {
+                gw_Tcp_Service = new gw_tcp_service() { Port = Config.SettingsForm.Default.gw_port, };
+                gw_Tcp_Service.Start();
+            }
+            catch
+            {
+                msg += "TCP端口：" + Config.SettingsForm.Default.gw_port.ToString() + "被占用\n";
+                state = false;
+            }
 
             //httpListeners = new HTTP.HttpListeners(Config.SettingsForm.Default.WEB_Port);
             //httpListeners.ListenerStart();
@@ -121,8 +117,8 @@ namespace GridBackGround.Communicat
         {
             try
             {
-                if (CMD_TCP != null)
-                    CMD_TCP.Stop();
+                if (gw_Tcp_Service != null)
+                    gw_Tcp_Service.Stop();
                 if (httpListeners != null)
                     httpListeners.ListenerStop();
             }

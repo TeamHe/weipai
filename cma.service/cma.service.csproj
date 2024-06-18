@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="gw_tcp_service.cs" />
     <Compile Include="nw_cmd\nw_cmd_00_poweron.cs" />
     <Compile Include="nw_cmd\nw_cmd_01_timing.cs" />
     <Compile Include="nw_cmd\nw_cmd_02_password.cs" />

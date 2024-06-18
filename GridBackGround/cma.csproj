@@ -435,7 +435,6 @@
       <DependentUpon>Tab_Packet.cs</DependentUpon>
     </Compile>
     <Compile Include="Communicat\EConnectType.cs" />
-    <Compile Include="Communicat\TCPSever.cs" />
     <Compile Include="Forms\Tab\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
